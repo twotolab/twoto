@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<content>
+	<submenu>
+		<item url="skype:+4917624041994?call "  window="_blank">
+			<label><![CDATA[phone.+4917624041994]]></label>
+		</item>
+		<item url="mailto:patrick@twoto.com?subject=contact twoto" window="_blank">
+			<label><![CDATA[mail.patrick@twoto.com]]></label>
+		</item>
+		<item type="imprint" url="content/pic/impressum.gif">
+			<label><![CDATA[imprint.legal.©2009]]></label>
+		</item>
+		<item type="fullscreen">
+			<label><![CDATA[full.screen]]></label>
+			<secondLabel><![CDATA[normal.screen]]></secondLabel>
+		</item>
+
+	</submenu>
+	<item ID="0" type="menu"  subType="search" deepLink="search">
+		<label><![CDATA[search]]></label>
+		<description><![CDATA[please type something...]]></description>
+		<descriptionFullscreen><![CDATA[please escape fullscreen modus and type something...]]></descriptionFullscreen>
+	</item>
+	<item ID="1" type="menu" subType="projects"  deepLink="projects"  defaultSelected="true" >
+		<label><![CDATA[projects]]></label>
+	</item>
+	<item ID="2" type="menu" subType="about"  deepLink="about">
+		<label><![CDATA[about]]></label>
+		<description><![CDATA[please shake the mouse for more info]]></description>
+		<textElements>
+			<textElement><![CDATA[twoto]]></textElement>
+			<textElement><![CDATA[is personal creative]]></textElement>
+			<textElement><![CDATA[playground of patrick decaix]]></textElement>
+			<textElement><![CDATA[designer and engineer living in Hamburg]]></textElement>
+			<textElement><![CDATA[the site will be updated]]></textElement>
+			<textElement><![CDATA[every month with a new clock]]></textElement>
+			<textElement><![CDATA[...or something else]]></textElement>
+		</textElements>
+	</item>
+	<item ID="3" type="project" deepLink="cells" defaultSelected="true"  URL="content/swf/cells.swf" previewPicUrl="content/pic/preview_cells.jpg" colorStyle="0x00E9E9" shadowColorStyle="0x000000" screensaverMacUrl="content/screensaver/cellsClockMac.saver.zip" screensaverPcUrl="content/screensaver/cellsClockPC.zip" >
+		<label><![CDATA[cells]]></label>
+		<description><![CDATA[collision detection clock]]></description>
+		<date><![CDATA[Mon January 19 2009 08:36:00 AM]]></date>
+	</item>
+</content>
