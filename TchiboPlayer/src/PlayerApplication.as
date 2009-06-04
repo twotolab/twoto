@@ -7,7 +7,7 @@ package
 	import flash.display.Shape;
 	import flash.display.Sprite;
 
-	[SWF(backgroundColor='0xffffff', width='565', height='353', frameRate="30")]
+	[SWF(backgroundColor='0xe9e8dd', width='380', height='304', frameRate="30")]
 
 	public class PlayerApplication extends Sprite
 	{
@@ -19,7 +19,7 @@ package
 			var background:Shape = Draw.drawShape(DefinesFLVPLayer.STAGE_WIDTH,DefinesFLVPLayer.STAGE_HEIGHT,0xffffff);
 			
 			player = new FLVPlayer();
-			player.videoURL ="film.flv"//+"?test="+Math.random()*100;
+			player.videoURL ="http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv"+"?test="+Math.random()*100;//"film.flv"//
 			//trace("test player.videoURL  : "+player.videoURL );
 			addChild(player);
 			//	

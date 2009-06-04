@@ -4,32 +4,38 @@ package com.tchibo.utils.videoPlayer
 	{
 	public static const BUFFER_TIME:uint = 3;
 	
-	public static const STAGE_WIDTH:uint = 565;
-	public static const STAGE_HEIGHT:uint = 353;
+	public static const STAGE_WIDTH:uint = 380;
+	public static const STAGE_HEIGHT:uint = 304;
 	
-	public static const VIDEO_WIDTH:uint = 565;
-	public static const VIDEO_HEIGHT:uint = 319;
+	public static const VIDEO_WIDTH:uint = 380;
+	public static const VIDEO_HEIGHT:uint = 285;
 	
-	public static const NAVI_HEIGHT:uint = 35;
-	public static const NAVI_COLOR:uint = 0x97cdd3;
-	public static const NAVI_LINE_COLOR:uint = 0xe6e6e6;
+	public static const NAVI_HEIGHT:uint = 20;
+	public static const NAVI_COLOR:uint = 0xe9e8dd;
+	public static const NAVI_LINE_COLOR:uint = 0x000000;
 	
-	public static const NAVI_PLAYSTOP_X:uint = 11;
-	public static const NAVI_PLAYSTOP_Y:uint = 13;
+	public static const NAVI_PLAYSTOP_X:uint =0;
+	public static const NAVI_PLAYSTOP_Y:uint = 5;
 	
-	public static const NAVI_SOUND_X:uint = 48; // distance from right border
-	public static const NAVI_SOUND_Y:uint = 13;
+	public static const NAVI_SOUND_X:uint = 15; // distance from right border
+	public static const NAVI_SOUND_Y:uint = 5;
 	
-	public static const NAVI_PROGRESS_HEIGHT:uint = 6;
-	public static const NAVI_PROGRESS_DISTANCE_LEFT:uint = 32;
-	public static const NAVI_PROGRESS_DISTANCE_RIGHT:uint = 120;
-	public static const NAVI_PROGRESS_Y:uint = 16;
+	public static const NAVI_PROGRESS_HEIGHT:uint = 5;
+	public static const NAVI_PROGRESS_BORDER:uint = 5;
+	public static const NAVI_PROGRESS_BACKGROUND_HEIGHT:uint = 15;
+	public static const NAVI_PROGRESS_DISTANCE_LEFT:uint = 18;
+	public static const NAVI_PROGRESS_DISTANCE_RIGHT:uint = 26;
+	public static const NAVI_PROGRESS_Y:uint = 5;
+	
+	public static const NAVI_PROGRESS_COLOR:uint = 0x666666;
+	public static const NAVI_PROGRESS_BACKGROUND_COLOR:uint = 0xcccccc;
+	public static const NAVI_PROGRESS_BACKGROUND_ELT_COLOR:uint = 0xffffff;
 	
 	public static const NAVI_TEXT_X:uint = 110;// distance from right border
 	public static const NAVI_TEXT_Y:uint = 10 ;
 	
-	public static const NAVI_FULLSCREEN_X:uint = 25;// distance from right border
-	public static const NAVI_FULLSCREEN_Y:uint = 13 ;
+	public static const NAVI_FULLSCREEN_X:uint = 33;// distance from right border
+	public static const NAVI_FULLSCREEN_Y:uint = 5 ;
 
 	}
 }

@@ -1,7 +1,7 @@
 package com.tchibo.utils.videoPlayer {
 	import com.tchibo.global.components.IBasics;
 	import com.tchibo.utils.Draw;
-	import com.tchibo.utils.TimeUtils;
+	import com.tchibo.utils.videoPlayer.elements.Dragger;
 	import com.tchibo.utils.videoPlayer.elements.FullScreenElement;
 	import com.tchibo.utils.videoPlayer.elements.PlayStopElement;
 	import com.tchibo.utils.videoPlayer.elements.SoundElement;
@@ -23,6 +23,7 @@ package com.tchibo.utils.videoPlayer {
 		private var backgroundNaviLine:Shape;
 		private var progressLoadedBackground:Shape;
 		private var progressBackground:EmptyBackProgressMC;
+		private var progressEltBackground:Shape;
 		private var soundOnOffButton:SoundElement;
 		private var progressBar:Shape;
 
@@ -38,6 +39,10 @@ package com.tchibo.utils.videoPlayer {
 		private var fullScreenButton:FullScreenElement;
 
 		private var maskVideo:Sprite;
+		
+		private var dragger:Dragger;
+		
+		public var draggerPercent:uint;
 
 
 		public function FLVPlayerInterfaceUI() {
@@ -92,11 +97,11 @@ package com.tchibo.utils.videoPlayer {
 			startStopButton=new PlayStopElement();
 			startStopButton.addEventListener(Event.CHANGE, startStopHandler);
 			addChild(startStopButton);
-
+		
 			infoText=new InfoTextMC();
 			textF=infoText.getChildByName("textf") as TextField;
 			textF.text="";
-			addChild(infoText);
+			//addChild(infoText);
 
 			soundOnOffButton=new SoundElement();
 			soundOnOffButton.addEventListener(Event.CHANGE, soundHandler);
@@ -125,18 +130,40 @@ package com.tchibo.utils.videoPlayer {
 					removeChild(progressBar);
 				}
 			}
+			if(progressEltBackground !=null){
+				if(this.contains(progressEltBackground)){
+						removeChild(progressEltBackground);
+					progressEltBackground = null;
+				}
+			}
+			if(dragger !=null){
+				if(this.contains(dragger)){
+					dragger.removeEventListener(Event.CHANGE,draggerHandler);
+					dragger.destroy();
+					removeChild(dragger);
+					dragger = null;
+				}
+			}
+			progressEltBackground=Draw.drawShape(playerWidth - DefinesFLVPLayer.NAVI_PROGRESS_DISTANCE_LEFT - DefinesFLVPLayer.NAVI_PROGRESS_DISTANCE_RIGHT-DefinesFLVPLayer.NAVI_PROGRESS_BORDER*2, DefinesFLVPLayer.NAVI_PROGRESS_HEIGHT+DefinesFLVPLayer.NAVI_PROGRESS_BORDER*2, 1, DefinesFLVPLayer.NAVI_PROGRESS_BACKGROUND_ELT_COLOR);
+			addChild(progressEltBackground);
+			
 			progressBackground=new EmptyBackProgressMC();
-			progressBackground.width=playerWidth - DefinesFLVPLayer.NAVI_PROGRESS_DISTANCE_LEFT - DefinesFLVPLayer.NAVI_PROGRESS_DISTANCE_RIGHT;
+			progressBackground.width=playerWidth - DefinesFLVPLayer.NAVI_PROGRESS_DISTANCE_LEFT - DefinesFLVPLayer.NAVI_PROGRESS_DISTANCE_RIGHT-DefinesFLVPLayer.NAVI_PROGRESS_BORDER*4;
 			progressBackground.height=DefinesFLVPLayer.NAVI_PROGRESS_HEIGHT;
 			addChild(progressBackground);
 
-			progressLoadedBackground=Draw.drawShape(progressBackground.width, DefinesFLVPLayer.NAVI_PROGRESS_HEIGHT, 1, 0xCBE6E9);
+			progressLoadedBackground=Draw.drawShape(progressBackground.width, DefinesFLVPLayer.NAVI_PROGRESS_HEIGHT, 1,DefinesFLVPLayer.NAVI_PROGRESS_BACKGROUND_COLOR);
 			progressLoadedBackground.scaleX=0;
 			addChild(progressLoadedBackground);
-
-			progressBar=Draw.drawShape(progressBackground.width, DefinesFLVPLayer.NAVI_PROGRESS_HEIGHT, 1, 0xffffff);
+			
+			dragger = new Dragger(progressBackground.width);
+			dragger.addEventListener(Event.CHANGE,draggerHandler);
+			
+			
+			progressBar=Draw.drawShape(progressBackground.width-dragger.width, DefinesFLVPLayer.NAVI_PROGRESS_HEIGHT, 1, DefinesFLVPLayer.NAVI_PROGRESS_COLOR);
 			progressBar.scaleX=0;
 			addChild(progressBar);
+			addChild(dragger);
 		}
 
 		private function startStopHandler(evt:Event):void {
@@ -155,6 +182,12 @@ package com.tchibo.utils.videoPlayer {
 			trace("resetPlayStopButton: ");
 			startStopButton.resetStatus();
 			textF.text="00:00";
+			dragger.placeByPercent(0);
+		}
+		public function setPlayStopStatus():void{
+			if(startStopButton != null){
+			startStopButton.setStatus(engine.STATUS);
+			}
 		}
 
 		public function showProgressBar(_value:Boolean):void {
@@ -164,10 +197,12 @@ package com.tchibo.utils.videoPlayer {
 
 					if (_value == true) {
 						progressBar.scaleX=0;
+						dragger.x = Math.round(progressBar.x);
 					}
 				}
 				else if (_value == false) {
 					progressBar.scaleX=0;
+					dragger.x =Math.round( progressBar.x);
 				}
 			}
 		}
@@ -185,14 +220,20 @@ package com.tchibo.utils.videoPlayer {
 			
 			redrawProgressBars();
 			
-			progressBackground.y=playerHeight + DefinesFLVPLayer.NAVI_PROGRESS_Y;
-			progressBackground.x=DefinesFLVPLayer.NAVI_PROGRESS_DISTANCE_LEFT;
+			progressEltBackground.y=playerHeight + DefinesFLVPLayer.NAVI_PROGRESS_Y;
+			progressEltBackground.x=DefinesFLVPLayer.NAVI_PROGRESS_DISTANCE_LEFT;
+			
+			progressBackground.y=playerHeight + DefinesFLVPLayer.NAVI_PROGRESS_Y+DefinesFLVPLayer.NAVI_PROGRESS_BORDER;
+			progressBackground.x=DefinesFLVPLayer.NAVI_PROGRESS_DISTANCE_LEFT+DefinesFLVPLayer.NAVI_PROGRESS_BORDER;
 
 			progressLoadedBackground.y=progressBackground.y;
 			progressLoadedBackground.x=progressBackground.x;
 
 			progressBar.y=progressBackground.y;
 			progressBar.x=progressBackground.x;
+			
+			dragger.x = Math.round(progressBar.x);
+			dragger.y =Math.round(progressBar.y	+2);
 
 			soundOnOffButton.x=playerWidth - DefinesFLVPLayer.NAVI_SOUND_X;
 			soundOnOffButton.y=playerHeight + DefinesFLVPLayer.NAVI_SOUND_Y;
@@ -245,16 +286,31 @@ package com.tchibo.utils.videoPlayer {
 			updateProgressBar(engine.percentProgress, engine.timePlayed);
 			updateLoadedProgress(engine.percentLoadingProgress);
 		}
-
-		public function updateProgressBar(_percent:Number, time:uint):void {
-
-			progressBar.scaleX=_percent;
-			textF.text=TimeUtils.secondsToStringConverter(time);
+		private function draggerHandler(evt:Event):void{
+			
+			draggerPercent = dragger.percent;
+			progressBar.scaleX=draggerPercent*0.01;
+			dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.INTERFACE_DRAGGED));
 		}
+
+		public function updateProgressBar(_percent:Number, time:uint = 0):void {
+
+			
+			if(dragger.isDragging != true){
+				//trace("update dragger"+_percent)
+				dragger.placeByPercent(_percent);
+				progressBar.scaleX=_percent;
+			}
+			//textF.text=TimeUtils.secondsToStringConverter(time);
+		}
+	
 
 		public function updateLoadedProgress(_percent:Number):void {
 
-			progressLoadedBackground.scaleX=_percent;
+			if(progressLoadedBackground != null && this.contains(progressLoadedBackground)){
+				progressLoadedBackground.scaleX=_percent;
+				dragger.updateWidth(_percent);
+			}
 		}
 
 		public function freeze():void {
@@ -268,8 +324,15 @@ package com.tchibo.utils.videoPlayer {
 			startStopButton.removeEventListener(Event.CHANGE, startStopHandler);
 			soundOnOffButton.removeEventListener(Event.CHANGE, soundHandler);
 
+			if(this.contains(dragger)){
+					dragger.removeEventListener(Event.CHANGE,draggerHandler);
+						removeChild(dragger);
+					dragger = null;
+				}
 			removeChild(backgroundNavi);
 			backgroundNavi=null;
+			removeChild(progressEltBackground);
+			progressEltBackground = null;
 			removeChild(startStopButton);
 			startStopButton=null;
 			removeChild(progressBackground);
@@ -278,8 +341,10 @@ package com.tchibo.utils.videoPlayer {
 			progressLoadedBackground=null;
 			removeChild(progressBar);
 			progressBar=null;
+			/*
 			removeChild(infoText);
 			infoText=null;
+			*/
 			removeChild(soundOnOffButton);
 			soundOnOffButton=null;
 			removeChild(fullScreenButton);
