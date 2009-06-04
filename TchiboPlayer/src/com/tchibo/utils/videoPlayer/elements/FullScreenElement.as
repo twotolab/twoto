@@ -1,7 +1,7 @@
-package com.sanex.utils.videoPlayer.elements {
+package com.tchibo.utils.videoPlayer.elements {
 
-	import com.sanex.utils.videoPlayer.FullScreenMC;
-
+	import com.tchibo.utils.videoPlayer.FullScreenMC;
+	
 	import flash.display.MovieClip;
 	import flash.display.StageDisplayState;
 	import flash.events.Event;

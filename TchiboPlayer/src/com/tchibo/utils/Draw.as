@@ -1,5 +1,4 @@
-package com.sanex.utils {
-//	import com.twoto.StageManager;
+package com.tchibo.utils {
 
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;

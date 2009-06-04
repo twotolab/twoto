@@ -1,4 +1,4 @@
-package com.sanex.utils
+package com.tchibo.utils
 {
 	public dynamic class TimeUtils
 	{

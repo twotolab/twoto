@@ -1,4 +1,4 @@
-package com.sanex.global.components
+package com.tchibo.global.components
 {
 	public interface IBasics
 	{

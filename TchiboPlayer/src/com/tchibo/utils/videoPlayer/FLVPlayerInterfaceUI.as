@@ -1,10 +1,10 @@
-package com.sanex.utils.videoPlayer {
-	import com.sanex.global.components.IBasics;
-	import com.sanex.utils.Draw;
-	import com.sanex.utils.TimeUtils;
-	import com.sanex.utils.videoPlayer.elements.FullScreenElement;
-	import com.sanex.utils.videoPlayer.elements.PlayStopElement;
-	import com.sanex.utils.videoPlayer.elements.SoundElement;
+package com.tchibo.utils.videoPlayer {
+	import com.tchibo.global.components.IBasics;
+	import com.tchibo.utils.Draw;
+	import com.tchibo.utils.TimeUtils;
+	import com.tchibo.utils.videoPlayer.elements.FullScreenElement;
+	import com.tchibo.utils.videoPlayer.elements.PlayStopElement;
+	import com.tchibo.utils.videoPlayer.elements.SoundElement;
 	
 	import flash.display.DisplayObject;
 	import flash.display.Shape;
