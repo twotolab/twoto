@@ -1,6 +1,6 @@
-package com.sanex.utils.videoPlayer.elements{
+package com.tchibo.utils.videoPlayer.elements{
 
-	import com.sanex.utils.videoPlayer.SoundButtonMC;
+	import com.tchibo.utils.videoPlayer.SoundButtonMC;
 	
 	import flash.display.MovieClip;
 	import flash.events.Event;

@@ -1,9 +1,9 @@
-package com.sanex.utils.videoPlayer {
+package com.tchibo.utils.videoPlayer {
 
 	import caurina.transitions.Tweener;
 	import caurina.transitions.properties.SoundShortcuts;
 	
-	import com.sanex.global.components.IBasics;
+	import com.tchibo.global.components.IBasics;
 	
 	import flash.display.Sprite;
 	import flash.events.AsyncErrorEvent;

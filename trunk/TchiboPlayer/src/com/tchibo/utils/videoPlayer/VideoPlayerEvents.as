@@ -1,4 +1,4 @@
-package com.sanex.utils.videoPlayer
+package com.tchibo.utils.videoPlayer
 {
 	import flash.events.Event;
 

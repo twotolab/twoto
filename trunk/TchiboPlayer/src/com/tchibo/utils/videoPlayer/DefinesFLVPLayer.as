@@ -1,4 +1,4 @@
-package com.sanex.utils.videoPlayer
+package com.tchibo.utils.videoPlayer
 {
 	public class DefinesFLVPLayer
 	{

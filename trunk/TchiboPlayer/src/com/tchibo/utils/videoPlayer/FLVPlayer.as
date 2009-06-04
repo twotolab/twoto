@@ -1,6 +1,6 @@
-package com.sanex.utils.videoPlayer {
+package com.tchibo.utils.videoPlayer {
 
-	import com.sanex.global.components.IBasics;
+	import com.tchibo.global.components.IBasics;
 
 	import flash.display.Sprite;
 	import flash.display.StageAlign;

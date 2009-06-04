@@ -1,8 +1,8 @@
 package
 {
-	import com.sanex.utils.Draw;
-	import com.sanex.utils.videoPlayer.DefinesFLVPLayer;
-	import com.sanex.utils.videoPlayer.FLVPlayer;
+	import com.tchibo.utils.Draw;
+	import com.tchibo.utils.videoPlayer.DefinesFLVPLayer;
+	import com.tchibo.utils.videoPlayer.FLVPlayer;
 	
 	import flash.display.Shape;
 	import flash.display.Sprite;
@@ -19,7 +19,7 @@ package
 			var background:Shape = Draw.drawShape(DefinesFLVPLayer.STAGE_WIDTH,DefinesFLVPLayer.STAGE_HEIGHT,0xffffff);
 			
 			player = new FLVPlayer();
-			player.videoURL ="cooper_s_canal_big.flv"//+"?test="+Math.random()*100;
+			player.videoURL ="film.flv"//+"?test="+Math.random()*100;
 			//trace("test player.videoURL  : "+player.videoURL );
 			addChild(player);
 			//	
