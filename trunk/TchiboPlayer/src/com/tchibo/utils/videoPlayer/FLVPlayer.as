@@ -22,6 +22,7 @@ package com.tchibo.utils.videoPlayer {
 			// events  from the interfaceUI
 			interfaceUI.addEventListener(VideoPlayerEvents.INTERFACE_PAUSE, interfaceHandler);
 			interfaceUI.addEventListener(VideoPlayerEvents.INTERFACE_SOUND, interfaceHandler);
+			interfaceUI.addEventListener(VideoPlayerEvents.INTERFACE_DRAGGED, interfaceHandler);
 
 			// events  from the Engine
 			playerEngine.addEventListener(VideoPlayerEvents.ENGINE_METADATA_READY, engineHandler);
@@ -78,6 +79,10 @@ package com.tchibo.utils.videoPlayer {
 					interfaceUI.showProgressBar(true);
 					playerEngine.pause();
 					break;
+				case VideoPlayerEvents.INTERFACE_DRAGGED:
+					//trace("interfaceHandler!!!! :" + evt.type.toString());
+					playerEngine.draggedTo(interfaceUI.draggerPercent);
+					break;
 				default:
 					trace("interfaceHandler empty!!!! :" + evt.type.toString());
 					break;
@@ -95,11 +100,13 @@ package com.tchibo.utils.videoPlayer {
 					break;
 				case VideoPlayerEvents.ENGINE_START:
 					trace("engineHandler :" + evt.type.toString());
+					interfaceUI.setPlayStopStatus();
 					break;
 				case VideoPlayerEvents.ENGINE_STOP:
 					trace("engineHandler :" + evt.type.toString());
 					interfaceUI.showProgressBar(false);
-					interfaceUI.resetPlayStopButton();
+					//interfaceUI.resetPlayStopButton();
+					interfaceUI.setPlayStopStatus();
 					break;
 				case VideoPlayerEvents.BUFFERING_EMPTY:
 					trace("engineHandler :" + evt.type.toString());
@@ -141,6 +148,11 @@ package com.tchibo.utils.videoPlayer {
 			playerEngine.removeEventListener(VideoPlayerEvents.ENGINE_START, engineHandler);
 			playerEngine.removeEventListener(VideoPlayerEvents.ENGINE_STOP, engineHandler);
 			playerEngine.removeEventListener(VideoPlayerEvents.ENGINE_UPDATE_PROGRESS, updateProgress);
+			
+			interfaceUI.removeEventListener(VideoPlayerEvents.INTERFACE_PAUSE, interfaceHandler);
+			interfaceUI.removeEventListener(VideoPlayerEvents.INTERFACE_SOUND, interfaceHandler);
+			interfaceUI.removeEventListener(VideoPlayerEvents.INTERFACE_DRAGGED, interfaceHandler);
+			interfaceUI.destroy();
 
 			playerEngine.destroy();
 		}

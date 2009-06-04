@@ -230,6 +230,14 @@ package com.tchibo.utils.videoPlayer {
 			pause();
 			dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.ENGINE_STOP));
 		}
+		public function draggedTo(_percent:uint):void {
+
+			//trace("draggedTo"+Number(client.meta.duration.toFixed(1)));
+			var targetSeek:uint =Math.round(_percent*Number(client.meta.duration.toFixed(1))*.01);
+			//trace("draggedTo"+_percent);
+			netStream.seek(targetSeek);
+			dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.ENGINE_UPDATE_PROGRESS));
+		}
 
 		public function soundHandler():void {
 

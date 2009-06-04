@@ -17,6 +17,7 @@ package com.tchibo.utils.videoPlayer
 		
 		public static const INTERFACE_PAUSE:String = "interfacePause";
 		public static const INTERFACE_SOUND:String = "interfaceSound";
+		public static const INTERFACE_DRAGGED:String = "interfaceDragged";
 		
 		//
 		public function VideoPlayerEvents(type:String, bubbles:Boolean=true, cancelable:Boolean=false)

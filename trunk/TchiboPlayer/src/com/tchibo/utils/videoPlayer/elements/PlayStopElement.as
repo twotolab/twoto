@@ -66,6 +66,16 @@ package com.tchibo.utils.videoPlayer.elements{
 			display.gotoAndStop("PLAY_OUT");
 
 		}
+		public function setStatus(_status:String):void {
+
+			STATUS=_status;
+			if (STATUS == PLAY) {
+				display.gotoAndStop("STOP_OUT");
+			}
+			else {
+				display.gotoAndStop("PLAY_OUT");
+			}
+		}
 
 	}
 }
