@@ -76,7 +76,7 @@ package com.tchibo.utils.videoPlayer.elements
 			e.updateAfterEvent();
 		}
 		public function updateWidth(_percent:Number):void{
-			trace("updateWidth boundRight:"+boundRight);
+			//trace("updateWidth boundRight:"+boundRight);
 			boundRight =_percent*(scrollWidth-scroller.width);
 		}
 		public function placeByPercent(_percent:Number):void{

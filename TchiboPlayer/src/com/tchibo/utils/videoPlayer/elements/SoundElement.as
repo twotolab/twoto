@@ -18,19 +18,20 @@ package com.tchibo.utils.videoPlayer.elements{
 			display=new SoundButtonMC();
 			addChild(display);
 			display.stop();
+			buttonMode = true;
 
 			display.addEventListener(MouseEvent.ROLL_OVER, rollOverHandler);
 			display.addEventListener(MouseEvent.ROLL_OUT, rollOutHandler);
 			display.addEventListener(MouseEvent.MOUSE_DOWN, downHandler);
 
 			STATUS=ON;
-			trace(">>>>>>>>>>>>>>>>redraw")
+			//trace(">>>>>>>>>>>>>>>>redraw")
 			display.gotoAndStop("PLAY_OUT");
 		}
 
 		private function rollOverHandler(evt:MouseEvent):void {
 
-			trace(">>>>>>>>>>>>>>>>rollOverHandler")
+			//trace(">>>>>>>>>>>>>>>>rollOverHandler")
 			if (STATUS == ON) {
 				display.gotoAndStop("STOP_OVER")
 			}
@@ -41,7 +42,7 @@ package com.tchibo.utils.videoPlayer.elements{
 
 		private function rollOutHandler(evt:MouseEvent):void {
 			
-			trace(">>>>>>>>>>>>>>>>rollOutHandler")
+			//trace(">>>>>>>>>>>>>>>>rollOutHandler")
 			if (STATUS == ON) {
 				display.gotoAndStop("PLAY_OUT");
 			}
@@ -52,7 +53,7 @@ package com.tchibo.utils.videoPlayer.elements{
 
 		public function downHandler(evt:MouseEvent):void {
 
-			trace(">>>>>>>>>>>>>>>>downHandler")
+			//trace(">>>>>>>>>>>>>>>>downHandler")
 			if (STATUS == ON) {
 				display.gotoAndStop("STOP_OVER");
 				STATUS=OFF;

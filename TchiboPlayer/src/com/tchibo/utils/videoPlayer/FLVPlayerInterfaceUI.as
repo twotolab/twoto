@@ -70,7 +70,7 @@ package com.tchibo.utils.videoPlayer {
 			   trace("video.height" + video.height);
 			 */
 
-			playerHeight=video.height;
+			playerHeight=video.height-1;
 			playerWidth=video.width;
 
 			draw();
@@ -178,9 +178,9 @@ package com.tchibo.utils.videoPlayer {
 			dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.INTERFACE_SOUND));
 		}
 
-		public function resetPlayStopButton():void {
+		public function reset():void {
+			
 			trace("resetPlayStopButton: ");
-			startStopButton.resetStatus();
 			textF.text="00:00";
 			dragger.placeByPercent(0);
 		}
@@ -219,10 +219,9 @@ package com.tchibo.utils.videoPlayer {
 			backgroundNaviLine.y=playerHeight;
 			
 			redrawProgressBars();
-			
 			progressEltBackground.y=playerHeight + DefinesFLVPLayer.NAVI_PROGRESS_Y;
-			progressEltBackground.x=DefinesFLVPLayer.NAVI_PROGRESS_DISTANCE_LEFT;
-			
+			progressEltBackground.x=DefinesFLVPLayer.NAVI_PROGRESS_DISTANCE_LEFT;		
+		
 			progressBackground.y=playerHeight + DefinesFLVPLayer.NAVI_PROGRESS_Y+DefinesFLVPLayer.NAVI_PROGRESS_BORDER;
 			progressBackground.x=DefinesFLVPLayer.NAVI_PROGRESS_DISTANCE_LEFT+DefinesFLVPLayer.NAVI_PROGRESS_BORDER;
 
@@ -233,7 +232,7 @@ package com.tchibo.utils.videoPlayer {
 			progressBar.x=progressBackground.x;
 			
 			dragger.x = Math.round(progressBar.x);
-			dragger.y =Math.round(progressBar.y	+2);
+			dragger.y =Math.round(progressBar.y+2);
 
 			soundOnOffButton.x=playerWidth - DefinesFLVPLayer.NAVI_SOUND_X;
 			soundOnOffButton.y=playerHeight + DefinesFLVPLayer.NAVI_SOUND_Y;
@@ -289,7 +288,7 @@ package com.tchibo.utils.videoPlayer {
 		private function draggerHandler(evt:Event):void{
 			
 			draggerPercent = dragger.percent;
-			progressBar.scaleX=draggerPercent*0.01;
+			progressBar.scaleX=draggerPercent*0.01*progressLoadedBackground.scaleX;
 			dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.INTERFACE_DRAGGED));
 		}
 
@@ -297,9 +296,9 @@ package com.tchibo.utils.videoPlayer {
 
 			
 			if(dragger.isDragging != true){
-				//trace("update dragger"+_percent)
+				//trace("update dragger"+percentLoaded)
 				dragger.placeByPercent(_percent);
-				progressBar.scaleX=_percent;
+				progressBar.scaleX=_percent*progressLoadedBackground.scaleX;
 			}
 			//textF.text=TimeUtils.secondsToStringConverter(time);
 		}
