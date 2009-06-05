@@ -80,12 +80,14 @@ package com.twoto.cms.model {
 			// set elements
 			var elementsElts:*;
 			var elementsElt:AbstractEditorCMSTextElement;
+			var name:*;
+			var value:*;
 
 			for (elementsElts in newNodeVO.elements) {
 
 				eltLinecounter=0;
-				var name:*=elementsElts.toString();
-				var value:*=newNodeVO.elements[elementsElts];
+				name=elementsElts.toString();
+				value=newNodeVO.elements[elementsElts];
 				elementsElt=FunctionMapper.mappingFunction(name, value, "- info:");
 
 				eltsArray.push(elementsElt);
@@ -111,8 +113,8 @@ package com.twoto.cms.model {
 
 			for (attributeElts in newNodeVO.attributes) {
 				eltLinecounter=0;
-				var name:*=attributeElts.toString();
-				var value:*=newNodeVO.attributes[attributeElts]
+				name=attributeElts.toString();
+				value=newNodeVO.attributes[attributeElts]
 
 				if (name == "name") {
 					attributeElt=FunctionMapper.mappingFunction(name, value, "- info:", true) as AbstractEditorCMSTextElement;
