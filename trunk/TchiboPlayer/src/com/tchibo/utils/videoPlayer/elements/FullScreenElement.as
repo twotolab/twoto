@@ -36,6 +36,7 @@ package com.tchibo.utils.videoPlayer.elements {
 
 			display=new FullScreenMC();
 			addChild(display);
+			buttonMode = true;
 			display.stop();
 
 			display.addEventListener(MouseEvent.ROLL_OVER, rollOverHandler);
@@ -72,7 +73,7 @@ package com.tchibo.utils.videoPlayer.elements {
 		// 	handler fullscreen/normal modus
 		//---------------------------------------------------------------------------
 		private function fullscreenHandler(evt:MouseEvent):void {
-			trace("fullscreenHandler");
+			//trace("fullscreenHandler");
 			if (this.stage.displayState == StageDisplayState.NORMAL) {
 				this.stage.displayState=StageDisplayState.FULL_SCREEN;
 			}
@@ -85,12 +86,12 @@ package com.tchibo.utils.videoPlayer.elements {
 
 			if (this.stage.displayState == StageDisplayState.NORMAL) {
 				STATUS=NORMAL;
-				trace("resize NORMAL");
+				//trace("resize NORMAL");
 				display.gotoAndStop("NORMAL_OUT");
 			}
 			else {
 				STATUS=FULLSCREEN;
-				trace("resize FULLSCREEN");
+				//trace("resize FULLSCREEN");
 				display.gotoAndStop("NORMAL_OUT");
 			}
 		}

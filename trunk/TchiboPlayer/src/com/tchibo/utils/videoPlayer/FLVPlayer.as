@@ -75,7 +75,7 @@ package com.tchibo.utils.videoPlayer {
 					playerEngine.soundHandler();
 					break;
 				case VideoPlayerEvents.INTERFACE_PAUSE:
-					trace("interfaceHandler!!!! :" + evt.type.toString());
+					//trace("interfaceHandler!!!! :" + evt.type.toString());
 					interfaceUI.showProgressBar(true);
 					playerEngine.pause();
 					break;
@@ -84,7 +84,7 @@ package com.tchibo.utils.videoPlayer {
 					playerEngine.draggedTo(interfaceUI.draggerPercent);
 					break;
 				default:
-					trace("interfaceHandler empty!!!! :" + evt.type.toString());
+					//trace("interfaceHandler empty!!!! :" + evt.type.toString());
 					break;
 			}
 		}
@@ -99,20 +99,16 @@ package com.tchibo.utils.videoPlayer {
 					playerEngine.addEventListener(VideoPlayerEvents.ENGINE_UPDATE_PROGRESS, updateProgress);
 					break;
 				case VideoPlayerEvents.ENGINE_START:
-					trace("engineHandler :" + evt.type.toString());
 					interfaceUI.setPlayStopStatus();
 					break;
 				case VideoPlayerEvents.ENGINE_STOP:
-					trace("engineHandler :" + evt.type.toString());
 					interfaceUI.showProgressBar(false);
-					//interfaceUI.resetPlayStopButton();
+					interfaceUI.reset();
 					interfaceUI.setPlayStopStatus();
 					break;
 				case VideoPlayerEvents.BUFFERING_EMPTY:
-					trace("engineHandler :" + evt.type.toString());
 					break;
 				case VideoPlayerEvents.BUFFERING_FULL:
-					trace("engineHandler :" + evt.type.toString());
 					break;
 				default:
 					break;
