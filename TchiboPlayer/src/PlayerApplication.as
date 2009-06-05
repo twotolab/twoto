@@ -4,6 +4,7 @@ package
 	import com.tchibo.utils.videoPlayer.DefinesFLVPLayer;
 	import com.tchibo.utils.videoPlayer.FLVPlayer;
 	
+	import flash.display.LoaderInfo;
 	import flash.display.Shape;
 	import flash.display.Sprite;
 
@@ -19,14 +20,20 @@ package
 			var background:Shape = Draw.drawShape(DefinesFLVPLayer.STAGE_WIDTH,DefinesFLVPLayer.STAGE_HEIGHT,0xffffff);
 			
 			player = new FLVPlayer();﻿
-			player.videoURL ="http://twoto.googlecode.com/svn/trunk/TchiboPlayer/assets/film.flv"//"Tchibo_Coffea_SG_Webversion_040609.flv"//"http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv"+"?test="+Math.random()*100;//"film.flv"//
-			//trace("test player.videoURL  : "+player.videoURL );
+			var valueStr:String;
+			var paramURL:String;
+			valueStr = root.loaderInfo.parameters.paramURL;
+			
+			if(valueStr !=null ){
+				trace("valueStr: "+valueStr);
+				paramURL =valueStr; 
+			} else{
+				trace("paramURL: "+valueStr);
+				paramURL = "film.flv";
+			}
+			player.videoURL =paramURL//"Tchibo_Coffea_SG_Webversion_040609.flv"//"http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv"+"?test="+Math.random()*100;//"film.flv"//
 			addChild(player);
-			/*
-			var back:Shape = Draw.drawShape(300,304);
-			addChildAt(back,1);
-			*/
-			//	
+
 		}
 	}
 }
