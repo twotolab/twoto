@@ -9,17 +9,23 @@ package com.twoto.cms.ui {
 	import com.twoto.cms.model.EditorCMSModel;
 	import com.twoto.cms.model.NodeVO;
 	import com.twoto.cms.ui.background.Background;
+	import com.twoto.cms.ui.background.MultiplyBlendModeSquare;
 	import com.twoto.cms.ui.buttons.AddCMSButton;
 	import com.twoto.cms.ui.buttons.TextCMSButton;
 	import com.twoto.cms.ui.elements.InfoTextCMSElement;
 	import com.twoto.cms.ui.elements.NodeElementUI;
 	import com.twoto.cms.ui.elements.TitleCMSElement;
 	import com.twoto.global.components.IBasics;
+	import com.twoto.utils.Draw;
 	import com.twoto.utils.UIUtils;
 	
+	import flash.display.BlendMode;
+	import flash.display.DisplayObject;
+	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.filters.DropShadowFilter;
 
 	/**
 	 *
@@ -54,6 +60,9 @@ package com.twoto.cms.ui {
 
 		private var editor:EditorCMSUI;
 		private var editorModel:EditorCMSModel;
+		
+		private var containerBack:Shape ;
+		private var multy:MultiplyBlendModeSquare ;
 		
 
 		//---------------------------------------------------------------------------
@@ -95,7 +104,14 @@ package com.twoto.cms.ui {
 
 			container=new Sprite();
 			this.addChild(container);
-
+			
+			containerBack = Draw.ShapeElt(100,100,1,0xffffff);
+			containerBack.alpha=0.7;
+			containerBack.x=-DefinesCMS.MENU_BORDER;
+			containerBack.y=-DefinesCMS.MENU_BORDER-300;
+			container.addChild(containerBack);
+			defaultKnockoutShadow(containerBack);
+			
 			infoText=new InfoTextCMSElement();
 			container.addChild(infoText);
 
@@ -114,6 +130,12 @@ package com.twoto.cms.ui {
 			stage.addEventListener(CMSEvent.SHOW, showCMSHandler);
 			stage.addEventListener(Event.RESIZE, onResize);
 
+		
+			multy = new MultiplyBlendModeSquare(300,300);
+			multy.showColors();
+		//	multy.blendMode = BlendMode.SUBTRACT
+			addChild(multy);
+			
 			showCMS();
 		}
 
@@ -393,6 +415,11 @@ package com.twoto.cms.ui {
 			UIUtils.removeDisplayObject(this, background);
 			background=new Background(DefinesCMS.BACKGROUND_COLOR, DefinesCMS.BACKGROUND_COLOR_SHADOW, stage.stageWidth, stage.stageHeight);
 			this.addChildAt(background, 0);
+			this.addChildAt(multy, 1);
+			
+			containerBack.width = container.width;
+			containerBack.height = container.height+DefinesCMS.MENU_BORDER;
+			
 			Tweener.addTween(container, {x: Math.round((stage.stageWidth - container.width) * .5), y: Math.round((stage.stageHeight - container.height) * .5), time: 1});
 		}
 
@@ -411,6 +438,12 @@ package com.twoto.cms.ui {
 				}
 			}
 			return null;
+		}
+		public function defaultKnockoutShadow(_target:DisplayObject):void {
+			var shadowFilter:DropShadowFilter=Draw.shadowFilter({_color: 0x000000, _angle: 45, _alpha: 1, _blurX: 6, _blurY: 6, _distance: 0, _knockout: false, _inner: false, _strength: 0.7});
+			var myFilters:Array=new Array();
+			myFilters.push(shadowFilter);
+			_target.filters=myFilters;
 		}
 
 		//---------------------------------------------------------------------------

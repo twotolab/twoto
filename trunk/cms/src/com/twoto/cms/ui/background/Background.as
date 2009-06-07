@@ -22,6 +22,7 @@ package com.twoto.cms.ui.background
 		
 		public function Background(_colorChoice:uint,_secondColorChoice:uint=0x000000,_backgroundWidth:uint=100,_backgroundHeight:uint=100)
 		{
+			//this.alpha =0;
 			backgroundWidth =_backgroundWidth;
 			backgroundHeight = _backgroundHeight;
 			
