@@ -10,11 +10,12 @@ package com.twoto.cms.ui {
 	import com.twoto.cms.ui.editor.AbstractEditorCMSTextElement;
 	import com.twoto.cms.ui.editor.PreviewEditorCMSElement;
 	import com.twoto.cms.ui.editor.TitelEditorCMSElement;
-	import com.twoto.cms.ui.elements.DoubleDotLine;
 	import com.twoto.cms.ui.elements.InfoTextCMSElement;
 	import com.twoto.global.components.IBasics;
+	import com.twoto.utils.Draw;
 	import com.twoto.utils.UIUtils;
 	
+	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;

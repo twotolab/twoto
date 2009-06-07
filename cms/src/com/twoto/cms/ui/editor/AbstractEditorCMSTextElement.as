@@ -39,7 +39,6 @@ package com.twoto.cms.ui.editor {
 		//---------------------------------------------------------------------------
 		public function AbstractEditorCMSTextElement() {
 
-
 			changed=false;
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, 0, true);
 

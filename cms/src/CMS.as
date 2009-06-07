@@ -9,7 +9,7 @@ package {
 	import flash.events.Event;
 	import flash.utils.getDefinitionByName;
 
-	[SWF(backgroundColor='0xffffff', width='1024', height='768', frameRate="60")]
+	[SWF(backgroundColor='0x000000', width='1024', height='768', frameRate="60")]
 
 	// compiler argument:  -frame two com.twoto.Application
 	public class CMS extends MovieClip {

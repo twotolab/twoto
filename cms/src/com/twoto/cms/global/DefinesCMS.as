@@ -29,6 +29,7 @@ package com.twoto.cms.global {
 		public static var DOWN_COLOR:uint=0x00CCFF;
 		public static var MENU_SELECTED_POS_X:int=100;
 		public static var MENU_SELECTED_POS_Y:int=0;
+		public static var MENU_BORDER:uint=5;
 
 		public static var MENU_SUBMENU_POS_X:int=15;
 
