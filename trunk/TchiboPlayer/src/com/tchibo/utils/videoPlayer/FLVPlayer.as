@@ -2,7 +2,7 @@ package com.tchibo.utils.videoPlayer
 {
 
 	import com.tchibo.global.components.IBasics;
-
+	
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
@@ -73,6 +73,10 @@ package com.tchibo.utils.videoPlayer
 		{
 			return _videoURL;
 		}
+		public function set timeInfo(_value:Boolean):void
+		{
+			interfaceUI.withTimerInfo = _value;
+		}
 
 		private function interfaceHandler(evt:VideoPlayerEvents):void
 		{
@@ -114,8 +118,11 @@ package com.tchibo.utils.videoPlayer
 					interfaceUI.setPlayStopStatus();
 					break;
 				case VideoPlayerEvents.ENGINE_STOP:
+				/*
 					interfaceUI.showProgressBar(false);
 					interfaceUI.reset();
+					
+					*/ trace("endFilm");
 					interfaceUI.setPlayStopStatus();
 					break;
 				case VideoPlayerEvents.BUFFERING_EMPTY:
@@ -142,7 +149,7 @@ package com.tchibo.utils.videoPlayer
 		private function updateProgress(evt:VideoPlayerEvents):void
 		{
 			//trace("updateProgress :" +playerEngine.percentProgress);
-			interfaceUI.updateProgressBar(playerEngine.percentProgress, playerEngine.timePlayed);
+			interfaceUI.updateProgressBar(playerEngine.percentProgress, playerEngine.timerPosition);
 		}
 
 		public function freeze():void

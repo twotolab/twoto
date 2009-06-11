@@ -59,7 +59,7 @@ package com.tchibo.utils.videoPlayer {
 		public var meta:Object;
 		public var percentProgress:Number;
 		public var percentLoadingProgress:Number;
-		public var timePlayed:uint;
+		public var timerPosition:uint;
 
 		//---------------------------------------------------------------------------
 		// 	constructor
@@ -149,7 +149,7 @@ package com.tchibo.utils.videoPlayer {
 				//trace("timerHandler: " + netStream.time.toFixed(1) + " of " + client.meta.duration.toFixed(1) + " seconds");
 				percentProgress=Number(netStream.time.toFixed(1)) / Number(client.meta.duration.toFixed(1));
 				
-				timePlayed =netStream.time;
+				timerPosition =netStream.time;
 				//trace("netStream.time: " + netStream.time);
 				dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.ENGINE_UPDATE_PROGRESS));
 
@@ -236,6 +236,7 @@ package com.tchibo.utils.videoPlayer {
 			var targetSeek:uint =Math.round(_percent*Number(client.meta.duration.toFixed(1))*.01);
 			//trace("draggedTo"+_percent);
 			netStream.seek(targetSeek);
+			timerPosition =netStream.time;
 			dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.ENGINE_UPDATE_PROGRESS));
 		}
 
