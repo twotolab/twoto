@@ -1,6 +1,7 @@
 package com.tchibo.utils.videoPlayer {
 	import com.tchibo.global.components.IBasics;
 	import com.tchibo.utils.Draw;
+	import com.tchibo.utils.TimeUtils;
 	import com.tchibo.utils.videoPlayer.elements.Dragger;
 	import com.tchibo.utils.videoPlayer.elements.FullScreenElement;
 	import com.tchibo.utils.videoPlayer.elements.PlayStopElement;
@@ -100,8 +101,9 @@ package com.tchibo.utils.videoPlayer {
 		
 			infoText=new InfoTextMC();
 			textF=infoText.getChildByName("textf") as TextField;
-			textF.text="";
-			//addChild(infoText);
+			textF.text="00:00";
+			addChild(infoText);
+			
 
 			soundOnOffButton=new SoundElement();
 			soundOnOffButton.addEventListener(Event.CHANGE, soundHandler);
@@ -109,6 +111,7 @@ package com.tchibo.utils.videoPlayer {
 
 			fullScreenButton=new FullScreenElement();
 			addChild(fullScreenButton);
+
 
 			resize();
 		}
@@ -237,8 +240,8 @@ package com.tchibo.utils.videoPlayer {
 			soundOnOffButton.x=playerWidth - DefinesFLVPLayer.NAVI_SOUND_X;
 			soundOnOffButton.y=playerHeight + DefinesFLVPLayer.NAVI_SOUND_Y;
 
-			infoText.x=playerWidth - DefinesFLVPLayer.NAVI_TEXT_X;
-			infoText.y=playerHeight + DefinesFLVPLayer.NAVI_TEXT_Y;
+			infoText.x=200//playerWidth - DefinesFLVPLayer.NAVI_TEXT_X;
+			infoText.y=320//playerHeight + DefinesFLVPLayer.NAVI_TEXT_Y;
 
 			fullScreenButton.x=playerWidth - DefinesFLVPLayer.NAVI_FULLSCREEN_X;
 			fullScreenButton.y=playerHeight + DefinesFLVPLayer.NAVI_FULLSCREEN_Y;
@@ -300,7 +303,7 @@ package com.tchibo.utils.videoPlayer {
 				dragger.placeByPercent(_percent);
 				progressBar.scaleX=_percent*progressLoadedBackground.scaleX;
 			}
-			//textF.text=TimeUtils.secondsToStringConverter(time);
+			textF.text=TimeUtils.secondsToStringConverter(time);
 		}
 	
 
