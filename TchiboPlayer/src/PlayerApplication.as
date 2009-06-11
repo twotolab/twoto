@@ -20,6 +20,7 @@ package
 			var background:Shape = Draw.drawShape(DefinesFLVPLayer.STAGE_WIDTH,DefinesFLVPLayer.STAGE_HEIGHT,0xffffff);
 			
 			player = new FLVPlayer();﻿
+			player.timeInfo = false;
 			var valueStr:String;
 			var paramURL:String;
 			valueStr = root.loaderInfo.parameters.paramURL;
@@ -29,7 +30,7 @@ package
 				paramURL =valueStr; 
 			} else{
 				trace("paramURL: "+valueStr);
-				paramURL ="http://twoto.googlecode.com/svn/trunk/FLVPlayer/assets/test.flv";//film.flv";
+				paramURL ="http://twoto.googlecode.com/svn/trunk/TchiboPlayer/assets/test.flv?test="+Math.random()*100;//"film.flv"//;//film.flv";
 			}
 			player.videoURL =paramURL//"Tchibo_Coffea_SG_Webversion_040609.flv"//"http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv"+"?test="+Math.random()*100;//"film.flv"//
 			addChild(player);
