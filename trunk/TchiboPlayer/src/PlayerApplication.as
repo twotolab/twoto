@@ -29,7 +29,7 @@ package
 				paramURL =valueStr; 
 			} else{
 				trace("paramURL: "+valueStr);
-				paramURL = "film.flv";
+				paramURL ="http://twoto.googlecode.com/svn/trunk/FLVPlayer/assets/FilmTest.flv";//film.flv";
 			}
 			player.videoURL =paramURL//"Tchibo_Coffea_SG_Webversion_040609.flv"//"http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv"+"?test="+Math.random()*100;//"film.flv"//
 			addChild(player);
