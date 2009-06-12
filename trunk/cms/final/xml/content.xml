@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<content>
+	<item ID="1"
+		  name="submenu"
+		  type="submenus">
+		<label>
+			<![CDATA[submenus]]>
+		</label>
+	</item>
+	<item ID="2"
+		  name="phone"
+		  type="submenu"
+		  url="skype:+4917624041994?call "
+		  window="_blank">
+		<label>
+			<![CDATA[phone.+4917624041994]]>
+		</label>
+	</item>
+	<item ID="3"
+		  name="mail"
+		  type="submenu"
+		  url="mailto:patrick@twoto.com?subject=contact twoto"
+		  window="_blank">
+		<label>
+			<![CDATA[mail.patrick@twoto.com]]>
+		</label>
+	</item>
+	<item ID="4"
+		  name="cms"
+		  type="submenu"
+		  subType="cms">
+		<label>
+			<![CDATA[cms]]>
+		</label>
+	</item>
+	<item ID="5"
+		  name="rss"
+		  type="submenu"
+		  url="http://twoto.com/rss/feed.rss"
+		  window="_blank">
+		<label>
+			<![CDATA[rss.feed]]>
+		</label>
+	</item>
+	<item ID="6"
+		  name="share"
+		  type="submenu"
+		  url="http%3A%2F%2Fwww.twoto.com%2F%23%2F"
+		  subType="facebook"
+		  window="_blank">
+		<label>
+			<![CDATA[share.facebook]]>
+		</label>
+	</item>
+	<item ID="7"
+		  name="imprint"
+		  type="submenu"
+		  subType="imprint"
+		  url="content/pic/impressum.gif">
+		<label>
+			<![CDATA[imprint.legal.©2009]]>
+		</label>
+	</item>
+	<item ID="8"
+		  name="fullscreen"
+		  type="submenu"
+		  subType="fullscreen">
+		<label>
+			<![CDATA[full.screen]]>
+		</label>
+		<secondLabel>
+			<![CDATA[normal.screen]]>
+		</secondLabel>
+	</item>
+	<item ID="9"
+		  name="search"
+		  type="menu"
+		  subType="search"
+		  deepLink="search">
+		<label>
+			<![CDATA[search]]>
+		</label>
+		<description>
+			<![CDATA[please type something...]]>
+		</description>
+		<descriptionFullscreen>
+			<![CDATA[please escape fullscreen modus and type something...]]>
+		</descriptionFullscreen>
+	</item>
+	<item ID="10"
+		  type="menu"
+		  name="projects"
+		  subType="projects"
+		  deepLink="projects"
+		  defaultSelected="true">
+		<label>
+			<![CDATA[projects]]>
+		</label>
+	</item>
+	<item ID="11"
+		  type="menu"
+		  name="about"
+		  subType="about"
+		  deepLink="about">
+		<label>
+			<![CDATA[about]]>
+		</label>
+		<description>
+			<![CDATA[please shake the mouse for more info]]>
+		</description>
+		<textElements>
+			<textElement>
+				<![CDATA[twoto]]>
+			</textElement>
+			<textElement>
+				<![CDATA[is the personal creative]]>
+			</textElement>
+			<textElement>
+				<![CDATA[playground of patrick decaix]]>
+			</textElement>
+			<textElement>
+				<![CDATA[a designer and engineer living in Hamburg]]>
+			</textElement>
+			<textElement>
+				<![CDATA[the site will be updated]]>
+			</textElement>
+			<textElement>
+				<![CDATA[every month with a clock]]>
+			</textElement>
+			<textElement>
+				<![CDATA[...or something else]]>
+			</textElement>
+		</textElements>
+	</item>
+	<item ID="101"
+		  type="project"
+		  name="cells"
+		  deepLink="cells"
+		  URL="content/swf/cells.swf"
+		  previewPicUrl="content/pic/preview_cells.jpg"
+		  colorStyle="0x00E9E9"
+		  shadowColorStyle="0x000000"
+		  screensaverMacUrl="content/zip/cellsClockMac.saver.zip"
+		  screensaverPcUrl="content/zip/cellsClockPC.zip">
+		<label>
+			<![CDATA[cells]]>
+		</label>
+		<description>
+			<![CDATA[.clock with collision detection clock with collis cend w]]>
+		</description>
+		<date>
+			<![CDATA[Mon January 19 2009 08:36:00 AM]]>
+		</date>
+	</item>
+	<item ID="102"
+		  type="project"
+		  name="cellsV2"
+		  deepLink="cellsV2"
+		  URL="content/swf/cellsBig.swf"
+		  previewPicUrl="content/pic/preview_cells_v2.jpg"
+		  colorStyle="0x000000"
+		  shadowColorStyle="0x000000"
+		  screensaverMacUrl="content/zip/cellsClockV2Mac.saver.zip"
+		  screensaverPcUrl="content/zip/cellsClockV2.zip">
+		<label>
+			<![CDATA[cellsV2]]>
+		</label>
+		<description>
+			<![CDATA[.clock with collision detection clock with collis cend w.clock with collision detection clock with collis cend w.clock with collision detection clock with collis cend w]]>
+		</description>
+		<date>
+			<![CDATA[Son February 21 2009 17:00:00 PM]]>
+		</date>
+	</item>
+	<item ID="103"
+		  type="project"
+		  name="2000lines"
+		  deepLink="2000lines"
+		  URL="content/swf/MultilineClock.swf"
+		  previewPicUrl="content/pic/preview_multiline.jpg"
+		  colorStyle="0xff0000"
+		  shadowColorStyle="0x000000"
+		  screensaverMacUrl=""
+		  screensaverPcUrl="">
+		<label>
+			<![CDATA[2000lines]]>
+		</label>
+		<description>
+			<![CDATA[.clock based on preliminary bitmap scanning]]>
+		</description>
+		<date>
+			<![CDATA[Son March 15 2009 17:00:00 PM]]>
+		</date>
+	</item>
+	<item ID="104"
+		  type="project"
+		  name="heavylines"
+		  deepLink="heavylines"
+		  URL="content/swf/AllMultilineClock.swf"
+		  previewPicUrl="content/pic/preview_allmultiline.jpg"
+		  colorStyle="0xED2368"
+		  shadowColorStyle="0x000000"
+		  screensaverMacUrl=""
+		  screensaverPcUrl="">
+		<label>
+			<![CDATA[heavylines]]>
+		</label>
+		<description>
+			<![CDATA[.clockupdate with more lines]]>
+		</description>
+		<date>
+			<![CDATA[Son March 22 2009 17:00:00 PM]]>
+		</date>
+	</item>
+	<item ID="105"
+		  type="project"
+		  name="sequin"
+		  deepLink="sequin"
+		  URL="content/swf/DotClock.swf"
+		  previewPicUrl="content/pic/preview_dotclock.jpg"
+		  colorStyle="0xffffff"
+		  shadowColorStyle="0x000000"
+		  screensaverMacUrl=""
+		  screensaverPcUrl="">
+		<label>
+			<![CDATA[sequin]]>
+		</label>
+		<description>
+			<![CDATA[.disk-shaped beads used for a decorative clock]]>
+		</description>
+		<date>
+			<![CDATA[Son March 22 2009 17:00:00 PM]]>
+		</date>
+	</item>
+	<item ID="106"
+		  type="project"
+		  name="goldsequin"
+		  deepLink="goldsequin"
+		  defaultSelected="true"
+		  URL="content/swf/GoldSequinClock.swf"
+		  previewPicUrl="content/pic/preview_goldsequin.jpg"
+		  colorStyle="0xcba35e"
+		  shadowColorStyle="0x000000"
+		  screensaverMacUrl=""
+		  screensaverPcUrl="">
+		<label>
+			<![CDATA[goldsequin]]>
+		</label>
+		<description>
+			<![CDATA[.goldy mouse sensitive version of the sequin clock]]>
+		</description>
+		<date>
+			<![CDATA[Mon April 6 2009 10:00:00 AM]]>
+		</date>
+	</item>
+</content>
