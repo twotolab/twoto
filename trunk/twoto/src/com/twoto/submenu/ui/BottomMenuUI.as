@@ -1,9 +1,7 @@
 package com.twoto.submenu.ui
 {
-
 	import caurina.transitions.Tweener;
 	
-	import com.twoto.cms.CMSEvent;
 	import com.twoto.dataModel.DataModel;
 	import com.twoto.events.UiEvent;
 	import com.twoto.global.utils.Status;
@@ -87,9 +85,6 @@ package com.twoto.submenu.ui
 					elt.addEventListener(UiEvent.SUBMENU_CLICK,fullscreenHandler);
 					elt.activateFullscreenOption = true;
 				}
-				else if(item.subType =="cms"){
-					elt.addEventListener(UiEvent.SUBMENU_CLICK,cmsHandler);
-				}
 				else if(item.subType =="facebook"){
 					elt.addEventListener(UiEvent.SUBMENU_CLICK,facebookHandler);
 				}
@@ -138,13 +133,6 @@ package com.twoto.submenu.ui
             catch (e:Error) {
                 // handle error here
             }
-		}
-		//---------------------------------------------------------------------------
-		// 	handler cms
-		//---------------------------------------------------------------------------
-		private function cmsHandler(evt:UiEvent):void{
-			stage.dispatchEvent(new CMSEvent(CMSEvent.SHOW));
-			trace("cmsHandler :")
 		}
 		//---------------------------------------------------------------------------
 		// 	handler fullscreen/normal modus
