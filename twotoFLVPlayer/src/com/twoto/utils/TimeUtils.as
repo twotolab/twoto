@@ -1,4 +1,4 @@
-package com.tchibo.utils
+package com.twoto.utils
 {
 	public dynamic class TimeUtils
 	{

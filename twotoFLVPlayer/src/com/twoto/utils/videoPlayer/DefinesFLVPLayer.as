@@ -1,4 +1,4 @@
-package com.tchibo.utils.videoPlayer
+package com.twoto.utils.videoPlayer
 {
 	public class DefinesFLVPLayer
 	{

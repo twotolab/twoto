@@ -1,4 +1,4 @@
-package com.tchibo.global.components
+package com.twoto.global.components
 {
 	public interface IBasics
 	{

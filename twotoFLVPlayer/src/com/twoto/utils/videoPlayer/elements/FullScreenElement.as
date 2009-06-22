@@ -1,6 +1,6 @@
-package com.tchibo.utils.videoPlayer.elements {
+package com.twoto.utils.videoPlayer.elements {
 
-	import com.tchibo.utils.videoPlayer.FullScreenMC;
+	import com.twoto.utils.videoPlayer.FullScreenMC;
 	
 	import flash.display.MovieClip;
 	import flash.display.StageDisplayState;
