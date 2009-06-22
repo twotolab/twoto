@@ -63,7 +63,7 @@ package com.tchibo.utils.videoPlayer.elements
                 infoText.visible = false;
             }
             infoText.x = 0;
-            infoText.y = -24;
+            infoText.y = -23;
             infoText.alpha=0;
         	
         	timer = new Timer(3000,1);
