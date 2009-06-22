@@ -1,0 +1,12 @@
+﻿package com.bmw.serviceInclusive{        import com.bmw.serviceInclusive.Assets.BackGround;    import com.bmw.serviceInclusive.utils.Log;    import com.bmw.serviceInclusive.videoPlayer.FLVPlayer;        import flash.display.Sprite;        /**
+     *
+     * @author Patrick Decaix
+     * @email	patrick@twoto.com
+     * @version 1.0
+     *
+     */        public class Application extends Sprite    {        
+        //---------------------------------------------------------------------------
+        // 	private variables
+        //---------------------------------------------------------------------------        private var dataXML:XML;        private var player:FLVPlayer;                //---------------------------------------------------------------------------
+        // 	constructor
+        //---------------------------------------------------------------------------        public function Application(_dataXML:XML)        {                        dataXML = _dataXML;            Log.localtime();            initApp();        }                // initApp ----------------------------------------------------------------------        private function initApp():void        {                        trace("hello World");            var background:BackGround = new BackGround();            addChild(background);                        player = new FLVPlayer();                        // player.timeInfo = true;            var valueStr:String;            var paramURL:String;            //            trace("paramURL: " + valueStr);            paramURL = "http://twoto.googlecode.com/svn/trunk/twotoFLVPlayer/assets/test.flv?test=" + Math.random() * 100; //"film.flv"//;//film.flv";                        player.videoURL = paramURL; //"twoto_Coffea_SG_Webversion_040609.flv"//"http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv"+"?test="+Math.random()*100;//"film.flv"//            addChild(player);        /*           var newContent:contentTester = new contentTester(contentUI);           addChild(newContent);                   var speedTest:Stats = new Stats();           addChild(speedTest);         */        }    }}
