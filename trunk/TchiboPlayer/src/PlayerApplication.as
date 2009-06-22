@@ -20,7 +20,7 @@ package
 			var background:Shape = Draw.drawShape(DefinesFLVPLayer.STAGE_WIDTH,DefinesFLVPLayer.STAGE_HEIGHT,0xffffff);
 			
 			player = new FLVPlayer();﻿
-			player.timeInfo = false;
+			player.timeInfo = true;
 			var valueStr:String;
 			var paramURL:String;
 			valueStr = root.loaderInfo.parameters.paramURL;
