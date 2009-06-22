@@ -2,15 +2,11 @@ package com.bmw.serviceInclusive.videoPlayer
 {
     import com.bmw.serviceInclusive.global.components.IBasics;
     import com.bmw.serviceInclusive.utils.Draw;
-    import com.bmw.serviceInclusive.videoPlayer.elements.Dragger;
-    import com.bmw.serviceInclusive.videoPlayer.elements.FullScreenElement;
     import com.bmw.serviceInclusive.videoPlayer.elements.PlayElement;
-    import com.bmw.serviceInclusive.videoPlayer.elements.PlayStopElement;
-    import com.bmw.serviceInclusive.videoPlayer.elements.SoundElement;
+    import com.bmw.serviceInclusive.videoPlayer.elements.SkipElement;
     import com.bmw.serviceInclusive.videoPlayer.elements.StopElement;
     
     import flash.display.DisplayObject;
-    import flash.display.Shape;
     import flash.display.Sprite;
     import flash.display.StageDisplayState;
     import flash.events.Event;
@@ -21,17 +17,10 @@ package com.bmw.serviceInclusive.videoPlayer
         private var engine:FLVPlayerEngine;
         private var video:DisplayObject;
         
-        private var startStopButton:PlayStopElement;
-        
-      	 private var backgroundNavi:Sprite;
+        private var backgroundNavi:Sprite;
         private var playButton:PlayElement;
         private var stopButton:StopElement;
-
-        private var progressLoadedBackground:Shape;
-        private var progressBackground:EmptyBackProgressMC;
-        private var progressEltBackground:Shape;
-        private var soundOnOffButton:SoundElement;
-        private var progressBar:Shape;
+        private var skipButton:SkipElement;
         
         private var originalFilmWidth:uint;
         private var originalFilmHeight:uint;
@@ -39,13 +28,7 @@ package com.bmw.serviceInclusive.videoPlayer
         private var playerHeight:uint;
         private var playerWidth:uint;
         
-        private var fullScreenButton:FullScreenElement;
         private var maskVideo:Sprite;
-        
-        private var dragger:Dragger;
-        private var timerInfo:Boolean;
-        
-        public var draggerPercent:uint;
         
         public function FLVPlayerInterfaceUI()
         {
@@ -69,12 +52,6 @@ package com.bmw.serviceInclusive.videoPlayer
             
             this.addChildAt(video, 0);
             
-            /*
-               trace("init metadata: duration=" + engine.meta.duration + " width=" + engine.meta.width + " height=" + engine.meta.height + " framerate=" + engine.meta.framerate);
-               trace("video.width" + video.width);
-               trace("video.height" + video.height);
-             */
-            
             playerHeight = video.height - 1;
             playerWidth = video.width;
             
@@ -97,101 +74,37 @@ package com.bmw.serviceInclusive.videoPlayer
             backgroundNavi = Draw.drawSprite(DefinesFLVPLayer.NAVI_WIDTH, DefinesFLVPLayer.NAVI_HEIGHT, 1, DefinesFLVPLayer.NAVI_COLOR);
             addChild(backgroundNavi);
             
-            startStopButton = new PlayStopElement();
-            startStopButton.addEventListener(Event.CHANGE, startStopHandler);
-            addChild(startStopButton);
-           
-            
             playButton = new PlayElement();
             playButton.addEventListener(Event.CHANGE, startStopHandler);
-           backgroundNavi.addChild(playButton);
-           playButton.x=3;
-           playButton.y=3;
+            backgroundNavi.addChild(playButton);
+            playButton.x = 3;
+            playButton.y = 3;
             
             stopButton = new StopElement();
             stopButton.addEventListener(Event.CHANGE, startStopHandler);
             backgroundNavi.addChild(stopButton);
-            stopButton.x=18;
-            stopButton.y=3;
+            stopButton.x = 18;
+            stopButton.y = 3;
             
-            soundOnOffButton = new SoundElement();
-            soundOnOffButton.addEventListener(Event.CHANGE, soundHandler);
-            addChild(soundOnOffButton);
-            
-            fullScreenButton = new FullScreenElement();
-            addChild(fullScreenButton);
+            skipButton = new SkipElement();
+            skipButton.addEventListener(Event.CHANGE, skipHandler);
+            backgroundNavi.addChild(skipButton);
+            skipButton.x = 33;
+            skipButton.y = 3;
             
             resize();
-        }
-        
-        private function redrawProgressBars():void
-        {
-            
-            if (progressBackground != null)
-            {
-                if (this.contains(progressBackground))
-                {
-                    removeChild(progressBackground);
-                }
-            }
-            if (progressLoadedBackground != null)
-            {
-                if (this.contains(progressLoadedBackground))
-                {
-                    removeChild(progressLoadedBackground);
-                }
-            }
-            if (progressBar != null)
-            {
-                if (this.contains(progressBar))
-                {
-                    removeChild(progressBar);
-                }
-            }
-            if (progressEltBackground != null)
-            {
-                if (this.contains(progressEltBackground))
-                {
-                    removeChild(progressEltBackground);
-                    progressEltBackground = null;
-                }
-            }
-            if (dragger != null)
-            {
-                if (this.contains(dragger))
-                {
-                    dragger.removeEventListener(Event.CHANGE, draggerHandler);
-                    dragger.destroy();
-                    removeChild(dragger);
-                    dragger = null;
-                }
-            }
-            progressEltBackground = Draw.drawShape(playerWidth - DefinesFLVPLayer.NAVI_PROGRESS_DISTANCE_LEFT - DefinesFLVPLayer.NAVI_PROGRESS_DISTANCE_RIGHT - DefinesFLVPLayer.NAVI_PROGRESS_BORDER * 2, DefinesFLVPLayer.NAVI_PROGRESS_HEIGHT + DefinesFLVPLayer.NAVI_PROGRESS_BORDER * 2, 1, DefinesFLVPLayer.NAVI_PROGRESS_BACKGROUND_ELT_COLOR);
-            addChild(progressEltBackground);
-            
-            progressBackground = new EmptyBackProgressMC();
-            progressBackground.width = playerWidth - DefinesFLVPLayer.NAVI_PROGRESS_DISTANCE_LEFT - DefinesFLVPLayer.NAVI_PROGRESS_DISTANCE_RIGHT - DefinesFLVPLayer.NAVI_PROGRESS_BORDER * 4;
-            progressBackground.height = DefinesFLVPLayer.NAVI_PROGRESS_HEIGHT;
-            addChild(progressBackground);
-            
-            progressLoadedBackground = Draw.drawShape(progressBackground.width, DefinesFLVPLayer.NAVI_PROGRESS_HEIGHT, 1, DefinesFLVPLayer.NAVI_PROGRESS_BACKGROUND_COLOR);
-            progressLoadedBackground.scaleX = 0;
-            addChild(progressLoadedBackground);
-            
-            dragger = new Dragger(progressBackground.width);
-            dragger.addEventListener(Event.CHANGE, draggerHandler);
-            dragger.withTimerInfo(timerInfo);
-            
-            progressBar = Draw.drawShape(progressBackground.width - dragger.width, DefinesFLVPLayer.NAVI_PROGRESS_HEIGHT, 1, DefinesFLVPLayer.NAVI_PROGRESS_COLOR);
-            progressBar.scaleX = 0;
-            addChild(progressBar);
-            addChild(dragger);
         }
         
         private function startStopHandler(evt:Event):void
         {
             dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.INTERFACE_PAUSE));
             trace("startStopHandler: " + evt.type.toString());
+        }
+        
+        private function skipHandler(evt:Event):void
+        {
+            trace(":::::::::::::::::::::");
+            dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.VIDEO_SKIP));
         }
         
         private function soundHandler(evt:Event):void
@@ -205,16 +118,12 @@ package com.bmw.serviceInclusive.videoPlayer
         {
             
             trace("resetPlayStopButton: ");
-            dragger.placeByPercent(0, 0);
         }
         
         public function setPlayStopStatus():void
         {
-        	trace(">>>>>>>>setPlayStopStatus: ");
-            if (startStopButton != null)
-            {
-                startStopButton.setStatus(engine.STATUS);
-            }
+            trace(">>>>>>>>setPlayStopStatus: ");
+            
             if (playButton != null)
             {
                 playButton.setStatus(engine.STATUS);
@@ -225,58 +134,12 @@ package com.bmw.serviceInclusive.videoPlayer
             }
         }
         
-        public function showProgressBar(_value:Boolean):void
-        {
-            if (progressBar != null)
-            {
-                if (_value != true && progressBar.visible != true)
-                {
-                    progressBar.visible = _value;
-                    
-                    if (_value == true)
-                    {
-                        progressBar.scaleX = 0;
-                        dragger.x = Math.round(progressBar.x);
-                    }
-                }
-                else if (_value == false)
-                {
-                    progressBar.scaleX = 0;
-                    dragger.x = Math.round(progressBar.x);
-                }
-            }
-        }
-        
         private function resize():void
         {
             
-            startStopButton.x = DefinesFLVPLayer.NAVI_PLAYSTOP_X;
-            startStopButton.y = playerHeight + DefinesFLVPLayer.NAVI_PLAYSTOP_Y;
-            
-            backgroundNavi.x =  25;
-            backgroundNavi.y =  playerHeight-7;
-            
-            redrawProgressBars();
-            progressEltBackground.y = playerHeight + DefinesFLVPLayer.NAVI_PROGRESS_Y;
-            progressEltBackground.x = DefinesFLVPLayer.NAVI_PROGRESS_DISTANCE_LEFT;
-            
-            progressBackground.y = playerHeight + DefinesFLVPLayer.NAVI_PROGRESS_Y + DefinesFLVPLayer.NAVI_PROGRESS_BORDER;
-            progressBackground.x = DefinesFLVPLayer.NAVI_PROGRESS_DISTANCE_LEFT + DefinesFLVPLayer.NAVI_PROGRESS_BORDER;
-            
-            progressLoadedBackground.y = progressBackground.y;
-            progressLoadedBackground.x = progressBackground.x;
-            
-            progressBar.y = progressBackground.y;
-            progressBar.x = progressBackground.x;
-            
-            dragger.x = Math.round(progressBar.x);
-            dragger.y = Math.round(progressBar.y + 2);
-            
-            soundOnOffButton.x = playerWidth - DefinesFLVPLayer.NAVI_SOUND_X;
-            soundOnOffButton.y = playerHeight + DefinesFLVPLayer.NAVI_SOUND_Y;
-            
-            fullScreenButton.x = playerWidth - DefinesFLVPLayer.NAVI_FULLSCREEN_X;
-            fullScreenButton.y = playerHeight + DefinesFLVPLayer.NAVI_FULLSCREEN_Y;
+            backgroundNavi.x = 25;
+            backgroundNavi.y = playerHeight - 7;
+        
         }
         
         private function resizeHandler(evt:Event):void
@@ -323,46 +186,6 @@ package com.bmw.serviceInclusive.videoPlayer
             //destroy()
             //draw();
             resize();
-            updateProgressBar(engine.percentProgress, engine.timerPosition);
-            updateLoadedProgress(engine.percentLoadingProgress);
-        }
-        
-        private function draggerHandler(evt:Event):void
-        {
-            
-            draggerPercent = dragger.percent;
-            progressBar.scaleX = draggerPercent * 0.01 * progressLoadedBackground.scaleX;
-            dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.INTERFACE_DRAGGED));
-            dragger.updateTimer(engine.timerPosition);
-        }
-        
-        public function set withTimerInfo(_value:Boolean):void
-        {
-            
-            timerInfo = _value;
-        }
-        
-        public function updateProgressBar(_percent:Number, time:uint=0):void
-        {
-            
-            //trace( "updateProgressBar: "+engine.timerPosition );
-            if (dragger.isDragging != true)
-            {
-                //trace("update dragger"+percentLoaded)
-                dragger.placeByPercent(_percent, time);
-                
-                progressBar.scaleX = _percent * progressLoadedBackground.scaleX;
-            }
-        }
-        
-        public function updateLoadedProgress(_percent:Number):void
-        {
-            
-            if (progressLoadedBackground != null && this.contains(progressLoadedBackground))
-            {
-                progressLoadedBackground.scaleX = _percent;
-                dragger.updateWidth(_percent);
-            }
         }
         
         public function freeze():void
@@ -375,36 +198,18 @@ package com.bmw.serviceInclusive.videoPlayer
         
         public function destroy():void
         {
+            stopButton.removeEventListener(Event.CHANGE, startStopHandler);
+            playButton.removeEventListener(Event.CHANGE, startStopHandler);
             
-            startStopButton.removeEventListener(Event.CHANGE, startStopHandler);
-            soundOnOffButton.removeEventListener(Event.CHANGE, soundHandler);
-            
-            if (this.contains(dragger))
-            {
-                dragger.removeEventListener(Event.CHANGE, draggerHandler);
-                removeChild(dragger);
-                dragger = null;
-            }
+            backgroundNavi.removeChild(playButton);
+            playButton = null;
+            backgroundNavi.removeChild(stopButton);
+            stopButton = null;
             removeChild(backgroundNavi);
             backgroundNavi = null;
-            removeChild(progressEltBackground);
-            progressEltBackground = null;
-            removeChild(startStopButton);
-            startStopButton = null;
-            removeChild(progressBackground);
-            startStopButton = null;
-            removeChild(progressLoadedBackground);
-            progressLoadedBackground = null;
-            removeChild(progressBar);
-            progressBar = null;
-            /*
-               removeChild(infoText);
-               infoText=null;
-             */
-            removeChild(soundOnOffButton);
-            soundOnOffButton = null;
-            removeChild(fullScreenButton);
-            fullScreenButton = null;
+            removeChild(video);
+            video = null;
+        
         }
     
     }
