@@ -1,11 +1,12 @@
-package com.tchibo.utils.videoPlayer
+package com.twoto.utils.videoPlayer
 {
-    import com.tchibo.global.components.IBasics;
-    import com.tchibo.utils.Draw;
-    import com.tchibo.utils.videoPlayer.elements.Dragger;
-    import com.tchibo.utils.videoPlayer.elements.FullScreenElement;
-    import com.tchibo.utils.videoPlayer.elements.PlayStopElement;
-    import com.tchibo.utils.videoPlayer.elements.SoundElement;
+    import com.twoto.global.components.IBasics;
+    import com.twoto.utils.Draw;
+    import com.twoto.utils.videoPlayer.EmptyBackProgressMC;
+    import com.twoto.utils.videoPlayer.elements.Dragger;
+    import com.twoto.utils.videoPlayer.elements.FullScreenElement;
+    import com.twoto.utils.videoPlayer.elements.PlayStopElement;
+    import com.twoto.utils.videoPlayer.elements.SoundElement;
     
     import flash.display.DisplayObject;
     import flash.display.Shape;

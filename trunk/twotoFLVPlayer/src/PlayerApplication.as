@@ -1,8 +1,8 @@
 package
 {
-	import com.tchibo.utils.Draw;
-	import com.tchibo.utils.videoPlayer.DefinesFLVPLayer;
-	import com.tchibo.utils.videoPlayer.FLVPlayer;
+	import com.twoto.utils.Draw;
+	import com.twoto.utils.videoPlayer.DefinesFLVPLayer;
+	import com.twoto.utils.videoPlayer.FLVPlayer;
 	
 	import flash.display.LoaderInfo;
 	import flash.display.Shape;
@@ -30,9 +30,9 @@ package
 				paramURL =valueStr; 
 			} else{
 				trace("paramURL: "+valueStr);
-				paramURL ="http://twoto.googlecode.com/svn/trunk/TchiboPlayer/assets/test.flv?test="+Math.random()*100;//"film.flv"//;//film.flv";
+				paramURL ="http://twoto.googlecode.com/svn/trunk/twotoFLVPlayer/assets/test.flv?test="+Math.random()*100;//"film.flv"//;//film.flv";
 			}
-			player.videoURL =paramURL//"Tchibo_Coffea_SG_Webversion_040609.flv"//"http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv"+"?test="+Math.random()*100;//"film.flv"//
+			player.videoURL =paramURL//"twoto_Coffea_SG_Webversion_040609.flv"//"http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv"+"?test="+Math.random()*100;//"film.flv"//
 			addChild(player);
 
 		}

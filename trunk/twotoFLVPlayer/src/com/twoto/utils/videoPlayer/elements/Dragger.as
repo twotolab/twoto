@@ -1,10 +1,10 @@
-package com.tchibo.utils.videoPlayer.elements
+package com.twoto.utils.videoPlayer.elements
 {
     import caurina.transitions.Tweener;
     
-    import com.tchibo.utils.TimeUtils;
-    import com.tchibo.utils.videoPlayer.InfoTextMC;
-    import com.tchibo.utils.videoPlayer.ScrollerMC;
+    import com.twoto.utils.TimeUtils;
+    import com.twoto.utils.videoPlayer.InfoTextMC;
+    import com.twoto.utils.videoPlayer.ScrollerMC;
     
     import flash.display.Sprite;
     import flash.events.Event;

@@ -1,6 +1,6 @@
-package com.tchibo.utils.videoPlayer.elements{
+package com.twoto.utils.videoPlayer.elements{
 
-	import com.tchibo.utils.videoPlayer.PlayStopButtonMC;
+	import com.twoto.utils.videoPlayer.PlayStopButtonMC;
 	
 	import flash.display.MovieClip;
 	import flash.events.Event;

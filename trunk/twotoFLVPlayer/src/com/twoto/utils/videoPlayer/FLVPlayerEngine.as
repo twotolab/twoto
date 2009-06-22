@@ -1,9 +1,9 @@
-package com.tchibo.utils.videoPlayer {
+package com.twoto.utils.videoPlayer {
 
 	import caurina.transitions.Tweener;
 	import caurina.transitions.properties.SoundShortcuts;
 	
-	import com.tchibo.global.components.IBasics;
+	import com.twoto.global.components.IBasics;
 	
 	import flash.display.Sprite;
 	import flash.events.AsyncErrorEvent;
