@@ -5,11 +5,11 @@ package com.bmw.serviceInclusive.videoPlayer
     {
         public static const BUFFER_TIME:uint = 3;
         
-        public static const STAGE_WIDTH:uint = 380;
-        public static const STAGE_HEIGHT:uint = 304;
+        public static const STAGE_WIDTH:uint = 1024;
+        public static const STAGE_HEIGHT:uint = 486;
         
-        public static const VIDEO_WIDTH:uint = 380;
-        public static const VIDEO_HEIGHT:uint = 285;
+        public static const VIDEO_WIDTH:uint = 802;
+        public static const VIDEO_HEIGHT:uint = 362;
         
         public static const NAVI_WIDTH:uint = 49;
         public static const NAVI_HEIGHT:uint = 19;

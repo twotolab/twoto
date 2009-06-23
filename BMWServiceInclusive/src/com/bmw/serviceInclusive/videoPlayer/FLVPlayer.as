@@ -4,8 +4,6 @@ package com.bmw.serviceInclusive.videoPlayer
     import com.bmw.serviceInclusive.global.components.IBasics;
     
     import flash.display.Sprite;
-    import flash.display.StageAlign;
-    import flash.display.StageScaleMode;
     import flash.events.Event;
     
     public class FLVPlayer extends Sprite implements IBasics
@@ -46,8 +44,6 @@ package com.bmw.serviceInclusive.videoPlayer
             
             removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
             addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
-            
-            init();
         }
         
         private function onRemovedFromStage(e:Event):void
@@ -55,11 +51,9 @@ package com.bmw.serviceInclusive.videoPlayer
         
         }
         
-        private function init():void
+        public function stopFilm():void
         {
-            stage.scaleMode = StageScaleMode.NO_SCALE;
-            stage.align = StageAlign.TOP_LEFT;
-        
+        if(playerEngine.STATUS == FLVPlayerEngine.PLAY)playerEngine.reset();
         }
         
         public function set videoURL(newVideoURL:String):void
@@ -126,7 +120,9 @@ package com.bmw.serviceInclusive.videoPlayer
                     
                      */
                     trace("endFilm");
+                    dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.VIDEO_END));
                     interfaceUI.setPlayStopStatus();
+                    
                     break;
                 case VideoPlayerEvents.BUFFERING_EMPTY:
                     break;

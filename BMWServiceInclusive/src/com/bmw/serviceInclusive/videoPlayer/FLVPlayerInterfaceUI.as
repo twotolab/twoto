@@ -1,5 +1,7 @@
 package com.bmw.serviceInclusive.videoPlayer
 {
+    import caurina.transitions.Tweener;
+    
     import com.bmw.serviceInclusive.global.components.IBasics;
     import com.bmw.serviceInclusive.utils.Draw;
     import com.bmw.serviceInclusive.videoPlayer.elements.PlayElement;
@@ -10,6 +12,7 @@ package com.bmw.serviceInclusive.videoPlayer
     import flash.display.Sprite;
     import flash.display.StageDisplayState;
     import flash.events.Event;
+    import flash.events.MouseEvent;
     
     public class FLVPlayerInterfaceUI extends Sprite implements IBasics
     {
@@ -17,7 +20,7 @@ package com.bmw.serviceInclusive.videoPlayer
         private var engine:FLVPlayerEngine;
         private var video:DisplayObject;
         
-        private var backgroundNavi:Sprite;
+        private var naviContainer:Sprite;
         private var playButton:PlayElement;
         private var stopButton:StopElement;
         private var skipButton:SkipElement;
@@ -47,13 +50,13 @@ package com.bmw.serviceInclusive.videoPlayer
             
             engine = _engine;
             video = engine.video;
-            originalFilmWidth = video.width;
-            originalFilmHeight = video.height;
+            originalFilmWidth = DefinesFLVPLayer.VIDEO_WIDTH;
+            originalFilmHeight = DefinesFLVPLayer.VIDEO_HEIGHT;
             
             this.addChildAt(video, 0);
             
-            playerHeight = video.height - 1;
-            playerWidth = video.width;
+            playerHeight = DefinesFLVPLayer.VIDEO_HEIGHT - 1;
+            playerWidth = DefinesFLVPLayer.VIDEO_WIDTH;
             
             draw();
             addMask(video);
@@ -65,34 +68,54 @@ package com.bmw.serviceInclusive.videoPlayer
         {
             
             maskVideo = new VideoMask();
+            
+            maskVideo.width = DefinesFLVPLayer.VIDEO_WIDTH;
+            maskVideo.height = DefinesFLVPLayer.VIDEO_HEIGHT;
+            addChild(maskVideo);
             video.mask = maskVideo;
         }
         
         private function draw():void
         {
             
-            backgroundNavi = Draw.drawSprite(DefinesFLVPLayer.NAVI_WIDTH, DefinesFLVPLayer.NAVI_HEIGHT, 1, DefinesFLVPLayer.NAVI_COLOR);
-            addChild(backgroundNavi);
+            naviContainer = Draw.drawSprite(DefinesFLVPLayer.NAVI_WIDTH, DefinesFLVPLayer.NAVI_HEIGHT, 1, DefinesFLVPLayer.NAVI_COLOR);
+            addChild(naviContainer);
+            naviContainer.alpha = 0;
             
             playButton = new PlayElement();
             playButton.addEventListener(Event.CHANGE, startStopHandler);
-            backgroundNavi.addChild(playButton);
+            naviContainer.addChild(playButton);
             playButton.x = 3;
             playButton.y = 3;
             
             stopButton = new StopElement();
             stopButton.addEventListener(Event.CHANGE, startStopHandler);
-            backgroundNavi.addChild(stopButton);
+            naviContainer.addChild(stopButton);
             stopButton.x = 18;
             stopButton.y = 3;
             
             skipButton = new SkipElement();
             skipButton.addEventListener(Event.CHANGE, skipHandler);
-            backgroundNavi.addChild(skipButton);
+            naviContainer.addChild(skipButton);
             skipButton.x = 33;
             skipButton.y = 3;
             
+            this.addEventListener(MouseEvent.ROLL_OVER, rollOverHandler);
+            this.addEventListener(MouseEvent.ROLL_OUT, rollOutHandler);
+            
             resize();
+        }
+        
+        private function rollOverHandler(evt:MouseEvent):void
+        {
+            Tweener.removeTweens(naviContainer);
+            Tweener.addTween(naviContainer, { alpha: 1, time: 1 });
+        }
+        
+        private function rollOutHandler(evt:MouseEvent):void
+        {
+            Tweener.removeTweens(naviContainer);
+            Tweener.addTween(naviContainer, { alpha: 0, time: 1 });
         }
         
         private function startStopHandler(evt:Event):void
@@ -137,8 +160,8 @@ package com.bmw.serviceInclusive.videoPlayer
         private function resize():void
         {
             
-            backgroundNavi.x = 25;
-            backgroundNavi.y = playerHeight - 7;
+            naviContainer.x = 25;
+            naviContainer.y = playerHeight - 7;
         
         }
         
@@ -201,12 +224,12 @@ package com.bmw.serviceInclusive.videoPlayer
             stopButton.removeEventListener(Event.CHANGE, startStopHandler);
             playButton.removeEventListener(Event.CHANGE, startStopHandler);
             
-            backgroundNavi.removeChild(playButton);
+            naviContainer.removeChild(playButton);
             playButton = null;
-            backgroundNavi.removeChild(stopButton);
+            naviContainer.removeChild(stopButton);
             stopButton = null;
-            removeChild(backgroundNavi);
-            backgroundNavi = null;
+            removeChild(naviContainer);
+            naviContainer = null;
             removeChild(video);
             video = null;
         

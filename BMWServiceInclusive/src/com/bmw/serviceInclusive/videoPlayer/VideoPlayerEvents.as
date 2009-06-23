@@ -22,6 +22,7 @@ package com.bmw.serviceInclusive.videoPlayer
         public static const INTERFACE_DRAGGED:String = "interfaceDragged";
         
         public static const VIDEO_SKIP:String = "videoSkip";
+        public static const VIDEO_END:String = "videoEnd";
         
         //
         public function VideoPlayerEvents(type:String, bubbles:Boolean=true, cancelable:Boolean=false)
