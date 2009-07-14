@@ -1,10 +1,10 @@
-package com.bmw.serviceInclusive.videoPlayer.elements
+package com.com.bmw.serviceInclusive.videoPlayer.elements
 {
     import caurina.transitions.Tweener;
     
-    import com.bmw.serviceInclusive.utils.TimeUtils;
-    import com.bmw.serviceInclusive.videoPlayer.InfoTextMC;
-    import com.bmw.serviceInclusive.videoPlayer.ScrollerMC;
+    import com.com.bmw.serviceInclusive.utils.TimeUtils;
+    import com.com.bmw.serviceInclusive.videoPlayer.InfoTextMC;
+    import com.com.bmw.serviceInclusive.videoPlayer.ScrollerMC;
     
     import flash.display.Sprite;
     import flash.events.Event;

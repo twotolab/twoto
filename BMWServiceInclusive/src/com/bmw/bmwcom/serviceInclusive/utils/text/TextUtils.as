@@ -1,4 +1,4 @@
-﻿package com.bmw.serviceInclusive.utils.text
+﻿package com.com.bmw.serviceInclusive.utils.text
 {
 	import flash.text.AntiAliasType;
 	import flash.text.Font;

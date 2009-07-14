@@ -1,4 +1,4 @@
-package com.bmw.serviceInclusive.global.fonts
+package com.com.bmw.serviceInclusive.global.fonts
 {
 	import flash.text.Font;
 

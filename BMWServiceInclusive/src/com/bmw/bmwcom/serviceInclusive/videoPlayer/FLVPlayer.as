@@ -1,7 +1,7 @@
-package com.bmw.serviceInclusive.videoPlayer
+package com.com.bmw.serviceInclusive.videoPlayer
 {
     
-    import com.bmw.serviceInclusive.global.components.IBasics;
+    import com.com.bmw.serviceInclusive.global.components.IBasics;
     
     import flash.display.Sprite;
     import flash.events.Event;

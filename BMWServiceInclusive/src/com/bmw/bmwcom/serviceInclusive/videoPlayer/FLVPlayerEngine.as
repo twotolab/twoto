@@ -1,10 +1,10 @@
-package com.bmw.serviceInclusive.videoPlayer
+package com.com.bmw.serviceInclusive.videoPlayer
 {
     
     import caurina.transitions.Tweener;
     import caurina.transitions.properties.SoundShortcuts;
     
-    import com.bmw.serviceInclusive.global.components.IBasics;
+    import com.com.bmw.serviceInclusive.global.components.IBasics;
     
     import flash.display.Sprite;
     import flash.events.AsyncErrorEvent;

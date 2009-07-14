@@ -1,4 +1,4 @@
-﻿package com.bmw.serviceInclusive.videoPlayer.events
+﻿package com.com.bmw.serviceInclusive.videoPlayer.events
  {
 	import flash.events.Event;
 	

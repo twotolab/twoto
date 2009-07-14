@@ -1,4 +1,4 @@
-package com.bmw.serviceInclusive.global.components
+package com.com.bmw.serviceInclusive.global.components
 {
 	public interface IBasics
 	{

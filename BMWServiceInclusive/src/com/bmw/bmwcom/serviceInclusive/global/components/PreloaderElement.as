@@ -1,9 +1,9 @@
-package com.bmw.serviceInclusive.global.components
+package com.com.bmw.serviceInclusive.global.components
 {
 	import caurina.transitions.Tweener;
 	
-	import com.bmw.serviceInclusive.global.fonts.Standard_55_Font;
-	import com.bmw.serviceInclusive.utils.text.TextUtils;
+	import com.com.bmw.serviceInclusive.global.fonts.Standard_55_Font;
+	import com.com.bmw.serviceInclusive.utils.text.TextUtils;
 	
 	import flash.display.Sprite;
 	import flash.events.Event;

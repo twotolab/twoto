@@ -1,12 +1,12 @@
-package com.bmw.serviceInclusive.intro
+package com.com.bmw.serviceInclusive.intro
 {
     import caurina.transitions.Tweener;
     
-    import com.bmw.serviceInclusive.global.components.IBasics;
-    import com.bmw.serviceInclusive.utils.Draw;
-    import com.bmw.serviceInclusive.videoPlayer.DefinesFLVPLayer;
-    import com.bmw.serviceInclusive.videoPlayer.FLVPlayer;
-    import com.bmw.serviceInclusive.videoPlayer.VideoPlayerEvents;
+    import com.com.bmw.serviceInclusive.global.components.IBasics;
+    import com.com.bmw.serviceInclusive.utils.Draw;
+    import com.com.bmw.serviceInclusive.videoPlayer.DefinesFLVPLayer;
+    import com.com.bmw.serviceInclusive.videoPlayer.FLVPlayer;
+    import com.com.bmw.serviceInclusive.videoPlayer.VideoPlayerEvents;
     
     import flash.display.Sprite;
     import flash.events.Event;

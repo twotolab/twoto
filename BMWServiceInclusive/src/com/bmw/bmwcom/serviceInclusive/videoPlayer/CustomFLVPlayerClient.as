@@ -1,4 +1,4 @@
-package com.bmw.serviceInclusive.videoPlayer
+package com.com.bmw.serviceInclusive.videoPlayer
 {
     
     public class CustomFLVPlayerClient extends Object

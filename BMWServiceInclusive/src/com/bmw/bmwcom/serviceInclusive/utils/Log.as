@@ -1,4 +1,4 @@
-package com.bmw.serviceInclusive.utils
+package com.com.bmw.serviceInclusive.utils
 {
 	public dynamic class Log
 	{

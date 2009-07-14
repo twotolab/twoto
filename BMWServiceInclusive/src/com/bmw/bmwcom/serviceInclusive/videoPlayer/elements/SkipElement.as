@@ -1,8 +1,8 @@
-package com.bmw.serviceInclusive.videoPlayer.elements
+package com.com.bmw.serviceInclusive.videoPlayer.elements
 {
     
-    import com.bmw.serviceInclusive.videoPlayer.SkipIntroButtonMC;
-    import com.bmw.serviceInclusive.videoPlayer.StopButtonMC;
+    import com.com.bmw.serviceInclusive.videoPlayer.SkipIntroButtonMC;
+    import com.com.bmw.serviceInclusive.videoPlayer.StopButtonMC;
     
     import flash.display.MovieClip;
     import flash.events.Event;

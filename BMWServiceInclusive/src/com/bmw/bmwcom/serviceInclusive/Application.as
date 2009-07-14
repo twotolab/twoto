@@ -1,4 +1,4 @@
-﻿package com.bmw.serviceInclusive{        import com.bmw.serviceInclusive.intro.IntroUI;    import com.bmw.serviceInclusive.utils.Log;    import com.bmwcom.serviceInclusive.Assets.BackGround;        import flash.display.Sprite;        /**
+﻿package com.com.bmw.serviceInclusive{        import com.com.bmw.serviceInclusive.intro.IntroUI;    import com.com.bmw.serviceInclusive.utils.Log;    import com.bmwcom.serviceInclusive.Assets.BackGround;        import flash.display.Sprite;        /**
      *
      * @author Patrick Decaix
      * @email	patrick@twoto.com

@@ -1,7 +1,7 @@
-package com.bmw.serviceInclusive.videoPlayer.elements
+package com.com.bmw.serviceInclusive.videoPlayer.elements
 {
     
-    import com.bmw.serviceInclusive.videoPlayer.SoundButtonMC;
+    import com.com.bmw.serviceInclusive.videoPlayer.SoundButtonMC;
     
     import flash.display.MovieClip;
     import flash.events.Event;

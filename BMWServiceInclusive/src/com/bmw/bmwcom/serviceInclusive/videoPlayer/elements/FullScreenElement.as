@@ -1,7 +1,7 @@
-package com.bmw.serviceInclusive.videoPlayer.elements
+package com.com.bmw.serviceInclusive.videoPlayer.elements
 {
     
-    import com.bmw.serviceInclusive.videoPlayer.FullScreenMC;
+    import com.com.bmw.serviceInclusive.videoPlayer.FullScreenMC;
     
     import flash.display.MovieClip;
     import flash.display.StageDisplayState;

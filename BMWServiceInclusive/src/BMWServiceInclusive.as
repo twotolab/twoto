@@ -1,6 +1,6 @@
 package {
-	import com.bmw.serviceInclusive.global.components.PreloaderElement;
-	import com.bmw.serviceInclusive.loader.XMLLoader;
+	import com.com.bmw.serviceInclusive.global.components.PreloaderElement;
+	import com.com.bmw.serviceInclusive.loader.XMLLoader;
 	
 	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
@@ -8,12 +8,11 @@ package {
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	import flash.utils.getDefinitionByName;
-	import flash.display.LoaderInfo;
 	
 
 	[SWF(backgroundColor='0x000000', width='1024', height='486', frameRate="30")]
 
-	// compiler argument:  -frame two com.bmw.serviceInclusive.Application
+	// compiler argument:  -frame two com.com.bmw.serviceInclusive.Application
 
 	public class BMWServiceInclusive extends MovieClip {
 		
@@ -72,7 +71,7 @@ package {
 
 		private function init():void {
 
-			var Master:Class=Class(getDefinitionByName("com.bmw.serviceInclusive.Application"));
+			var Master:Class=Class(getDefinitionByName("com.com.bmw.serviceInclusive.Application"));
 
 			if (Master) {
 				preloader.moveOutside();
