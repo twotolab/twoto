@@ -8,7 +8,7 @@ package
 	import flash.display.Shape;
 	import flash.display.Sprite;
 
-	[SWF(backgroundColor='0xe9e8dd', width='380', height='304', frameRate="30")]
+	[SWF(backgroundColor='0xe9e8dd', width='641', height='285', frameRate="30")]
 
 	public class PlayerApplication extends Sprite
 	{
@@ -20,7 +20,7 @@ package
 			var background:Shape = Draw.drawShape(Defines.STAGE_WIDTH,Defines.STAGE_HEIGHT,0xffffff);
 			
 			player = new FLVPlayer();﻿
-			player.timeInfo = true;
+		//	player.timeInfo = true;
 			var valueStr:String;
 			var paramURL:String;
 			valueStr = root.loaderInfo.parameters.paramURL;

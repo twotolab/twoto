@@ -60,6 +60,13 @@ package com.twoto.utils {
 		}
 
 		//--createShape-------------------------------------------------------------------------------------------------
+		public static function drawLineShape(_width:int=100, _height:int=100, _alpha:Number=1, _color:Number=0xff0000,_thickness:uint=1, _x:int=0, _y:int=0):Shape {
+			var square:Shape=new Shape();
+			square.graphics.lineStyle(_thickness, _color, _alpha);
+			square.graphics.drawRect(_x, _y, _width, _height);
+			return square;
+		}
+		//--createShape-------------------------------------------------------------------------------------------------
 		public static function drawShape(_width:int=100, _height:int=100, _alpha:Number=1, _color:Number=0xff0000, _x:int=0, _y:int=0):Shape {
 			var square:Shape=new Shape();
 			square.graphics.beginFill(_color, _alpha);

@@ -1,4 +1,6 @@
 package com.twoto.utils.videoPlayer {
+	import caurina.transitions.Tweener;
+	
 	import com.twoto.global.components.IBasics;
 	import com.twoto.utils.Draw;
 	import com.twoto.utils.videoPlayer.elements.Dragger;
@@ -11,20 +13,24 @@ package com.twoto.utils.videoPlayer {
 	import flash.display.Sprite;
 	import flash.display.StageDisplayState;
 	import flash.events.Event;
+	import flash.events.MouseEvent;
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
 
 	public class FLVPlayerInterfaceUI extends Sprite implements IBasics {
 
 		private var engine:FLVPlayerEngine;
 		private var video:DisplayObject;
-		
+
 		private var navigation:Sprite;
-	
+
 		private var startStopButton:PlayStopElement;
 		private var backgroundNavi:Sprite;
 		private var backgroundNaviLine:Shape;
 		private var progressLoadedBackground:Shape;
+		private var progressBackgroundLine:Shape;
 		private var progressBackground:EmptyBackProgressMC;
-		private var progressEltBackground:Shape;
+		private var progressEltBackground:Sprite;
 		private var soundOnOffButton:SoundElement;
 		private var progressBar:Shape;
 
@@ -41,6 +47,12 @@ package com.twoto.utils.videoPlayer {
 		private var timerInfo:Boolean;
 
 		public var draggerPercent:uint;
+
+		private var timeOut:Timer;
+
+		private var STATUS:String;
+		public static const OPEN:String="open";
+		public static const CLOSE:String="close";
 
 		public function FLVPlayerInterfaceUI() {
 
@@ -67,7 +79,7 @@ package com.twoto.utils.videoPlayer {
 			   trace("video.height" + video.height);
 			 */
 
-			playerHeight=video.height - 1;
+			playerHeight=video.height;
 			playerWidth=video.width;
 
 			draw();
@@ -83,8 +95,8 @@ package com.twoto.utils.videoPlayer {
 		}
 
 		private function draw():void {
-			
-			navigation = new Sprite();
+
+			navigation=new Sprite();
 			addChild(navigation);
 
 			backgroundNaviLine=Draw.drawShape(playerWidth, 1, 1, Defines.NAVI_LINE_COLOR, 0, -1);
@@ -108,6 +120,38 @@ package com.twoto.utils.videoPlayer {
 			navigation.addChild(fullScreenButton);
 
 			resize();
+			activateCloseNavi();
+		}
+
+		private function activateCloseNavi():void {
+
+			timeOut=new Timer(Defines.NAVI_TIMER, 1);
+			timeOut.addEventListener(TimerEvent.TIMER_COMPLETE, closeNavi);
+			timeOut.start();
+			addEventListener(MouseEvent.MOUSE_MOVE, updateTimeOut);
+		}
+
+		private function updateTimeOut(evt:MouseEvent):void {
+			
+			timeOut.reset();
+			timeOut.start();
+			if(STATUS == CLOSE) {
+				openNavi();
+			}
+		}
+
+		private function closeNavi(evt:TimerEvent):void {
+		
+			Tweener.removeTweens(navigation);
+			Tweener.addTween(navigation, {y:playerHeight, time:1});
+			STATUS=CLOSE;
+		}
+
+		private function openNavi():void {
+		
+			Tweener.removeTweens(navigation);
+			Tweener.addTween(navigation, {y:playerHeight - Defines.NAVI_HEIGHT, time:1});
+			STATUS=OPEN;
 		}
 
 		private function redrawProgressBars():void {
@@ -133,6 +177,12 @@ package com.twoto.utils.videoPlayer {
 					progressEltBackground=null;
 				}
 			}
+			if(progressBackgroundLine != null) {
+				if(navigation.contains(progressBackgroundLine)) {
+					navigation.removeChild(progressBackgroundLine);
+					progressBackgroundLine=null;
+				}
+			}
 			if(dragger != null) {
 				if(navigation.contains(dragger)) {
 					dragger.removeEventListener(Event.CHANGE, draggerHandler);
@@ -141,8 +191,12 @@ package com.twoto.utils.videoPlayer {
 					dragger=null;
 				}
 			}
-			progressEltBackground=Draw.drawShape(playerWidth - Defines.NAVI_PROGRESS_DISTANCE_LEFT - Defines.NAVI_PROGRESS_DISTANCE_RIGHT - Defines.NAVI_PROGRESS_BORDER * 2, Defines.NAVI_PROGRESS_HEIGHT + Defines.NAVI_PROGRESS_BORDER * 2, 1, Defines.NAVI_PROGRESS_BACKGROUND_ELT_COLOR);
+			//progressEltBackground=Draw.drawShape(playerWidth - Defines.NAVI_PROGRESS_DISTANCE_LEFT - Defines.NAVI_PROGRESS_DISTANCE_RIGHT - Defines.NAVI_PROGRESS_BORDER * 2, Defines.NAVI_PROGRESS_HEIGHT + Defines.NAVI_PROGRESS_BORDER * 2, 1, Defines.NAVI_PROGRESS_BACKGROUND_ELT_COLOR);
+			progressEltBackground=new BackProgressMC();
+			progressEltBackground.width=playerWidth - Defines.NAVI_PROGRESS_DISTANCE_LEFT - Defines.NAVI_PROGRESS_DISTANCE_RIGHT - Defines.NAVI_PROGRESS_BORDER * 2
+			progressEltBackground.height=Defines.NAVI_PROGRESS_HEIGHT + Defines.NAVI_PROGRESS_BORDER * 2
 			navigation.addChild(progressEltBackground);
+
 
 			progressBackground=new EmptyBackProgressMC();
 			progressBackground.width=playerWidth - Defines.NAVI_PROGRESS_DISTANCE_LEFT - Defines.NAVI_PROGRESS_DISTANCE_RIGHT - Defines.NAVI_PROGRESS_BORDER * 4;
@@ -153,13 +207,17 @@ package com.twoto.utils.videoPlayer {
 			progressLoadedBackground.scaleX=0;
 			navigation.addChild(progressLoadedBackground);
 
-			dragger=new Dragger(progressBackground.width);
+			dragger=new Dragger(progressBackground.width, Defines.NAVI_DRAGGER_WITH);
 			dragger.addEventListener(Event.CHANGE, draggerHandler);
 			dragger.withTimerInfo(timerInfo);
 
-			progressBar=Draw.drawShape(progressBackground.width - dragger.width, Defines.NAVI_PROGRESS_HEIGHT, 1, Defines.NAVI_PROGRESS_COLOR);
+			progressBar=Draw.drawShape(progressBackground.width - 6, Defines.NAVI_PROGRESS_HEIGHT, 1, Defines.NAVI_PROGRESS_COLOR);
 			progressBar.scaleX=0;
 			navigation.addChild(progressBar);
+
+			progressBackgroundLine=Draw.drawLineShape(progressEltBackground.width, progressEltBackground.height, 1, Defines.NAVI_LINE_COLOR);
+			navigation.addChild(progressBackgroundLine);
+
 			navigation.addChild(dragger);
 		}
 
@@ -205,7 +263,7 @@ package com.twoto.utils.videoPlayer {
 
 		private function resize():void {
 
-			navigation.y= playerHeight;
+			navigation.y=playerHeight - Defines.NAVI_HEIGHT;
 
 			startStopButton.x=Defines.NAVI_PLAYSTOP_X;
 			startStopButton.y=Defines.NAVI_PLAYSTOP_Y;
@@ -218,6 +276,9 @@ package com.twoto.utils.videoPlayer {
 			progressEltBackground.y=Defines.NAVI_PROGRESS_Y;
 			progressEltBackground.x=Defines.NAVI_PROGRESS_DISTANCE_LEFT;
 
+			progressBackgroundLine.x=progressEltBackground.x;
+			progressBackgroundLine.y=progressEltBackground.y;
+
 			progressBackground.y=Defines.NAVI_PROGRESS_Y + Defines.NAVI_PROGRESS_BORDER;
 			progressBackground.x=Defines.NAVI_PROGRESS_DISTANCE_LEFT + Defines.NAVI_PROGRESS_BORDER;
 
@@ -228,12 +289,12 @@ package com.twoto.utils.videoPlayer {
 			progressBar.x=progressBackground.x;
 
 			dragger.x=Math.round(progressBar.x);
-			dragger.y=Math.round(progressBar.y + 2);
+			dragger.y=Math.round(progressBar.y + 4);
 
-			soundOnOffButton.x=playerWidth - soundOnOffButton.width-Defines.NAVI_SOUND_X;
-			soundOnOffButton.y= Defines.NAVI_SOUND_Y;
+			soundOnOffButton.x=playerWidth - soundOnOffButton.width - Defines.NAVI_SOUND_X;
+			soundOnOffButton.y=Defines.NAVI_SOUND_Y;
 
-			fullScreenButton.x=soundOnOffButton.x-fullScreenButton.width- Defines.NAVI_FULLSCREEN_X;
+			fullScreenButton.x=soundOnOffButton.x - fullScreenButton.width - Defines.NAVI_FULLSCREEN_X;
 			fullScreenButton.y=Defines.NAVI_FULLSCREEN_Y;
 		}
 
@@ -253,10 +314,10 @@ package com.twoto.utils.videoPlayer {
 
 			} else {
 				video.mask=null;
-				factor=(stage.stageHeight - Defines.NAVI_HEIGHT) / originalFilmHeight;
+				factor=(stage.stageHeight) / originalFilmHeight;
 				video.scaleY=video.scaleX=factor;
-				video.y=stage.stageHeight - video.height - Defines.NAVI_HEIGHT;
-				playerHeight=stage.stageHeight - Defines.NAVI_HEIGHT;
+				video.y=stage.stageHeight - video.height;
+				playerHeight=stage.stageHeight;
 				if(stage.stageWidth > video.width) {
 					playerWidth=video.width;
 					this.x=Math.round((stage.stageWidth - video.width) * .5);
