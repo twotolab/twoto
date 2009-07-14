@@ -31,9 +31,12 @@ package com.twoto.utils.videoPlayer.elements
         private var timerInfo:Boolean;
         private var timer:Timer;
         
-        public function Dragger(_scrollWidth:uint)
+        private var eltWidth:uint;
+        
+        public function Dragger(_scrollWidth:uint,_eltWidth:uint)
         {
             isDragging = false;
+            eltWidth =_eltWidth;
             
             scroller = new ScrollerMC();
             addChild(scroller);
@@ -42,7 +45,7 @@ package com.twoto.utils.videoPlayer.elements
             scrollWidth = _scrollWidth;
             
             boundLeft = 0;
-            boundRight = scrollWidth - scroller.width;
+            boundRight = scrollWidth - eltWidth;
             
             addEventListener(Event.ADDED_TO_STAGE, addedToStage, false, 0, true);
         }
@@ -95,7 +98,7 @@ package com.twoto.utils.videoPlayer.elements
             if (mouseX - offset > boundLeft && mouseX - offset < boundRight)
             {
                 scroller.x = mouseX - offset;
-                infoText.x = Math.round(scroller.x+scroller.width*0.5)-1;
+                infoText.x = Math.round(scroller.x+eltWidth*0.5)-1;
                 percent = Math.round((scroller.x - boundLeft) / (boundRight - boundLeft) * 100);
                 textF.text = TimeUtils.secondsToStringConverter( 0);//timeUpdate );
                textF.x =  Math.round( infoText.width-textF.textWidth*.5);
@@ -117,7 +120,7 @@ package com.twoto.utils.videoPlayer.elements
         public function updateWidth(_percent:Number):void
         {
             //trace("updateWidth boundRight:"+boundRight);
-            boundRight = _percent * (scrollWidth - scroller.width);
+            boundRight = _percent * (scrollWidth - eltWidth);
         }
         
         public function placeByPercent(_percent:Number,timeUpdate:uint):void
@@ -125,7 +128,7 @@ package com.twoto.utils.videoPlayer.elements
             //trace("placeByPercent"+_percent)
             updateTimer(timeUpdate);
             scroller.x = Math.round(_percent * (boundRight - boundLeft));
-             infoText.x = Math.round(scroller.x+scroller.width*0.5)-1;
+             infoText.x = Math.round(scroller.x+eltWidth*0.5)-1;
              textF.x =  Math.round( - textF.textWidth*.5)-1;
         }
           public function updateTimer(timeUpdate:uint):void
