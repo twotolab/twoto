@@ -87,13 +87,13 @@ package com.twoto.utils.videoPlayer {
 			// connects a NetStream object to the specified NetConnection instance and loads an FLV named video.flv in the same directory as the SWF file
 			netStream=new NetStream(netConnection);
 			netConnection.removeEventListener(NetStatusEvent.NET_STATUS, netStatusHandler);
-			netStream.bufferTime=DefinesFLVPLayer.BUFFER_TIME;
+			netStream.bufferTime=Defines.BUFFER_TIME;
 
 			netStream.addEventListener(AsyncErrorEvent.ASYNC_ERROR, asyncErrorHandler);
 			netStream.addEventListener(NetStatusEvent.NET_STATUS, netStatusHandler);
 			netStream.client=client;
 
-			video=new Video(DefinesFLVPLayer.VIDEO_WIDTH,DefinesFLVPLayer.VIDEO_HEIGHT);
+			video=new Video(Defines.VIDEO_WIDTH,Defines.VIDEO_HEIGHT);
 			video.attachNetStream(netStream);
 			netStream.play(videoURL);
 
