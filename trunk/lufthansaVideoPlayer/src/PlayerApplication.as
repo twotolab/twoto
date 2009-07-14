@@ -1,7 +1,7 @@
 package
 {
 	import com.twoto.utils.Draw;
-	import com.twoto.utils.videoPlayer.DefinesFLVPLayer;
+	import com.twoto.utils.videoPlayer.Defines;
 	import com.twoto.utils.videoPlayer.FLVPlayer;
 	
 	import flash.display.LoaderInfo;
@@ -17,7 +17,7 @@ package
 		public function PlayerApplication()
 		{
 			
-			var background:Shape = Draw.drawShape(DefinesFLVPLayer.STAGE_WIDTH,DefinesFLVPLayer.STAGE_HEIGHT,0xffffff);
+			var background:Shape = Draw.drawShape(Defines.STAGE_WIDTH,Defines.STAGE_HEIGHT,0xffffff);
 			
 			player = new FLVPlayer();﻿
 			player.timeInfo = true;
