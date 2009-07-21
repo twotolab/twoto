@@ -16,6 +16,7 @@ package com.twoto.utils.videoPlayer
 		public static const ENGINE_LOADING_PROGRESS:String = "engineLoadingUpdate";
 		
 		public static const INTERFACE_PAUSE:String = "interfacePause";
+		public static const INTERFACE_RESTART:String = "interfaceRestart";
 		public static const INTERFACE_SOUND:String = "interfaceSound";
 		public static const INTERFACE_DRAGGED:String = "interfaceDragged";
 		

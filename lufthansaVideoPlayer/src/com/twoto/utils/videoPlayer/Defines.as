@@ -22,6 +22,9 @@ package com.twoto.utils.videoPlayer
 	public static const NAVI_PLAYSTOP_X:uint =NAVI_ELT_DIST;
 	public static const NAVI_PLAYSTOP_Y:uint = NAVI_ELT_DIST;
 	
+	public static const NAVI_RESET_X:uint =NAVI_PLAYSTOP_X+NAVI_ELT_WIDTH+NAVI_ELT_DIST;
+	public static const NAVI_RESET_Y:uint = NAVI_PLAYSTOP_Y;
+	
 	public static const NAVI_SOUND_X:uint = NAVI_ELT_DIST; // distance from right border - width
 	public static const NAVI_SOUND_Y:uint = NAVI_ELT_DIST;
 
