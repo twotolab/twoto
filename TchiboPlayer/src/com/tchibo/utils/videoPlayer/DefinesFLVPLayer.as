@@ -4,11 +4,11 @@ package com.tchibo.utils.videoPlayer
 	{
 	public static const BUFFER_TIME:uint = 3;
 	
-	public static const STAGE_WIDTH:uint = 380;
-	public static const STAGE_HEIGHT:uint = 304;
+	public static const STAGE_WIDTH:uint = 608;
+	public static const STAGE_HEIGHT:uint = 362;
 	
-	public static const VIDEO_WIDTH:uint = 380;
-	public static const VIDEO_HEIGHT:uint = 285;
+	public static const VIDEO_WIDTH:uint = 608;
+	public static const VIDEO_HEIGHT:uint = 342;
 	
 	public static const NAVI_HEIGHT:uint = 20;
 	public static const NAVI_COLOR:uint = 0xe9e8dd;
@@ -24,7 +24,7 @@ package com.tchibo.utils.videoPlayer
 	public static const NAVI_PROGRESS_BORDER:uint = 5;
 	public static const NAVI_PROGRESS_BACKGROUND_HEIGHT:uint = 15;
 	public static const NAVI_PROGRESS_DISTANCE_LEFT:uint = 18;
-	public static const NAVI_PROGRESS_DISTANCE_RIGHT:uint = 26;
+	public static const NAVI_PROGRESS_DISTANCE_RIGHT:uint = 76;
 	public static const NAVI_PROGRESS_Y:uint = 4;
 	
 	public static const NAVI_PROGRESS_COLOR:uint = 0x999999;
@@ -34,7 +34,7 @@ package com.tchibo.utils.videoPlayer
 	public static const NAVI_TEXT_X:uint = 110;// distance from right border
 	public static const NAVI_TEXT_Y:uint = 10 ;
 	
-	public static const NAVI_FULLSCREEN_X:uint = 33;// distance from right border
+	public static const NAVI_FULLSCREEN_X:uint = 83;// distance from right border
 	public static const NAVI_FULLSCREEN_Y:uint = 4 ;
 
 	}
