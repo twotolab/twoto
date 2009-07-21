@@ -25,6 +25,7 @@ package com.twoto.utils.videoPlayer
 			interfaceUI.addEventListener(VideoPlayerEvents.INTERFACE_PAUSE, interfaceHandler);
 			interfaceUI.addEventListener(VideoPlayerEvents.INTERFACE_SOUND, interfaceHandler);
 			interfaceUI.addEventListener(VideoPlayerEvents.INTERFACE_DRAGGED, interfaceHandler);
+			interfaceUI.addEventListener(VideoPlayerEvents.INTERFACE_RESTART, interfaceHandler);
 
 			// events  from the Engine
 			playerEngine.addEventListener(VideoPlayerEvents.ENGINE_METADATA_READY, engineHandler);
@@ -97,6 +98,10 @@ package com.twoto.utils.videoPlayer
 					//trace("interfaceHandler!!!! :" + evt.type.toString());
 					playerEngine.draggedTo(interfaceUI.draggerPercent);
 					break;
+				case VideoPlayerEvents.INTERFACE_RESTART:
+					//trace("interfaceHandler!!!! :" + evt.type.toString());
+					playerEngine.restart();
+					break;
 				default:
 					//trace("interfaceHandler empty!!!! :" + evt.type.toString());
 					break;
@@ -148,7 +153,7 @@ package com.twoto.utils.videoPlayer
 
 		private function updateProgress(evt:VideoPlayerEvents):void
 		{
-			//trace("updateProgress :" +playerEngine.percentProgress);
+		trace("updateProgress :" +playerEngine.percentProgress);
 			interfaceUI.updateProgressBar(playerEngine.percentProgress, playerEngine.timerPosition);
 		}
 

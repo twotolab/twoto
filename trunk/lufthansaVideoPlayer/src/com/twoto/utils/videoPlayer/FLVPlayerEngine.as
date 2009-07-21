@@ -150,7 +150,7 @@ package com.twoto.utils.videoPlayer {
 				percentProgress=Number(netStream.time.toFixed(1)) / Number(client.meta.duration.toFixed(1));
 				
 				timerPosition =netStream.time;
-				//trace("netStream.time: " + netStream.time);
+				trace("netStream.time: " + netStream.time);
 				dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.ENGINE_UPDATE_PROGRESS));
 
 				if (videoTimer.repeatCount != client.meta.duration.toFixed(1) * 1000) {
@@ -229,6 +229,15 @@ package com.twoto.utils.videoPlayer {
 			netStream.seek(0);
 			pause();
 			dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.ENGINE_STOP));
+		}
+		public function restart():void {
+
+			netStream.seek(0);
+			timerPosition =0;
+			percentProgress=0;
+			dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.ENGINE_UPDATE_PROGRESS));
+		
+
 		}
 		public function draggedTo(_percent:uint):void {
 

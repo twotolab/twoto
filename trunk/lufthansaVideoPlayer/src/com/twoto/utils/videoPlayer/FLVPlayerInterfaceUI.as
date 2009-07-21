@@ -6,6 +6,7 @@ package com.twoto.utils.videoPlayer {
 	import com.twoto.utils.videoPlayer.elements.Dragger;
 	import com.twoto.utils.videoPlayer.elements.FullScreenElement;
 	import com.twoto.utils.videoPlayer.elements.PlayStopElement;
+	import com.twoto.utils.videoPlayer.elements.ResetElement;
 	import com.twoto.utils.videoPlayer.elements.SoundElement;
 	
 	import flash.display.DisplayObject;
@@ -25,6 +26,7 @@ package com.twoto.utils.videoPlayer {
 		private var navigation:Sprite;
 
 		private var startStopButton:PlayStopElement;
+		private var resetButton:ResetElement;
 		private var backgroundNavi:Sprite;
 		private var backgroundNaviLine:Shape;
 		private var progressLoadedBackground:Shape;
@@ -111,6 +113,10 @@ package com.twoto.utils.videoPlayer {
 			startStopButton=new PlayStopElement();
 			startStopButton.addEventListener(Event.CHANGE, startStopHandler);
 			navigation.addChild(startStopButton);
+			
+			resetButton=new ResetElement();
+			resetButton.addEventListener(Event.CHANGE, resetHandler);
+			navigation.addChild(resetButton);
 
 			soundOnOffButton=new SoundElement();
 			soundOnOffButton.addEventListener(Event.CHANGE, soundHandler);
@@ -221,6 +227,11 @@ package com.twoto.utils.videoPlayer {
 			navigation.addChild(dragger);
 		}
 
+		private function resetHandler(evt:Event):void {
+
+			trace("resetHandler: " + evt.type.toString());
+			dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.INTERFACE_RESTART));
+		}
 		private function startStopHandler(evt:Event):void {
 
 			trace("startStopHandler: " + evt.type.toString());
@@ -296,6 +307,9 @@ package com.twoto.utils.videoPlayer {
 
 			fullScreenButton.x=soundOnOffButton.x - fullScreenButton.width - Defines.NAVI_FULLSCREEN_X;
 			fullScreenButton.y=Defines.NAVI_FULLSCREEN_Y;
+			
+			resetButton.x= Defines.NAVI_RESET_X;
+			resetButton.y= Defines.NAVI_RESET_Y;
 		}
 
 		private function resizeHandler(evt:Event):void {
@@ -380,30 +394,32 @@ package com.twoto.utils.videoPlayer {
 			startStopButton.removeEventListener(Event.CHANGE, startStopHandler);
 			soundOnOffButton.removeEventListener(Event.CHANGE, soundHandler);
 
-			if(this.contains(dragger)) {
+			if(navigation.contains(dragger)) {
 				dragger.removeEventListener(Event.CHANGE, draggerHandler);
-				removeChild(dragger);
+				navigation.removeChild(dragger);
 				dragger=null;
 			}
-			removeChild(backgroundNavi);
+			navigation.removeChild(backgroundNavi);
 			backgroundNavi=null;
-			removeChild(progressEltBackground);
+			navigation.removeChild(progressEltBackground);
 			progressEltBackground=null;
-			removeChild(startStopButton);
+			navigation.removeChild(startStopButton);
 			startStopButton=null;
-			removeChild(progressBackground);
+			navigation.removeChild(progressBackgroundLine);
+			progressBackgroundLine=null;
+			navigation.removeChild(progressBackground);
 			startStopButton=null;
-			removeChild(progressLoadedBackground);
+			navigation.removeChild(progressLoadedBackground);
 			progressLoadedBackground=null;
-			removeChild(progressBar);
+			navigation.removeChild(progressBar);
 			progressBar=null;
 			/*
 			   removeChild(infoText);
 			   infoText=null;
 			 */
-			removeChild(soundOnOffButton);
+			navigation.removeChild(soundOnOffButton);
 			soundOnOffButton=null;
-			removeChild(fullScreenButton);
+			navigation.removeChild(fullScreenButton);
 			fullScreenButton=null;
 		}
 
