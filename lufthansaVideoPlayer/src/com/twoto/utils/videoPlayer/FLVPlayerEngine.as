@@ -33,6 +33,9 @@ package com.twoto.utils.videoPlayer {
 		//---------------------------------------------------------------------------
 		// 	private variables
 		//---------------------------------------------------------------------------
+		private var setWidth:uint;
+		private var setHeight:uint;
+
 		private var netConnection:NetConnection;
 		private var netStream:NetStream;
 
@@ -65,15 +68,17 @@ package com.twoto.utils.videoPlayer {
 		// 	constructor
 		//---------------------------------------------------------------------------
 
-		public function FLVPlayerEngine() {
+		public function FLVPlayerEngine(_setWidth:uint, _setHeight:uint) {
 
+			setWidth=_setWidth;
+			setHeight=_setHeight;
 			SoundShortcuts.init();
 			soundTrans=new SoundTransform();
 		}
 
 		private function initPlayer():void {
 
-			trace("initPlayer");
+			trace("--------------------initPlayer setWidth: "+setWidth+"setHeight: "+setHeight);
 			client=new CustomFLVPlayerClient();
 			// NetConnection class lets you play streaming FLV files from either an HTTP address or a local drive 
 			netConnection=new NetConnection();
@@ -93,7 +98,7 @@ package com.twoto.utils.videoPlayer {
 			netStream.addEventListener(NetStatusEvent.NET_STATUS, netStatusHandler);
 			netStream.client=client;
 
-			video=new Video(Defines.VIDEO_WIDTH,Defines.VIDEO_HEIGHT);
+			video=new Video(setWidth,setHeight);
 			video.attachNetStream(netStream);
 			netStream.play(videoURL);
 
@@ -101,7 +106,7 @@ package com.twoto.utils.videoPlayer {
 		}
 
 		private function loaderUpdate():void {
-			if (loaderTimer != null) {
+			if(loaderTimer != null) {
 				loaderTimer.reset();
 			}
 			loaderTimer=new Timer(100, 1);
@@ -114,11 +119,10 @@ package com.twoto.utils.videoPlayer {
 			//trace(netStream.bytesLoaded + " bytesLoaded / " + netStream.bytesTotal + " bytesTotal");
 			percentLoadingProgress=netStream.bytesLoaded / netStream.bytesTotal;
 			dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.ENGINE_LOADING_PROGRESS));
-			if (netStream.bytesLoaded != netStream.bytesTotal) {
+			if(netStream.bytesLoaded != netStream.bytesTotal) {
 				loaderUpdate();
-			}
-			else {
-				if (loaderTimer != null) {
+			} else {
+				if(loaderTimer != null) {
 					loaderTimer.stop();
 					loaderTimer=null;
 				}
@@ -135,7 +139,7 @@ package com.twoto.utils.videoPlayer {
 
 		private function initPlayerTimer():void {
 
-			if (videoTimer != null) {
+			if(videoTimer != null) {
 				videoTimer.reset();
 			}
 			videoTimer=new Timer(100, 1000);
@@ -148,33 +152,32 @@ package com.twoto.utils.videoPlayer {
 			try {
 				//trace("timerHandler: " + netStream.time.toFixed(1) + " of " + client.meta.duration.toFixed(1) + " seconds");
 				percentProgress=Number(netStream.time.toFixed(1)) / Number(client.meta.duration.toFixed(1));
-				
-				timerPosition =netStream.time;
-				trace("netStream.time: " + netStream.time);
+
+				timerPosition=netStream.time;
+			//	trace("netStream.time: " + netStream.time);
 				dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.ENGINE_UPDATE_PROGRESS));
 
-				if (videoTimer.repeatCount != client.meta.duration.toFixed(1) * 1000) {
+				if(videoTimer.repeatCount != client.meta.duration.toFixed(1) * 1000) {
 					videoTimer.repeatCount=client.meta.duration.toFixed(1) * 1000;
 						//trace("videoTimer.repeatCount : " + videoTimer.repeatCount)
 				}
 
-				if (client.meta != null) {
+				if(client.meta != null) {
 					meta=client.meta;
 					dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.ENGINE_METADATA_READY));
 				}
-			}
-			catch (error:Error) {
+			} catch(error:Error) {
 				// Ignore this error.
 			}
 		}
 
-		
+
 
 		private function netStatusHandler(event:NetStatusEvent):void {
 
 			//trace("netStatusHandler: " + event.info.code);
 
-			switch (event.info.code) {
+			switch(event.info.code) {
 				case "NetConnection.Connect.Success":
 					trace("NetConnection.Connect.Success");
 					connectStream();
@@ -230,32 +233,33 @@ package com.twoto.utils.videoPlayer {
 			pause();
 			dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.ENGINE_STOP));
 		}
+
 		public function restart():void {
 
 			netStream.seek(0);
-			timerPosition =0;
+			timerPosition=0;
 			percentProgress=0;
 			dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.ENGINE_UPDATE_PROGRESS));
-		
+
 
 		}
+
 		public function draggedTo(_percent:uint):void {
 
 			//trace("draggedTo"+Number(client.meta.duration.toFixed(1)));
-			var targetSeek:uint =Math.round(_percent*Number(client.meta.duration.toFixed(1))*.01);
+			var targetSeek:uint=Math.round(_percent * Number(client.meta.duration.toFixed(1)) * .01);
 			//trace("draggedTo"+_percent);
 			netStream.seek(targetSeek);
-			timerPosition =netStream.time;
+			timerPosition=netStream.time;
 			dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.ENGINE_UPDATE_PROGRESS));
 		}
 
 		public function soundHandler():void {
 
 			//trace("soundHandler SOUND_STATUS: "+SOUND_STATUS);
-			if (SOUND_STATUS == OFF) {
+			if(SOUND_STATUS == OFF) {
 				volumeOn();
-			}
-			else {
+			} else {
 				volumeOff();
 			}
 		}
@@ -266,7 +270,7 @@ package com.twoto.utils.videoPlayer {
 			trace("volumeOff");
 			var sTrans:SoundTransform=new SoundTransform();
 			sTrans.volume=netStream.soundTransform.volume;
-			Tweener.addTween(sTrans, {volume: 0, time: 0.5, transition: "linear", onUpdate: function():void {
+			Tweener.addTween(sTrans, {volume:0, time:0.5, transition:"linear", onUpdate:function():void {
 					netStream.soundTransform=sTrans;
 				}});
 		}
@@ -276,21 +280,20 @@ package com.twoto.utils.videoPlayer {
 			SOUND_STATUS=ON;
 			var sTrans:SoundTransform=new SoundTransform();
 			sTrans.volume=netStream.soundTransform.volume;
-			Tweener.addTween(sTrans, {volume: 0.3, time: 0.5, transition: "linear", onUpdate: function():void {
+			Tweener.addTween(sTrans, {volume:0.3, time:0.5, transition:"linear", onUpdate:function():void {
 					netStream.soundTransform=sTrans;
 				}});
 		}
 
 		public function pause():void {
 
-			if (netStream != null) {
-				if (STATUS != null) {
-					if (STATUS == PLAY) {
+			if(netStream != null) {
+				if(STATUS != null) {
+					if(STATUS == PLAY) {
 						STATUS=STOP;
 						videoTimer.stop();
 						netStream.pause();
-					}
-					else {
+					} else {
 						STATUS=PLAY;
 						videoTimer.start();
 						netStream.resume();
@@ -301,9 +304,9 @@ package com.twoto.utils.videoPlayer {
 
 		public function play():void {
 
-			if (netStream != null) {
-				if (STATUS != null) {
-					if (STATUS == STOP) {
+			if(netStream != null) {
+				if(STATUS != null) {
+					if(STATUS == STOP) {
 						netStream.play();
 						STATUS=PLAY;
 					}
@@ -339,22 +342,22 @@ package com.twoto.utils.videoPlayer {
 
 		public function destroy():void {
 			//TODO: implement function
-			if (loaderTimer != null) {
+			if(loaderTimer != null) {
 				loaderTimer.stop();
 				loaderTimer=null;
 			}
 
-			if (netStream != null) {
+			if(netStream != null) {
 				netStream.close();
 				netStream=null;
 			}
 
-			if (netConnection != null) {
+			if(netConnection != null) {
 				netConnection.close();
 				netConnection=null;
 			}
 
-			if (videoTimer != null) {
+			if(videoTimer != null) {
 				videoTimer.stop();
 				videoTimer=null;
 			}

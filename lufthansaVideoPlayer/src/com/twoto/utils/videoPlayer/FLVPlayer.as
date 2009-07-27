@@ -13,10 +13,14 @@ package com.twoto.utils.videoPlayer {
 		private var _videoURL:String;
 		private var interfaceUI:FLVPlayerInterfaceUI;
 
-		public function FLVPlayer() {
+		public var setWidth:uint;
+		public var setHeight:uint;
 
-			interfaceUI=new FLVPlayerInterfaceUI();
-			playerEngine=new FLVPlayerEngine();
+		public function FLVPlayer(_setWidth:uint, _setHeight:uint) {
+
+			setSizes(_setWidth, _setHeight);
+			interfaceUI=new FLVPlayerInterfaceUI(setWidth, setHeight);
+			playerEngine=new FLVPlayerEngine(setWidth, setHeight);
 
 			// events  from the interfaceUI
 			interfaceUI.addEventListener(VideoPlayerEvents.INTERFACE_PAUSE, interfaceHandler);
@@ -52,6 +56,12 @@ package com.twoto.utils.videoPlayer {
 		private function init():void {
 			stage.scaleMode=StageScaleMode.NO_SCALE;
 			stage.align=StageAlign.TOP_LEFT;
+		}
+
+		public function setSizes(W:uint, H:uint):void {
+
+			setWidth=W;
+			setHeight=H;
 		}
 
 		public function set fullscreen(_value:Boolean):void {
@@ -147,7 +157,7 @@ package com.twoto.utils.videoPlayer {
 		}
 
 		private function updateProgress(evt:VideoPlayerEvents):void {
-			trace("updateProgress :" + playerEngine.percentProgress);
+			//trace("updateProgress :" + playerEngine.percentProgress);
 			interfaceUI.updateProgressBar(playerEngine.percentProgress, playerEngine.timerPosition);
 		}
 
