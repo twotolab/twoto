@@ -364,6 +364,7 @@ package com.twoto.utils.videoPlayer {
 
 			} else {
 				video.mask=null;
+				naviMaskVideo.mask=null;
 				factor=(stage.stageHeight) / originalFilmHeight;
 				video.scaleY=video.scaleX=factor;
 				video.y=stage.stageHeight - video.height;
