@@ -5,6 +5,7 @@ package com.tchibo.utils.videoPlayer {
 	import com.tchibo.utils.videoPlayer.elements.FullScreenElement;
 	import com.tchibo.utils.videoPlayer.elements.PlayStopElement;
 	import com.tchibo.utils.videoPlayer.elements.SoundElement;
+	import com.tchibo.utils.videoPlayer.elements.StartScreenElement;
 
 	import flash.display.DisplayObject;
 	import flash.display.Shape;
@@ -37,6 +38,10 @@ package com.tchibo.utils.videoPlayer {
 
 		private var dragger:Dragger;
 		private var timerInfo:Boolean;
+
+		private var startScreenUsed:Boolean;
+		private var startScreen:StartScreenElement;
+
 
 		public var draggerPercent:uint;
 
@@ -73,7 +78,7 @@ package com.tchibo.utils.videoPlayer {
 
 			stage.addEventListener(Event.RESIZE, resizeHandler);
 			resizeHandler(null);
-			
+
 		}
 
 		private function addMask(video:DisplayObject):void {
@@ -101,7 +106,6 @@ package com.tchibo.utils.videoPlayer {
 			fullScreenButton=new FullScreenElement();
 			addChild(fullScreenButton);
 
-			resize();
 		}
 
 		private function redrawProgressBars():void {
@@ -155,11 +159,15 @@ package com.tchibo.utils.videoPlayer {
 			progressBar.scaleX=0;
 			addChild(progressBar);
 			addChild(dragger);
+
+			if(startScreenUsed != true) {
+				dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.STARTSCREEN_INIT));
+			}
 		}
 
 		private function startStopHandler(evt:Event):void {
 
-			trace("startStopHandler: " + evt.type.toString());
+			//trace("startStopHandler: " + evt.type.toString());
 			dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.INTERFACE_PAUSE));
 		}
 
@@ -171,8 +179,32 @@ package com.tchibo.utils.videoPlayer {
 
 		public function reset():void {
 
-			trace("resetPlayStopButton: ");
+
 			dragger.placeByPercent(0, 0);
+		}
+
+		public function showStartScreen():void {
+
+			//trace("showStartScreen: ");
+			startScreen=new StartScreenElement();
+			startScreen.addEventListener(VideoPlayerEvents.STARTSCREEN_MODUSCHOICE, startscreenHandler);
+			addChild(startScreen);
+			startScreenUsed=true;
+		}
+
+		public function get startScreenShowed():Boolean {
+
+			return startScreenUsed;
+		}
+
+		private function startscreenHandler(evt:VideoPlayerEvents):void {
+
+			if(startScreen.MODUS == StartScreenElement.FULLSCREEN) {
+				fullScreenButton.virtualClickFullscreen();
+
+			}
+			dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.INTERFACE_PAUSE));
+			removeChild(startScreen);
 		}
 
 		public function setPlayStopStatus():void {
@@ -229,6 +261,7 @@ package com.tchibo.utils.videoPlayer {
 
 			fullScreenButton.x=playerWidth - DefinesFLVPLayer.NAVI_FULLSCREEN_X;
 			fullScreenButton.y=playerHeight + DefinesFLVPLayer.NAVI_FULLSCREEN_Y;
+
 		}
 
 		private function resizeHandler(evt:Event):void {

@@ -8,7 +8,7 @@ package
 	import flash.display.Shape;
 	import flash.display.Sprite;
 
-	[SWF(backgroundColor='0xe9e8dd', width='608', height='362', frameRate="30")]
+	[SWF(backgroundColor='0xe9e8dd', width='800', height='600', frameRate="30")]
 
 	public class PlayerApplication extends Sprite
 	{

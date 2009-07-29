@@ -1,7 +1,7 @@
 package com.tchibo.utils.videoPlayer.elements {
 
 	import com.tchibo.utils.videoPlayer.FullScreenMC;
-	
+
 	import flash.display.MovieClip;
 	import flash.display.StageDisplayState;
 	import flash.events.Event;
@@ -36,7 +36,7 @@ package com.tchibo.utils.videoPlayer.elements {
 
 			display=new FullScreenMC();
 			addChild(display);
-			buttonMode = true;
+			buttonMode=true;
 			display.stop();
 
 			display.addEventListener(MouseEvent.ROLL_OVER, rollOverHandler);
@@ -51,22 +51,24 @@ package com.tchibo.utils.videoPlayer.elements {
 
 		private function rollOverHandler(evt:MouseEvent):void {
 
-			if (STATUS == FULLSCREEN) {
+			if(STATUS == FULLSCREEN) {
 				display.gotoAndStop("FULLSCREEN_OVER")
-			}
-			else {
+			} else {
 				display.gotoAndStop("NORMAL_OVER");
 			}
 		}
 
 		private function rollOutHandler(evt:MouseEvent):void {
 			trace("resize rollOutHandler");
-			if (STATUS == FULLSCREEN) {
+			if(STATUS == FULLSCREEN) {
 				display.gotoAndStop("FULLSCREEN_OUT");
-			}
-			else {
+			} else {
 				display.gotoAndStop("NORMAL_OUT");
 			}
+		}
+
+		public function virtualClickFullscreen():void {
+			fullscreenHandler(null);
 		}
 
 		//---------------------------------------------------------------------------
@@ -74,22 +76,20 @@ package com.tchibo.utils.videoPlayer.elements {
 		//---------------------------------------------------------------------------
 		private function fullscreenHandler(evt:MouseEvent):void {
 			//trace("fullscreenHandler");
-			if (this.stage.displayState == StageDisplayState.NORMAL) {
+			if(this.stage.displayState == StageDisplayState.NORMAL) {
 				this.stage.displayState=StageDisplayState.FULL_SCREEN;
-			}
-			else {
+			} else {
 				this.stage.displayState=StageDisplayState.NORMAL;
 			}
 		}
 
 		private function resize(evt:Event):void {
 
-			if (this.stage.displayState == StageDisplayState.NORMAL) {
+			if(this.stage.displayState == StageDisplayState.NORMAL) {
 				STATUS=NORMAL;
 				//trace("resize NORMAL");
 				display.gotoAndStop("NORMAL_OUT");
-			}
-			else {
+			} else {
 				STATUS=FULLSCREEN;
 				//trace("resize FULLSCREEN");
 				display.gotoAndStop("NORMAL_OUT");
