@@ -4,11 +4,14 @@ package com.tchibo.utils.videoPlayer
 	{
 	public static const BUFFER_TIME:uint = 3;
 	
-	public static const STAGE_WIDTH:uint = 608;
-	public static const STAGE_HEIGHT:uint = 362;
+	public static const STAGE_WIDTH:uint = 800;
+	public static const STAGE_HEIGHT:uint = 580;
 	
-	public static const VIDEO_WIDTH:uint = 608;
-	public static const VIDEO_HEIGHT:uint = 342;
+	public static const STARTSCREEN_PAUSE:uint = 7000;
+	public static const STARTSCREEN_COLOR:uint = 0x000000;
+	
+	public static const VIDEO_WIDTH:uint = 800;
+	public static const VIDEO_HEIGHT:uint = 580;
 	
 	public static const NAVI_HEIGHT:uint = 20;
 	public static const NAVI_COLOR:uint = 0xe9e8dd;

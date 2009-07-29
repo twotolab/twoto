@@ -1,22 +1,19 @@
-package com.tchibo.utils.videoPlayer
-{
+package com.tchibo.utils.videoPlayer {
 
 	import com.tchibo.global.components.IBasics;
-	
+
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
 
-	public class FLVPlayer extends Sprite implements IBasics
-	{
+	public class FLVPlayer extends Sprite implements IBasics {
 
 		private var playerEngine:FLVPlayerEngine;
 		private var _videoURL:String;
 		private var interfaceUI:FLVPlayerInterfaceUI;
 
-		public function FLVPlayer()
-		{
+		public function FLVPlayer() {
 
 			interfaceUI=new FLVPlayerInterfaceUI();
 			playerEngine=new FLVPlayerEngine();
@@ -25,6 +22,7 @@ package com.tchibo.utils.videoPlayer
 			interfaceUI.addEventListener(VideoPlayerEvents.INTERFACE_PAUSE, interfaceHandler);
 			interfaceUI.addEventListener(VideoPlayerEvents.INTERFACE_SOUND, interfaceHandler);
 			interfaceUI.addEventListener(VideoPlayerEvents.INTERFACE_DRAGGED, interfaceHandler);
+			interfaceUI.addEventListener(VideoPlayerEvents.STARTSCREEN_INIT, interfaceHandler);
 
 			// events  from the Engine
 			playerEngine.addEventListener(VideoPlayerEvents.ENGINE_METADATA_READY, engineHandler);
@@ -39,8 +37,7 @@ package com.tchibo.utils.videoPlayer
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, 0, true);
 		}
 
-		private function onAddedToStage(e:Event):void
-		{
+		private function onAddedToStage(e:Event):void {
 
 			removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
@@ -48,43 +45,36 @@ package com.tchibo.utils.videoPlayer
 			init();
 		}
 
-		private function onRemovedFromStage(e:Event):void
-		{
+		private function onRemovedFromStage(e:Event):void {
 
 		}
 
-		private function init():void
-		{
+		private function init():void {
 			stage.scaleMode=StageScaleMode.NO_SCALE;
 			stage.align=StageAlign.TOP_LEFT;
 
 		}
 
-		public function set videoURL(newVideoURL:String):void
-		{
-			if (newVideoURL != _videoURL)
-			{
+		public function set videoURL(newVideoURL:String):void {
+			if(newVideoURL != _videoURL) {
 				_videoURL=newVideoURL;
 				playerEngine.videoURL=videoURL;
 			}
 		}
 
-		public function get videoURL():String
-		{
+		public function get videoURL():String {
 			return _videoURL;
 		}
-		public function set timeInfo(_value:Boolean):void
-		{
-			interfaceUI.withTimerInfo = _value;
+
+		public function set timeInfo(_value:Boolean):void {
+			interfaceUI.withTimerInfo=_value;
 		}
 
-		private function interfaceHandler(evt:VideoPlayerEvents):void
-		{
+		private function interfaceHandler(evt:VideoPlayerEvents):void {
 
 			//trace("interfaceHandler :" + evt.type.toString());
 
-			switch (evt.type.toString())
-			{
+			switch(evt.type.toString()) {
 				case VideoPlayerEvents.INTERFACE_SOUND:
 					playerEngine.soundHandler();
 					break;
@@ -92,6 +82,10 @@ package com.tchibo.utils.videoPlayer
 					//trace("interfaceHandler!!!! :" + evt.type.toString());
 					interfaceUI.showProgressBar(true);
 					playerEngine.pause();
+					break;
+					case VideoPlayerEvents.STARTSCREEN_INIT:
+					trace("interfaceHandler!!!! :" + evt.type.toString());
+					showStartScreen();
 					break;
 				case VideoPlayerEvents.INTERFACE_DRAGGED:
 					//trace("interfaceHandler!!!! :" + evt.type.toString());
@@ -103,12 +97,10 @@ package com.tchibo.utils.videoPlayer
 			}
 		}
 
-		private function engineHandler(evt:VideoPlayerEvents):void
-		{
+		private function engineHandler(evt:VideoPlayerEvents):void {
 
 			//trace("engineHandler"+evt.toString());
-			switch (evt.type.toString())
-			{
+			switch(evt.type.toString()) {
 				case VideoPlayerEvents.ENGINE_METADATA_READY:
 					playerEngine.removeEventListener(VideoPlayerEvents.ENGINE_METADATA_READY, engineHandler);
 					interfaceUI.init(playerEngine);
@@ -118,11 +110,11 @@ package com.tchibo.utils.videoPlayer
 					interfaceUI.setPlayStopStatus();
 					break;
 				case VideoPlayerEvents.ENGINE_STOP:
-				/*
-					interfaceUI.showProgressBar(false);
-					interfaceUI.reset();
-					
-					*/ trace("endFilm");
+					/*
+					   interfaceUI.showProgressBar(false);
+					   interfaceUI.reset();
+					 */
+					trace("endFilm");
 					interfaceUI.setPlayStopStatus();
 					break;
 				case VideoPlayerEvents.BUFFERING_EMPTY:
@@ -134,34 +126,35 @@ package com.tchibo.utils.videoPlayer
 			}
 		}
 
-		private function updateLoadingProgress(evt:VideoPlayerEvents):void
-		{
+		private function showStartScreen():void {
+			if(interfaceUI.startScreenShowed != true) {
+				interfaceUI.showStartScreen();
+				playerEngine.pause();
+			}
+		}
+
+		private function updateLoadingProgress(evt:VideoPlayerEvents):void {
 
 			//trace("updateLoadingProgress :" +playerEngine.percentLoadingProgress);
 			interfaceUI.updateLoadedProgress(playerEngine.percentLoadingProgress);
-			if (playerEngine.percentLoadingProgress == 1)
-			{
+			if(playerEngine.percentLoadingProgress == 1) {
 				playerEngine.removeEventListener(VideoPlayerEvents.ENGINE_LOADING_PROGRESS, updateLoadingProgress);
 					//trace("updateLoadingProgress  end:");
 			}
 		}
 
-		private function updateProgress(evt:VideoPlayerEvents):void
-		{
+		private function updateProgress(evt:VideoPlayerEvents):void {
 			//trace("updateProgress :" +playerEngine.percentProgress);
 			interfaceUI.updateProgressBar(playerEngine.percentProgress, playerEngine.timerPosition);
 		}
 
-		public function freeze():void
-		{
+		public function freeze():void {
 		}
 
-		public function unfreeze():void
-		{
+		public function unfreeze():void {
 		}
 
-		public function destroy():void
-		{
+		public function destroy():void {
 
 			playerEngine.removeEventListener(VideoPlayerEvents.ENGINE_METADATA_READY, engineHandler);
 			playerEngine.removeEventListener(VideoPlayerEvents.BUFFERING_EMPTY, engineHandler);

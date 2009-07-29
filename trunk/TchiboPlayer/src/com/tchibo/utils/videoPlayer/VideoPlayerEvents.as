@@ -7,6 +7,9 @@ package com.tchibo.utils.videoPlayer
 		// 
 		public static const ENGINE_METADATA_READY:String = "engineMetaDataReady";
 				
+		public static const STARTSCREEN_INIT:String = "StartScreenInit";
+		public static const STARTSCREEN_MODUSCHOICE:String = "StartScreenModusChoice";
+		
 		public static const BUFFERING_EMPTY:String = "bufferingEmpty";
 		public static const BUFFERING_FULL:String = "bufferingFull";
 		
