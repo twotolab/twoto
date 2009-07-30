@@ -61,8 +61,10 @@ package com.tchibo.utils.videoPlayer.elements {
 
 			normalButt=startScreenMC.getChildByName("buttNein") as Sprite;
 			normalButt.addEventListener(MouseEvent.CLICK, buttonHandler);
+			normalButt.buttonMode = true;
 			fullscreenButt=startScreenMC.getChildByName("buttJa") as Sprite;
 			fullscreenButt.addEventListener(MouseEvent.CLICK, buttonHandler);
+			fullscreenButt.buttonMode = true;
 
 			timer=new Timer(DefinesFLVPLayer.STARTSCREEN_PAUSE, 1);
 			timer.addEventListener(TimerEvent.TIMER_COMPLETE, autoContinue);
