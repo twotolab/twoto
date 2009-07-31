@@ -1,7 +1,9 @@
-package com.twoto.cms.ui.editor {
+package com.twoto.cms.ui.elements.editor {
 
+	import com.twoto.cms.CMSEvent;
 	import com.twoto.cms.global.DefinesCMS;
 	import com.twoto.cms.model.TypeMapper;
+	import com.twoto.cms.uploader.FileUploader;
 	import com.twoto.global.fonts.Times_New_Roman_Font;
 	import com.twoto.utils.Draw;
 	import com.twoto.utils.UIUtils;
@@ -19,28 +21,29 @@ package com.twoto.cms.ui.editor {
 	 * @version 1.0
 	 *
 	 */
-	public class StaticEditorCMSTextElement extends AbstractEditorCMSTextElement {
+	public class UploadZipEditorCMSTextElement extends AbstractEditorCMSTextElement {
 		//---------------------------------------------------------------------------
 		// 	private variables
 		//---------------------------------------------------------------------------
 		private var labelText:TextField;
 		private var staticText:TextField;
 		private var originalText:String;
+		private var newText:String;
 		private var content:String;
-		private var eltLabel:String;
+		private var _label:String;
 		private var container:Sprite;
 		private var changed:Boolean;
-		private var maxChar:uint;
+		private var uploader:FileUploader;
 		private var bottomLine:Shape;
 
 		//---------------------------------------------------------------------------
 		// 	constructor
 		//---------------------------------------------------------------------------
-		public function StaticEditorCMSTextElement(newlabel:String, _content:String, _maxChar:uint) {
+		public function UploadZipEditorCMSTextElement(newlabel:String, _content:String) {
 
-			eltLabel=newlabel;
+			_label=newlabel;
 			content=_content;
-			maxChar=_maxChar;
+			newText = content;
 
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, 0, true);
 		}
@@ -59,38 +62,52 @@ package com.twoto.cms.ui.editor {
 		//---------------------------------------------------------------------------
 		private function draw():void {
 			/*
-			   var back:Shape = Draw.ShapeElt(DefinesCMS.EDITOR_INPUT_SINGLELINE_WIDTH,DefinesCMS.NODE_HEIGHT);
+			   var back:Shape = Draw.ShapeElt(DefinesCMS.EDITOR_INPUT_SINGLELINE_WIDTH,15);
 			   addChild(back);
 			 */
-
 			container=new Sprite();
 			addChild(container);
 
-			labelText=TextUtils.simpleTextAdvance("<i>" + eltLabel + ": </i>", new Times_New_Roman_Font(), DefinesCMS.EDITOR_TEXT_COLOR, DefinesCMS.FONT_SIZE_SMALL);
+			labelText=TextUtils.simpleTextAdvance("<i>" + _label + ": </i>", new Times_New_Roman_Font(), DefinesCMS.EDITOR_TEXT_COLOR, DefinesCMS.FONT_SIZE_SMALL);
 			container.addChild(labelText);
-			staticText=TextUtils.simpleTextAdvance("<i>" + content + "</i>", new Times_New_Roman_Font(), DefinesCMS.EDITOR_TEXT_COLOR, DefinesCMS.FONT_SIZE_SMALL);
+
+			uploader=new FileUploader(FileUploader.ZIP);
+			uploader.addEventListener(CMSEvent.EDITOR_UPDATE_MESSAGE, uploadHandler);
+			uploader.addEventListener(CMSEvent.EDITOR_UPLOAD_FINISHED, uploadHandler);
+			container.addChild(uploader);
+			uploader.x=DefinesCMS.NODE_WIDTH-uploader.width;//DefinesCMS.EDITOR_DIST;//
+			uploader.y=2;
+
+			var textContent:String=(content != "") ? "- actual choice: " + content : "- info: no zip file on the server";
+			staticText=TextUtils.simpleTextAdvance("<i>" + textContent + "</i>", new Times_New_Roman_Font(), DefinesCMS.EDITOR_TEXT_COLOR, DefinesCMS.FONT_SIZE_SMALL);
 			container.addChild(staticText);
 			labelText.x=0 //-Math.round(labelText.textWidth) - 15;
 			labelText.y=staticText.y=-DefinesCMS.NODE_TEXT_DIST_TOP;
-			staticText.x=DefinesCMS.EDITOR_DIST;
+			staticText.x=DefinesCMS.EDITOR_DIST;//uploader.x+uploader.width+5;
 			container.x=0;
 
 			bottomLine=Draw.dottedLine(0, 0, DefinesCMS.NODE_WIDTH, DefinesCMS.EDITOR_LINE_COLOR);
 			addChild(bottomLine);
-			bottomLine.y=DefinesCMS.NODE_HEIGHT - 1;
+			bottomLine.y=DefinesCMS.NODE_HEIGHT - 1
 
 		}
-		//---------------------------------------------------------------------------
-		// 		label 
-		//---------------------------------------------------------------------------
-		override public function get label():String {
-			return eltLabel;
-		}
-		//---------------------------------------------------------------------------
-		// 		type 
-		//---------------------------------------------------------------------------
-		override public function get type():String {
-			return TypeMapper.STATIC;
+
+		private function uploadHandler(evt:CMSEvent):void {
+			switch (evt.type) {
+				case CMSEvent.EDITOR_UPDATE_MESSAGE:
+					staticText.htmlText="<i>" + uploader.message + "</i>";
+					break;
+				case CMSEvent.EDITOR_UPLOAD_FINISHED:
+					newText="content/pic/" + uploader.targetName;
+					changed=true;
+					dispatchEvent(new Event(Event.CHANGE));
+					uploader.removeEventListener(CMSEvent.EDITOR_UPDATE_MESSAGE, uploadHandler);
+					uploader.removeEventListener(CMSEvent.EDITOR_UPLOAD_FINISHED, uploadHandler);
+					staticText.htmlText="<i>content/pic/" + uploader.targetName + "</i>";
+					break;
+				default:
+					break;
+			}
 		}
 
 		//---------------------------------------------------------------------------
@@ -101,10 +118,24 @@ package com.twoto.cms.ui.editor {
 			return DefinesCMS.NODE_HEIGHT + 1;
 		}
 
+		override public function get change():Boolean {
+			//	trace("change!!!!  "+inputText.text +" : "  + changed);
+			return changed;
+		}
 
-		//---------------------------------------------------------------------------
-		// 		inherited functions
-		//---------------------------------------------------------------------------
+
+		override public function get updatedText():String {
+			return newText;
+		}
+
+		override public function get type():String {
+			return TypeMapper.DYNAMIC;
+		}
+
+		override public function get label():String {
+			return _label;
+		}
+
 		override public function freeze():void {
 		}
 
@@ -114,10 +145,8 @@ package com.twoto.cms.ui.editor {
 		override public function destroy():void {
 
 			UIUtils.removeDisplayObject(container, labelText);
-			UIUtils.removeDisplayObject(container, staticText);
 			UIUtils.removeDisplayObject(this, container);
 		}
-
 
 	}
 }

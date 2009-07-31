@@ -1,4 +1,4 @@
-package com.twoto.cms.ui.editor {
+package com.twoto.cms.ui.elements.editor {
 
 	import com.twoto.cms.CMSEvent;
 	import com.twoto.cms.global.DefinesCMS;
@@ -21,7 +21,7 @@ package com.twoto.cms.ui.editor {
 	 * @version 1.0
 	 *
 	 */
-	public class UploadSWFEditorCMSTextElement extends AbstractEditorCMSTextElement {
+	public class UploadPicEditorCMSTextElement extends AbstractEditorCMSTextElement {
 		//---------------------------------------------------------------------------
 		// 	private variables
 		//---------------------------------------------------------------------------
@@ -39,7 +39,7 @@ package com.twoto.cms.ui.editor {
 		//---------------------------------------------------------------------------
 		// 	constructor
 		//---------------------------------------------------------------------------
-		public function UploadSWFEditorCMSTextElement(newlabel:String, _content:String) {
+		public function UploadPicEditorCMSTextElement(newlabel:String, _content:String) {
 
 			_label=newlabel;
 			content=_content;
@@ -71,20 +71,20 @@ package com.twoto.cms.ui.editor {
 			labelText=TextUtils.simpleTextAdvance("<i>" + _label + ": </i>", new Times_New_Roman_Font(), DefinesCMS.EDITOR_TEXT_COLOR, DefinesCMS.FONT_SIZE_SMALL);
 			container.addChild(labelText);
 
-			uploader=new FileUploader(FileUploader.SWF);
+			uploader=new FileUploader(FileUploader.JPG);
 			uploader.addEventListener(CMSEvent.EDITOR_UPDATE_MESSAGE, uploadHandler);
 			uploader.addEventListener(CMSEvent.EDITOR_UPLOAD_FINISHED, uploadHandler);
+			container.addChild(uploader);
 			uploader.y=2;
 			uploader.x=DefinesCMS.NODE_WIDTH-uploader.width;//DefinesCMS.EDITOR_DIST;//
-			container.addChild(uploader);
 
-			staticText=TextUtils.simpleTextAdvance("<i>- actual choice: " + content + "</i>", new Times_New_Roman_Font(), DefinesCMS.EDITOR_TEXT_COLOR, DefinesCMS.FONT_SIZE_SMALL);
+			staticText=TextUtils.simpleTextAdvance("<i>- " + content + "</i>", new Times_New_Roman_Font(), DefinesCMS.EDITOR_TEXT_COLOR, DefinesCMS.FONT_SIZE_SMALL);
 			container.addChild(staticText);
 			labelText.x=0//-Math.round(labelText.textWidth) - 15;
 			labelText.y=staticText.y=-DefinesCMS.NODE_TEXT_DIST_TOP;
 			staticText.x=DefinesCMS.EDITOR_DIST;//uploader.x+uploader.width+5;
 			container.x=0;
-
+			
 			bottomLine=Draw.dottedLine(0, 0, DefinesCMS.NODE_WIDTH, DefinesCMS.EDITOR_LINE_COLOR);
 			addChild(bottomLine);
 			bottomLine.y=DefinesCMS.NODE_HEIGHT - 1;
@@ -102,7 +102,7 @@ package com.twoto.cms.ui.editor {
 					dispatchEvent(new Event(Event.CHANGE));
 					uploader.removeEventListener(CMSEvent.EDITOR_UPDATE_MESSAGE, uploadHandler);
 					uploader.removeEventListener(CMSEvent.EDITOR_UPLOAD_FINISHED, uploadHandler);
-					staticText.htmlText="<i>- new choice: content/swf/" + uploader.targetName + "</i>";
+					staticText.htmlText="<i>- new choice: content/pic/" + uploader.targetName + "</i>";
 					break;
 				default:
 					break;
@@ -114,7 +114,7 @@ package com.twoto.cms.ui.editor {
 		//---------------------------------------------------------------------------
 		override public function get eltHeight():uint {
 
-			return DefinesCMS.NODE_HEIGHT + 1;
+			return DefinesCMS.NODE_HEIGHT+1;
 		}
 
 		override public function get change():Boolean {

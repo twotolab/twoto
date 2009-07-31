@@ -1,12 +1,12 @@
 package com.twoto.cms.model {
 	import com.twoto.cms.global.DefinesCMS;
-	import com.twoto.cms.ui.editor.ColorEditorCMSTextElement;
-	import com.twoto.cms.ui.editor.InputEditorCMSTextElement;
-	import com.twoto.cms.ui.editor.LinkEditorCMSTextElement;
-	import com.twoto.cms.ui.editor.StaticEditorCMSTextElement;
-	import com.twoto.cms.ui.editor.UploadPicEditorCMSTextElement;
-	import com.twoto.cms.ui.editor.UploadSWFEditorCMSTextElement;
-	import com.twoto.cms.ui.editor.UploadZipEditorCMSTextElement;
+	import com.twoto.cms.ui.elements.editor.ColorEditorCMSTextElement;
+	import com.twoto.cms.ui.elements.editor.InputEditorCMSTextElement;
+	import com.twoto.cms.ui.elements.editor.LinkEditorCMSTextElement;
+	import com.twoto.cms.ui.elements.editor.StaticEditorCMSTextElement;
+	import com.twoto.cms.ui.elements.editor.UploadPicEditorCMSTextElement;
+	import com.twoto.cms.ui.elements.editor.UploadSWFEditorCMSTextElement;
+	import com.twoto.cms.ui.elements.editor.UploadZipEditorCMSTextElement;
 	
 
 	public class FunctionMapper {
@@ -86,7 +86,7 @@ package com.twoto.cms.model {
 			return elt;
 		}
 
-		private static function drawColorTextElt(_name:String, _value:String, _infoText:String):ColorEditorCMSTextElement {
+		private static function drawColorTextElt(_name:String, _value:String, _infoText:String):ColorEditorCMSTextElement{
 
 			var elt:ColorEditorCMSTextElement;
 			elt=new ColorEditorCMSTextElement(_name, _value, _infoText);
