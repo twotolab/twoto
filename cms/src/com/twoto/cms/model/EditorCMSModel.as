@@ -2,7 +2,7 @@ package com.twoto.cms.model {
 
 
 	import com.twoto.cms.global.DefinesCMS;
-	import com.twoto.cms.ui.editor.AbstractEditorCMSTextElement;
+	import com.twoto.cms.ui.elements.editor.AbstractEditorCMSTextElement;
 	
 	import flash.errors.IllegalOperationError;
 	import flash.events.Event;

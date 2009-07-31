@@ -1,4 +1,4 @@
-package com.twoto.cms.ui.editor {
+package com.twoto.cms.ui.elements.editor {
 
 	import com.twoto.cms.global.DefinesCMS;
 	import com.twoto.cms.model.TypeMapper;
