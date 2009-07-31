@@ -106,9 +106,9 @@ package com.twoto.cms.ui {
 			this.addChild(container);
 			
 			containerBack = Draw.ShapeElt(100,100,1,0xffffff);
-			containerBack.alpha=0.7;
+			containerBack.alpha=1//0.7;
 			containerBack.x=-DefinesCMS.MENU_BORDER;
-			containerBack.y=-DefinesCMS.MENU_BORDER-300;
+			containerBack.y=-DefinesCMS.MENU_BORDER;
 			container.addChild(containerBack);
 			defaultKnockoutShadow(containerBack);
 			
@@ -126,16 +126,17 @@ package com.twoto.cms.ui {
 			backButton=new TextCMSButton("BACK TO WEBSITE");
 			backButton.addEventListener(MouseEvent.CLICK, backButtonHandler, false, 0, true);
 			container.addChild(backButton);
-
+			
+			replacesNodes();
+			
 			stage.addEventListener(CMSEvent.SHOW, showCMSHandler);
 			stage.addEventListener(Event.RESIZE, onResize);
-
-		
-			multy = new MultiplyBlendModeSquare(300,300);
+	
+	multy = new MultiplyBlendModeSquare(300,300);
 			multy.showColors();
 		//	multy.blendMode = BlendMode.SUBTRACT
-			addChild(multy);
-			
+			addChildAt(multy,0);
+
 			showCMS();
 		}
 
@@ -413,12 +414,14 @@ package com.twoto.cms.ui {
 		private function onResize(evt:Event=null):void {
 
 			UIUtils.removeDisplayObject(this, background);
+			/*
 			background=new Background(DefinesCMS.BACKGROUND_COLOR, DefinesCMS.BACKGROUND_COLOR_SHADOW, stage.stageWidth, stage.stageHeight);
 			this.addChildAt(background, 0);
-			this.addChildAt(multy, 1);
-			
+			*/
+			this.addChildAt(multy, 0);
+
 			containerBack.width = container.width;
-			containerBack.height = container.height+DefinesCMS.MENU_BORDER;
+			containerBack.height =infoText.y+infoText.height+2*DefinesCMS.MENU_BORDER;
 			
 			Tweener.addTween(container, {x: Math.round((stage.stageWidth - container.width) * .5), y: Math.round((stage.stageHeight - container.height) * .5), time: 1});
 		}
