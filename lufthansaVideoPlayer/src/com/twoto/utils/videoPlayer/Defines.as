@@ -5,7 +5,7 @@ package com.twoto.utils.videoPlayer
 	public static const BUFFER_TIME:uint = 3;
 	
 	public static const VIDEO_WIDTH:uint = 641;
-	public static const VIDEO_HEIGHT:uint = 285;
+	public static const VIDEO_HEIGHT:uint = 400;
 	
 	public static const NAVI_HEIGHT:uint = 37;
 	public static const NAVI_COLOR:uint = 0xe9e8dd;

@@ -19,6 +19,7 @@ package com.twoto.utils.videoPlayer {
 		public function FLVPlayer(_setWidth:uint, _setHeight:uint) {
 
 			setSizes(_setWidth, _setHeight);
+			trace("FLVPlayer:::::::setHeight : "+setHeight);
 			interfaceUI=new FLVPlayerInterfaceUI(setWidth, setHeight);
 			playerEngine=new FLVPlayerEngine(setWidth, setHeight);
 
