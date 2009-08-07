@@ -27,7 +27,7 @@ package {
 			var paramFullScreen:Boolean=(root.loaderInfo.parameters.paramFullScreen != null) ? Boolean(root.loaderInfo.parameters.paramFullScreen) : false;
 			player.fullscreen=true//(paramFullScreen == true) ? true : false;
 
-			var paramURL:String=(root.loaderInfo.parameters.paramURL != null) ? root.loaderInfo.parameters.paramURL : "http://twoto.googlecode.com/svn/trunk/twotoFLVPlayer/assets/test.flv?test=" + Math.random() * 100;
+			var paramURL:String=(root.loaderInfo.parameters.paramURL != null) ? root.loaderInfo.parameters.paramURL : "error"//"http://twoto.googlecode.com/svn/trunk/twotoFLVPlayer/assets/test.flv?test=" + Math.random() * 100;
 			player.videoURL=paramURL //"twoto_Coffea_SG_Webversion_040609.flv"//"http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv"+"?test="+Math.random()*100;//"film.flv"//
 			addChild(player);
 		}
