@@ -83,6 +83,8 @@ package com.twoto.utils.videoPlayer {
 			video=engine.video;
 			originalFilmWidth=video.width;
 			originalFilmHeight=video.height;
+				//trace("video.width" + video.width);
+			   //trace("video.height" + video.height);
 
 			this.addChildAt(video, 0);
 
@@ -95,16 +97,17 @@ package com.twoto.utils.videoPlayer {
 			playerWidth=setWidth;
 
 			draw();
-			addMask(video);
+			addMask();
 
 			stage.addEventListener(Event.RESIZE, resizeHandler);
 			resizeHandler(null);
 		}
 
-		private function addMask(video:DisplayObject):void {
+		private function addMask():void {
 
 			maskVideo=new VideoMask();
 			video.mask=maskVideo;
+			//addChildAt(maskVideo,0);
 			naviMaskVideo=new VideoMask();
 			navigation.mask=naviMaskVideo;
 		}
