@@ -98,7 +98,7 @@ package com.twoto.utils.videoPlayer {
 			netStream.addEventListener(NetStatusEvent.NET_STATUS, netStatusHandler);
 			netStream.client=client;
 
-			video=new Video(setWidth,setHeight);
+			video=new Video();
 			video.attachNetStream(netStream);
 			netStream.play(videoURL);
 
