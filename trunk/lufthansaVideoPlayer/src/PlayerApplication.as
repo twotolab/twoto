@@ -14,12 +14,12 @@ package {
 
 		public function PlayerApplication() {
 
-			var paramWidthScreen:uint =Defines.VIDEO_WIDTH;
-			var paramHeightScreen:uint=(root.loaderInfo.parameters.paramHeightScreen != null) ? Number(root.loaderInfo.parameters.paramHeightScreen) : Defines.VIDEO_HEIGHT;
+			var paramWidthScreen:uint =(root.loaderInfo.parameters.paramHeightScreen != null) ? Number(root.loaderInfo.parameters.paramHeightScreen) : 642;
+			var paramHeightScreen:uint=(root.loaderInfo.parameters.paramHeightScreen != null) ? Number(root.loaderInfo.parameters.paramHeightScreen) : 364;
 			
 			var background:Shape=Draw.drawShape(paramWidthScreen,paramHeightScreen, 0xffffff);
-			trace("root.loaderInfo.parameters.paramHeightScreen : "+root.loaderInfo.parameters.paramHeightScreen);
-			trace(" root.loaderInfo.parameters.paramURL : "+ root.loaderInfo.parameters.paramURL);
+			trace("----root.loaderInfo.parameters.paramHeightScreen : "+root.loaderInfo.parameters.paramHeightScreen);
+			trace(" ----root.loaderInfo.parameters.paramURL : "+ root.loaderInfo.parameters.paramURL);
 			player=new FLVPlayer(paramWidthScreen,paramHeightScreen);
 
 			//	player.timeInfo = true;
@@ -27,7 +27,7 @@ package {
 			var paramFullScreen:Boolean=(root.loaderInfo.parameters.paramFullScreen != null) ? Boolean(root.loaderInfo.parameters.paramFullScreen) : false;
 			player.fullscreen=true//(paramFullScreen == true) ? true : false;
 
-			var paramURL:String=(root.loaderInfo.parameters.paramURL != null) ? root.loaderInfo.parameters.paramURL : "http://twoto.googlecode.com/svn/trunk/twotoFLVPlayer/assets/test.flv?test=" + Math.random() * 100;
+			var paramURL:String=(root.loaderInfo.parameters.paramURL != null) ? root.loaderInfo.parameters.paramURL : "../sdfsdfsdfdsfssassets/Boeing_787_VIP_SV3_641.flv?test=" + Math.random() * 100;
 			player.videoURL=paramURL //"twoto_Coffea_SG_Webversion_040609.flv"//"http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv"+"?test="+Math.random()*100;//"film.flv"//
 			addChild(player);
 		}
