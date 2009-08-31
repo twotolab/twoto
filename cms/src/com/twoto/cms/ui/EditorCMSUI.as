@@ -1,7 +1,7 @@
 package com.twoto.cms.ui {
 
 	import caurina.transitions.Tweener;
-	
+
 	import com.twoto.cms.CMSEvent;
 	import com.twoto.cms.global.DefinesCMS;
 	import com.twoto.cms.model.EditorCMSModel;
@@ -12,11 +12,15 @@ package com.twoto.cms.ui {
 	import com.twoto.cms.ui.elements.editor.PreviewEditorCMSElement;
 	import com.twoto.cms.ui.elements.editor.TitelEditorCMSElement;
 	import com.twoto.global.components.IBasics;
+	import com.twoto.utils.Draw;
 	import com.twoto.utils.UIUtils;
-	
+
+	import flash.display.DisplayObject;
+	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.filters.DropShadowFilter;
 
 	/**
 	 *
@@ -37,9 +41,10 @@ package com.twoto.cms.ui {
 		private var escape:TextCMSButton;
 		private var preview:PreviewEditorCMSElement;
 		private var titel:TitelEditorCMSElement;
+		private var containerBack:Shape;
 
 		private var editorModel:EditorCMSModel;
-		
+
 		private var infoText:InfoTextCMSElement;
 
 		//---------------------------------------------------------------------------
@@ -73,10 +78,10 @@ package com.twoto.cms.ui {
 
 			addChild(container);
 			drawTitelElt();
-			
+
 			infoText=new InfoTextCMSElement();
 			container.addChild(infoText);
-			infoText.newText ="please update the content";
+			infoText.newText="please update the content!!!";
 
 			preview=new PreviewEditorCMSElement();
 			container.addChild(preview);
@@ -95,10 +100,20 @@ package com.twoto.cms.ui {
 			escape.addEventListener(MouseEvent.CLICK, buttonHandler);
 			container.addChild(escape);
 
-			Tweener.addTween(this, {alpha: 1, time: 1.5});
+			Tweener.addTween(this, {alpha:1, time:1.5});
+
+			containerBack=Draw.ShapeElt(100, 100, 1, 0xffffff);
+			containerBack.alpha=1 //0.7;
+			containerBack.x=-DefinesCMS.MENU_BORDER;
+			containerBack.y=-DefinesCMS.MENU_BORDER;
+			container.addChildAt(containerBack,0);
+			defaultKnockoutShadow(containerBack);
+
 			rearrange();
 
 			staticReplace();
+
+
 		/*
 		   drawColors();
 		   showColors();
@@ -115,11 +130,18 @@ package com.twoto.cms.ui {
 			var elt:AbstractEditorCMSTextElement;
 			var i:uint;
 
-			for (i=0; i < editorModel.eltsArray.length; i++) {
+			for(i=0; i < editorModel.eltsArray.length; i++) {
 				elt=editorModel.eltsArray[i] as AbstractEditorCMSTextElement;
 				elt.y=elt.posY;
 				container.addChild(elt);
 			}
+		}
+
+		public function defaultKnockoutShadow(_target:DisplayObject):void {
+			var shadowFilter:DropShadowFilter=Draw.shadowFilter({_color:0x000000, _angle:45, _alpha:1, _blurX:6, _blurY:6, _distance:0, _knockout:false, _inner:false, _strength:0.7});
+			var myFilters:Array=new Array();
+			myFilters.push(shadowFilter);
+			_target.filters=myFilters;
 		}
 
 		private function drawTitelElt():void {
@@ -131,8 +153,8 @@ package com.twoto.cms.ui {
 
 		private function buttonHandler(evt:MouseEvent):void {
 
-			if (editorModel.checkContentHandler != true) {
-				switch (evt.currentTarget.name) {
+			if(editorModel.checkContentHandler != true) {
+				switch(evt.currentTarget.name) {
 					case "escape":
 						editorModel.finalNodeVO=editorModel.originalNodeVO;
 						dispatchEvent(new CMSEvent(CMSEvent.EDITOR_ESCAPE));
@@ -146,8 +168,8 @@ package com.twoto.cms.ui {
 						break;
 				}
 			} else {
-				var textContent:String = editorModel.showMissingContent;
-				infoText.newText =  "you still need to update: " + editorModel.showMissingContent;
+				var textContent:String=editorModel.showMissingContent;
+				infoText.newText="you still need to update: " + editorModel.showMissingContent;
 				trace("you need still to update: " + textContent);
 			}
 
@@ -162,18 +184,21 @@ package com.twoto.cms.ui {
 			preview.y=titel.eltHeight - 4;
 			var nextPos:uint=preview.y + preview.eltHeight;
 
-			for each (elt in editorModel.eltsArray) {
+			for each(elt in editorModel.eltsArray) {
 				elt.y=nextPos;
 				nextPos+=elt.eltHeight;
 			}
-			
+
 			saveAndCloseButton.y=Math.round(titel.y + 5);
 			saveAndCloseButton.x=DefinesCMS.NODE_WIDTH - saveAndCloseButton.width - DefinesCMS.BUTTON_BORDER;
 
 			escape.y=Math.round(titel.y + 5);
 			escape.x=saveAndCloseButton.x - 1 - escape.width;
-			
-			infoText.y=nextPos - 2;//container.y + container.height - 3;
+
+			infoText.y=nextPos - 2; //container.y + container.height - 3;
+
+			containerBack.width=infoText.x+infoText.width+ 2 * DefinesCMS.MENU_BORDER;
+			containerBack.height=infoText.y + infoText.height + 2 * DefinesCMS.MENU_BORDER;
 		}
 
 
@@ -186,7 +211,7 @@ package com.twoto.cms.ui {
 
 		private function resizeHandler(evt:Event=null):void {
 
-			Tweener.addTween(container, {x: Math.round((stage.stageWidth - DefinesCMS.CMS_WIDTH) * .5), y: Math.round((stage.stageHeight - container.height) * .5), time: 1});
+			Tweener.addTween(container, {x:Math.round((stage.stageWidth - DefinesCMS.CMS_WIDTH) * .5), y:Math.round((stage.stageHeight - container.height) * .5), time:1});
 		}
 
 
