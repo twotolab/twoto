@@ -2,6 +2,7 @@ package com.twoto.cms.ui.background {
 	import caurina.transitions.Tweener;
 	
 	import com.twoto.CMS.Pattern2;
+	import com.twoto.CMS.PatternBack;
 	import com.twoto.utils.Draw;
 	import com.twoto.utils.UIUtils;
 	
@@ -72,17 +73,17 @@ package com.twoto.cms.ui.background {
 
 			var patternXContainer:Sprite=new Sprite();
 			var lastX:uint=0;
-			var maxX:uint=Math.ceil(stage.stageWidth / new Pattern2().width);
+			var maxX:uint=Math.ceil(stage.stageWidth / new PatternBack().width);
 
 			var patternYContainer:Sprite=new Sprite();
 			var lastY:uint=0;
-			var maxY:uint=Math.ceil(stage.stageHeight / new Pattern2().height);
+			var maxY:uint=Math.ceil(stage.stageHeight / new PatternBack().height);
 
 			for(var stepsY:uint=0; stepsY < maxY; stepsY++) {
 				
 				for(var stepsX:uint=0; stepsX < maxX ; stepsX++) {
 					
-					var patternElt:Pattern2=new Pattern2();
+					var patternElt:PatternBack=new PatternBack();
 					//trace("lastX :"+lastX+"lastY: "+lastY)
 					patternElt.x=lastX;
 					patternElt.y=lastY;
