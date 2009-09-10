@@ -200,7 +200,7 @@ package {
 
 			stage.addEventListener(Event.RESIZE, updateResize);
 
-			show();
+			//show();
 
 		}
 
