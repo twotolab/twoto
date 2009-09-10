@@ -123,6 +123,12 @@ package com.twoto.gridScanner {
 			drawingElementsContainer=new Sprite();
 			addChild(drawingElementsContainer);
 			
+			
+			var shadowFilter:DropShadowFilter=this.defaultMenuShadow(0xc1853d);
+			var myFilters:Array=new Array();
+			myFilters.push(shadowFilter);
+			drawingElementsContainer.filters=myFilters;
+			
 			   var TargetBitmap:Bitmap=Draw.bitmapDraw(targetContainer, targetContainer.width, targetContainer.height);
 			  // addChild(TargetBitmap);
 			 /*
@@ -205,11 +211,6 @@ package com.twoto.gridScanner {
 			tempshape.graphics.beginFill(color, 1);
 			tempshape.graphics.drawCircle(0, 0, 3);
 			tempshape.graphics.endFill();
-
-			var shadowFilter:DropShadowFilter=this.defaultMenuShadow(color);
-			var myFilters:Array=new Array();
-			myFilters.push(shadowFilter);
-			tempshape.filters=myFilters;
 
 			var tempContainer:Sprite=new Sprite();
 			tempContainer.addChild(tempshape);

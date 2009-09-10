@@ -34,6 +34,7 @@ package com.twoto.gridScanner
 				myFilters.push(shadowFilter); 
 				this.filters = myFilters;	
        		}
+       		
        		drawGrid(gridColor,raster)
 		}
        private function drawGrid(_color:uint,raster:uint):void{

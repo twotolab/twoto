@@ -154,7 +154,7 @@ package {
 			var speedTest:Stats=new Stats();
 			addChild(speedTest);
 			//*/
-			//	show();
+			show();
 
 		}
 
