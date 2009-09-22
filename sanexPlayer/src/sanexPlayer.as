@@ -8,15 +8,13 @@ package {
 	import flash.filters.BitmapFilter;
 	import flash.filters.DropShadowFilter;
 
-	[SWF(backgroundColor='0xffffff',width='625',height='453',frameRate="25")]
+	[SWF(backgroundColor='0x00fffff',width='125',height='453',frameRate="25")]
 
 	public class sanexPlayer extends Sprite {
 
 		private var player:FLVPlayer;
 
 		public function sanexPlayer() {
-
-			var background:Shape=Draw.drawShape(DefinesFLVPLayer.STAGE_WIDTH, DefinesFLVPLayer.STAGE_HEIGHT, 0xffffff);
 
 			player=new FLVPlayer(10,10);
 			
@@ -28,7 +26,7 @@ package {
 				trace("valueStr: "+valueStr);
 				paramURL =valueStr; 
 			} else{
-				trace("no link // paramURL error: "+valueStr);
+				trace("///////////no link // paramURL error: "+valueStr);
 				paramURL ="http://twoto.googlecode.com/svn/trunk/twotoFLVPlayer/assets/test.flv?test="+Math.random()*100;//"film.flv"//;//film.flv";
 			}
 			
