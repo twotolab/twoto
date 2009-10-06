@@ -18,7 +18,7 @@ function getResponse() {
 	
 	 return $response2;
 }
+$vars =getResponse(); 
+echo $vars;
+
 ?>
-<root>
-	<response> <?php $vars =getResponse(); echo $vars ?></response>
-</root>
