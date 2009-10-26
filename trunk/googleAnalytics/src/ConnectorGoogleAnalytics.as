@@ -38,7 +38,7 @@ package {
 
 		private function _onTokenLoaded(event:Event):void {
 			var tempString:String=String(loader.data);
-			trace("content : " + tempString);
+			trace("contentd : " + tempString);
 			tempString=tempString.substring(1, tempString.length);
 			//trace("after content : "+tempString);
 
