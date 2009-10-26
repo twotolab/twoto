@@ -5,7 +5,10 @@ package {
 	{
 		public function googleAnalytics()
 		{
-			var testConnection:ConnectorGoogleAnalytics = new ConnectorGoogleAnalytics();
+			var user:String = "patrick@twoto.com";
+			var pass:String="sushi_001";
+			
+			var testConnection:ConnectorGoogleAnalytics = new ConnectorGoogleAnalytics(user,pass);
 			addChild(testConnection);
 		}
 	}
