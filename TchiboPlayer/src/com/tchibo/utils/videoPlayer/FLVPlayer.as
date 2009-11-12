@@ -11,6 +11,7 @@ package com.tchibo.utils.videoPlayer {
 
 		private var playerEngine:FLVPlayerEngine;
 		private var _videoURL:String;
+		private var _videoLang:String;
 		private var interfaceUI:FLVPlayerInterfaceUI;
 
 		public function FLVPlayer() {
@@ -61,10 +62,20 @@ package com.tchibo.utils.videoPlayer {
 				playerEngine.videoURL=videoURL;
 			}
 		}
-
+		public function set videoLang(newLang:String):void {
+			if(newLang != _videoLang) {
+				_videoLang=newLang;
+				interfaceUI.videoLang=videoLang;
+			}
+		}
 		public function get videoURL():String {
 			return _videoURL;
 		}
+
+		public function get videoLang():String {
+			return _videoLang;
+		}
+
 
 		public function set timeInfo(_value:Boolean):void {
 			interfaceUI.withTimerInfo=_value;

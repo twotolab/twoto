@@ -17,7 +17,6 @@ package com.tchibo.utils.videoPlayer.elements{
 
 			display=new PlayStopButtonMC();
 			addChild(display);
-			display.stop();
 			buttonMode = true;
 
 			display.addEventListener(MouseEvent.ROLL_OVER, rollOverHandler);

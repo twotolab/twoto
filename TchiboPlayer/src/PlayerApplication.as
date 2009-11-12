@@ -23,7 +23,12 @@ package
 			player.timeInfo = true;
 			var valueStr:String;
 			var paramURL:String;
+			var paramLang:String;
 			valueStr = root.loaderInfo.parameters.paramURL;
+			
+			var langStr:String;
+			langStr = root.loaderInfo.parameters.paramLang;
+			langStr = "EN";
 			
 			if(valueStr !=null ){
 				trace("valueStr: "+valueStr);
@@ -32,7 +37,16 @@ package
 				trace("paramURL: "+valueStr);
 				paramURL ="http://twoto.googlecode.com/svn/trunk/TchiboPlayer/assets/test.flv?test="+Math.random()*100;//"film.flv"//;//film.flv";
 			}
+			
+			if(langStr !=null ){
+				trace("langStr: "+langStr);
+				paramLang =langStr; 
+			} else{
+				trace("langStr: "+langStr);
+				paramLang ="DE";//"film.flv"//;//film.flv";
+			}
 			player.videoURL =paramURL//"Tchibo_Coffea_SG_Webversion_040609.flv"//"http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv"+"?test="+Math.random()*100;//"film.flv"//
+			player.videoLang =paramLang//"Tchibo_Coffea_SG_Webversion_040609.flv"//"http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv"+"?test="+Math.random()*100;//"film.flv"//
 			addChild(player);
 
 		}

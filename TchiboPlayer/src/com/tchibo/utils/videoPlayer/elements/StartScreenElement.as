@@ -2,9 +2,11 @@ package com.tchibo.utils.videoPlayer.elements {
 
 	import com.tchibo.utils.Draw;
 	import com.tchibo.utils.videoPlayer.DefinesFLVPLayer;
+	import com.tchibo.utils.videoPlayer.StartScreenEN_MC;
 	import com.tchibo.utils.videoPlayer.StartScreenMC;
 	import com.tchibo.utils.videoPlayer.VideoPlayerEvents;
-
+	
+	import flash.display.MovieClip;
 	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -22,7 +24,7 @@ package com.tchibo.utils.videoPlayer.elements {
 		// 	private variables
 		//---------------------------------------------------------------------------
 		private var background:Shape;
-		private var startScreenMC:StartScreenMC;
+		private var startScreenMC:MovieClip;
 
 		private var normalButt:Sprite;
 		private var fullscreenButt:Sprite;
@@ -31,6 +33,8 @@ package com.tchibo.utils.videoPlayer.elements {
 
 		public static const NORMAL:String="normal";
 		public static const FULLSCREEN:String="fullscreen";
+		
+		private var language:String;
 
 		public var MODUS:String;
 
@@ -41,9 +45,11 @@ package com.tchibo.utils.videoPlayer.elements {
 		//---------------------------------------------------------------------------
 		// 	constructor
 		//---------------------------------------------------------------------------
-		public function StartScreenElement() {
+		public function StartScreenElement(videoLang:String) {
 
+			language = videoLang;
 			addEventListener(Event.ADDED_TO_STAGE, addedToStage, false, 0, true);
+			
 		}
 
 		private function addedToStage(evt:Event):void {
@@ -52,8 +58,14 @@ package com.tchibo.utils.videoPlayer.elements {
 
 			background=Draw.drawShape(stage.stageWidth, stage.stageHeight, 0.7, DefinesFLVPLayer.STARTSCREEN_COLOR);
 			addChild(background);
-
-			startScreenMC=new StartScreenMC();
+			trace(">>>>>>>>>>>>>>>>>>>>>>>>>language"+language);
+			if(language == "EN"){
+				startScreenMC=new StartScreenEN_MC() as MovieClip;
+				trace("EN>>>>>>>>>>>>>>>>>>>>>>>>>");
+			} else{
+				startScreenMC=new StartScreenMC() as MovieClip;
+				
+			}
 			addChild(startScreenMC);
 
 			startScreenMC.x=Math.round((DefinesFLVPLayer.STAGE_WIDTH - startScreenMC.width) * .5);

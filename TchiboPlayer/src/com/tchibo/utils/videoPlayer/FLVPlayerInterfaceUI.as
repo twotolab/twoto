@@ -6,7 +6,7 @@ package com.tchibo.utils.videoPlayer {
 	import com.tchibo.utils.videoPlayer.elements.PlayStopElement;
 	import com.tchibo.utils.videoPlayer.elements.SoundElement;
 	import com.tchibo.utils.videoPlayer.elements.StartScreenElement;
-
+	
 	import flash.display.DisplayObject;
 	import flash.display.Shape;
 	import flash.display.Sprite;
@@ -41,6 +41,7 @@ package com.tchibo.utils.videoPlayer {
 
 		private var startScreenUsed:Boolean;
 		private var startScreen:StartScreenElement;
+		private var _videoLang:String;
 
 
 		public var draggerPercent:uint;
@@ -185,8 +186,8 @@ package com.tchibo.utils.videoPlayer {
 
 		public function showStartScreen():void {
 
-			//trace("showStartScreen: ");
-			startScreen=new StartScreenElement();
+			trace("showStartScreen:_videoLang "+_videoLang);
+			startScreen=new StartScreenElement(_videoLang);
 			startScreen.addEventListener(VideoPlayerEvents.STARTSCREEN_MODUSCHOICE, startscreenHandler);
 			addChild(startScreen);
 			startScreenUsed=true;
@@ -317,6 +318,10 @@ package com.tchibo.utils.videoPlayer {
 		public function set withTimerInfo(_value:Boolean):void {
 
 			timerInfo=_value;
+		}
+		public function set videoLang(_value:String):void{
+			
+			_videoLang = _value;
 		}
 
 		public function updateProgressBar(_percent:Number, time:uint=0):void {
