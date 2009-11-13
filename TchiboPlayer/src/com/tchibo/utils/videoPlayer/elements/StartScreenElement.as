@@ -58,10 +58,8 @@ package com.tchibo.utils.videoPlayer.elements {
 
 			background=Draw.drawShape(stage.stageWidth, stage.stageHeight, 0.7, DefinesFLVPLayer.STARTSCREEN_COLOR);
 			addChild(background);
-			trace(">>>>>>>>>>>>>>>>>>>>>>>>>language"+language);
 			if(language == "EN"){
 				startScreenMC=new StartScreenEN_MC() as MovieClip;
-				trace("EN>>>>>>>>>>>>>>>>>>>>>>>>>");
 			} else{
 				startScreenMC=new StartScreenMC() as MovieClip;
 				
