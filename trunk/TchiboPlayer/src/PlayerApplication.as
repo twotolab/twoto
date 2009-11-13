@@ -28,7 +28,7 @@ package
 			
 			var langStr:String;
 			langStr = root.loaderInfo.parameters.paramLang;
-			langStr = "EN";
+			//langStr = "EN";
 			
 			if(valueStr !=null ){
 				trace("valueStr: "+valueStr);
