@@ -31,6 +31,8 @@ package com.twoto.utils.videoPlayer
         
         private var originalFilmWidth:uint;
         private var originalFilmHeight:uint;
+        private var originalFilmPosX:uint;
+        private var originalFilmPosY:uint;
         
         private var playerHeight:uint;
         private var playerWidth:uint;
@@ -61,6 +63,8 @@ package com.twoto.utils.videoPlayer
             engine = _engine;
             video = engine.video;
             originalFilmWidth = video.width;
+			originalFilmPosX = DefinesFLVPLayer.VIDEO_X;
+			originalFilmPosY = DefinesFLVPLayer.VIDEO_Y;
             originalFilmHeight = video.height;
             
             this.addChildAt(video, 0);
@@ -84,12 +88,13 @@ package com.twoto.utils.videoPlayer
         {
             
             maskVideo = new VideoMask();
+			maskVideo.width= originalFilmWidth;
+			maskVideo.height= originalFilmHeight;
             video.mask = maskVideo;
         }
         
         private function draw():void
         {
-            
             backgroundNaviLine = Draw.drawShape(playerWidth, 1, 1, DefinesFLVPLayer.NAVI_LINE_COLOR, 0, -1);
             addChild(backgroundNaviLine);
             
@@ -270,10 +275,13 @@ package com.twoto.utils.videoPlayer
                 video.mask = maskVideo;
                 factor = 1;
                 video.x = 0;
-                maskVideo.x = maskVideo.y = 0;
+                maskVideo.x =originalFilmPosX;
+				maskVideo.y = originalFilmPosY;
                 video.scaleY = video.scaleX = factor;
                 playerHeight = video.height;
                 playerWidth = video.width;
+				video.x = originalFilmPosX;
+				video.y = originalFilmPosY;
                 this.x = 0;
                 
             }

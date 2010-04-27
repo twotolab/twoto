@@ -94,6 +94,7 @@ package com.twoto.utils.videoPlayer {
 			netStream.client=client;
 
 			video=new Video(DefinesFLVPLayer.VIDEO_WIDTH,DefinesFLVPLayer.VIDEO_HEIGHT);
+			video.y= DefinesFLVPLayer.VIDEO_Y;
 			video.attachNetStream(netStream);
 			netStream.play(videoURL);
 
