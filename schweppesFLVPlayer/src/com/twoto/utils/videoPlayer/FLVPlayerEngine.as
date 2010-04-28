@@ -152,7 +152,7 @@ package com.twoto.utils.videoPlayer {
 				
 				timerPosition =netStream.time;
 				//trace("netStream.time: " + netStream.time);
-				dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.ENGINE_UPDATE_PROGRESS));
+				//dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.ENGINE_UPDATE_PROGRESS));
 
 				if (videoTimer.repeatCount != client.meta.duration.toFixed(1) * 1000) {
 					videoTimer.repeatCount=client.meta.duration.toFixed(1) * 1000;
@@ -238,7 +238,7 @@ package com.twoto.utils.videoPlayer {
 			//trace("draggedTo"+_percent);
 			netStream.seek(targetSeek);
 			timerPosition =netStream.time;
-			dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.ENGINE_UPDATE_PROGRESS));
+			//dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.ENGINE_UPDATE_PROGRESS));
 		}
 
 		public function soundHandler():void {

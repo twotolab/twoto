@@ -8,7 +8,7 @@ package
 	import flash.display.Shape;
 	import flash.display.Sprite;
 
-	[SWF(backgroundColor='0xe9e8dd', width='972', height='492', frameRate="30")]
+	[SWF(backgroundColor='0xe9e8dd', width='972', height='520', frameRate="30")]
 
 	public class PlayerApplication extends Sprite
 	{
@@ -30,7 +30,7 @@ package
 				paramURL =valueStr; 
 			} else{
 				trace("paramURL: "+valueStr);
-				paramURL ="http://twoto.googlecode.com/svn/trunk/twotoFLVPlayer/assets/test.flv?test="+Math.random()*100;//"film.flv"//;//film.flv";
+				paramURL ="geschäftsmann_final_972x520_f4v.f4v"//"http://twoto.googlecode.com/svn/trunk/twotoFLVPlayer/assets/test.flv?test="+Math.random()*100;//"film.flv"//;//film.flv";
 			}
 			player.videoURL =paramURL//"twoto_Coffea_SG_Webversion_040609.flv"//"http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv"+"?test="+Math.random()*100;//"film.flv"//
 			addChild(player);

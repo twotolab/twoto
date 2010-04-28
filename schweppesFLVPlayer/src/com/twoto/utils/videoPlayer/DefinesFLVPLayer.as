@@ -8,10 +8,11 @@ package com.twoto.utils.videoPlayer
 	public static const STAGE_HEIGHT:uint = 492;
 	
 	public static const VIDEO_WIDTH:uint = 972;
-	public static const VIDEO_HEIGHT:uint = 474;
+	public static const VIDEO_HEIGHT:uint = 520;
 	public static const VIDEO_X:uint = 0;
 	public static const VIDEO_Y:uint = 18;
 	
+	public static const NAVI_Y:uint = 20;
 	public static const NAVI_HEIGHT:uint = 20;
 	public static const NAVI_COLOR:uint = 0xe9e8dd;
 	public static const NAVI_LINE_COLOR:uint = 0xe9e8dd;

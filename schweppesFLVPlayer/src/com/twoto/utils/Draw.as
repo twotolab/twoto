@@ -7,6 +7,7 @@ package com.twoto.utils {
 	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.display.Stage;
+	import flash.filters.BitmapFilter;
 	import flash.filters.BitmapFilterQuality;
 	import flash.filters.DropShadowFilter;
 	import flash.geom.ColorTransform;
@@ -23,7 +24,7 @@ package com.twoto.utils {
 		/*
 		   public function Draw(){}
 		 */
-		//--getShadowFilter-------------------------------------------------------------------------------------------------
+		//--getShadow-------------------------------------------------------------------------------------------------
 		public static function shadowFilter(_value:Object):DropShadowFilter {
 			var color:Number=_value._color;
 			var angle:Number=_value._angle;
@@ -37,7 +38,15 @@ package com.twoto.utils {
 			var quality:Number=(_value._quality) ? _value._quality : BitmapFilterQuality.HIGH;
 			return new DropShadowFilter(distance, angle, color, alpha, blurX, blurY, strength, quality, inner, knockout);
 		}
-
+		public static function  defaultShadow():DropShadowFilter{
+			return Draw.shadowFilter({_color:uint,_angle:45,_alpha:1,_blurX:6,_blurY:6,_distance:0, _knockout:false,_inner:false,_strength:0.7});
+		}
+		public static  function  addShadow(_targetFilter:DropShadowFilter):Array{
+			var shadowFilter:BitmapFilter = _targetFilter;
+			var myFilters:Array = new Array();
+			myFilters.push(shadowFilter); 
+			return  myFilters;
+		}
 		//--createGrid-------------------------------------------------------------------------------------------------
 		public static function drawGrid(targetWidth:uint, targetHeight:uint, size:uint, lineSize:uint=1, color:uint=0x000000, alpha:Number=1):Shape {
 

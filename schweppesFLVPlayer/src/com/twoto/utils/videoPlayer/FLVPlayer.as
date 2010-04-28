@@ -24,7 +24,8 @@ package com.twoto.utils.videoPlayer
 			// events  from the interfaceUI
 			interfaceUI.addEventListener(VideoPlayerEvents.INTERFACE_PAUSE, interfaceHandler);
 			interfaceUI.addEventListener(VideoPlayerEvents.INTERFACE_SOUND, interfaceHandler);
-			interfaceUI.addEventListener(VideoPlayerEvents.INTERFACE_DRAGGED, interfaceHandler);
+			//interfaceUI.addEventListener(VideoPlayerEvents.INTERFACE_DRAGGED, interfaceHandler);
+			
 
 			// events  from the Engine
 			playerEngine.addEventListener(VideoPlayerEvents.ENGINE_METADATA_READY, engineHandler);
@@ -90,12 +91,12 @@ package com.twoto.utils.videoPlayer
 					break;
 				case VideoPlayerEvents.INTERFACE_PAUSE:
 					//trace("interfaceHandler!!!! :" + evt.type.toString());
-					interfaceUI.showProgressBar(true);
+					//interfaceUI.showProgressBar(true);
 					playerEngine.pause();
 					break;
 				case VideoPlayerEvents.INTERFACE_DRAGGED:
 					//trace("interfaceHandler!!!! :" + evt.type.toString());
-					playerEngine.draggedTo(interfaceUI.draggerPercent);
+					//playerEngine.draggedTo(interfaceUI.draggerPercent);
 					break;
 				default:
 					//trace("interfaceHandler empty!!!! :" + evt.type.toString());
@@ -112,7 +113,7 @@ package com.twoto.utils.videoPlayer
 				case VideoPlayerEvents.ENGINE_METADATA_READY:
 					playerEngine.removeEventListener(VideoPlayerEvents.ENGINE_METADATA_READY, engineHandler);
 					interfaceUI.init(playerEngine);
-					playerEngine.addEventListener(VideoPlayerEvents.ENGINE_UPDATE_PROGRESS, updateProgress);
+					//playerEngine.addEventListener(VideoPlayerEvents.ENGINE_UPDATE_PROGRESS, updateProgress);
 					break;
 				case VideoPlayerEvents.ENGINE_START:
 					interfaceUI.setPlayStopStatus();
@@ -168,7 +169,7 @@ package com.twoto.utils.videoPlayer
 			playerEngine.removeEventListener(VideoPlayerEvents.BUFFERING_FULL, engineHandler);
 			playerEngine.removeEventListener(VideoPlayerEvents.ENGINE_START, engineHandler);
 			playerEngine.removeEventListener(VideoPlayerEvents.ENGINE_STOP, engineHandler);
-			playerEngine.removeEventListener(VideoPlayerEvents.ENGINE_UPDATE_PROGRESS, updateProgress);
+			//playerEngine.removeEventListener(VideoPlayerEvents.ENGINE_UPDATE_PROGRESS, updateProgress);
 
 			interfaceUI.removeEventListener(VideoPlayerEvents.INTERFACE_PAUSE, interfaceHandler);
 			interfaceUI.removeEventListener(VideoPlayerEvents.INTERFACE_SOUND, interfaceHandler);
