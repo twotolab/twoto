@@ -67,6 +67,10 @@ package com.twoto.utils.videoPlayer
 			playerEngine.startPlayer();
 		}
 
+		public function set filmName(_name:String):void
+		{
+			interfaceUI.setFilmName = _name;
+		}
 		public function set videoURL(newVideoURL:String):void
 		{
 			if (newVideoURL != _videoURL)
