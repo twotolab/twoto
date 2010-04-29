@@ -70,6 +70,7 @@ package com.twoto.utils.videoPlayer {
 		
 		private function draw():void {
 			
+			this.alpha=0;
 			background = Draw.drawSprite(DefinesFLVPLayer.STAGE_WIDTH, DefinesFLVPLayer.VIDEO_HEIGHT,1,0xffdc00);
 			addChild(background);
 			var url:String = pictureURLValueStr// ;
@@ -129,8 +130,9 @@ package com.twoto.utils.videoPlayer {
 		}
 		private function showFirstTime(evt:UiEvent):void {
 			picture.visible =true;
-			picture.alpha=0;
-			Tweener.addTween(picture, {alpha:1, time:1, transition:"linear"});
+			picture.alpha=1;
+
+			Tweener.addTween(this, {alpha:1, time:1, transition:"linear"});
 			callToAction.addEventListener(MouseEvent.CLICK, startVideo);
 			callToAction.addEventListener(MouseEvent.MOUSE_OVER, rollOver);
 			callToAction.addEventListener(MouseEvent.MOUSE_OUT, rollOut);
