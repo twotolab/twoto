@@ -12,12 +12,18 @@ package com.twoto.utils.videoPlayer
 		
 		public static const ENGINE_STOP:String = "engineStop";
 		public static const ENGINE_START:String = "engineStart";
+		public static const ENGINE_END:String = "engineEnd";
 		public static const ENGINE_UPDATE_PROGRESS:String = "engineUpdate";
 		public static const ENGINE_LOADING_PROGRESS:String = "engineLoadingUpdate";
 		
 		public static const INTERFACE_PAUSE:String = "interfacePause";
 		public static const INTERFACE_SOUND:String = "interfaceSound";
 		public static const INTERFACE_DRAGGED:String = "interfaceDragged";
+		
+		public static const INTERFACE_SHOW:String = "interfaceShow";
+		public static const INTERFACE_HIDE:String = "interfaceHide";
+		
+		public static const START_PLAYER:String = "startPlayer";
 		
 		//
 		public function VideoPlayerEvents(type:String, bubbles:Boolean=true, cancelable:Boolean=false)

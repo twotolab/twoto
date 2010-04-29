@@ -96,9 +96,12 @@ package com.twoto.utils.videoPlayer {
 			video=new Video(DefinesFLVPLayer.VIDEO_WIDTH,DefinesFLVPLayer.VIDEO_HEIGHT);
 			video.y= DefinesFLVPLayer.VIDEO_Y;
 			video.attachNetStream(netStream);
-			netStream.play(videoURL);
+
 
 			initPlayerTimer();
+		}
+		public function startPlayer():void{
+			netStream.play(videoURL);
 		}
 
 		private function loaderUpdate():void {
@@ -231,6 +234,7 @@ package com.twoto.utils.videoPlayer {
 			pause();
 			dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.ENGINE_STOP));
 		}
+		/*
 		public function draggedTo(_percent:uint):void {
 
 			//trace("draggedTo"+Number(client.meta.duration.toFixed(1)));
@@ -240,7 +244,7 @@ package com.twoto.utils.videoPlayer {
 			timerPosition =netStream.time;
 			//dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.ENGINE_UPDATE_PROGRESS));
 		}
-
+*/
 		public function soundHandler():void {
 
 			//trace("soundHandler SOUND_STATUS: "+SOUND_STATUS);
