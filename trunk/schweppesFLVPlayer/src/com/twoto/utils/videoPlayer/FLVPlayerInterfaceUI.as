@@ -49,6 +49,7 @@ package com.twoto.utils.videoPlayer
 		private var navigationBack:Shape;
 		private var infoTextMC:InfoTextMC;
 		private var infoTxtField:TextField;
+		private var filmName:String;
 
 		private var showHideInterfaceHandler:ShowHideInterfaceHandler;
         
@@ -121,7 +122,7 @@ package com.twoto.utils.videoPlayer
 			infoTextMC = new InfoTextMC();
 			infoTxtField = infoTextMC.getChildByName("textf") as TextField;
 
-			infoTxtField.text =  String("this is my textfiled textfiled").toLocaleUpperCase();
+			infoTxtField.text = filmName.toLocaleUpperCase();
 			navigationContainer.addChild(infoTextMC);
 			
 			navigationBack = Draw.drawRoundedShape(infoTxtField.textWidth+60,21,20,1,0x000000);
@@ -328,7 +329,12 @@ package com.twoto.utils.videoPlayer
 			dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.INTERFACE_SHOW));
 			Tweener.addTween(navigationContainer,{alpha:1,time:1,y:navigationContainer.y-70});
 		}
+		
         
+        public function set setFilmName(_name:String):void
+        {
+			filmName =_name;
+        }
         public function freeze():void
         {
         }

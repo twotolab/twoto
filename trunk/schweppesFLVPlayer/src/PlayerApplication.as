@@ -33,6 +33,7 @@ package
 			var paramSubHeadline:String ="erfrischende TV-highlights von Schweppes";
 			var paramCopytext:String = "Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. ";
 			var paramPictureURL:String = "http://twoto.googlecode.com/svn/trunk/schweppesFLVPlayer/assets/testPic.jpg";
+			var paramFilmName:String = "geschäftsmann";
 			
 			/*
 			paramURL = root.loaderInfo.parameters.paramURL;
@@ -40,9 +41,11 @@ package
 			paramSubHeadline = root.loaderInfo.parameters.paramSubHeadline;
 			paramCopytext = root.loaderInfo.parameters.paramCopytext;
 			paramPictureURL = root.loaderInfo.parameters.paramPictureURL;
+			paramFilmName = root.loaderInfo.parameters.paramFilmName;
 			*/
-
+			player.filmName =paramFilmName;
 			player.videoURL =paramURL//"twoto_Coffea_SG_Webversion_040609.flv"//"http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv"+"?test="+Math.random()*100;//"film.flv"//
+			
 			addChild(player);
 			
 			//
