@@ -1,6 +1,8 @@
 package com.twoto.utils.videoPlayer
 {
 
+	import caurina.transitions.Tweener;
+	
 	import com.twoto.global.components.IBasics;
 	
 	import flash.display.Sprite;
@@ -33,7 +35,8 @@ package com.twoto.utils.videoPlayer
 			playerEngine.addEventListener(VideoPlayerEvents.BUFFERING_FULL, engineHandler);
 			playerEngine.addEventListener(VideoPlayerEvents.ENGINE_START, engineHandler);
 			playerEngine.addEventListener(VideoPlayerEvents.ENGINE_STOP, engineHandler);
-			playerEngine.addEventListener(VideoPlayerEvents.ENGINE_LOADING_PROGRESS, updateLoadingProgress);
+
+		//	playerEngine.addEventListener(VideoPlayerEvents.ENGINE_LOADING_PROGRESS, updateLoadingProgress);
 
 			addChild(interfaceUI);
 
@@ -59,6 +62,9 @@ package com.twoto.utils.videoPlayer
 			stage.scaleMode=StageScaleMode.NO_SCALE;
 			stage.align=StageAlign.TOP_LEFT;
 
+		}
+		public function startPlayer():void{
+			playerEngine.startPlayer();
 		}
 
 		public function set videoURL(newVideoURL:String):void
@@ -124,6 +130,7 @@ package com.twoto.utils.videoPlayer
 					interfaceUI.reset();
 					
 					*/ trace("endFilm");
+					dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.ENGINE_END));
 					interfaceUI.setPlayStopStatus();
 					break;
 				case VideoPlayerEvents.BUFFERING_EMPTY:
@@ -134,7 +141,7 @@ package com.twoto.utils.videoPlayer
 					break;
 			}
 		}
-
+/*
 		private function updateLoadingProgress(evt:VideoPlayerEvents):void
 		{
 
@@ -152,7 +159,17 @@ package com.twoto.utils.videoPlayer
 			//trace("updateProgress :" +playerEngine.percentProgress);
 			interfaceUI.updateProgressBar(playerEngine.percentProgress, playerEngine.timerPosition);
 		}
+*/
 
+		public function show():void
+		{
+			interfaceUI.visible= true;
+		}
+		public function hide():void
+		{
+			interfaceUI.visible= false;
+
+		}
 		public function freeze():void
 		{
 		}

@@ -1,5 +1,7 @@
 package com.twoto.utils.videoPlayer
 {
+    import caurina.transitions.Tweener;
+    
     import com.twoto.global.components.IBasics;
     import com.twoto.utils.Draw;
     import com.twoto.utils.videoPlayer.elements.Dragger;
@@ -47,6 +49,8 @@ package com.twoto.utils.videoPlayer
 		private var navigationBack:Shape;
 		private var infoTextMC:InfoTextMC;
 		private var infoTxtField:TextField;
+
+		private var showHideInterfaceHandler:ShowHideInterfaceHandler;
         
         public function FLVPlayerInterfaceUI()
         {
@@ -86,6 +90,10 @@ package com.twoto.utils.videoPlayer
 			
             
             stage.addEventListener(Event.RESIZE, resizeHandler);
+			
+			showHideInterfaceHandler = new ShowHideInterfaceHandler(navigationContainer);
+			showHideInterfaceHandler.addEventListener(VideoPlayerEvents.INTERFACE_SHOW,showInterface);
+			showHideInterfaceHandler.addEventListener(VideoPlayerEvents.INTERFACE_HIDE,hideInterface);
         }
         
         private function addMask(video:DisplayObject):void
@@ -102,15 +110,6 @@ package com.twoto.utils.videoPlayer
 			navigationContainer = new Sprite();
 			addChild(navigationContainer);
 			
-
-			/*
-            backgroundNaviLine = Draw.drawShape(playerWidth, 1, 1, DefinesFLVPLayer.NAVI_LINE_COLOR, 0, -1);
-            addChild(backgroundNaviLine);
-            
-			
-            backgroundNavi = Draw.drawShape(playerWidth, DefinesFLVPLayer.NAVI_HEIGHT, 1, DefinesFLVPLayer.NAVI_COLOR);
-            addChild(backgroundNavi);
-            */
             startStopButton = new PlayStopElement();
             startStopButton.addEventListener(Event.CHANGE, startStopHandler);
 			navigationContainer.addChild(startStopButton);
@@ -118,14 +117,10 @@ package com.twoto.utils.videoPlayer
             soundOnOffButton = new SoundElement();
             soundOnOffButton.addEventListener(Event.CHANGE, soundHandler);
 			navigationContainer.addChild(soundOnOffButton);
-            /*
-            fullScreenButton = new FullScreenElement();
-            addChild(fullScreenButton);
-            */
+
 			infoTextMC = new InfoTextMC();
 			infoTxtField = infoTextMC.getChildByName("textf") as TextField;
-			
-			//infoTxtField.text =  "this is my textfiled";
+
 			infoTxtField.text =  String("this is my textfiled textfiled").toLocaleUpperCase();
 			navigationContainer.addChild(infoTextMC);
 			
@@ -136,72 +131,6 @@ package com.twoto.utils.videoPlayer
             resize();
         }
 
-        /*
-        private function redrawProgressBars():void
-        {
-            
-            if (progressBackground != null)
-            {
-                if (this.contains(progressBackground))
-                {
-                    removeChild(progressBackground);
-                }
-            }
-            if (progressLoadedBackground != null)
-            {
-                if (this.contains(progressLoadedBackground))
-                {
-                    removeChild(progressLoadedBackground);
-                }
-            }
-            if (progressBar != null)
-            {
-                if (this.contains(progressBar))
-                {
-                    removeChild(progressBar);
-                }
-            }
-            if (progressEltBackground != null)
-            {
-                if (this.contains(progressEltBackground))
-                {
-                    removeChild(progressEltBackground);
-                    progressEltBackground = null;
-                }
-            }
-            if (dragger != null)
-            {
-                if (this.contains(dragger))
-                {
-                    dragger.removeEventListener(Event.CHANGE, draggerHandler);
-                    dragger.destroy();
-                    removeChild(dragger);
-                    dragger = null;
-                }
-            }
-            progressEltBackground = Draw.drawShape(playerWidth - DefinesFLVPLayer.NAVI_PROGRESS_DISTANCE_LEFT - DefinesFLVPLayer.NAVI_PROGRESS_DISTANCE_RIGHT - DefinesFLVPLayer.NAVI_PROGRESS_BORDER * 2, DefinesFLVPLayer.NAVI_PROGRESS_HEIGHT + DefinesFLVPLayer.NAVI_PROGRESS_BORDER * 2, 1, DefinesFLVPLayer.NAVI_PROGRESS_BACKGROUND_ELT_COLOR);
-            addChild(progressEltBackground);
-            
-            progressBackground = new EmptyBackProgressMC();
-            progressBackground.width = playerWidth - DefinesFLVPLayer.NAVI_PROGRESS_DISTANCE_LEFT - DefinesFLVPLayer.NAVI_PROGRESS_DISTANCE_RIGHT - DefinesFLVPLayer.NAVI_PROGRESS_BORDER * 4;
-            progressBackground.height = DefinesFLVPLayer.NAVI_PROGRESS_HEIGHT;
-            addChild(progressBackground);
-            
-            progressLoadedBackground = Draw.drawShape(progressBackground.width, DefinesFLVPLayer.NAVI_PROGRESS_HEIGHT, 1, DefinesFLVPLayer.NAVI_PROGRESS_BACKGROUND_COLOR);
-            progressLoadedBackground.scaleX = 0;
-            addChild(progressLoadedBackground);
-            
-            dragger = new Dragger(progressBackground.width);
-            dragger.addEventListener(Event.CHANGE, draggerHandler);
-            dragger.withTimerInfo(timerInfo);
-            
-            progressBar = Draw.drawShape(progressBackground.width - dragger.width, DefinesFLVPLayer.NAVI_PROGRESS_HEIGHT, 1, DefinesFLVPLayer.NAVI_PROGRESS_COLOR);
-            progressBar.scaleX = 0;
-            addChild(progressBar);
-            addChild(dragger);
-        }
-        */
-		
         private function startStopHandler(evt:Event):void
         {
             
@@ -215,14 +144,14 @@ package com.twoto.utils.videoPlayer
             //trace("startStopHandler: "+evt.type.toString());
             dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.INTERFACE_SOUND));
         }
-        
+        /*
         public function reset():void
         {
             
             trace("resetPlayStopButton: ");
             dragger.placeByPercent(0, 0);
         }
-        
+        */
         public function setPlayStopStatus():void
         {
             if (startStopButton != null)
@@ -344,10 +273,12 @@ package com.twoto.utils.videoPlayer
             //destroy()
             //draw();
             resize();
+			/*
             updateProgressBar(engine.percentProgress, engine.timerPosition);
             updateLoadedProgress(engine.percentLoadingProgress);
+			*/
         }
-        
+        /*
         private function draggerHandler(evt:Event):void
         {
             
@@ -356,13 +287,13 @@ package com.twoto.utils.videoPlayer
             dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.INTERFACE_DRAGGED));
             dragger.updateTimer(engine.timerPosition);
         }
-        
+        */
         public function set withTimerInfo(_value:Boolean):void
         {
             
             timerInfo = _value;
         }
-        
+        /*
         public function updateProgressBar(_percent:Number, time:uint=0):void
         {
             
@@ -375,7 +306,8 @@ package com.twoto.utils.videoPlayer
                 progressBar.scaleX = _percent * progressLoadedBackground.scaleX;
             }
         }
-        
+        */
+		/*
         public function updateLoadedProgress(_percent:Number):void
         {
             
@@ -385,6 +317,17 @@ package com.twoto.utils.videoPlayer
                 dragger.updateWidth(_percent);
             }
         }
+		*/
+		private function hideInterface(evt:VideoPlayerEvents = null):void{
+			Tweener.addTween(navigationContainer,{alpha:0,time:1,y:navigationContainer.y+70});
+			//target.visible= false;
+		}
+		
+		private function showInterface(evt:VideoPlayerEvents = null):void{
+
+			dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.INTERFACE_SHOW));
+			Tweener.addTween(navigationContainer,{alpha:1,time:1,y:navigationContainer.y-70});
+		}
         
         public function freeze():void
         {
@@ -400,12 +343,14 @@ package com.twoto.utils.videoPlayer
             startStopButton.removeEventListener(Event.CHANGE, startStopHandler);
             soundOnOffButton.removeEventListener(Event.CHANGE, soundHandler);
             
+			/*
             if (this.contains(dragger))
             {
                 dragger.removeEventListener(Event.CHANGE, draggerHandler);
                 removeChild(dragger);
                 dragger = null;
             }
+			*/
             removeChild(backgroundNavi);
             backgroundNavi = null;
             removeChild(progressEltBackground);
