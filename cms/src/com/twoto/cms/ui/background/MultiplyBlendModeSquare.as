@@ -84,7 +84,7 @@ package com.twoto.cms.ui.background {
 				for(var stepsX:uint=0; stepsX < maxX ; stepsX++) {
 					
 					var patternElt:PatternBack=new PatternBack();
-					//trace("lastX :"+lastX+"lastY: "+lastY)
+					trace("lastX :"+lastX+"lastY: "+lastY)
 					patternElt.x=lastX;
 					patternElt.y=lastY;
 					patternContainer.addChild(patternElt);
@@ -95,7 +95,6 @@ package com.twoto.cms.ui.background {
 				lastX =0;
 			}
 			addChild(patternContainer);
-
 		}
 
 		//---------------------------------------------------------------------------
