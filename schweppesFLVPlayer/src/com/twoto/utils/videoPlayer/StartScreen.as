@@ -75,7 +75,7 @@ package com.twoto.utils.videoPlayer {
 			addChild(background);
 			var url:String = pictureURLValueStr// ;
 				trace("pictureURLValueStr "+pictureURLValueStr);
-			picture = new PictureLoader(url,background);
+			picture = new PictureLoader(url,background,true);
 			picture.visible =false;
 			picture.addEventListener(UiEvent.PICTURE_READY,showFirstTime);
 			//		

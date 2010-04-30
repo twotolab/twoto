@@ -234,17 +234,7 @@ package com.twoto.utils.videoPlayer {
 			pause();
 			dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.ENGINE_STOP));
 		}
-		/*
-		public function draggedTo(_percent:uint):void {
 
-			//trace("draggedTo"+Number(client.meta.duration.toFixed(1)));
-			var targetSeek:uint =Math.round(_percent*Number(client.meta.duration.toFixed(1))*.01);
-			//trace("draggedTo"+_percent);
-			netStream.seek(targetSeek);
-			timerPosition =netStream.time;
-			//dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.ENGINE_UPDATE_PROGRESS));
-		}
-*/
 		public function soundHandler():void {
 
 			//trace("soundHandler SOUND_STATUS: "+SOUND_STATUS);
@@ -253,6 +243,11 @@ package com.twoto.utils.videoPlayer {
 			}
 			else {
 				volumeOff();
+			}
+		}
+		public function resetSound():void{
+			if (SOUND_STATUS == OFF) {
+				
 			}
 		}
 

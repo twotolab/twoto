@@ -117,12 +117,13 @@ package com.twoto.utils.videoPlayer
 		private function engineHandler(evt:VideoPlayerEvents):void
 		{
 
-			//trace("engineHandler"+evt.toString());
+			trace("engineHandler"+evt.toString());
 			switch (evt.type.toString())
 			{
 				case VideoPlayerEvents.ENGINE_METADATA_READY:
 					playerEngine.removeEventListener(VideoPlayerEvents.ENGINE_METADATA_READY, engineHandler);
 					interfaceUI.init(playerEngine);
+					interfaceUI.showBufferer();
 					//playerEngine.addEventListener(VideoPlayerEvents.ENGINE_UPDATE_PROGRESS, updateProgress);
 					break;
 				case VideoPlayerEvents.ENGINE_START:
@@ -134,12 +135,17 @@ package com.twoto.utils.videoPlayer
 					interfaceUI.reset();
 					
 					*/ trace("endFilm");
+					interfaceUI.resetSoundButton();
 					dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.ENGINE_END));
-					interfaceUI.setPlayStopStatus();
+					
 					break;
 				case VideoPlayerEvents.BUFFERING_EMPTY:
+					trace("////////////////////////////////BUFFERING_EMPTY");
+					interfaceUI.showBufferer();
 					break;
 				case VideoPlayerEvents.BUFFERING_FULL:
+					trace("////////////////////////////////BUFFERING_FULL");
+					interfaceUI.hideBufferer();
 					break;
 				default:
 					break;
