@@ -1,9 +1,17 @@
-package com.twoto.loader
-{
+//------------------------------------------------------------------------------
+//
+//   Copyright 2010 
+//   patrick decaix 
+//   All rights reserved. 
+//
+//------------------------------------------------------------------------------
+
+package com.twoto.loader {
 	import caurina.transitions.Tweener;
 	
 	import com.twoto.events.UiEvent;
 	import com.twoto.global.components.IBasics;
+	import com.twoto.utils.videoPlayer.DefinesFLVPLayer;
 	
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
@@ -12,23 +20,23 @@ package com.twoto.loader
 	import flash.filters.BitmapFilter;
 	
 	/**
-	* 
-	* @author Patrick Decaix
-	* @email	patrick@twoto.com
-	* @version 1.0
-	*
-	*/
-
-	public class PictureLoader extends Sprite implements IBasics
-	{			
+	 *
+	 * @author Patrick Decaix
+	 * @email	patrick@twoto.com
+	 * @version 1.0
+	 *
+	 */
+	public class PictureLoader extends Sprite implements IBasics {
+		private var activPreloader:Boolean;
+		private var loader:ContentLoader;
+		private var picture:DisplayObject;
+		private var preloader:CircleSlicePreloader;
+		private var target:Sprite;
 		//---------------------------------------------------------------------------
 		// 	private variables
 		//---------------------------------------------------------------------------
 		private var url:String;
-		private var target:Sprite;
-		private var picture:DisplayObject;
-		private var loader:ContentLoader;
-
+		
 		//---------------------------------------------------------------------------
 		// 	public variables
 		//---------------------------------------------------------------------------
@@ -36,61 +44,73 @@ package com.twoto.loader
 		//---------------------------------------------------------------------------
 		// 	constructor
 		//---------------------------------------------------------------------------
-		public function PictureLoader(url:String,target:Sprite)
-		{
-			this.url =url;
-			this.target =target;
+		public function PictureLoader(url:String, target:Sprite, activPreloader:Boolean) {
+			this.url = url;
+			this.target = target;
+			this.activPreloader = activPreloader;
 			
-			this.addEventListener(Event.ADDED_TO_STAGE,addedToStage,false,0,true);
+			this.addEventListener(Event.ADDED_TO_STAGE, addedToStage, false, 0, true);
 			target.addChild(this);
-
+		
 		}
 		
-		private function addedToStage(evt:Event):void{
-				removeEventListener(Event.ADDED_TO_STAGE,addedToStage);
-				loadPreview();	
+		public function destroy():void {
+			if (preloader != null) {
+				if (this.contains(preloader)) {
+					this.removeChild(preloader);
+				}
+				preloader = null;
+			}
+			
+			if (picture != null) {
+				if (this.contains(picture)) {
+					this.removeChild(picture);
+				}
+				picture = null;
+			}
+			if (target.contains(this)) {
+				target.removeChild(this);
+			}
+			dispatchEvent(new Event(Event.REMOVED));
 		}
-		//---------------------------------------------------------------------------
-		// 	loadPreview
-		//---------------------------------------------------------------------------
-		private function loadPreview():void{
+		
+		public function freeze():void {
+		}
+		
+		public function unfreeze():void {
+		}
+		
+		private function addedToStage(evt:Event):void {
+			removeEventListener(Event.ADDED_TO_STAGE, addedToStage);
+			loadPicture();
+		}
+		
+		private function loadPicture():void {
+			
+			
+			if (activPreloader) {
+				preloader = new CircleSlicePreloader();
+				preloader.x = Math.round((DefinesFLVPLayer.VIDEO_WIDTH - preloader.width) * .5) //
+				preloader.y = Math.round((DefinesFLVPLayer.VIDEO_HEIGHT - preloader.height) * .5)
+			}
 			
 			loader = new ContentLoader(url);
-			loader.addEventListener(UiEvent.CONTENT_LOADED,showPreview);	
+			loader.addEventListener(UiEvent.CONTENT_LOADED, showPicture);
+			if (activPreloader) {
+				addChild(preloader);
+			}
 		}
-		//---------------------------------------------------------------------------
-		// 	showPreview
-		//---------------------------------------------------------------------------
-		private function showPreview(evt:UiEvent):void{
+		
+		private function showPicture(evt:UiEvent):void {
+			if (activPreloader) {
+				removeChild(preloader);
+			}
 			
-			loader.removeEventListener(UiEvent.CONTENT_LOADED,showPreview);	
+			loader.removeEventListener(UiEvent.CONTENT_LOADED, showPicture);
 			
 			picture = evt.target.content as DisplayObject;
 			this.addChild(picture);
 			dispatchEvent(new UiEvent(UiEvent.PICTURE_READY));
 		}
-		
-		public function freeze():void
-		{
-		}
-		
-		public function unfreeze():void
-		{
-		}
-		
-		public function destroy():void
-		{
-			if(picture !=null){
-				 if(this.contains(picture)){
-				 	this.removeChild(picture);
-				 }
-			 picture = null;
-			}
-			 if(target.contains(this)){
-					target.removeChild(this);
-			 }
-			dispatchEvent(new Event(Event.REMOVED));
-		}
-		
 	}
 }

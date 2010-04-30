@@ -12,20 +12,20 @@ package
 	import flash.display.Shape;
 	import flash.display.Sprite;
 
-	[SWF(backgroundColor='0xe9e8dd', width='972', height='520', frameRate="30")]
+	[SWF(backgroundColor='0xffdc00', width='972', height='520', frameRate="30")]
 
 	public class PlayerApplication extends Sprite
 	{
 		private var player:FLVPlayer;
 		private var startScreen:StartScreen;
+		private var background:Shape;
 		
 		public function PlayerApplication()
 		{
-			
-			var background:Shape = Draw.drawShape(DefinesFLVPLayer.STAGE_WIDTH,DefinesFLVPLayer.STAGE_HEIGHT,0xffffff);
+			background = Draw.drawShape(972,520,1,0xffdc00);
+			addChild(background);
 			
 			player = new FLVPlayer();﻿
-
 			player.timeInfo = false;
 			
 			var paramURL:String=  "http://twoto.googlecode.com/svn/trunk/schweppesFLVPlayer/assets/geschaeftsmann.f4v";

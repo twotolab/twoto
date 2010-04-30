@@ -64,7 +64,12 @@ package com.twoto.utils.videoPlayer.elements{
 			}
 			dispatchEvent(new Event(Event.CHANGE));
 		}
-
+		
+		public function reset():void{
+			STATUS = OFF;
+			downHandler(null);
+			
+		}
 
 	}
 }

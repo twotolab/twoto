@@ -3,6 +3,7 @@ package com.twoto.utils.videoPlayer
     import caurina.transitions.Tweener;
     
     import com.twoto.global.components.IBasics;
+    import com.twoto.loader.CircleSlicePreloader;
     import com.twoto.utils.Draw;
     import com.twoto.utils.videoPlayer.elements.Dragger;
     import com.twoto.utils.videoPlayer.elements.PlayStopElement;
@@ -50,6 +51,7 @@ package com.twoto.utils.videoPlayer
 		private var infoTextMC:InfoTextMC;
 		private var infoTxtField:TextField;
 		private var filmName:String;
+		private var bufferingMC:CircleSlicePreloader;
 
 		private var showHideInterfaceHandler:ShowHideInterfaceHandler;
         
@@ -129,13 +131,18 @@ package com.twoto.utils.videoPlayer
 			navigationContainer.addChildAt(navigationBack,0);
 			navigationBack.filters = Draw.addShadow(Draw.defaultShadow());
 			
+			bufferingMC = new CircleSlicePreloader(12,7,0xffdc00);
+			bufferingMC.filters = Draw.addShadow(Draw.smallShadow());
+			
             resize();
+			trace("///////////////draw it")
+			showBufferer();
         }
 
         private function startStopHandler(evt:Event):void
         {
             
-            trace("startStopHandler: " + evt.type.toString());
+            //trace("startStopHandler: " + evt.type.toString());
             dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.INTERFACE_PAUSE));
         }
         
@@ -145,6 +152,10 @@ package com.twoto.utils.videoPlayer
             //trace("startStopHandler: "+evt.type.toString());
             dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.INTERFACE_SOUND));
         }
+		public function resetSoundButton():void{
+			
+			soundOnOffButton.reset();
+		}
         /*
         public function reset():void
         {
@@ -160,56 +171,10 @@ package com.twoto.utils.videoPlayer
                 startStopButton.setStatus(engine.STATUS);
             }
         }
-        /*
-        public function showProgressBar(_value:Boolean):void
-        {
-            if (progressBar != null)
-            {
-                if (_value != true && progressBar.visible != true)
-                {
-                    progressBar.visible = _value;
-                    
-                    if (_value == true)
-                    {
-                        progressBar.scaleX = 0;
-                        dragger.x = Math.round(progressBar.x);
-                    }
-                }
-                else if (_value == false)
-                {
-                    progressBar.scaleX = 0;
-                    dragger.x = Math.round(progressBar.x);
-                }
-            }
-        }
-        */
+        
         private function resize():void
         {
             
-			/*
-            backgroundNavi.width = playerWidth;
-            backgroundNavi.y = playerHeight;
-            */
-			/*
-            backgroundNaviLine.width = playerWidth;
-            backgroundNaviLine.y = playerHeight;
-            
-            redrawProgressBars();
-            progressEltBackground.y = playerHeight + DefinesFLVPLayer.NAVI_PROGRESS_Y;
-            progressEltBackground.x = DefinesFLVPLayer.NAVI_PROGRESS_DISTANCE_LEFT;
-            
-            progressBackground.y = playerHeight + DefinesFLVPLayer.NAVI_PROGRESS_Y + DefinesFLVPLayer.NAVI_PROGRESS_BORDER;
-            progressBackground.x = DefinesFLVPLayer.NAVI_PROGRESS_DISTANCE_LEFT + DefinesFLVPLayer.NAVI_PROGRESS_BORDER;
-            
-            progressLoadedBackground.y = progressBackground.y;
-            progressLoadedBackground.x = progressBackground.x;
-            
-            progressBar.y = progressBackground.y;
-            progressBar.x = progressBackground.x;
-            
-            dragger.x = Math.round(progressBar.x);
-            dragger.y = Math.round(progressBar.y + 2);
-            */
             soundOnOffButton.x =3//playerWidth - DefinesFLVPLayer.NAVI_SOUND_X;
             soundOnOffButton.y = 3//playerHeight + DefinesFLVPLayer.NAVI_SOUND_Y;
 				
@@ -224,6 +189,9 @@ package com.twoto.utils.videoPlayer
 			*/
 			navigationContainer.x=Math.round((DefinesFLVPLayer.VIDEO_WIDTH-navigationBack.width)*.5)// DefinesFLVPLayer.VIDEO_X+Math.round((DefinesFLVPLayer.VIDEO_WIDTH-navigationContainer.width))*.5;
 			navigationContainer.y=DefinesFLVPLayer.NAVI_Y+DefinesFLVPLayer.VIDEO_HEIGHT-105;
+			
+			bufferingMC.x=Math.round((DefinesFLVPLayer.VIDEO_WIDTH-bufferingMC.width)*.5)//
+			bufferingMC.y=Math.round((DefinesFLVPLayer.VIDEO_HEIGHT-bufferingMC.height)*.5)
 			
         }
         
@@ -274,51 +242,15 @@ package com.twoto.utils.videoPlayer
             //destroy()
             //draw();
             resize();
-			/*
-            updateProgressBar(engine.percentProgress, engine.timerPosition);
-            updateLoadedProgress(engine.percentLoadingProgress);
-			*/
+
         }
-        /*
-        private function draggerHandler(evt:Event):void
-        {
-            
-            draggerPercent = dragger.percent;
-            progressBar.scaleX = draggerPercent * 0.01 * progressLoadedBackground.scaleX;
-            dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.INTERFACE_DRAGGED));
-            dragger.updateTimer(engine.timerPosition);
-        }
-        */
+
         public function set withTimerInfo(_value:Boolean):void
         {
             
             timerInfo = _value;
         }
-        /*
-        public function updateProgressBar(_percent:Number, time:uint=0):void
-        {
-            
-            //trace( "updateProgressBar: "+engine.timerPosition );
-            if (dragger.isDragging != true)
-            {
-                //trace("update dragger"+percentLoaded)
-                dragger.placeByPercent(_percent, time);
-                
-                progressBar.scaleX = _percent * progressLoadedBackground.scaleX;
-            }
-        }
-        */
-		/*
-        public function updateLoadedProgress(_percent:Number):void
-        {
-            
-            if (progressLoadedBackground != null && this.contains(progressLoadedBackground))
-            {
-                progressLoadedBackground.scaleX = _percent;
-                dragger.updateWidth(_percent);
-            }
-        }
-		*/
+
 		private function hideInterface(evt:VideoPlayerEvents = null):void{
 			Tweener.addTween(navigationContainer,{alpha:0,time:1,y:navigationContainer.y+70});
 			//target.visible= false;
@@ -335,6 +267,16 @@ package com.twoto.utils.videoPlayer
         {
 			filmName =_name;
         }
+		
+        public function showBufferer():void{
+			this.addChild(bufferingMC);
+		}
+        public function hideBufferer():void{
+			if(this.contains(bufferingMC)){
+				this.removeChild(bufferingMC);
+			}
+		}
+		
         public function freeze():void
         {
         }
@@ -349,14 +291,6 @@ package com.twoto.utils.videoPlayer
             startStopButton.removeEventListener(Event.CHANGE, startStopHandler);
             soundOnOffButton.removeEventListener(Event.CHANGE, soundHandler);
             
-			/*
-            if (this.contains(dragger))
-            {
-                dragger.removeEventListener(Event.CHANGE, draggerHandler);
-                removeChild(dragger);
-                dragger = null;
-            }
-			*/
             removeChild(backgroundNavi);
             backgroundNavi = null;
             removeChild(progressEltBackground);

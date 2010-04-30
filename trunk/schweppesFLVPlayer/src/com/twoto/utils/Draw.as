@@ -41,6 +41,9 @@ package com.twoto.utils {
 		public static function  defaultShadow():DropShadowFilter{
 			return Draw.shadowFilter({_color:uint,_angle:45,_alpha:1,_blurX:6,_blurY:6,_distance:0, _knockout:false,_inner:false,_strength:0.7});
 		}
+		public static function  smallShadow():DropShadowFilter{
+			return Draw.shadowFilter({_color:uint,_angle:45,_alpha:1,_blurX:2,_blurY:2,_distance:0, _knockout:false,_inner:false,_strength:0.7});
+		}
 		public static  function  addShadow(_targetFilter:DropShadowFilter):Array{
 			var shadowFilter:BitmapFilter = _targetFilter;
 			var myFilters:Array = new Array();
