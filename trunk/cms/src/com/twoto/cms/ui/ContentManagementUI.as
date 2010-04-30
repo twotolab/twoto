@@ -1,6 +1,6 @@
 package com.twoto.cms.ui {
 	import caurina.transitions.Tweener;
-	
+
 	import com.twoto.cms.CMSEvent;
 	import com.twoto.cms.controler.ContentManagementControler;
 	import com.twoto.cms.global.DefinesCMS;
@@ -18,7 +18,7 @@ package com.twoto.cms.ui {
 	import com.twoto.global.components.IBasics;
 	import com.twoto.utils.Draw;
 	import com.twoto.utils.UIUtils;
-	
+
 	import flash.display.BlendMode;
 	import flash.display.DisplayObject;
 	import flash.display.Shape;
@@ -60,10 +60,10 @@ package com.twoto.cms.ui {
 
 		private var editor:EditorCMSUI;
 		private var editorModel:EditorCMSModel;
-		
-		private var containerBack:Shape ;
-		private var multy:MultiplyBlendModeSquare ;
-		
+
+		private var containerBack:Shape;
+		private var multy:MultiplyBlendModeSquare;
+
 
 		//---------------------------------------------------------------------------
 		// 	constructor
@@ -104,14 +104,14 @@ package com.twoto.cms.ui {
 
 			container=new Sprite();
 			this.addChild(container);
-			
-			containerBack = Draw.ShapeElt(100,100,1,0xffffff);
-			containerBack.alpha=1//0.7;
+
+			containerBack=Draw.ShapeElt(100, 100, 1, 0xffffff);
+			containerBack.alpha=1 //0.7;
 			containerBack.x=-DefinesCMS.MENU_BORDER;
 			containerBack.y=-DefinesCMS.MENU_BORDER;
 			container.addChild(containerBack);
 			defaultKnockoutShadow(containerBack);
-			
+
 			infoText=new InfoTextCMSElement();
 			container.addChild(infoText);
 
@@ -126,16 +126,16 @@ package com.twoto.cms.ui {
 			backButton=new TextCMSButton("BACK TO WEBSITE");
 			backButton.addEventListener(MouseEvent.CLICK, backButtonHandler, false, 0, true);
 			container.addChild(backButton);
-			
+
 			replacesNodes();
-			
+
 			stage.addEventListener(CMSEvent.SHOW, showCMSHandler);
 			stage.addEventListener(Event.RESIZE, onResize);
-	
-	multy = new MultiplyBlendModeSquare(300,300);
+
+			multy=new MultiplyBlendModeSquare(300, 300);
 			multy.showColors();
-		//	multy.blendMode = BlendMode.SUBTRACT
-			addChildAt(multy,0);
+			//	multy.blendMode = BlendMode.SUBTRACT
+			addChildAt(multy, 0);
 
 			showCMS();
 		}
@@ -329,7 +329,7 @@ package com.twoto.cms.ui {
 		//--------------------------------------------------------------------------
 		private function drawEditor(nodeVO:NodeVO):void {
 
-			editorModel = new EditorCMSModel(nodeVO);
+			editorModel=new EditorCMSModel(nodeVO);
 			editor=new EditorCMSUI(editorModel);
 			editor.addEventListener(CMSEvent.EDITOR_CLOSE_AND_SAVE, editorHandler);
 			editor.addEventListener(CMSEvent.EDITOR_ESCAPE, editorHandler);
@@ -345,14 +345,14 @@ package com.twoto.cms.ui {
 					}
 					container.alpha=0;
 					container.visible=true;
-					Tweener.addTween(container, {alpha: 1, time: 1});
-					Tweener.addTween(editor, {alpha: 0, time: 1, onComplete: deleteEditor});
+					Tweener.addTween(container, {alpha:1, time:1});
+					Tweener.addTween(editor, {alpha:0, time:1, onComplete:deleteEditor});
 					break;
 				case CMSEvent.EDITOR_ESCAPE:
 					container.alpha=0;
 					container.visible=true;
-					Tweener.addTween(container, {alpha: 1, time: 1});
-					Tweener.addTween(editor, {alpha: 0, time: 1, onComplete: deleteEditor});
+					Tweener.addTween(container, {alpha:1, time:1});
+					Tweener.addTween(editor, {alpha:0, time:1, onComplete:deleteEditor});
 					break;
 				default:
 					break;
@@ -386,7 +386,7 @@ package com.twoto.cms.ui {
 				this.addEventListener(MouseEvent.ROLL_OVER, backButtonHandler, false, 0, true);
 				this.alpha=1;
 				this.visible=true;
-				Tweener.addTween(this, {alpha: 0, time: 2});
+				Tweener.addTween(this, {alpha:0, time:2});
 				onResize();
 
 			} else if (cmsModel.status == ContentManagementModel.CLOSE) {
@@ -404,7 +404,7 @@ package com.twoto.cms.ui {
 			this.alpha=0;
 			this.visible=true;
 			this.removeEventListener(MouseEvent.ROLL_OVER, backButtonHandler);
-			Tweener.addTween(this, {alpha: 1, time: 2});
+			Tweener.addTween(this, {alpha:1, time:2});
 			onResize();
 		}
 
@@ -415,15 +415,15 @@ package com.twoto.cms.ui {
 
 			UIUtils.removeDisplayObject(this, background);
 			/*
-			background=new Background(DefinesCMS.BACKGROUND_COLOR, DefinesCMS.BACKGROUND_COLOR_SHADOW, stage.stageWidth, stage.stageHeight);
-			this.addChildAt(background, 0);
-			*/
+			   background=new Background(DefinesCMS.BACKGROUND_COLOR, DefinesCMS.BACKGROUND_COLOR_SHADOW, stage.stageWidth, stage.stageHeight);
+			   this.addChildAt(background, 0);
+			 */
 			this.addChildAt(multy, 0);
 
-			containerBack.width = container.width;
-			containerBack.height =infoText.y+infoText.height+2*DefinesCMS.MENU_BORDER;
-			
-			Tweener.addTween(container, {x: Math.round((stage.stageWidth - container.width) * .5), y: Math.round((stage.stageHeight - container.height) * .5), time: 1});
+			containerBack.width=container.width;
+			containerBack.height=infoText.y + infoText.height + 2 * DefinesCMS.MENU_BORDER;
+
+			Tweener.addTween(container, {x:Math.round((stage.stageWidth - container.width) * .5), y:Math.round((stage.stageHeight - container.height) * .5), time:1});
 		}
 
 		//---------------------------------------------------------------------------
@@ -442,8 +442,9 @@ package com.twoto.cms.ui {
 			}
 			return null;
 		}
+
 		public function defaultKnockoutShadow(_target:DisplayObject):void {
-			var shadowFilter:DropShadowFilter=Draw.shadowFilter({_color: 0x000000, _angle: 45, _alpha: 1, _blurX: 6, _blurY: 6, _distance: 0, _knockout: false, _inner: false, _strength: 0.7});
+			var shadowFilter:DropShadowFilter=Draw.shadowFilter({_color:0x000000, _angle:45, _alpha:1, _blurX:6, _blurY:6, _distance:0, _knockout:false, _inner:false, _strength:0.7});
 			var myFilters:Array=new Array();
 			myFilters.push(shadowFilter);
 			_target.filters=myFilters;
