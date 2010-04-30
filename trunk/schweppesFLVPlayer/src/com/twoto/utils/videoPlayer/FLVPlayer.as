@@ -54,7 +54,7 @@ package com.twoto.utils.videoPlayer
 
 		private function onRemovedFromStage(e:Event):void
 		{
-
+			//destroy();
 		}
 
 		private function init():void
