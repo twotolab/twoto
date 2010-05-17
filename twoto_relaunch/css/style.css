@@ -1,3 +1,42 @@
 body {
+	font-family:Georgia,'Times New Roman',serif;
 	background-color:#999966;
+	font-size:11px;
 }
+h1{
+	font-size:15px;
+	font-style:normal;
+}
+	
+p{
+	font-size:11px;
+	font-weight:normal;
+	line-height:16px;
+}
+
+#blockElt {
+	border:0 none;
+	margin:0;
+	padding:0;
+	width:140px;
+}
+.titlehead {
+	color:#222222;
+	font-family:arial,sans-serif;
+	font-size:11px;
+	line-height:16px;
+	text-align:left;
+}
+
+.headtext {
+	font-size:10px;
+	font-style:normal;
+	line-height:14px;
+}
+a:link, a:visited, a:active {
+	color:#222222;
+	text-decoration:none;
+	font-style:italic;
+}
+
+
