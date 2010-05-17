@@ -5,11 +5,11 @@ body {
 
 	font-size:11px;
 	
-	background-image: url("img/testBack.png");
+	background-image: url("../img/testBack.png");
 	background-color:#fffeea;
   	background-repeat: no-repeat;
   	background-attachment: fixed;
-  	background-position: right bottom;
+  	background-position: top ;
 }
 h1{
 	font-size:15px;
@@ -24,11 +24,19 @@ p{
 	line-height:16px;
 }
 
+#content{
+	background-color:#fffeea;
+	width:960px;
+	 margin-left: auto ;
+ 	margin-right: auto ;
+
+}
 #blockElt {
 	border:0;
 	margin:5px;
 	padding:0;
 	width:150px;
+	
 }
 .titlehead {
 	color:#222222;
