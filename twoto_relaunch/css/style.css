@@ -5,7 +5,7 @@ body {
 
 	font-size:11px;
 	
-	background-image: url("../img/testBack.jpg");
+	background-image: url("../img/testBack.png");
 	background-color:#fefaef;
   	background-repeat: no-repeat;
   	background-attachment: fixed;
@@ -24,14 +24,6 @@ p{
 	line-height:16px;
 }
 
-#background{
-
-	background-color:#ff0000;
-	width:1024px;
-	 margin-left: auto ;
- 	margin-right: auto ;
-	
-}
 #content{
 	/*
 background-color:#fffeea;
@@ -53,6 +45,7 @@ background-color:#fffeea;
 	color:#222222;
 	font-family:arial,sans-serif;
 	font-size:12px;
+	font-weight:900;
 	line-height:16px;
 	text-align:left;
 }
