@@ -6,34 +6,19 @@ body {
 	font-size:11px;
 	
 	background-image: url("../img/testBack.png");
-	background-color:#fefaef;
+	background-color:#fffeea;
   	background-repeat: no-repeat;
   	background-attachment: fixed;
   	background-position: top ;
 }
-h1{
-	font-size:15px;
-	font-style:normal;
-}
-	
-p{
-	margin:0;
-	padding:0;
-	font-size:11px;
-	font-weight:normal;
-	line-height:16px;
-}
 
 #content{
-	/*
-background-color:#fffeea;
-*/
+	background-color:#fffeea;
 	width:960px;
 	 margin-left: auto ;
  	margin-right: auto ;
 
 }
-
 #blockElt {
 	border:0;
 	margin:5px;
@@ -41,7 +26,9 @@ background-color:#fffeea;
 	width:150px;
 	
 }
-.titlehead {
+h1 {
+	margin:0;
+	padding:0;
 	color:#222222;
 	font-family:arial,sans-serif;
 	font-size:12px;
@@ -50,15 +37,18 @@ background-color:#fffeea;
 	text-align:left;
 }
 
-.headtext {
+p {
+	margin:0;
+	padding:0;
 	color:#1E1E1E;
-	font-size:11px;
+	font-size:10px;
 	font-style:normal;
+	font-weight:normal;
 	line-height:14px;
 }
 a:link, a:visited, a:active {
 	color:#222222;
-	font-size:11px;
+	font-size:10px;
 	text-decoration:none;
 	font-style:italic;
 }
