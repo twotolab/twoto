@@ -22,12 +22,16 @@ body {
 a.buttonPink {
 	-moz-border-radius:15px 15px 15px 15px;
 	-moz-box-shadow:0 2px 5px rgba(0, 0, 0, 0.15);
-	background:-moz-linear-gradient(-90deg, #FF007F, #EF0077) repeat scroll 0 0 transparent;
+	-webkit-border-radius:15px 15px 15px 15px;
+	-webkit-box-shadow:0 2px 5px rgba(0, 0, 0, 0.15);
+	background:-moz-linear-gradient(-90deg, #FF007F, #EF0077)repeat scroll 0 0 transparent;
+	background:-webkit-gradient(linear, left top, left bottom, from(#FF007F), to(#EF0077));
 	font-size:14px;
 	padding:5px 15px;
 }
 a.button {
 	-moz-border-radius:7px;
+	-webkit-border-radius:15px;
 	-moz-box-shadow:0 2px 5px rgba(0, 0, 0, 0.15);
 	background-color:#1E1E1E;
 	color:#FFFEEA;
@@ -35,10 +39,15 @@ a.button {
 	padding:2px 6px 2px 6px;
 }
 a.buttonPink:link, a.buttonPink:visited, a.buttonPink:active{
-		color:#FFFEEA;
-		}
+	color:#FFFEEA;
+	font-size:14px;
+	font-style:normal;
+	font-weight:bold;
+	font-family:'Helvetica Neue',Arial,sans-serif;
+}
+
 a.button:link, a.button:visited, a.button:active {
-		color:#FFFEEA;
+	color:#FFFEEA;
 }
 #blockElt {
 	border:0;
