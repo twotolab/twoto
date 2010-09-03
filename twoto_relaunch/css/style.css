@@ -12,11 +12,12 @@ body {
   	background-position: top ;
 }
 
+#header{
+	margin-top:20px;
+	}
 #content{
-	width:960px;
-	 margin-left: auto ;
- 	margin-right: auto ;
-
+	background-color:#EF0077;
+	height:200px;
 }
 a.buttonNews{
 	color:#FF007F;
