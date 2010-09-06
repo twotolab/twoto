@@ -1,24 +1,73 @@
-body {
-	margin:0;
-	padding:0;
-	font-family:Georgia,'Times New Roman',serif;
+html{
+	background-image: url("../img/background_pxline.jpg");
+	background-repeat:repeat-x;
+	background-color:#FFFEEA;
+	}
 
-	font-size:11px;
+body {
+	display:table;
+margin:0;
+padding:0;
+width:100%;
 	
-	background-image: url("../img/testBack.png");
-	background-color:#fffeea;
-  	background-repeat: no-repeat;
-  	background-attachment: fixed;
-  	background-position: top ;
+	font-family:Georgia,'Times New Roman',serif;
+	font-size:11px;
+
+	background-image: url("../img/background.jpg");
+	background-position:center top;
+	background-repeat:no-repeat;
+  
 }
 
 #header{
-	margin-top:20px;
+	margin-top:10px;
 	}
-#content{
-	background-color:#EF0077;
+#stage{
 	height:200px;
+	margin-top:40px;
+	}
+.bground{
+
 }
+/**** Masonry CSS ****/
+
+.wrap {
+    padding: 0;
+	margin: 0;
+	width:960px;
+	margin-top: 60px;
+	margin-bottom: 20px;
+}
+
+.wrap:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.box {
+	font-size:11px;
+    margin-left:10px;
+	margin-right:10px;
+	margin-bottom:10px;
+    float: left;
+
+}
+
+.col1 { width: 220px; }
+
+
+/**** END Masonry CSS ****/
+
+.thumbnail{
+	margin-top:5px;
+}
+.txtElt{
+	border-top:1px solid #cdccbc;
+	padding: 5px 0 0 0;
+}	
 a.buttonNews{
 	color:#FF007F;
 	font-style:italic;
@@ -35,7 +84,7 @@ a.button:link, a.button:visited, a.button:active {
 #blockElt {
 	border:0;
 	margin:10px 0px;
-	padding:0;
+	padding: 5px 0 0 0;
 	width:150px;
 	
 }
@@ -61,8 +110,7 @@ h2 {
 }
 
 p {
-	margin:0;
-	padding:0;
+	margin: 3px 0 5px 0;
 	color:#1E1E1E;
 	font-size:11px;
 	font-style:normal;
