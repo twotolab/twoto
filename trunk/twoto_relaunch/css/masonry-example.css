@@ -181,7 +181,7 @@ button {
     float: left;
 }
 
-.col1 { width: 80px; }
+.col1 { width: 280px; }
 .col2 { width: 180px; }
 .col3 { width: 280px; }
 .col4 { width: 380px; }
@@ -193,7 +193,7 @@ button {
 .col4 img { max-width: 380px; }
 .col5 img { max-width: 480px; }
 
-
+/***
 
 /**** Primer comparison ****/
 
@@ -321,4 +321,4 @@ button {
        -moz-box-shadow: 0 1px 2px hsla(0,0%,0%,.3);
             box-shadow: 0 1px 2px hsla(0,0%,0%,.3);
 }
-
+***/
