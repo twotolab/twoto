@@ -23,11 +23,13 @@ width:100%;
 	margin-top:10px;
 	}
 #stage{
-	height:200px;
-	margin-top:40px;
+	height:130px;
+	margin:40px 0 0 250px;
+	background-image: url("../img/introTxt.png");
+	background-repeat:no-repeat;
 	}
-.bground{
-
+#menu {
+	margin-top:60px;
 }
 /**** Masonry CSS ****/
 
@@ -35,8 +37,7 @@ width:100%;
     padding: 0;
 	margin: 0;
 	width:960px;
-	margin-top: 60px;
-	margin-bottom: 20px;
+	margin:0 0 20px 0;
 }
 
 .wrap:after {
@@ -67,7 +68,36 @@ width:100%;
 .txtElt{
 	border-top:1px solid #cdccbc;
 	padding: 5px 0 0 0;
+}
+
+.box a{
+		/***border-bottom: 1px dotted;****/
+}
+.naviElt{
+	padding: 5px 0 7px 0;
 }	
+
+ul {
+	margin:0;
+	padding:0 0 0 10px;
+}
+
+ li a{
+	font-style:italic;
+}
+#filteringNav li {
+float:left;
+margin:0 15px 0 0;
+list-style:none outside none;
+}
+
+#profile a,#service a,#contact a,#search a,#feeds a{
+	background: url("../img/moreButton.png") no-repeat 0 0;
+	padding:0 0 2px 20px;
+	font-style:italic;
+}
+
+
 a.buttonNews{
 	color:#FF007F;
 	font-style:italic;
@@ -108,9 +138,19 @@ h2 {
 	line-height:16px;
 	float:left;
 }
+h5 {
+	margin:0;
+	padding:0;
+	color:#333333;
+	font-family:Georgia,'Times New Roman',serif;
+	font-size:11px;
+	font-weight:normal;
+	line-height:16px;
+	font-style:italic;
+}
 
 p {
-	margin: 3px 0 5px 0;
+	margin: 3px 0 10px 0;
 	color:#1E1E1E;
 	font-size:11px;
 	font-style:normal;
@@ -120,7 +160,7 @@ p {
 a:link, a:visited, a:active {
 	color:#222222;
 	font-size:11px;
-	font-weight:500;
+	font-weight:normal;
 	text-decoration:none;
 	font-style:italic;
 }
