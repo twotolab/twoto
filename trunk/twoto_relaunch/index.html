@@ -5,61 +5,13 @@
 	<title>TWOTO relaunch</title>
 	<link rel="stylesheet" href="css/960.css" type="text/css" media="screen" charset="utf-8" />
 	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
-	<link rel="stylesheet" href="css/style_test.css" type="text/css" media="screen" charset="utf-8" />
 	<link rel="stylesheet" href="css/masonery-examples.css" type="text/css" media="screen" charset="utf-8" />
 	
 	<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
     <script type="text/javascript" src="js/jquery.masonry.js"></script>
     <script type="text/javascript" src="js/rando-lorem-text.js"></script>
     <script type='text/javascript' src='js/jquery.color-RGBa-patch.js'></script>
-	<script type="text/javascript" src="js/example.js"></script>
-	<script type="text/javascript" src="js/example_test.js"></script>
-    <script type="text/javascript">
-        $(function(){
-
-/*     $('#mansonry').masonry({
-		 singleMode: true, 
-		itemSelector: '.box' 
-});
-*/
-
-var
-    speed = 1000,  // animation speed
-    $wall = $('#mansonry')
-;
-
-$('#mansonry').masonry({
-	 singleMode: true, 
-    // only apply masonry layout to visible elements
-    itemSelector: '.box:not(.invis)',
-    animate: true,
-    animationOptions: {
-        duration: speed,
-        queue: false
-    }
-});
-
-$('#filteringNav a').click(function(){
-    var colorClass = '.' + $(this).attr('class');
-    
-    if(colorClass=='.all') {
-        // show all hidden boxes
-        $wall.children('.invis')
-            .toggleClass('invis').fadeIn(speed);
-    } else {    
-        // hide visible boxes 
-        $wall.children().not(colorClass).not('.invis')
-            .toggleClass('invis').fadeOut(speed);
-        // show hidden boxes
-        $wall.children(colorClass+'.invis')
-            .toggleClass('invis').fadeIn(speed);
-    }
-    $wall.masonry();
-
-    return false;
-});
-        });
-    </script>
+	<script type="text/javascript" src="js/navigation.js"></script>
 </head>
 <body>
 <div id="header" class="container_16">
@@ -98,9 +50,9 @@ $('#filteringNav a').click(function(){
 		<h5>Monday, 9. August 2010</h5>
 	</div>
 	
-	<div id="fitering" class="grid_4 naviElt">
-		<ul id="filteringNav">
-			<li class="current_page_item" ><a class="all" href="#all">all</a></li>
+	<div id="" class="grid_4">
+		<ul id="filterNavigation">
+			<li class="current_page_item_two"><a class="all" href="#all">all</a></li>
 			<li><a class="last" href="#last">last</a></li>
 			<li><a class="news" href="#news">news</a></li>
 			<li><a class="lab" href="#lab">lab</a></li>
@@ -181,19 +133,6 @@ $('#filteringNav a').click(function(){
 
 	
 <div id="footer" class="container_16"></div>
- 
- <div class="container_16">   
-        
-        <ul class=" grid_4" id="filterNavigation">
-            <li class="current_page_item_two"><a href="#all">all</a></li>
-			<li><a class="last" href="#last">last</a></li>
-			<li><a class="news" href="#news">news</a></li>
-			<li><a class="lab" href="#lab">lab</a></li>
-        </ul>
-        
-    </div>
-			
-
        
 </body>
 </html>
