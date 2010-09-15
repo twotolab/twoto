@@ -1,3 +1,9 @@
+/*
+	Twoto Style
+	 byPatrick Decaix
+	 http://twoto.com
+
+*/
 html{
 	background-image: url("../img/background_pxline.jpg");
 	background-repeat:repeat-x;
@@ -79,21 +85,22 @@ body {
 
 ul {
 	margin:0;
-	padding:0 0 0 10px;
+	padding:0;
 }
 
  li a{
 	font-style:italic;
 }
-#filteringNav{
-}
-#filteringNav li {
-float:left;
-margin:0 0 0 0;
-padding: 0 15px 0 0;
-z-index: 200;
-list-style:none outside none;
-}
+	/* Navigation */
+#filterNavigation { margin: 0 auto; list-style: none; position: relative; width: 960px; }
+#filterNavigation li { display: inline; }
+#filterNavigation li { color: black; }
+#filterNavigation li a { position: relative; z-index: 200; font-size: 11px; display: block; float: left; padding: 6px 10px 4px 10px; text-decoration: none; }
+#filterNavigation li a:hover { color: white; }
+
+#filterNavigation #magicBox { position: absolute; top: 0; left: 0; width: 100px; height:16px;background:#333333; z-index: 100; -moz-border-radius: 8px; -webkit-border-radius: 8px; margin-top:5px}
+li.current_page_item_two a { color: white; }
+/*end*/
 
 .group:after { visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
 *:first-child+html .group { zoom: 1; } /* IE7 */
@@ -103,18 +110,6 @@ list-style:none outside none;
 	padding:0 0 2px 20px;
 	font-style:italic;
 }
-	
-#magic-line {
-	position: absolute;
-	top: 0; 
-	left: 0; 
-	width: 100px; 
-	background: rgba(220, 133, 5, 1);
-	z-index:100;
-	-moz-border-radius: 5px; 
-	-webkit-border-radius: 5px;
-}
-
 
 
 a.buttonNews{
@@ -183,5 +178,12 @@ a:link, a:visited, a:active {
 	text-decoration:none;
 	font-style:italic;
 }
+a
+{
+outline: none;
+}
 
-
+a:focus
+{
+-moz-outline-style: none;
+}
