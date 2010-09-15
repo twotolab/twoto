@@ -6,9 +6,9 @@ html{
 
 body {
 	display:table;
-margin:0;
-padding:0;
-width:100%;
+	margin:0;
+	padding:0;
+	width:100%;
 	
 	font-family:Georgia,'Times New Roman',serif;
 	font-size:11px;
@@ -57,7 +57,7 @@ width:100%;
 
 }
 
-.col1 { width: 220px; }
+.colWidth { width: 220px; }
 
 
 /**** END Masonry CSS ****/
@@ -85,17 +85,36 @@ ul {
  li a{
 	font-style:italic;
 }
+#filteringNav{
+}
 #filteringNav li {
 float:left;
-margin:0 15px 0 0;
+margin:0 0 0 0;
+padding: 0 15px 0 0;
+z-index: 200;
 list-style:none outside none;
 }
+
+.group:after { visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
+*:first-child+html .group { zoom: 1; } /* IE7 */
 
 #profile a,#service a,#contact a,#search a,#feeds a{
 	background: url("../img/moreButton.png") no-repeat 0 0;
 	padding:0 0 2px 20px;
 	font-style:italic;
 }
+	
+#magic-line {
+	position: absolute;
+	top: 0; 
+	left: 0; 
+	width: 100px; 
+	background: rgba(220, 133, 5, 1);
+	z-index:100;
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+}
+
 
 
 a.buttonNews{
