@@ -1,101 +1,15 @@
-body {
-	margin:0;
-	padding:0;
-	font-family:Georgia,'Times New Roman',serif;
+/*
+	 CSS-Tricks Example
+	 by Chris Coyier
+	 http://css-tricks.com
+*/
 
-	font-size:11px;
-	
-	background-image: url("../img/testBack.png");
-	background-color:#fffeea;
-  	background-repeat: no-repeat;
-  	background-attachment: fixed;
-  	background-position: top ;
-}
+#filterNavigation { margin: 0 auto; list-style: none; position: relative; width: 960px; }
+#filterNavigation li { display: inline; }
+#filterNavigation li { color: black; }
+#filterNavigation li a { position: relative; z-index: 200; font-size: 11px; display: block; float: left; padding: 6px 10px 4px 10px; text-decoration: none; }
 
-#content{
-	width:960px;
-	 margin-left: auto ;
- 	margin-right: auto ;
+#filterNavigation li a:hover { color: white; }
+#filterNavigation #magicBox { position: absolute; top: 0; left: 0; width: 100px; background: rgba(0, 0, 0, 0.9); z-index: 100; -moz-border-radius: 5px; -webkit-border-radius: 5px; margin-top:3px}
 
-}
-a.buttonNews{
-	color:#FF007F;
-	font-style:italic;
-}
-
-a.buttonPink {
-	-moz-border-radius: 15px;
-	-moz-box-shadow:0 2px 5px rgba(0, 0, 0, 0.15);
-	-webkit-border-radius:15px 15px 15px 15px;
-	-webkit-box-shadow:0 2px 5px rgba(0, 0, 0, 0.15);
-	background:-moz-linear-gradient(-90deg, #FF007F, #EF0077)repeat scroll 0 0 transparent;
-	background:-webkit-gradient(linear, left top, left bottom, from(#FF007F), to(#EF0077));
-	font-size:14px;
-	padding:5px 15px;
-}
-a.button {
-	-moz-border-radius:7px;
-	-webkit-border-radius:15px;
-	-moz-box-shadow:0 2px 5px rgba(0, 0, 0, 0.15);
-	background-color:#1E1E1E;
-	color:#FFFEEA;
-	font-size:14px;
-	padding:2px 6px 2px 6px;
-}
-a.buttonPink:link, a.buttonPink:visited, a.buttonPink:active{
-	color:#FFFEEA;
-	font-size:14px;
-	font-style:normal;
-	font-weight:bold;
-	font-family:'Helvetica Neue',Arial,sans-serif;
-}
-
-a.button:link, a.button:visited, a.button:active {
-	color:#FFFEEA;
-}
-#blockElt {
-	border:0;
-	margin:10px 0px;
-	padding:0;
-	width:150px;
-	
-}
-h1 {
-	margin:0;
-	padding:0;
-	color:#222222;
-	font-family:arial,sans-serif;
-	font-size:12px;
-	font-weight:normal;
-	line-height:16px;
-	text-align:left;
-}
-h2 {
-	margin:0;
-	padding:0;
-	color:#FF007F;
-	font-family:arial,sans-serif;
-	font-size:12px;
-	font-weight:normal;
-	line-height:16px;
-	float:left;
-}
-
-p {
-	margin:0;
-	padding:0;
-	color:#1E1E1E;
-	font-size:11px;
-	font-style:normal;
-	font-weight:500;
-	line-height:14px;
-}
-a:link, a:visited, a:active {
-	color:#222222;
-	font-size:11px;
-	font-weight:500;
-	text-decoration:none;
-	font-style:italic;
-}
-
-
+.current_page_item_two a { color: white; }
