@@ -14,6 +14,26 @@
     <script type="text/javascript" src="js/jquery.masonry.min.js"></script>
     <script type="text/javascript" src="js/rando-lorem-text.js"></script>
 	<script type="text/javascript" src="js/navigation.js"></script>
+	<script type = "text/javascript">
+    // Define the entry point
+    $(document).ready(function()
+    {
+        // The DOM (document object model) is constructed
+        // We will initialize and run our plugin here
+		$('#profile a').click(function(){	
+		var typeID = '.' + $(this).parent().attr('id');
+		//$("p.ProfileContent:visible").slideUp("slow");
+			// $("p.ProfileContent::hidden").slideDown("slow");
+			if ($("p.ProfileContent").is(":hidden")) {
+      $("p.ProfileContent").show("slow");
+    } else {
+      $("p.ProfileContent").slideUp();
+    }
+
+		});
+    });
+</script>
+
 </head>
 <body>
 <div id="header" class="container_16">
@@ -23,7 +43,8 @@
 <div id="profile" class="grid_4 txtElt">	
 	<h1>Profile</h1>
 	<p>Twoto provides Art direction, flash<br /> and frontend development.</p>
-	<a href="http://www.twoto.com">read more</a>
+	<p class="ProfileContent">ProfileContent ProfileContent ProfileContent ProfileContent <br /> ProfileContent ProfileContent ProfileContent ProfileContent ProfileContent.</p>
+	<a href="#Profile">read more</a>
 </div>
 
 <div id="service" class="grid_4 txtElt">

@@ -91,6 +91,16 @@ ul {
  li a{
 	font-style:italic;
 }
+.ProfileContent{
+	margin-top:10px;
+	padding: 8px;
+ 	visibility:visible;
+	display: none;
+	background-color:#333333;
+	color:#FFFFFF;
+	 -moz-border-radius: 8px;
+	  -webkit-border-radius: 8px; 
+}
 	/* Navigation */
 #filterNavigation { margin: 0 auto; list-style: none; position: relative; width: 960px; }
 #filterNavigation li { display: inline; }
