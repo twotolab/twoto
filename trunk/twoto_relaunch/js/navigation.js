@@ -1,4 +1,6 @@
-$(function(){
+$(window).load(function(){
+ //$(function(){
+
 
 	// mansonry
 	
@@ -110,4 +112,5 @@ $(function(){
             
         });    
     });
-});
+//});
+	});
