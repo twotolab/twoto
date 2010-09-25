@@ -1,7 +1,70 @@
+
+// onload action
+	
 $(window).load(function(){
- //$(function(){
 
+	//content Handler
+	var caseHandler ="close";
+	var selected="";;
+	var lastSelected="";
+	contentHandler = function (selected){
 
+		if ($(".contentStage").is('.close')) {
+			caseHandler= "close";
+		} else{
+			caseHandler ="open";
+		}
+
+		if (caseHandler == "close" && selected != lastSelected) {
+			lastSelected = selected;
+				 $(".contentStage").removeClass('close').addClass('open');
+				 $(".contentStage").css('visibility','visible');
+				 $(".contentStage").css('display','block');
+					$(".contentStage").stop().animate({
+						height: "230"
+					
+					});
+					$("#stage").stop().animate({
+						height: "1",
+						opacity: "0"
+					});
+					
+					
+					$(".contentStage .service").hide();	
+					$(".contentStage .profile").hide();
+					$(".contentStage .contact").hide();
+					$(".contentStage "+"."+selected).stop().slideToggle('slow');		
+					
+		 	} else if (caseHandler == "open"  && selected == lastSelected) {
+		 		
+				 $(".contentStage").removeClass('open').addClass('close');
+				 
+			  	$(".contentStage").stop().animate({
+						height: "0"
+					
+					},function(){
+							$(".contentStage").css('visibility','hidden');
+							$(".contentStage").css('display','none');
+					});
+				 	$("#stage").stop().animate({
+						height: "130px",
+						opacity: "1"
+					});
+					 lastSelected = "";
+						
+						$(".contentStage .service").hide();	
+						$(".contentStage .profile").hide();
+						$(".contentStage .contact").hide();
+			}	
+		 	else if (caseHandler == "open"  && selected != lastSelected) {
+		 		lastSelected = selected;
+		 		$(".contentStage .service").hide();	
+				$(".contentStage .profile").hide();
+				$(".contentStage .contact").hide();
+				$(".contentStage "+"."+selected).stop().slideToggle('slow');	
+		 	}
+		}
+	
 	// mansonry
 	
 	var speed = 1000,  // animation speed
@@ -22,12 +85,12 @@ $(window).load(function(){
 		
 	    var colorClass = '.' + $(this).attr('class');
 	    
-	    $actualSelected = $('#filterNavigation').find('.current_page_item_two');
+	    $actualSelected = $('#filterNavigation').find('.selected_filter');
 	    $actualSelected.css('color',$basicColor);
-	    $actualSelected.removeClass('current_page_item_two');
+	    $actualSelected.removeClass('selected_filter');
 	    $actualSelected.css('color',$basicColor);
-	   $(this).parent().addClass('current_page_item_two');
-	    var $selected  = $(".current_page_item_two");
+	   $(this).parent().addClass('selected_filter');
+	    var $selected  = $(".selected_filter");
 	    
 	    $magicBox
 	    .width($selected.width())
@@ -68,10 +131,10 @@ $(window).load(function(){
     	
     $mainNav.append("<li id='magicBox'></li>");
     var $magicBox = $("#magicBox");
-    var $selected = $(".current_page_item_two");
+    var $selected = $(".selected_filter");
     
     var basicColor =$('#filterNavigation li').css('color');
-    var hightLightColor=$('.current_page_item_two a').css('color');
+    var hightLightColor=$('.selected_filter a').css('color');
 
     var $basicColor =$(basicColor);
     var $hightLightColor =$(hightLightColor);
@@ -91,10 +154,10 @@ $(window).load(function(){
         
         $el.stop().animate({color:hightLightColor}); 
         // rollOn
-        if( $el.parent().hasClass("current_page_item_two")){
-        	$(".current_page_item_two").find("a").css('color',$hightLightColor)
+        if( $el.parent().hasClass("selected_filter")){
+        	$(".selected_filter").find("a").css('color',$hightLightColor)
         } else{
-        	$(".current_page_item_two").find("a").stop().animate({color:basicColor}); 
+        	$(".selected_filter").find("a").stop().animate({color:basicColor}); 
         }
        
         $magicBox.stop().animate({
@@ -105,7 +168,7 @@ $(window).load(function(){
     }, function() {
     	// rollOut
     	$el.stop().animate({color:basicColor}); 
-    	$(".current_page_item_two").find("a").stop().animate({color:hightLightColor});
+    	$(".selected_filter").find("a").stop().animate({color:hightLightColor});
         $magicBox.stop().animate({
             left: $magicBox.data("origLeft"),
             width: $magicBox.data("origWidth"),

@@ -21,51 +21,102 @@
         // The DOM (document object model) is constructed
         // We will initialize and run our plugin here
 		$('#profile a').click(function(){	
-		var typeID = '.' + $(this).parent().attr('id');
-		//$("p.ProfileContent:visible").slideUp("slow");
-			// $("p.ProfileContent::hidden").slideDown("slow");
-			if ($("p.ProfileContent").is(":hidden")) {
-      $("p.ProfileContent").show("slow");
-    } else {
-      $("p.ProfileContent").slideUp();
-    }
-
+			contentHandler("profile");
 		});
+		$('#service a').click(function(){	
+			contentHandler("service");
+		});
+		$('#contact a').click(function(){	
+			contentHandler("contact");
+		});
+		
+		
     });
 </script>
 
 </head>
 <body>
 <div id="header" class="container_16">
-<div id="home" class="grid_4 txtElt">
-	<h1>Home</h1>
-</div>
-<div id="profile" class="grid_4 txtElt">	
-	<h1>Profile</h1>
-	<p>Twoto provides Art direction, flash<br /> and frontend development.</p>
-	<p class="ProfileContent">ProfileContent ProfileContent ProfileContent ProfileContent <br /> ProfileContent ProfileContent ProfileContent ProfileContent ProfileContent.</p>
-	<a href="#Profile">read more</a>
-</div>
+	<div id="home" class="home grid_4 txtElt">
+		<h1>Home</h1>
+	</div>
+	<div id="profile" class="profile grid_4 txtElt">	
+		<h1>Profile</h1>
+		<p>Twoto provides Art direction, flash<br /> and frontend development.</p>
+		<a href="#">read more</a>
+	</div>
+	
+	<div id="service" class="service grid_4 txtElt">
+		<h1>Service</h1>
+		<p>If you are interested in booking us,<br />please fill out and submit the form.</p>
+		<a href="#">read more</a>
+	</div>
+	
+	<div id="contact" class="contact grid_4 txtElt">
+		<h1>Contact</h1>
+		<p>info{at}twoto.com<br />+49 176 240419 94</p>
+		<a href="#">read more</a>
+	</div>
+	
+	</div>
 
-<div id="service" class="grid_4 txtElt">
-	<h1>Service</h1>
-	<p>If you are interested in booking us,<br />please fill out and submit the form.</p>
-	<a href="http://www.twoto.com">read more</a>
+	<div id="content" class=" contentStage close">
+		<div id="profile_extended" class="profile container_16">
+				<div id="" class="grid_4 expendedElt">
+				</div>
+				<div id="" class="grid_4 expendedElt">
+					<h1><a>Experience</a></h1>
+					<p>Through the years I did several projects for great clients. This graphic design showcase is a personal selection of my works over the last two years. Besides commissioned work you will also find some personal projects. Enjoy!</p>
+				</div>
+				<div id="" class="grid_4 expendedElt">
+					<p><br/>profile_Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+				</div>
+				<div id="" class="grid_4 expendedElt">
+					<p><br/>profile_extended profile_extended profile_extended 1</p>
+				</div>
+			</div>
+	<div id="service_extended" class=" service container_16">
+				<div id="" class="grid_4 expendedElt">
+				</div>
+				<div id="" class="grid_4 expendedElt">
+					<h1><a>We can.</a></h1>
+					<p>I actively work with companies, individuals & design agencies, helping them deliver by combining my experience in marketing, design and strategic thinking.</p>
+				</div>
+				<div id="" class="grid_4 expendedElt">
+					<h1><a>We offer.</a></h1>
+					<p>&mdash; Information Architecture<br />
+&mdash; UI and UX Design<br />
+&mdash; Graphic Design<br />
+&mdash; Web Design & Development<br />
+&mdash; Motion / Interactive Graphics</p>
+				</div>
+				<div id="" class="grid_4 expendedElt">
+					<h1><a>Meet us.</a></h1>
+					<p>service_extended service_extended service_extended service_extended service_extended service_extended1</p>
+				</div>
+		</div>
+		<div id="contact_extended" class=" contact container_16">
+				<div id="" class="grid_4 expendedElt">
+				</div>
+				<div id="" class="grid_4 expendedElt">
+					<h1><a>location</a></h1>
+					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+				</div>
+				<div id="" class="grid_4 expendedElt">
+					<h1><a>form</a></h1>
+					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+				</div>
+				<div id="" class="grid_4 expendedElt">
+					<p>3 Lorem ipsum dolor sit amet, consectetuer adipiscing ullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede..</p>
+				</div>
+		</div>
 </div>
-
-<div id="contact" class="grid_4 txtElt">
-	<h1>Contact</h1>
-	<p>info{at}twoto.com<br />+49 176 240419 94</p>
-	<a href="http://www.twoto.com">read more</a>
-</div>
-
-</div>
-
 <div id="main" class="container_16">
 	
 	<div id="stage" class="grid_12">
 	</div>
 </div>
+
 
 <div id="menu" class="container_16">
 	
@@ -75,7 +126,7 @@
 	
 	<div id="" class="grid_4">
 		<ul id="filterNavigation">
-			<li class="current_page_item_two"><a class="all" href="#all">all</a></li>
+			<li class="selected_filter"><a class="all" href="#all">all</a></li>
 			<li><a class="last" href="#last">last</a></li>
 			<li><a class="news" href="#news">news</a></li>
 			<li><a class="lab" href="#lab">lab</a></li>
