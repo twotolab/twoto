@@ -14,25 +14,6 @@
     <script type="text/javascript" src="js/jquery.masonry.min.js"></script>
     <script type="text/javascript" src="js/rando-lorem-text.js"></script>
 	<script type="text/javascript" src="js/navigation.js"></script>
-	<script type = "text/javascript">
-    // Define the entry point
-    $(document).ready(function()
-    {
-        // The DOM (document object model) is constructed
-        // We will initialize and run our plugin here
-		$('#profile a').click(function(){	
-			contentHandler("profile");
-		});
-		$('#service a').click(function(){	
-			contentHandler("service");
-		});
-		$('#contact a').click(function(){	
-			contentHandler("contact");
-		});
-		
-		
-    });
-</script>
 
 </head>
 <body>
@@ -43,78 +24,120 @@
 	<div id="profile" class="profile grid_4 txtElt">	
 		<h1>Profile</h1>
 		<p>Twoto provides Art direction, flash<br /> and frontend development.</p>
-		<a href="#">read more</a>
+		<a href="#">more</a>
 	</div>
 	
 	<div id="service" class="service grid_4 txtElt">
 		<h1>Service</h1>
-		<p>If you are interested in booking us,<br />please fill out and submit the form.</p>
-		<a href="#">read more</a>
+		<p>If you are interested in booking me,<br />please fill out and submit the form.</p>
+		<a href="#">more</a>
 	</div>
 	
 	<div id="contact" class="contact grid_4 txtElt">
 		<h1>Contact</h1>
 		<p>info{at}twoto.com<br />+49 176 240419 94</p>
-		<a href="#">read more</a>
+		<a href="#">more</a>
 	</div>
 	
 	</div>
 
 <div id="content" class=" contentStage close">
-	<div id="profile_extended" class="profile container_16">
+	<div id="profile_extended" class="profile  container_16">
 				<div id="" class="grid_4 expendedElt">
 				</div>
 				<div id="" class="grid_4 expendedElt">
-					<h1><a>Experience</a></h1>
-					<p>Through the years I did several projects for great clients. This graphic design showcase is a personal selection of my works over the last two years. Besides commissioned work you will also find some personal projects. Enjoy!</p>
+					<h1><a>I am.</a></h1>
+					<p>Patrick Decaix, aka Twoto, is designing and programming for more than 10 years. This Showcase is a  selection of commissioned and personal works over the last years.</p>
 				</div>
 				<div id="" class="grid_4 expendedElt">
-					<p><br/>profile_Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+					<h1><a>I offer.</a></h1>
+					<div class="contentStageList">
+						<ul>
+						<li>Creative Thinking and Solutions</li>
+						<li>User Interface</li>
+						<li> Motion / Web Design</li>
+						<li>Art Direction</li>
+						<li>Frontend / AS3 Development</li>
+					</ul>
+					</div>
 				</div>
 				<div id="" class="grid_4 expendedElt">
-					<p><br/>profile_extended profile_extended profile_extended 1</p>
+					<h1><a>I meet.</a></h1>
+					<p>Please feel free to contact me if you would like to get in touch.<br /><a href="http://www.twoto.com">&mdash; contact</a></p>
 				</div>
 			</div>
-	<div id="service_extended" class=" service container_16">
+			<!--
+	<div id="service_extended" class=" service  container_16">
 				<div id="" class="grid_4 expendedElt">
 				</div>
 				<div id="" class="grid_4 expendedElt">
-					<h1><a>We can.</a></h1>
-					<p>I actively work with companies, individuals & design agencies, helping them deliver by combining my experience in marketing, design and strategic thinking.</p>
+					<h1><a>Who.</a></h1>
+					<p>Name:.......................</p>
 				</div>
 				<div id="" class="grid_4 expendedElt">
-					<h1><a>We offer.</a></h1>
+					<h1><a>Why.</a></h1>
 					<p>&mdash; Information Architecture<br />&mdash; UI and UX Design<br />&mdash; Graphic Design<br />&mdash; Web Design & Development<br />&mdash; Motion / Interactive Graphics</p>
 				</div>
 				<div id="" class="grid_4 expendedElt">
-					<h1><a>Meet us.</a></h1>
-					<p>service_extended service_extended service_extended service_extended service_extended service_extended1</p>
+					<h1><a>When.</a></h1>
+					<p>http://www.uzik.com/contact.php</p>
 				</div>
 		</div>
-		<div id="contact_extended" class=" contact container_16">
+		-->
+		
+		
+		
+		<form action="/cgi-bin/auswertung.pl" method="post" class=" service  container_16">
+			<div id="" class="grid_4 expendedElt">
+				</div>
+			<div id="" class="grid_4 expendedElt form">
+				<h1><a>Who.</a></h1>
+				<p>	<label for="firstname">First name: </label><input name="vorname" type="text" size="26"  maxlength="40"/></p>
+				<p>	<label for="lastname">Last name: </label><input name="zuname" type="text"  size="26"  maxlength="40"/></p>
+				</div>
+    		<div id="" class="grid_4 expendedElt form">
+    			<h1><a>Why.</a></h1>
+				<label for="firstname">Object: </label>
+				      <select id="Select" name="selection">
+				        <option value="--">Select</option>
+				        <option value="Berlin">Berlin</option>
+				        <option value="Frankfurt">Frankfurt</option>
+				        <option value="Muenchen">MŸnchen</option>
+				      </select>
+  				<p><textarea name="styled-textarea" id="styled" rows="" cols="">Enter your comment here...</textarea></p>
+			</div>
+			<div id="" class="grid_4 expendedElt form">
+    			<h1><a>when.</a></h1>
+				<input type="submit" value=" Absenden "/>
+
+			</div>
+ 		</form>
+		-->
+		
+	<div id="contact_extended" class=" contact  container_16">
 				<div id="" class="grid_4 expendedElt">
 				</div>
 				<div id="" class="grid_4 expendedElt">
-					<h1><a>location</a></h1>
-					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+					<h1><a>Visit me.</a></h1>
+					<p>Patrick Decaix<br />Philipsstrasse 10<br />D-20099 Hamburg<br />GERMANY</p>
 				</div>
 				<div id="" class="grid_4 expendedElt">
-					<h1><a>form</a></h1>
-					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+					<h1><a>Call me.</a></h1>
+					<p>M +49 176 24041994<br />T      +49 40 29886132</p>
 				</div>
 				<div id="" class="grid_4 expendedElt">
-					<p>3 Lorem ipsum dolor sit amet, consectetuer adipiscing ullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede..</p>
+					<h1><a>Write me.</a></h1>
+					<p>info{at}twoto.com<br /><br />.facebook<br />.skype</p>
 				</div>
 		</div>
 </div>
+
 <div id="main" class="container_16">
 	<div id="stage" class="grid_12">
 	</div>
 </div>
 
-
 <div id="menu" class="container_16">
-	
 	<div id="date" class="grid_4 naviElt">
 		<h5>Monday, 9. August 2010</h5>
 	</div>
@@ -131,9 +154,11 @@
 	<div id="search" class="grid_4 naviElt">
 		<a>search</a>
 	</div>
+	
 	<div id="feeds" class="grid_4 naviElt">
 		<a>feeds</a>
 	</div>
+
 </div>
 
 <div id="contents" class="container_16">
@@ -193,15 +218,13 @@
   	<p>12  Lorerpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.r sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutp</p>
 	<a href="http://www.twoto.com">&mdash; read more</a>
 	</div>
-</div> <!-- #demo -->
+</div>
 
 
 </div>
-</div>
-                
 
-	
-<div id="footer" class="container_16"></div>
-       
+</div>
+<!--
+-->
 </body>
 </html>

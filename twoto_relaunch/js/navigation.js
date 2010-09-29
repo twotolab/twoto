@@ -3,6 +3,18 @@
 	
 $(window).load(function(){
 
+	 // The DOM (document object model) is constructed
+    // We will initialize and run our plugin here
+	$('#profile a').click(function(){	
+		contentHandler("profile");
+	});
+	$('#service a').click(function(){	
+		contentHandler("service");
+	});
+	$('#contact a').click(function(){	
+		contentHandler("contact");
+	});
+	
 	//content Handler
 	var caseHandler ="close";
 	var selected="";;
@@ -21,7 +33,7 @@ $(window).load(function(){
 				 $(".contentStage").css('visibility','visible');
 				 $(".contentStage").css('display','block');
 					$(".contentStage").stop().animate({
-						height: "230"
+						height: "250"
 					
 					});
 					$("#stage").stop().animate({
@@ -175,5 +187,6 @@ $(window).load(function(){
             
         });    
     });
+
 //});
 	});
