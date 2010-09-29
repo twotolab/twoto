@@ -22,7 +22,6 @@ body {
 	background-image: url("../img/background.jpg");
 	background-position:center top;
 	background-repeat:no-repeat;
-  
 }
 
 #header{
@@ -30,16 +29,18 @@ body {
 	}
 #stage{
 	height:130px;
+
 	margin:40px 0 0 250px;
+
 	background-image: url("../img/introTxt.png");
 	background-repeat:no-repeat;
 	}
 #menu {
-	margin-top:60px;
+	margin-top:0px;
 }
 .contentStage{
-	margin-top:110px;
 	height:0px;
+	margin-top:110px;
 	background-color:#000000;
 	background-image:url("../img/stageBackground.png");
 	background-position: center top;
@@ -47,8 +48,60 @@ body {
 	display: none;
 	/*opacity:0;*/
 	visibility:hidden;
+	width:100%;
+	
+}
+/*****form******/
+label, input, select { /* Alle Labels UND Formularelemente auswählen */
+
+  display: block;
+  float: left;
+/*  
+  color:#999999;
+	font-size:11px;
+	font-weight:normal;
+	line-height:14px;
+	font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-weight:normal;
+	margin:6px 0 0 0;
+ 
+ 	border:none;
+	border-bottom: 1px dotted #999999;
+	*/
+ 
+}
+select{
+
+}
+form br { /* Alle Zeilenumbrüche in Formularen auswählen */
+  clear: left; /* das floating der labels und inputs aufheben */
+}
+textarea {
+	width:210px;
+	height:20px;
+	background-color:transparent;
+}
+input#submit { /* den Submit-Button */
+  float: left;
+  width: auto;
+  
+}
+input {
+	/*
+	background-color: transparent;
+	height:10px;
+	padding:2px 0 2px 1px;
+	*/
 }
 
+label {
+ text-align: left; 
+ padding-right: 2px; 
+}
+form {
+  margin:0;
+  padding:.1em;
+}
 /**** Masonry CSS ****/
 
 .wrap {
@@ -84,28 +137,45 @@ body {
 	margin-top:5px;
 }
 .expendedElt{
-	padding: 25px 0 0 0;
+	padding: 10px 0 0 0;
 }
-.expendedElt p{
-	color:#C8C5C2;
+#profile_extended .expendedElt p{
+	width:187px;
+	}
+.contentStageList,.expendedElt p{
+	color:#999999;
 	font-size:11px;
 	font-weight:normal;
 	line-height:14px;
 	letter-spacing:0.02em;
-	font-family:"Helvetica Neue",Helvetica,arial,sans-serif;
+	font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
 	font-weight:normal;
-	margin:0;
+	margin:6px 0 0 0;
 	}
-.expendedElt h1 a{
-	color: #ffebea;
-	letter-spacing:0.04em;
-	border-bottom-color:#CDCCBC;
+	.contentStageList {
+		padding-left:12px;
+	}
+.expendedElt h1 {	
+	margin:0;
+	padding:0;
+	border-bottom-color:#5d5655;
 	border-bottom-style:solid;
 	border-bottom-width:1px;
-	line-height:30px;
+	font-family:'Artbrush',
+	
+}.expendedElt h1 a{
+	color:#dcd6c8;
+	line-height:29px;
 	/*font-weight:bold;*/
 	
 }
+.expendedElt p a{
+	color:#999999;
+	line-height:28px;
+	/*font-weight:bold;*/
+	
+}
+
 .txtElt{
 	border-top:1px solid #cdccbc;
 	padding: 5px 0 0 0;
@@ -129,7 +199,7 @@ ul {
 
 
 	/* Navigation */
-#filterNavigation { margin: 0 auto; list-style: none; position: relative; width: 960px; }
+#filterNavigation { margin: 0 auto; list-style: none; position: relative;}
 #filterNavigation li { display: inline; }
 #filterNavigation li { color: black; }
 #filterNavigation li a { position: relative; z-index: 200; font-size: 11px; display: block; float: left; padding: 6px 10px 4px 10px; text-decoration: none; }
@@ -140,11 +210,11 @@ li.selected_filter a { color: #ffebea; }
 /*end*/
 
 .group:after { visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
-*:first-child+html .group { zoom:1; } /* IE7 */
+/**:first-child+html .group { zoom:1; } /* IE7 */
 
 #profile a,#service a,#contact a,#search a,#feeds a{
 	background: url("../img/moreButton.png") no-repeat 0 0;
-	padding:0 0 2px 20px;
+	padding:0 0 4px 20px;
 	font-style:italic;
 }
 
