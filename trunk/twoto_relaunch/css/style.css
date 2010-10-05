@@ -38,11 +38,16 @@ body {
 #menu {
 	margin-top:0px;
 }
+.contentStage h1, .contentStage p{
+	font-style:italic;
+	}
 .contentStage{
 	height:0px;
 	margin-top:110px;
+	/*
 	background-color:#000000;
 	background-image:url("../img/stageBackground.png");
+	*/
 	background-position: center top;
 	background-repeat:no-repeat;
 	display: none;
@@ -137,45 +142,19 @@ form {
 	margin-top:5px;
 }
 .expendedElt{
-	padding: 10px 0 0 0;
+	padding: 5px 0 0 0;
 }
 #profile_extended .expendedElt p{
 	width:187px;
 	}
-.contentStageList,.expendedElt p{
-	color:#999999;
-	font-size:11px;
-	font-weight:normal;
-	line-height:14px;
-	letter-spacing:0.02em;
-	font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
-	font-weight:normal;
-	margin:6px 0 0 0;
-	}
 	.contentStageList {
 		padding-left:12px;
 	}
-.expendedElt h1 {	
-	margin:0;
-	padding:0;
-	border-bottom-color:#5d5655;
-	border-bottom-style:solid;
-	border-bottom-width:1px;
-	font-family:'Artbrush',
-	
-}.expendedElt h1 a{
-	color:#dcd6c8;
-	line-height:29px;
-	/*font-weight:bold;*/
-	
+.line{
+		border-top:solid 1px  #666666;
+		
+		
 }
-.expendedElt p a{
-	color:#999999;
-	line-height:28px;
-	/*font-weight:bold;*/
-	
-}
-
 .txtElt{
 	border-top:1px solid #cdccbc;
 	padding: 5px 0 0 0;
@@ -189,7 +168,7 @@ form {
 }	
 
 ul {
-	margin:0;
+	margin: 3px 0 0 0;
 	padding:0;
 }
 

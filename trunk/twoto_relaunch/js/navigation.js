@@ -33,7 +33,7 @@ $(window).load(function(){
 				 $(".contentStage").css('visibility','visible');
 				 $(".contentStage").css('display','block');
 					$(".contentStage").stop().animate({
-						height: "250"
+						height: "130"
 					
 					});
 					$("#stage").stop().animate({
