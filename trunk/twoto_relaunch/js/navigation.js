@@ -3,8 +3,77 @@
 	
 $(window).load(function(){
 
-	 // The DOM (document object model) is constructed
+/*
+	if ($.browser.webkit) {
+	    //alert("this is webkit!");
+	    $("#magicBox").addClass('moveWebKitUp');
+	    $(".moveWebKitUp").css('margin-top','4px');
+	    
+	    
+	 }
+*/
+$browserTypeWebkit = false;
+if ($.browser.webkit) {
+    //alert("this is webkit!");
+    $browserTypeWebkit = true;
+ }
+ 
+	$('input[type="text"]').addClass("idleField");
+		$('input[type="text"]').focus(function() {
+			$(this).removeClass("idleField").addClass("focusField");
+	        if (this.value == this.defaultValue){
+	        	this.value = '';
+	    	}
+	        if(this.value != this.defaultValue){
+		    	this.select();
+	        }
+	    });
+	    $('input[type="text"]').blur(function() {
+	    	if(this.value != this.defaultValue){
+	    		$(this).removeClass("focusField").addClass("filledField");
+		    } else{
+		    $(this).removeClass("focusField").addClass("idleField");
+		    }
+	    	
+	        if ($.trim(this.value == '')){
+	        	this.value = (this.defaultValue ? this.defaultValue : '');
+	    	}
+	    	
+	    });
+	  
+	    $('textarea').addClass("idleField");
+	    	$('textarea').focus(function() {
+	    		$(this).removeClass("idleField").addClass("focusField");
+	            if (this.value == this.defaultValue){
+	            	this.value = '';
+	        	}
+	            if(this.value != this.defaultValue){
+	    	    	this.select();
+	            }
+	        });
+	        $('textarea').blur(function() {
+	        	if(this.value != this.defaultValue){
+	        		$(this).removeClass("focusField").addClass("filledField");
+	    	    } else{
+	    	    $(this).removeClass("focusField").addClass("idleField");
+	    	    }
+	        	
+	            if ($.trim(this.value == '')){
+	            	this.value = (this.defaultValue ? this.defaultValue : '');
+	        	}
+	        	
+	        });
+	    
+	// The DOM (document object model) is constructed
     // We will initialize and run our plugin here
+	
+	// search expender
+	
+	$('#search a').click(function(){	
+		alert("search")
+		$('searchContents_extended').slideToggle('slow');
+	});
+	
 	$('#profile a').click(function(){	
 		contentHandler("profile");
 	});
@@ -19,7 +88,34 @@ $(window).load(function(){
 	var caseHandler ="close";
 	var selected="";;
 	var lastSelected="";
-	contentHandler = function (selected){
+	
+	var pos_profile="236px";
+	var pos_service="476px";
+	var pos_contact="716px";
+
+function MoveItArrow(selected){
+
+
+	if(selected=="profile"){
+		$(".arrowTopElt").animate({"left": pos_profile,opacity: 1}, "slow");
+		}
+	else if(selected=="service"){
+		$(".arrowTopElt").animate({"left": pos_service,opacity: 1}, "slow");
+		}
+	else if(selected=="contact"){
+		$(".arrowTopElt").animate({"left": pos_contact,opacity: 1}, "slow");
+		
+		}
+	else if(selected="CLOSE"){
+		$(".arrowTopElt").animate({"left": pos_contact,opacity: 0} ,"slow",function(){
+			$(".arrowTopElt").css('visibility','hidden');
+		});
+		
+			
+		}
+	
+	}
+	function contentHandler(selected){
 
 		if ($(".contentStage").is('.close')) {
 			caseHandler= "close";
@@ -30,26 +126,38 @@ $(window).load(function(){
 		if (caseHandler == "close" && selected != lastSelected) {
 			lastSelected = selected;
 				 $(".contentStage").removeClass('close').addClass('open');
+				 $("#"+selected+" a").removeClass('moreButton').addClass('closeButton');
+				 $("#"+selected+" a").html("close");	
+				 
 				 $(".contentStage").css('visibility','visible');
 				 $(".contentStage").css('display','block');
 					$(".contentStage").stop().animate({
-						height: "130"
-					
+						height: "225"
+					},function(){
+						$(".arrowTopElt").css('display','block');
+						$(".arrowTopElt").css('visibility','visible');
+						
+					 	MoveItArrow(selected);
 					});
 					$("#stage").stop().animate({
 						height: "1",
 						opacity: "0"
 					});
 					
-					
 					$(".contentStage .service").hide();	
 					$(".contentStage .profile").hide();
 					$(".contentStage .contact").hide();
-					$(".contentStage "+"."+selected).stop().slideToggle('slow');		
+					$(".contentStage "+"."+selected).stop().slideToggle('slow');
+					
+					
+					
 					
 		 	} else if (caseHandler == "open"  && selected == lastSelected) {
 		 		
-				 $(".contentStage").removeClass('open').addClass('close');
+				$(".contentStage").removeClass('open').addClass('close');
+				$("#"+lastSelected+" a").removeClass('closeButton').addClass('moreButton');
+				$("#"+lastSelected+" a").html("more");		 
+				 MoveItArrow("CLOSE");
 				 
 			  	$(".contentStage").stop().animate({
 						height: "0"
@@ -69,14 +177,25 @@ $(window).load(function(){
 						$(".contentStage .contact").hide();
 			}	
 		 	else if (caseHandler == "open"  && selected != lastSelected) {
+		 	
+		 		$("#"+lastSelected+" a").removeClass('closeButton').addClass('moreButton');
+		 		$("#"+lastSelected+" a").html("more");		
+		 		$("#"+selected+" a").removeClass('moreButton').addClass('closeButton');
+		 		$("#"+selected+" a").html("close");
+		 	
 		 		lastSelected = selected;
 		 		$(".contentStage .service").hide();	
 				$(".contentStage .profile").hide();
 				$(".contentStage .contact").hide();
 				$(".contentStage "+"."+selected).stop().slideToggle('slow');	
+				$(".arrowTopElt").css('opacity','0.8');
+				MoveItArrow(selected);
 		 	}
 		}
 	
+	// moveArrow
+	moveArrowHandler = function (selected){
+	}
 	// mansonry
 	
 	var speed = 1000,  // animation speed
@@ -110,6 +229,9 @@ $(window).load(function(){
 	    .data("origLeft", $selected.find("a").position().left)
 	    .data("origWidth", $magicBox.width())
 	    .data("origColor", $basicColor);
+	    
+
+	     
 	    
 	    $selected.find("a").stop().animate({color:hightLightColor});
         $magicBox.stop().animate({
@@ -157,6 +279,14 @@ $(window).load(function(){
     .data("origLeft", $selected.find("a").position().left)
     .data("origWidth", $magicBox.width())
     .data("origColor", $basicColor);
+    
+    /* fix for webkit */
+    if ($browserTypeWebkit == true) {
+       var moveWebKitUp = parseInt($magicBox.css("margin-top"))-1;
+            //alert("hello :"+moveWebKitUp);
+            $magicBox.css("margin-top",moveWebKitUp);
+       
+    }
     
     $("#filterNavigation li").find("a").hover(function() {
         $el = $(this);
