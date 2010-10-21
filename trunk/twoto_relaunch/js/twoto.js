@@ -74,13 +74,49 @@ $(window).load(function(){
 
 	
 	// search expender
+	$heightSearch = $("#search_extended").height(); 
+
+	$(".searchExpendedElt").height(1); 
 	
 	$('#search a').click(function(){	
-		alert("search");
+		//alert("search");
+		$(".searchExpendedElt").css('display','block');
+		$(".searchExpendedElt").css('visibility','visible');
+		$("#searchClose a").css('visibility','visible');
+		$("#searchClose a").css('opacity','0');
 		
+		$(".searchExpendedElt").stop().animate({
+			height: $heightSearch+'px',duration: 'slow'
+			});
+		$("#search a").stop().animate({
+				opacity:'0',duration: 'slow'
+			},function(){
+				$(this).css('visibility','hidden');
+				$("#searchClose a").stop().animate({
+				opacity:'1',duration: 'slow'
+				});
+		});
+
+
+	});
+	$('#searchClose a').click(function(){	
+		//alert("searchClose");
+	
+		$(".searchExpendedElt").stop().animate({
+			height: '1px',duration: 'slow'
+			},function(){
+				$(".searchExpendedElt").css('display','none');
+				$(".searchExpendedElt").css('visibility','hidden');
+				$("#search a").css('visibility','visible');
+				$("#search a").stop().animate({
+				opacity:'1',duration: 'slow'
+			},function(){
+				
+				});
+			});	
+			
 	});
 	
-
 	//content Handler
 	
 	$('#profile a').click(function(){	
