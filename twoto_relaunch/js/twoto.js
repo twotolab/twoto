@@ -22,10 +22,18 @@ $(window).load(function(){
 	
 	// We will initialize and run our plugin here
 	//
+	$('form fieldset input[type="text"]').focus(function() {
+	        if (this.value == this.defaultValue){
+	        	this.value = '';
+	    	}
+	        if(this.value != this.defaultValue){
+	        	this.select();
+	        }
+	   });
 	// form tuning
 	
-	$('input[type="text"]').addClass("idleField");
-	    $('input[type="text"]').focus(function() {
+	$('.service input[type="text"]').addClass("idleField");
+	    $('.service input[type="text"]').focus(function() {
 	    	$(this).removeClass("idleField").addClass("focusField");
 	        if (this.value == this.defaultValue){
 	        	this.value = '';
@@ -34,7 +42,7 @@ $(window).load(function(){
 	        	this.select();
 	        }
 	    });
-	    $('input[type="text"]').blur(function() {
+	    $('.service input[type="text"]').blur(function() {
 	    	if(this.value != this.defaultValue){
 	    		$(this).removeClass("focusField").addClass("filledField");
 	        } else{
@@ -47,8 +55,8 @@ $(window).load(function(){
 	    	
 	    });
 	  
-	$('textarea').addClass("idleField");
-	    $('textarea').focus(function() {
+	$('.service textarea').addClass("idleField");
+	    $('.service textarea').focus(function() {
 	    	$(this).removeClass("idleField").addClass("focusField");
 	        if (this.value == this.defaultValue){
 	        	this.value = '';
@@ -57,7 +65,7 @@ $(window).load(function(){
 	        	this.select();
 	        }
 	    });
-	    $('textarea').blur(function() {
+	    $('.service textarea').blur(function() {
 	    	if(this.value != this.defaultValue){
 	    		$(this).removeClass("focusField").addClass("filledField");
 	        } else{
@@ -80,6 +88,12 @@ $(window).load(function(){
 	
 	$('#search a').click(function(){	
 		//alert("search");
+		
+		/*
+		$('form fieldset input[type="text"]:first').focus();
+		$('form fieldset  input[type="text"]').css('color','#ff3344');
+*/
+		
 		$(".searchExpendedElt").css('display','block');
 		$(".searchExpendedElt").css('visibility','visible');
 		$("#searchClose a").css('visibility','visible');
@@ -92,6 +106,8 @@ $(window).load(function(){
 				opacity:'0',duration: 'slow'
 			},function(){
 				$(this).css('visibility','hidden');
+				$("input.focus:last").focus();  
+				
 				$("#searchClose a").stop().animate({
 				opacity:'1',duration: 'slow'
 				});
