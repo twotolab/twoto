@@ -22,14 +22,7 @@ $(window).load(function(){
 	
 	// We will initialize and run our plugin here
 	//
-	$('form fieldset input[type="text"]').focus(function() {
-	        if (this.value == this.defaultValue){
-	        	this.value = '';
-	    	}
-	        if(this.value != this.defaultValue){
-	        	this.select();
-	        }
-	   });
+	
 	// form tuning
 	
 	$('.service input[type="text"]').addClass("idleField");
@@ -79,70 +72,65 @@ $(window).load(function(){
 	    });
 	
 
-
+	// search form tuning
+	//
+	$('form fieldset input[type="text"]').focus(function() {
+	        if (this.value == this.defaultValue){
+	        	this.value = '';
+	    	}
+	        if(this.value != this.defaultValue){
+	        	this.select();
+	        }
+	   });
 	
 	// search expender
 	$heightSearch = $("#search_extended").height(); 
 
 	$(".searchExpendedElt").height(1); 
 	
+	var caseSearchHandler ="close";
+	
 	$('#search a').click(function(){	
 		//alert("search");
-		
-		/*
-		$('form fieldset input[type="text"]:first').focus();
-		$('form fieldset  input[type="text"]').css('color','#ff3344');
-*/
-		
-		$(".searchExpendedElt").css('display','block');
-		$(".searchExpendedElt").css('visibility','visible');
-		$("#searchClose a").css('visibility','visible');
-		$("#searchClose a").css('opacity','0');
-		
-		$(".searchExpendedElt").stop().animate({
-			height: $heightSearch+'px',duration: 'slow'
-			});
-		$("#search a").stop().animate({
-				opacity:'0',duration: 'slow'
-			},function(){
-				$(this).css('visibility','hidden');
-				$("input.focus:last").focus();  
+		if(caseSearchHandler == "close"){
+			caseSearchHandler= "open";
 				
-				$("#searchClose a").stop().animate({
-				opacity:'1',duration: 'slow'
-				});
-		});
-
-
-	});
-	$('#searchClose a').click(function(){	
-		//alert("searchClose");
-	
-		$(".searchExpendedElt").stop().animate({
-			height: '1px',duration: 'slow'
-			},function(){
-				$(".searchExpendedElt").css('display','none');
-				$(".searchExpendedElt").css('visibility','hidden');
-				$("#search a").css('visibility','visible');
-				$("#search a").stop().animate({
-				opacity:'1',duration: 'slow'
-			},function(){
-				
-				});
-			});	
+			$(".searchExpendedElt").css('display','block');
+			$(".searchExpendedElt").css('visibility','visible');
 			
-	});
+			$(".searchExpendedElt").stop().animate({
+				height: $heightSearch+'px',duration: 'slow'
+				});
+			
+			$(this).removeClass('moreButton').addClass('closeButton');
+			$(this).html("close");	
+
+		} else if(caseSearchHandler != "close"){
+			caseSearchHandler ="close";
+			
+			
+			$(".searchExpendedElt").stop().animate({
+			height: '1px',duration: 'slow',
+				},function(){
+				$(this).css('display','none');
+				$(this).css('visibility','hidden');
+				
+				$('#search a').removeClass('closeButton').addClass('moreButton');
+				$('#search a').html("search");
+				
+				});
+		}
+	});	
+	//contentInfo Handler
 	
-	//content Handler
-	
-	$('#profile a').click(function(){	
-		contentHandler("profile");
+	$('#profile a').click(function(){
+		contentInfoHandler("profile");
 	});
 	$('#service a').click(function(){	
-		contentHandler("service");
+		contentInfoHandler("service");
 	});
 	$('#contact a').click(function(){	
-		contentHandler("contact");
+		contentInfoHandler("contact");
 	});
 	
 	var caseHandler ="close";
@@ -175,23 +163,23 @@ $(window).load(function(){
 			}
 		
 		}
-	function contentHandler(selected){
+	function contentInfoHandler(selected){
 
-		if ($(".contentStage").is('.close')) {
+		if ($(".contentInfo").is('.close')) {
 			caseHandler= "close";
 		} else{
 			caseHandler ="open";
 		}
-
+		
 		if (caseHandler == "close" && selected != lastSelected) {
 			lastSelected = selected;
-				 $(".contentStage").removeClass('close').addClass('open');
+				 $(".contentInfo").removeClass('close').addClass('open');
 				 $("#"+selected+" a").removeClass('moreButton').addClass('closeButton');
 				 $("#"+selected+" a").html("close");	
 				 
-				 $(".contentStage").css('visibility','visible');
-				 $(".contentStage").css('display','block');
-					$(".contentStage").stop().animate({
+				 $(".contentInfo").css('visibility','visible');
+				 $(".contentInfo").css('display','block');
+					$(".contentInfo").stop().animate({
 						height: "225"
 					},function(){
 						$(".arrowTopElt").css('display','block');
@@ -204,27 +192,27 @@ $(window).load(function(){
 						opacity: "0"
 					});
 					
-					$(".contentStage .service").hide();	
-					$(".contentStage .profile").hide();
-					$(".contentStage .contact").hide();
-					$(".contentStage "+"."+selected).stop().slideToggle('slow');
+					$(".contentInfo .service").hide();	
+					$(".contentInfo .profile").hide();
+					$(".contentInfo .contact").hide();
+					$(".contentInfo "+"."+selected).stop().slideToggle('slow');
 					
 					
 					
 					
 		 	} else if (caseHandler == "open"  && selected == lastSelected) {
 		 		
-				$(".contentStage").removeClass('open').addClass('close');
+				$(".contentInfo").removeClass('open').addClass('close');
 				$("#"+lastSelected+" a").removeClass('closeButton').addClass('moreButton');
 				$("#"+lastSelected+" a").html("more");		 
 				 MoveItArrow("CLOSE");
 				 
-			  	$(".contentStage").stop().animate({
+			  	$(".contentInfo").stop().animate({
 						height: "0"
 					
 					},function(){
-							$(".contentStage").css('visibility','hidden');
-							$(".contentStage").css('display','none');
+							$(".contentInfo").css('visibility','hidden');
+							$(".contentInfo").css('display','none');
 					});
 				 	$("#stage").stop().animate({
 						height: "130px",
@@ -232,9 +220,9 @@ $(window).load(function(){
 					});
 					 lastSelected = "";
 						
-						$(".contentStage .service").hide();	
-						$(".contentStage .profile").hide();
-						$(".contentStage .contact").hide();
+						$(".contentInfo .service").hide();	
+						$(".contentInfo .profile").hide();
+						$(".contentInfo .contact").hide();
 			}	
 		 	else if (caseHandler == "open"  && selected != lastSelected) {
 		 	
@@ -244,10 +232,10 @@ $(window).load(function(){
 		 		$("#"+selected+" a").html("close");
 		 	
 		 		lastSelected = selected;
-		 		$(".contentStage .service").hide();	
-				$(".contentStage .profile").hide();
-				$(".contentStage .contact").hide();
-				$(".contentStage "+"."+selected).stop().slideToggle('slow');	
+		 		$(".contentInfo .service").hide();	
+				$(".contentInfo .profile").hide();
+				$(".contentInfo .contact").hide();
+				$(".contentInfo "+"."+selected).stop().slideToggle('slow');	
 				$(".arrowTopElt").css('opacity','0.8');
 				MoveItArrow(selected);
 		 	}
