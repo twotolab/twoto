@@ -22,7 +22,11 @@ $(window).load(function(){
 	
 	// We will initialize and run our plugin here
 	//
-	
+	/*
+	if (window.projectPage === undefined){
+		//alert("window.projectPage is undefined/undeclared"); 
+	} 
+	*/
 	// form tuning
 	
 	$('.service input[type="text"]').addClass("idleField");
@@ -103,7 +107,7 @@ $(window).load(function(){
 				});
 			
 			$(this).removeClass('moreButton').addClass('closeButton');
-			$(this).html("close");	
+			$(this).html("close search");	
 
 		} else if(caseSearchHandler != "close"){
 			caseSearchHandler ="close";
@@ -173,56 +177,69 @@ $(window).load(function(){
 		
 		if (caseHandler == "close" && selected != lastSelected) {
 			lastSelected = selected;
-				 $(".contentInfo").removeClass('close').addClass('open');
-				 $("#"+selected+" a").removeClass('moreButton').addClass('closeButton');
-				 $("#"+selected+" a").html("close");	
-				 
-				 $(".contentInfo").css('visibility','visible');
-				 $(".contentInfo").css('display','block');
-					$(".contentInfo").stop().animate({
-						height: "225"
-					},function(){
-						$(".arrowTopElt").css('display','block');
-						$(".arrowTopElt").css('visibility','visible');
-						
-					 	MoveItArrow(selected);
-					});
-					$("#stage").stop().animate({
-						height: "1",
-						opacity: "0"
-					});
-					
-					$(".contentInfo .service").hide();	
-					$(".contentInfo .profile").hide();
-					$(".contentInfo .contact").hide();
-					$(".contentInfo "+"."+selected).stop().slideToggle('slow');
-					
-					
-					
-					
-		 	} else if (caseHandler == "open"  && selected == lastSelected) {
+			$(".contentInfo").removeClass('close').addClass('open');
+			$("#"+selected+" a").removeClass('moreButton').addClass('closeButton');
+			$("#"+selected+" a").html("close");	
+			
+			$(".contentInfo").css('visibility','visible');
+			$(".contentInfo").css('display','block');
+			$(".contentInfo").stop().animate({
+			 height: "225",duration: 'slow'
+			},function(){
+			 $(".arrowTopElt").css('display','block');
+			 $(".arrowTopElt").css('visibility','visible');
+			 
+			MoveItArrow(selected);
+			});
+			$("#stage").data("originalHeight",$("#stage").height());
+			$stageHeight = $("#stage").data("originalHeight");
+			$(".stageIntro").stop().animate({
+			 height: "1",
+			 opacity: "0"
+			});
+			
+			$(".contentInfo .service").hide();	
+			$(".contentInfo .profile").hide();
+			$(".contentInfo .contact").hide();
+			$(".contentInfo "+"."+selected).stop().slideToggle('slow');
+			
+			if(window.projectPage === "true"){
+			 closeProject();
+			};
+		
+		 } else if (caseHandler == "open"  && selected == lastSelected) {
+		 		
 		 		
 				$(".contentInfo").removeClass('open').addClass('close');
 				$("#"+lastSelected+" a").removeClass('closeButton').addClass('moreButton');
 				$("#"+lastSelected+" a").html("more");		 
 				 MoveItArrow("CLOSE");
 				 
+
 			  	$(".contentInfo").stop().animate({
-						height: "0"
+						height: "30",duration: 'slow'
 					
 					},function(){
-							$(".contentInfo").css('visibility','hidden');
-							$(".contentInfo").css('display','none');
+						$(".contentInfo").css('visibility','hidden');
+						$(".contentInfo").css('display','none');
+						if(window.projectPage === "true"){
+			 				openProject();
+						};		
+		
 					});
-				 	$("#stage").stop().animate({
-						height: "130px",
-						opacity: "1"
-					});
-					 lastSelected = "";
-						
-						$(".contentInfo .service").hide();	
-						$(".contentInfo .profile").hide();
-						$(".contentInfo .contact").hide();
+					
+			
+				$(".stageIntro").stop().animate({
+				    height: $stageHeight ,
+				    opacity: "1"
+				});
+			
+				lastSelected = "";
+				    
+				$(".contentInfo .service").hide();	
+			 	$(".contentInfo .profile").hide();
+				$(".contentInfo .contact").hide();
+				
 			}	
 		 	else if (caseHandler == "open"  && selected != lastSelected) {
 		 	
@@ -236,11 +253,68 @@ $(window).load(function(){
 				$(".contentInfo .profile").hide();
 				$(".contentInfo .contact").hide();
 				$(".contentInfo "+"."+selected).stop().slideToggle('slow');	
-				$(".arrowTopElt").css('opacity','0.8');
+				$(".arrowTopElt").css('opacity','1');
 				MoveItArrow(selected);
 		 	}
 		}
+	// project
 	
+	function closeProject(){
+			
+			$(".stageProject").stop().animate({
+					height: "0",duration: 'slow'				
+					},function(){		
+						// end action
+					$(".stageProject").css('visibility','hidden');
+					$(".stageProject").css('display','none');
+			});
+			$projectInfoHeight = $(".projectInfo").height();
+			
+			$(".logoProject").css('visibility','hidden');
+			$(".projectInfo").css('visibility','hidden');
+			$(".projectInfo").css('display','none');
+			$(".projectInfo").css('height','0');
+			$(".contentInfo").css("margin-bottom","40px");
+	};
+
+
+	function openProject(){
+	
+			$(".stageProject").css('visibility','visible');
+			$(".stageProject").css('display','block');
+						
+			$(".stageProject").stop().animate({
+					height: "450px",duration: 'slow'	
+					},function(){
+						// end action
+			$(".projectInfo").css('visibility','visible');
+					});
+			$(".logoProject").css('visibility','visible');
+
+			$(".projectInfo").css('display','block');
+			$(".projectInfo").css('height',$projectInfoHeight);
+			$(".contentInfo").css("margin-bottom","0px");
+	
+	};
+	function introProject(){
+	
+			$(".stageProject").css('height','1px');
+			$(".projectInfo").css('visibility','hidden');
+						
+			$(".stageProject").stop().animate({
+					height: "450px",duration: 'slow'	
+					},function(){
+						// end action
+						$(".projectInfo").css('visibility','visible');
+					});
+					
+			$(".logoProject").css('visibility','visible');
+			$(".projectInfo").css('display','block');
+			$(".projectInfo").css('height',$projectInfoHeight);
+			$(".contentInfo").css("margin-bottom","0px");
+	
+	};
+
 	// mansonry
 	
 	var speed = 1000,  // animation speed
@@ -363,5 +437,7 @@ $(window).load(function(){
             
         });    
     });
-    
+    		if(window.projectPage === "true"){
+		introProject();
+	}
 });
