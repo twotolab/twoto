@@ -282,6 +282,7 @@ $(window).load(function(){
 	
 			$(".stageProject").css('visibility','visible');
 			$(".stageProject").css('display','block');
+			$(".logoProject").css('visibility','visible');
 						
 			$(".stageProject").stop().animate({
 					height: "450px",duration: 'slow'	
@@ -289,7 +290,7 @@ $(window).load(function(){
 						// end action
 			$(".projectInfo").css('visibility','visible');
 					});
-			$(".logoProject").css('visibility','visible');
+			
 
 			$(".projectInfo").css('display','block');
 			$(".projectInfo").css('height',$projectInfoHeight);
