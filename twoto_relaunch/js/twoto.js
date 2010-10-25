@@ -285,7 +285,7 @@ $(window).load(function(){
 			$(".logoProject").css('visibility','visible');
 						
 			$(".stageProject").stop().animate({
-					height: "450px",duration: 'slow'	
+					height: "420px",duration: 'slow'	
 					},function(){
 						// end action
 			$(".projectInfo").css('visibility','visible');
@@ -303,7 +303,7 @@ $(window).load(function(){
 			$(".projectInfo").css('visibility','hidden');
 						
 			$(".stageProject").stop().animate({
-					height: "450px",duration: 'slow'	
+					height: "420px",duration: 'slow'	
 					},function(){
 						// end action
 						$(".projectInfo").css('visibility','visible');
@@ -311,7 +311,6 @@ $(window).load(function(){
 					
 			$(".logoProject").css('visibility','visible');
 			$(".projectInfo").css('display','block');
-			$(".projectInfo").css('height',$projectInfoHeight);
 			$(".contentInfo").css("margin-bottom","0px");
 	
 	};
