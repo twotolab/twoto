@@ -27,6 +27,71 @@ $(window).load(function(){
 		//alert("window.projectPage is undefined/undeclared"); 
 	} 
 	*/
+	// turm on validation in form
+	$("#contactForm").validate({
+	
+	errorLabelContainer: ".infoForm",
+	showErrors: function(errorMap, errorList) {
+		$(".infoForm").html("&rarr; " + this.numberOfInvalids() + " errors. ");
+		this.defaultShowErrors();
+	},
+   rules: {
+     // simple rules
+     name: {
+       required: true,
+       minlength: 2
+     },
+     from: {
+       required: true,
+       minlength: 2
+     },
+     comment1: {
+       required: true,
+       minlength: 5
+     },
+     // compound rule
+     email: {
+       required: true,
+       email: true
+     },
+    },
+
+})
+		$("#contactForm").submit(function(){
+	
+	// 'this' refers to the current submitted form
+	var str = $(this).serialize();
+	
+	   $.ajax({
+	   type: "POST",
+	   url: "contact.php",
+	   data: str,
+	   success: function(msg){
+	
+	$("#note").ajaxComplete(function(event, request, settings){
+	
+	if(msg == 'OK') // Message Sent? Show the 'Thank You' message and hide the form
+	{
+	result = '<div class="notification_ok">Your message has been sent. Thank you!</div>';
+	$("#fields").hide();
+	}
+	else
+	{
+	result = msg;
+	}
+	
+	$(this).html(result);
+	
+	});
+	
+	}
+	
+	 });
+	
+	return false;
+	
+	});
+
 	// form tuning
 	
 	$('.service input[type="text"]').addClass("idleField");
