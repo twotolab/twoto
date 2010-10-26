@@ -1,7 +1,7 @@
 <?php
 /*
 Credits: Bit Repository
-URL: http://www.bitrepository.com/a-simple-ajax-contact-form-with-php-validation.html
+URL: http://www.bitrepository.com/
 */
 
 include 'config.php';
@@ -15,9 +15,11 @@ if($post)
 include 'functions.php';
 
 $name = stripslashes($_POST['name']);
-$email = $_POST['email'];
-$subject = stripslashes($_POST['subject']);
-$message = stripslashes($_POST['message']);
+$from = stripslashes($_POST['from']);
+$email = trim($_POST['email']);
+$message = "Hello Patrick Decaix,\n I'am " .$name." from ".$from." and my email is ".$email.".\n
+I would like to get in touch with you for the following purpose ".stripslashes($_POST['comment1'])."\n".stripslashes($_POST['comment2']);
+$subject = "Contact via twotoform";
 
 $error = '';
 
@@ -25,34 +27,28 @@ $error = '';
 
 if(!$name)
 {
-$error .= 'Please enter your name.';
+$error .= '&rarr; Please enter your name.';
 }
 
 // Check email
 
 if(!$email)
 {
-$error .= 'Please enter an e-mail address.';
+$error .= '&rarr; Please enter an e-mail address.';
 }
 
 if($email && !ValidateEmail($email))
 {
-$error .= 'Please enter a valid e-mail address.';
-}
-
-// Check message (length)
-
-if(!$message || strlen($message) < 15)
-{
-$error .= "Please enter your message. It should have at least 15 characters.";
+$error .= '&rarr; Please enter a valid e-mail address.';
 }
 
 if(!$error)
 {
 $mail = mail(WEBMASTER_EMAIL, $subject, $message,
-     "From: ".$name." <".$email.">rn"
-    ."Reply-To: ".$email."rn"
+     "From: ".$name." <".$email.">\r\n"
+    ."Reply-To: ".$email."\r\n"
     ."X-Mailer: PHP/" . phpversion());
+
 
 if($mail)
 {
@@ -62,7 +58,7 @@ echo 'OK';
 }
 else
 {
-echo '<div class="notification_error">'.$error.'</div>';
+echo '<span class="notification_error">'.$error.'</span>';
 }
 
 }
