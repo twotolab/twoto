@@ -63,14 +63,15 @@
 			<form id="contactForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" class="service container_16">
 				<div id="" class="grid_4 logo">
 					</div>
-				<div id="" class="grid_12 expendedElt ">
-					<span>Hello Patrick Decaix,</span><br /><label for="name">I'am </label><input name="name" id="contactname" class="simpleTxt" type="text" size="15"  maxlength="35" value=""/><label for="from">from </label><input name="from" id="from" class="simpleTxt" type="text" size="12"  maxlength="28" value="your location"/><label for="mail">and my email is </label><input name="mail" id="email" class="simpleTxt required email" type="text" size="20"  maxlength="28" value="your@mail.com"/><br /><span>I would like to get in touch with you for the following purpose</span><br />
-					<input name="comment1" id="comment1" class="simpleTxt required" type="text" size="83"  maxlength="83" value="your comment"/>
-					<input name="comment2" id="comment2" class="simpleTxt required" type="text" size="83" maxlength="83" value="   "/>
-					<input type="submit" value="Submit" class="button"/>
-					<span class="infoForm"></span>
+				<div  id="finished"></div>
+				<div id="sender" class="grid_12 expendedElt ">
+					<span class="sendElt">Hello Patrick Decaix,</span><br /><label for="name" class="sendElt">I'am </label><input name="name" id="contactname" class="simpleTxt sendElt" type="text" size="15"  maxlength="35" value=""/><label for="from" class="sendElt">from </label><input name="from" id="from" class="simpleTxt sendElt" type="text" size="12"  maxlength="28" value=""/><label for="mail" class="sendElt">and my email is </label><input name="email" id="email" class="simpleTxt sendElt" type="text" size="20"  maxlength="28" value=""/><br /><span class="sendElt">I would like to get in touch with you for the following purpose</span><br />
+					<input name="comment1" id="comment1" class="simpleTxt sendElt" type="text" size="83"  maxlength="83" value=""/>
+					<input name="comment2" id="comment2" class="simpleTxt sendElt" type="text" size="83" maxlength="83" value=""/>
+					<input type="submit" value="Submit" class="button sendElt"/>
+					<div class="infoForm"></div>
 				</div>
-				
+		
 	 		</form>
 			
 		<div id="contact_extended" class=" contact  container_16">
