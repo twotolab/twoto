@@ -55,7 +55,6 @@ $(window).load(function(){
        email: true
      },
     },
-
 })
 		$("#contactForm").submit(function(){
 	
@@ -67,19 +66,22 @@ $(window).load(function(){
 	   url: "contact.php",
 	   data: str,
 	   success: function(msg){
+		
+	$(".infoForm").ajaxComplete(function(event, request, settings){
 	
-	$("#note").ajaxComplete(function(event, request, settings){
-	
+	$(".infoForm").css("display","inline");
 	if(msg == 'OK') // Message Sent? Show the 'Thank You' message and hide the form
 	{
-	result = '<div class="notification_ok">Your message has been sent. Thank you!</div>';
-	$("#fields").hide();
+		
+	result = '<div class="notification_ok" style ="display:inline">&rarr;  Your message has been sent. Thank you!</div>';
+	$(".sendElt").hide();
+	$("form .expendedElt").css("background-image","none");
 	}
 	else
 	{
 	result = msg;
 	}
-	
+		
 	$(this).html(result);
 	
 	});
