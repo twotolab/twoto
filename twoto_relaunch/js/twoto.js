@@ -61,7 +61,7 @@ $(window).load(function(){
 	
 	   $.ajax({
 	   type: "POST",
-	   url: "form/contact.php",
+	   url: "contactForm/contact.php",
 	   data: str,
 	   success: function(msg){
 		
