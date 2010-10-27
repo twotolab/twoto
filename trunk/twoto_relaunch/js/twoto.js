@@ -42,12 +42,10 @@ $(window).load(function(){
        minlength: 2
      },
      from: {
-       required: true,
-       minlength: 2
+       required: true
      },
      comment1: {
-       required: true,
-       minlength: 5
+       required: true
      },
      // compound rule
      email: {
@@ -63,7 +61,7 @@ $(window).load(function(){
 	
 	   $.ajax({
 	   type: "POST",
-	   url: "contact.php",
+	   url: "form/contact.php",
 	   data: str,
 	   success: function(msg){
 		
