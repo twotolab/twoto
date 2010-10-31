@@ -201,6 +201,9 @@ $(window).load(function(){
 	$('#contact a').click(function(){	
 		contentInfoHandler("contact");
 	});
+	$('#imprint a').click(function(){	
+		contentInfoHandler("contact");
+	});
 	
 	var caseHandler ="close";
 	var selected="";;
