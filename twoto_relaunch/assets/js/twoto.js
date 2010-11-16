@@ -28,12 +28,17 @@ $(document).ready(function() {
 	    $browserTypeWebkit = true;
 	    // init css modification
 	    $(".moreButton").css("padding","0 0 3px 20px");
+	    $(".arrowTopElt").css("margin","6px 0 0 0");
+	    $(".filter").css("padding","0 0 4px 0");
+	    $(".feeds").css("padding","0 0 13px 0");
+	    $(".search").css("padding","0 0 13px 0");
 		// example:  $('#feeds').removeClass('naviElt').addClass('naviEltWebKit');
 	}
 
 if(navigator.platform === "Win32"){
 if ($.browser.webkit) {
 $(".moreButton").css("padding","0 0 1px 20px");
+
            //alert("hello :"+moveWebKitUp);
 }
 
@@ -152,14 +157,18 @@ $(".moreButton").css("padding","0 0 1px 20px");
 	// form tuning
 	$('.service input[type="text"]').addClass("idleField");
 	    $('.service input[type="text"]').focus(function() {
+	    	
 	    	$(this).removeClass("idleField").addClass("focusField");
+	        
 	        
 	        if (this.value == this.defaultValue){
 	        	this.value = '';
 	    	}
+	    	
 	        if(this.value != this.defaultValue){
 	        	this.select();
 	        }
+	       
 	        
 	    });
 	    $('.service input[type="text"]').blur(function() {
@@ -168,22 +177,28 @@ $(".moreButton").css("padding","0 0 1px 20px");
 	        } else{
 	        $(this).removeClass("focusField").addClass("idleField");
 	        }
-	    	
+	    	/*
 	        if ($.trim(this.value == '')){
 	        	this.value = (this.defaultValue ? this.defaultValue : '');
 	    	}
+	    	*/
+	    	
 	    	
 	    });
 	  
 	$('.service textarea').addClass("idleField");
 	    $('.service textarea').focus(function() {
 	    	$(this).removeClass("idleField").addClass("focusField");
+	    	
 	        if (this.value == this.defaultValue){
 	        	this.value = '';
 	    	}
+	    	
 	        if(this.value != this.defaultValue){
 	        	this.select();
 	        }
+	        
+	        
 	    });
 	    $('.service textarea').blur(function() {
 	    	if(this.value != this.defaultValue){
@@ -325,23 +340,35 @@ $(".moreButton").css("padding","0 0 1px 20px");
 	
 	
 		if(selected=="profile"){
-			$(".arrowTopElt").css("opacity", "1");
-			$(".arrowTopElt").css("left", pos_profile);
+			$(".arrowTopElt").css("opacity", "0");
+			$(".arrowTopElt").stop().animate({
+			 	"left": pos_profile,
+			 	opacity: 1,
+				duration: 'slow'
+			});
 			$(".arrowTopElt").css("background-position", "0px 0px");
 			}
 		else if(selected=="service"){
-			$(".arrowTopElt").css("opacity", "1");
-			$(".arrowTopElt").css("left", pos_service);
+			$(".arrowTopElt").css("opacity", "0");
+			$(".arrowTopElt").stop().animate({
+			 	"left": pos_service,
+			 	opacity: 1,
+				duration: 'slow'
+			});
 			$(".arrowTopElt").css("background-position", "-20px 0px");
 			}
 		else if(selected=="contact"){
-			$(".arrowTopElt").css("opacity", "1");
-			$(".arrowTopElt").css("left", pos_contact);
+			$(".arrowTopElt").css("opacity", "0");
+			$(".arrowTopElt").stop().animate({
+			 	"left": pos_contact,
+			 	opacity: 1,
+				duration: 'slow'
+			});
 			$(".arrowTopElt").css("background-position", "-40px 0px");
 			
 			}
 		else if(selected="CLOSE"){
-			$(".arrowTopElt").css("opacity", "1");
+			$(".arrowTopElt").css("opacity", "0");
 			$(".arrowTopElt").css("left", pos_profile);
 			$(".arrowTopElt").css('visibility','hidden');
 			}
