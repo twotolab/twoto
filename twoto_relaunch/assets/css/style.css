@@ -400,15 +400,16 @@ li.selected_filter a { color: #ffebea; }
 }
 */
 
-
-
 a.moreButton {
+	margin: 0;
 	background: url(../img/moreButton.png) no-repeat 0 0;
-	padding:0 0 4px 20px;
+	padding:0 0 1px 20px;
+	line-height: 11px;
 	font-style:italic;
 }
 a.moreButton:hover {
 	color: #ff007f;
+	background-position: 0 -15px;
 }
 a.closeButton {
 	background: url(../img/closeButton.png) no-repeat 0 0;
