@@ -1,0 +1,13 @@
+/*
+	Twoto Style for ie
+	 byPatrick Decaix
+	 http://twoto.com
+
+*/
+
+#filterNavigation {  
+	visibility:hidden;
+}
+.stageProject img{
+	visibility:visible;
+}
