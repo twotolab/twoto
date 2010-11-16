@@ -94,11 +94,11 @@ body {
 	background-repeat: no-repeat;
 	background-position: top left; 
 	left:940px;
-	width:30px; 
+	width:20px; 
 	height:9px;
 	display: none;
 	opacity: 0;
-	margin-top: 5px;
+	margin-top: 4px;
 }
 
 /*****form******/
@@ -123,9 +123,14 @@ span,label,input.simpleTxt {
 input.simpleTxt {
 	background: transparent;
 }
+
+.button:hover{
+	background-position: -61px 0;
+}
 .button, .button:focus{
 	margin:10px 0 0 0;
 	padding-bottom: 6px;
+	padding-top:2px;
 	border: 0;
 	color:    #f5e4da;
 	font-family:Georgia,'Times New Roman',serif;
@@ -135,7 +140,7 @@ input.simpleTxt {
 	background-repeat: no-repeat;
 	background-position: top left;
 	background-color:transparent;
-	width: 60px;
+	width: 61px;
 	height: 22px;
 	
 }
@@ -163,6 +168,10 @@ color: #fff8e8;
 	padding-left: 5px;
 	display: inline;
 
+}
+.pics img{
+width: 940px;
+height: 420px;
 }
 
 
@@ -234,6 +243,7 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 	font-size:11px;
 	margin-left:10px;
 	margin-right:10px;
+	margin-top: 7px;
 	float: left;
 
 }
@@ -274,18 +284,21 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 
 .thumbnail{
 	margin-top:5px;
-	
 }
 .expendedElt{
 	padding: 40px 0 0 0;
 }
- .expendedElt p, .expendedElt p a:active{
+.expendedElt p a.underlinedText:hover{
+	font-size:1em;
+	color:#333333;
+}
+.expendedElt p{
 
 	margin:0;
 	padding:0;
 	color:#333333;
 	font-family:Georgia,'Times New Roman',serif;
-	font-size:18px;
+	font-size:1.6em;
 	line-height:24px;
 	font-style:italic;
 	}
@@ -308,6 +321,7 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 }
 .infoProjectElt{
 	padding: 5px 0 20px 0;
+	height:30px;
 }
 
 .imprintElt{
@@ -329,7 +343,9 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 	padding: 5px 0 5px 0;
 	margin-bottom:10px;
 }	
-
+.feeds, .search{
+padding-bottom: 7px;
+}
 .footerElt h5,.footerElt a:link,footerElt a:visited,footerElt a:active{
 	/*color: #cccbbc !important;*/
 	
@@ -412,9 +428,12 @@ a.moreButton:hover {
 	background-position: 0 -15px;
 }
 a.closeButton {
-	background: url(../img/closeButton.png) no-repeat 0 0;
-	padding:0 0 4px 20px;
+	background: url(../img/moreButton.png) no-repeat 0 -30px;
+	padding:0 0 1px 20px;
 	font-style:italic;
+}
+a.closeButton:hover  {
+	background-position: 0 -45px;
 }
 
 
@@ -432,6 +451,10 @@ a.button:link, a.button:visited, a.button:active {
 	padding: 5px 0 0 0;
 	width:150px;
 	
+}
+
+.box .thumbnailLinkElt {
+	margin:6px 0 6px 0;
 }
 h1 {
 	margin:0;
@@ -472,7 +495,7 @@ p {
 	font-weight:500;
 	line-height:14px;
 }
-a:link, a:visited, a:active {
+a:link, a:visited, a:hover {
 	color:#222222;
 	font-size:11px;
 	font-weight:normal;
