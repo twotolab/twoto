@@ -188,8 +188,8 @@ fieldset.search {
 	border: none;
 	background: transparent url(../img/search.png) no-repeat;
 	width: 220px;
-	margin: 0 0 0 0;
-	padding: 0 0 0 0;
+	margin:0;
+	padding:0;
 	
 }
 .searchInput {
@@ -285,18 +285,35 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 .thumbnail{
 	margin-top:5px;
 }
-.expendedElt{
+.expendedElt, .newsElt{
 	padding: 40px 0 0 0;
 }
 .expendedElt p a.underlinedText:hover{
 	font-size:1em;
 	color:#333333;
 }
+.newsElt p{
+	color:#CDCCBC;
+	text-align: left;
+}
+.newsElt p a{
+	color:#CDCCBC;
+	font-size:1em;
+}
+.newsElt p a:hover{
+	color:#ff007f;
+}
+.newsContent{
+margin-bottom: 10px;
+}
 .expendedElt p{
+	color:#333333;
+}
+.expendedElt p, .newsElt p{
 
 	margin:0;
 	padding:0;
-	color:#333333;
+	
 	font-family:Georgia,'Times New Roman',serif;
 	font-size:1.6em;
 	line-height:24px;
@@ -305,6 +322,14 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 
 .underlinedText {
 	border-bottom: 1px solid #cdccbc;
+
+}
+a.underlinedDotted:hover {
+	border-bottom: 1px dotted #ff007f;
+
+}
+.underlinedDotted {
+	border-bottom: 1px dotted #666666;
 
 }
 .textEndLink a{
@@ -343,7 +368,7 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 	padding: 5px 0 5px 0;
 	margin-bottom:10px;
 }	
-.feeds, .search{
+.feedsTab, .searchTab{
 padding-bottom: 7px;
 }
 .footerElt h5,.footerElt a:link,footerElt a:visited,footerElt a:active{
@@ -367,7 +392,6 @@ margin-top: 100px;
 height: 20px;
 }
 .title h1{
-font-size: 13px;
 
 }
 
