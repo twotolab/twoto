@@ -1,0 +1,17 @@
+<?php return array (
+  'preserve_keys' => false,
+  'update_object' => true,
+  'unique_key' => 
+  array (
+    0 => 'namespace',
+    1 => 'controller',
+  ),
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '49d2d1ca3eeff138882d9e0f04768c2d',
+  'package' => 'modx',
+  'class' => 'modAction',
+  'signature' => '998d0db475cae1ae4911331e098072d5',
+  'native_key' => 26,
+  'object' => '{"id":26,"namespace":"core","parent":25,"controller":"element\\/snippet\\/create","haslayout":1,"lang_topics":"snippet,propertyset,element","assets":"","help_url":"http:\\/\\/rtfm.modx.com\\/display\\/revolution20\\/Snippets"}',
+);

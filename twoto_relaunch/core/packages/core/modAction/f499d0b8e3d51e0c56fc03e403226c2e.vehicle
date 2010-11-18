@@ -1,0 +1,17 @@
+<?php return array (
+  'preserve_keys' => false,
+  'update_object' => true,
+  'unique_key' => 
+  array (
+    0 => 'namespace',
+    1 => 'controller',
+  ),
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '23979f02983eccc4cafdcc06fb9120ac',
+  'package' => 'modx',
+  'class' => 'modAction',
+  'signature' => 'f499d0b8e3d51e0c56fc03e403226c2e',
+  'native_key' => 29,
+  'object' => '{"id":29,"namespace":"core","parent":28,"controller":"element\\/template\\/create","haslayout":1,"lang_topics":"template,propertyset,element","assets":"","help_url":"http:\\/\\/rtfm.modx.com\\/display\\/revolution20\\/Templates"}',
+);

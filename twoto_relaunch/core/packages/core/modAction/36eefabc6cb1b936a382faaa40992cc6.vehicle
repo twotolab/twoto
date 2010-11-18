@@ -1,0 +1,17 @@
+<?php return array (
+  'preserve_keys' => false,
+  'update_object' => true,
+  'unique_key' => 
+  array (
+    0 => 'namespace',
+    1 => 'controller',
+  ),
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '4cd2326c2c9997b467f96382fb01cee0',
+  'package' => 'modx',
+  'class' => 'modAction',
+  'signature' => '36eefabc6cb1b936a382faaa40992cc6',
+  'native_key' => 32,
+  'object' => '{"id":32,"namespace":"core","parent":10,"controller":"element\\/tv","haslayout":1,"lang_topics":"tv,propertyset,element","assets":"","help_url":"http:\\/\\/rtfm.modx.com\\/display\\/revolution20\\/Template+Variables"}',
+);

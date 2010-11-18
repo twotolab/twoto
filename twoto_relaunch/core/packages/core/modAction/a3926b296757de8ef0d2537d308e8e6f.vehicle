@@ -1,0 +1,17 @@
+<?php return array (
+  'preserve_keys' => false,
+  'update_object' => true,
+  'unique_key' => 
+  array (
+    0 => 'namespace',
+    1 => 'controller',
+  ),
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '73032c5dbcfa517853ce4df1a49fbfab',
+  'package' => 'modx',
+  'class' => 'modAction',
+  'signature' => 'a3926b296757de8ef0d2537d308e8e6f',
+  'native_key' => 20,
+  'object' => '{"id":20,"namespace":"core","parent":10,"controller":"element\\/plugin","haslayout":1,"lang_topics":"plugin,category,system_events,propertyset,element","assets":"","help_url":"http:\\/\\/rtfm.modx.com\\/display\\/revolution20\\/Plugins"}',
+);

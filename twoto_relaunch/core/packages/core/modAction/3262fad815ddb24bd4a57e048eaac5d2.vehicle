@@ -1,0 +1,17 @@
+<?php return array (
+  'preserve_keys' => false,
+  'update_object' => true,
+  'unique_key' => 
+  array (
+    0 => 'namespace',
+    1 => 'controller',
+  ),
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '91750eb998197a06e74fbaac1cacd3bb',
+  'package' => 'modx',
+  'class' => 'modAction',
+  'signature' => '3262fad815ddb24bd4a57e048eaac5d2',
+  'native_key' => 82,
+  'object' => '{"id":82,"namespace":"core","parent":212,"controller":"workspaces\\/package\\/view","haslayout":1,"lang_topics":"workspace,namespace","assets":"","help_url":"http:\\/\\/rtfm.modx.com\\/display\\/revolution20\\/Package+Management"}',
+);

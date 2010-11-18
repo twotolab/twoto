@@ -1,0 +1,17 @@
+<?php return array (
+  'preserve_keys' => false,
+  'update_object' => true,
+  'unique_key' => 
+  array (
+    0 => 'namespace',
+    1 => 'controller',
+  ),
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '92793d742ccd57dd21130f376364af97',
+  'package' => 'modx',
+  'class' => 'modAction',
+  'signature' => '5c61654ffe75a3d9d316b14acc573329',
+  'native_key' => 11,
+  'object' => '{"id":11,"namespace":"core","parent":10,"controller":"element\\/chunk","haslayout":1,"lang_topics":"chunk,category,propertyset,element","assets":"","help_url":"http:\\/\\/rtfm.modx.com\\/display\\/revolution20\\/Chunks"}',
+);

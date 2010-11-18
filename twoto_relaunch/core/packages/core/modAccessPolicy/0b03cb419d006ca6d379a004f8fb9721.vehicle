@@ -1,0 +1,50 @@
+<?php return array (
+  'preserve_keys' => false,
+  'unique_key' => 
+  array (
+    0 => 'name',
+  ),
+  'update_object' => true,
+  'related_objects' => 
+  array (
+    'Permissions' => 
+    array (
+      '23430c175cc1a17545583116a4376732' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => true,
+        'unique_key' => 
+        array (
+          0 => 'policy',
+          1 => 'name',
+        ),
+        'class' => 'modAccessPermission',
+        'object' => '{"id":null,"policy":0,"name":"load","description":"perm.load_desc","value":1}',
+        'guid' => '1f7a73b56c40c658dda29cf173eddd0b',
+        'native_key' => NULL,
+        'signature' => '365497f47e6cd174d786e52b040b5506',
+      ),
+    ),
+  ),
+  'related_object_attributes' => 
+  array (
+    'Permissions' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => true,
+      'unique_key' => 
+      array (
+        0 => 'policy',
+        1 => 'name',
+      ),
+    ),
+  ),
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '8439ccce46b40e41755e4f5823ce5d51',
+  'package' => 'modx',
+  'class' => 'modAccessPolicy',
+  'signature' => '0b03cb419d006ca6d379a004f8fb9721',
+  'native_key' => 3,
+  'object' => '{"id":3,"name":"Load Only","description":"A minimal policy with permission to load an object.","parent":0,"class":"","data":"{\\"load\\":true}","lexicon":"permissions"}',
+);

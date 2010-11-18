@@ -1,0 +1,12 @@
+<?php return array (
+  'preserve_keys' => true,
+  'update_object' => false,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '07102b4db95bd7b35b9e7f0b9f381807',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '3e9c8a88c302451025618e84d54ad6f2',
+  'native_key' => 'modx_charset',
+  'object' => '{"key":"modx_charset","value":"UTF-8","xtype":"modx-combo-charset","namespace":"core","area":"language","editedon":null}',
+);

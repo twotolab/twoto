@@ -1,0 +1,12 @@
+<?php return array (
+  'preserve_keys' => true,
+  'update_object' => false,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'acf92852b7fbb5e0929b13e8f3230820',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '02096f315ba94ee8edab6f7b2698da20',
+  'native_key' => 'websignupemail_message',
+  'object' => '{"key":"websignupemail_message","value":"<p>Hello [[+uid]],<\\/p>\\n\\n    <p>Here are your login details for [[+sname]]:<\\/p>\\n\\n    <p><strong>Username:<\\/strong> [[+uid]]<br \\/>\\n    <strong>Password:<\\/strong> [[+pwd]]<\\/p>\\n\\n    <p>Once you log into [[+sname]] at [[+surl]], you can change your password.<\\/p>\\n\\n    <p>Regards,<br \\/>\\n    Site Administrator<\\/p>","xtype":"textarea","namespace":"core","area":"authentication","editedon":null}',
+);

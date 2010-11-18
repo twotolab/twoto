@@ -1,0 +1,12 @@
+<?php return array (
+  'preserve_keys' => true,
+  'update_object' => false,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '11fac774b8016d09aba811403ce6b7aa',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '34a9cc208b8293ecf03067505b68029e',
+  'native_key' => 'upload_files',
+  'object' => '{"key":"upload_files","value":"txt,html,htm,xml,js,css,cache,zip,gz,rar,z,tgz,tar,htaccess,mp3,mp4,aac,wav,au,wmv,avi,mpg,mpeg,pdf,doc,xls,txt","xtype":"textfield","namespace":"core","area":"file","editedon":null}',
+);
