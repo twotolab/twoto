@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+ 
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/"
+		xmlns:atom="http://www.w3.org/2005/Atom"
+         version="2.0">
+
+  <channel>
+  <atom:link href="http://twoto.com/rss/feed.rss" rel="self" type="application/rss+xml" />  
+    <title>twoto news</title>
+    <link><![CDATA[http://twoto.com/rss/feed.rss]]></link>
+    <description><![CDATA[news from twoto]]></description>
+    <language>de-de</language>
+    <copyright><![CDATA[Patrick Decaix]]></copyright>
+    <pubDate>Mon, 19 Jan 2009 13:00:00 GMT</pubDate>
+ 	<lastBuildDate>Mon, 6 Apr 2009 10:20:00 GMT</lastBuildDate>
+
+     <item>
+      <title>goldsequin</title>
+      <description>.goldy mouse sensitive version of the sequin clock</description>
+      <link>http://twoto.com/#/goldsequin</link>
+      <author>patrick@twoto.com (patrick decaix)</author>
+      <content:encoded><![CDATA[ goldsequin.<br>goldy mouse sensitive version of the sequin clock<br><br><img class="aligncenter" src="http://twoto.com/content/pic/preview_goldsequin.jpg" />]]></content:encoded>
+      <pubDate>Mon, 6 Apr 2009 10:20:00 GMT</pubDate>
+      <guid>http://twoto.com/#/goldsequin</guid>
+    </item>
+    
+    <item>
+      <title><![CDATA[sequin]]></title>
+      <description><![CDATA[.disk-shaped beads used for a decorative clock]]></description>
+      <link><![CDATA[http://twoto.com/#/sequin]]></link>
+      <author>patrick@twoto.com (patrick decaix)</author>
+      <content:encoded><![CDATA[ cells.<br>disk-shaped beads used for a decorative clock<br><br><img class="aligncenter" src="http://twoto.com/content/pic/preview_dotclock.jpg" />]]></content:encoded>
+      <pubDate>Sun, 29 Mar 2009 22:00:00 GMT</pubDate>
+      <guid><![CDATA[http://twoto.com/#/sequin]]></guid>
+    </item>
+
+     <item>
+      <title><![CDATA[heavylines]]></title>
+      <description><![CDATA[.clockupdate with more lines]]></description>
+      <link><![CDATA[http://twoto.com/#/heavylines]]></link>
+     <author>patrick@twoto.com (patrick decaix)</author>
+      <content:encoded><![CDATA[ heavylines.<br>clockupdate with more lines<br><br><img class="aligncenter" src="http://twoto.com/content/pic/preview_allmultiline.jpg" />]]></content:encoded>
+      <pubDate>Sun, 22 Mar 2009 13:02:00 GMT</pubDate>
+      <guid><![CDATA[http://twoto.com/#/heavylines]]></guid>
+    </item>
+    
+    <item>
+      <title><![CDATA[2000lines]]></title>
+      <description><![CDATA[.clock based on preliminary bitmap scanning]]></description>
+      <link><![CDATA[http://twoto.com/#/2000lines]]></link>
+      <author>patrick@twoto.com (patrick decaix)</author>
+      <content:encoded><![CDATA[ 2000lines.<br>clock based on preliminary bitmap scanning<br><br><img class="aligncenter" src="http://twoto.com/content/pic/preview_multiline.jpg" />]]></content:encoded>
+      <pubDate>Sun, 15 Feb 2009 13:01:00 GMT</pubDate>
+      <guid><![CDATA[http://twoto.com/#/2000lines]]></guid>
+    </item>
+ 
+    <item>
+      <title><![CDATA[cellsV2]]></title>
+      <description><![CDATA[.clockupdate with random colored collision detection]]></description>
+      <link><![CDATA[http://twoto.com/#/cellsV2]]></link>
+      <author>patrick@twoto.com (patrick decaix)</author>
+      <content:encoded><![CDATA[ cellsV2.<br>clockupdate with random colored collision detection<br><br><img class="aligncenter" src="http://twoto.com/content/pic/preview_cells_v2.jpg" />]]></content:encoded>
+       <pubDate>Mon, 19 Jan 2009 14:02:00 GMT</pubDate>
+      <guid><![CDATA[http://twoto.com/#/cellsV2]]></guid>
+    </item>
+    
+    <item>
+      <title><![CDATA[cells]]></title>
+      <description><![CDATA[.clock with collision detection]]></description>
+      <link><![CDATA[http://twoto.com/#/cells]]></link>
+      <author>patrick@twoto.com (patrick decaix)</author>
+      <content:encoded><![CDATA[ cells.<br>clock with collision detection<br><br><img class="aligncenter" src="http://twoto.com/content/pic/preview_cells.jpg" />]]></content:encoded>
+      <pubDate>Mon, 19 Jan 2009 13:00:00 GMT</pubDate>
+      <guid><![CDATA[http://twoto.com/#/cells]]></guid>
+    </item>
+    
+  </channel> 
+ 
+</rss>
