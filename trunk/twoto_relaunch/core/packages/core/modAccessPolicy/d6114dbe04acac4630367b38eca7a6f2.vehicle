@@ -1,0 +1,80 @@
+<?php return array (
+  'preserve_keys' => false,
+  'unique_key' => 
+  array (
+    0 => 'name',
+  ),
+  'update_object' => true,
+  'related_objects' => 
+  array (
+    'Permissions' => 
+    array (
+      '587e479f12fa5031f610896d7e44a68b' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => true,
+        'unique_key' => 
+        array (
+          0 => 'policy',
+          1 => 'name',
+        ),
+        'class' => 'modAccessPermission',
+        'object' => '{"id":null,"policy":0,"name":"load","description":"perm.load_desc","value":1}',
+        'guid' => '1c33d58daba78742f1fca5118170e773',
+        'native_key' => NULL,
+        'signature' => '42b3138a79a077454864c8e16768bd77',
+      ),
+      'b0afcddac866c4bcf9fb6bedcca72d1b' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => true,
+        'unique_key' => 
+        array (
+          0 => 'policy',
+          1 => 'name',
+        ),
+        'class' => 'modAccessPermission',
+        'object' => '{"id":null,"policy":0,"name":"list","description":"perm.list_desc","value":1}',
+        'guid' => 'bb02bf7588b46b4bc7505e7060de064b',
+        'native_key' => NULL,
+        'signature' => '15c873ad032e5c8ffc1d4d6a85d39d7a',
+      ),
+      '9bf07a5255686e3953e187d0a0976844' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => true,
+        'unique_key' => 
+        array (
+          0 => 'policy',
+          1 => 'name',
+        ),
+        'class' => 'modAccessPermission',
+        'object' => '{"id":null,"policy":0,"name":"view","description":"perm.view_desc","value":1}',
+        'guid' => '65af4bf0f274e873f4b513856fbccde5',
+        'native_key' => NULL,
+        'signature' => '1977a784040d53eb7f5af6361cbf4419',
+      ),
+    ),
+  ),
+  'related_object_attributes' => 
+  array (
+    'Permissions' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => true,
+      'unique_key' => 
+      array (
+        0 => 'policy',
+        1 => 'name',
+      ),
+    ),
+  ),
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '0521e846b4bf431ccab68024d0cce6a5',
+  'package' => 'modx',
+  'class' => 'modAccessPolicy',
+  'signature' => 'd6114dbe04acac4630367b38eca7a6f2',
+  'native_key' => 4,
+  'object' => '{"id":4,"name":"Load, List and View","description":"Provides load, list and view permissions only.","parent":0,"class":"","data":"{\\"load\\":true,\\"list\\":true,\\"view\\":true}","lexicon":"permissions"}',
+);

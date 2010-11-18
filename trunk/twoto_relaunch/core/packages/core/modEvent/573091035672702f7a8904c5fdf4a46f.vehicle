@@ -1,0 +1,16 @@
+<?php return array (
+  'preserve_keys' => false,
+  'update_object' => true,
+  'unique_key' => 
+  array (
+    0 => 'name',
+  ),
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '3ee0f4db8a9cf5697a46b47e69e02a4c',
+  'package' => 'modx',
+  'class' => 'modEvent',
+  'signature' => '573091035672702f7a8904c5fdf4a46f',
+  'native_key' => NULL,
+  'object' => '{"name":"OnTemplateBeforeSave","service":1,"groupname":"Templates"}',
+);

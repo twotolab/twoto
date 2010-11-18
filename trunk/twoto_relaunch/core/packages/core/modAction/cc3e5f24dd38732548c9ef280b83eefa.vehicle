@@ -1,0 +1,17 @@
+<?php return array (
+  'preserve_keys' => false,
+  'update_object' => true,
+  'unique_key' => 
+  array (
+    0 => 'namespace',
+    1 => 'controller',
+  ),
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '78ea62c8a189b543257488582c5a4239',
+  'package' => 'modx',
+  'class' => 'modAction',
+  'signature' => 'cc3e5f24dd38732548c9ef280b83eefa',
+  'native_key' => 54,
+  'object' => '{"id":54,"namespace":"core","parent":53,"controller":"security\\/user\\/create","haslayout":1,"lang_topics":"user,setting,access","assets":"","help_url":"http:\\/\\/rtfm.modx.com\\/display\\/revolution20\\/Users"}',
+);

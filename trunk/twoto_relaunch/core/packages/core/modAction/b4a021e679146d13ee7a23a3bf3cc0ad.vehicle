@@ -1,0 +1,17 @@
+<?php return array (
+  'preserve_keys' => false,
+  'update_object' => true,
+  'unique_key' => 
+  array (
+    0 => 'namespace',
+    1 => 'controller',
+  ),
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '9d164e978a1a845cffea39d8d4face21',
+  'package' => 'modx',
+  'class' => 'modAction',
+  'signature' => 'b4a021e679146d13ee7a23a3bf3cc0ad',
+  'native_key' => 38,
+  'object' => '{"id":38,"namespace":"core","parent":46,"controller":"security\\/usergroup\\/create","haslayout":1,"lang_topics":"user,access,policy,context","assets":"","help_url":"http:\\/\\/rtfm.modx.com\\/display\\/revolution20\\/User+Groups"}',
+);

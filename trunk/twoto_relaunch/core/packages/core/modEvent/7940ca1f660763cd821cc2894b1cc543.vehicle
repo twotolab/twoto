@@ -1,0 +1,16 @@
+<?php return array (
+  'preserve_keys' => false,
+  'update_object' => true,
+  'unique_key' => 
+  array (
+    0 => 'name',
+  ),
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'a7469a49304e0b0b37836baca085d3ba',
+  'package' => 'modx',
+  'class' => 'modEvent',
+  'signature' => '7940ca1f660763cd821cc2894b1cc543',
+  'native_key' => NULL,
+  'object' => '{"name":"OnPluginFormPrerender","service":1,"groupname":"Plugins"}',
+);

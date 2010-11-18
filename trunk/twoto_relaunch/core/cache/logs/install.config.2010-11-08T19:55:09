@@ -1,0 +1,17 @@
+[2010-11-08 19:55:11] (ERROR @ /setup/index.php) Could not copy /home/w12547/web/public_html/core/packages/core/modContext/4d135eb3af9e84a9ea544d9a56a07ed3/0/ to index.php
+[2010-11-08 19:55:11] (ERROR @ /setup/index.php) Could not copy /home/w12547/web/public_html/core/packages/core/modContext/4d135eb3af9e84a9ea544d9a56a07ed3/1/ to ht.access
+[2010-11-08 19:55:11] (ERROR @ /setup/index.php) Could not copy /home/w12547/web/public_html/core/packages/core/modContext/b27600ea131d2caa13381998bbce79b1/0/ to assets
+[2010-11-08 19:55:11] (ERROR @ /setup/index.php) Could not copy /home/w12547/web/public_html/core/packages/core/modContext/b27600ea131d2caa13381998bbce79b1/1/ to controllers
+[2010-11-08 19:55:11] (ERROR @ /setup/index.php) Could not copy /home/w12547/web/public_html/core/packages/core/modContext/b27600ea131d2caa13381998bbce79b1/2/ to templates
+[2010-11-08 19:55:11] (ERROR @ /setup/index.php) Could not copy /home/w12547/web/public_html/core/packages/core/modContext/b27600ea131d2caa13381998bbce79b1/3/ to ht.access
+[2010-11-08 19:55:11] (ERROR @ /setup/index.php) Could not copy /home/w12547/web/public_html/core/packages/core/modContext/b27600ea131d2caa13381998bbce79b1/4/ to index.php
+[2010-11-08 19:55:11] (ERROR @ /setup/index.php) Could not install files from /home/w12547/web/public_html/core/packages/core/xPDOFileVehicle/e461ebd2df78ea562f536b233e490b9d/ to 
+[2010-11-08 19:55:11] (ERROR @ /setup/index.php) Could not install files from /home/w12547/web/public_html/core/packages/core/xPDOFileVehicle/61e4bc820e5c8612e16d685b197cca7a/ to 
+[2010-11-08 19:55:11] (ERROR @ /setup/index.php) Could not install files from /home/w12547/web/public_html/core/packages/core/xPDOFileVehicle/3f39fd10177dfa3277613f69863fb2f1/ to 
+[2010-11-08 19:55:11] (ERROR @ /setup/index.php) Could not install files from /home/w12547/web/public_html/core/packages/core/xPDOFileVehicle/84aac1a926cb1ac7597ae05dfa4c0b05/ to 
+[2010-11-08 19:55:11] (ERROR @ /setup/index.php) Could not install files from /home/w12547/web/public_html/core/packages/core/xPDOFileVehicle/83130db41b5aa1ebf57ea3ab3bd71c72/ to 
+[2010-11-08 19:55:11] (ERROR @ /setup/index.php) Could not install files from /home/w12547/web/public_html/core/packages/core/xPDOFileVehicle/49b2fcabc1f95d663ccd25021fab34cb/ to 
+[2010-11-08 19:55:11] (ERROR @ /setup/index.php) Could not install files from /home/w12547/web/public_html/core/packages/core/xPDOFileVehicle/458952fd52cda22724258a0e98716519/ to 
+[2010-11-08 19:55:11] (ERROR @ /setup/index.php) Could not install files from /home/w12547/web/public_html/core/packages/core/xPDOFileVehicle/7f287c298c3c062bd92da100734a2375/ to 
+[2010-11-08 19:55:11] (ERROR @ /setup/index.php) Could not install files from /home/w12547/web/public_html/core/packages/core/xPDOFileVehicle/7ea789f83976d5f2f70b0c3afd514ab1/ to 
+[2010-11-08 19:55:11] (ERROR @ /setup/index.php) Could not install files from /home/w12547/web/public_html/core/packages/core/xPDOFileVehicle/e4a5d192df9565920b008f8138e36208/ to 

@@ -1,0 +1,34 @@
+Changelog for SimpleSearch.
+
+SimpleSearch 1.1.1
+========================================================================
+- Fixed bug in snippet with wrong reference to $modx var
+- Added idx placeholder
+- Added German translation
+- Added andTerm (true/false) - Whether or not to add a logical AND between words in search term.
+- Added matchWildcard (behavior depending on query type and limitations)
+- Added docFields which is a list of fields to search on the Resource.
+
+SimpleSearch 1.1.0
+========================================================================
+- Added ability to use TVs in placeholders
+- Added ability to exclude resources
+- Added missing f parameter if ids was empty
+- Added longtitle to partial search style
+- Fixed XHTML get/post in form tpl issue
+
+SimpleSearch 1.0.0
+========================================================================
+- Now searches unprocessed TVs
+- Added &customPackages property for searching custom packages
+- Added fix for GET searches
+- Added sisea.query and sisea.count global placeholders for search count/query string
+- Fixed bug with multibyte chars
+- Fixed bug with contexts param that was leaving search results empty
+- Fixed bug with separators doubling
+- Fixed bug with perPage not being respected due to shared object instance
+- Added Russian translation
+- Prepared for initial 1.0-beta release
+- Adjusted toPlaceholder behavior through output() method
+- Created build script
+- Initial commit

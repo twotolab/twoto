@@ -1,0 +1,17 @@
+<?php return array (
+  'preserve_keys' => false,
+  'update_object' => true,
+  'unique_key' => 
+  array (
+    0 => 'namespace',
+    1 => 'controller',
+  ),
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '0dc23b199e830e2ff4f49f8cd7ee161c',
+  'package' => 'modx',
+  'class' => 'modAction',
+  'signature' => '69a444db02d5349f7724818981286247',
+  'native_key' => 9,
+  'object' => '{"id":9,"namespace":"core","parent":6,"controller":"context\\/view","haslayout":1,"lang_topics":"context","assets":"","help_url":"http:\\/\\/rtfm.modx.com\\/display\\/revolution20\\/Contexts"}',
+);
