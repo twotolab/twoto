@@ -7,6 +7,7 @@
 
 #filterNavigation {  
 	visibility:hidden;
+	display: none;
 }
 .stageProject img{
 	visibility:visible;
