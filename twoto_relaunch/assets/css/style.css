@@ -35,6 +35,18 @@ body {
 #menu {
 	margin-top:0px;
 }
+#imageTooltip
+{
+    position:absolute;
+    background-image: url(../img/rollOver.png);
+	background-position:left top;
+	background-repeat:no-repeat;
+	padding: 5px 0 0 10px;
+	width: 120px;
+	height: 25px;
+    display:none;
+}
+
 .stageIntro{
 	height:130px;
 	margin:40px 0 0 250px;
