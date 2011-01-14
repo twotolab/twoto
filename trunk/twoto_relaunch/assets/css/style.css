@@ -440,9 +440,7 @@ ul {
 	-webkit-border-radius: 8px;
 	margin-top: 5px;
 }
-.magicBoxWebkit { 
-	margin-top: 4px;
-}
+
 li.selected_filter a { color: #ffebea; }
 /*end*/
 
