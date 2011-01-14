@@ -3,15 +3,9 @@
 	
 $(document).ready(function() {
 	// The DOM (document object model) is constructed
-	/*
-	if ($.browser.webkit) {
-	    //alert(&quot;this is webkit!&quot;);
-	    $(&quot;#magicBox&quot;).addClass('moveWebKitUp');
-	    $(&quot;.moveWebKitUp&quot;).css('margin-top','4px');
-	    
-	    
-	 }
-	*/
+
+
+	
 	// case searchResult missing
 	if($('#searchResult').length == 0){
 	//alert("nor results")
@@ -30,19 +24,19 @@ $(document).ready(function() {
 	    $(".moreButton").css("padding","0 0 3px 20px");
 	    $(".arrowTopElt").css("margin","6px 0 0 0");
 	    $(".filter").css("padding","0 0 4px 0");
-	    $(".feeds").css("padding","0 0 13px 0");
-	    $(".search").css("padding","0 0 13px 0");
+	    $(".feedsTab").css("padding","5px 0 9px 0");
+	    $(".searchTab").css("padding","5px 0 9px 0");
+	    $(".link").css("padding","4px 11px 5px 9px");
 		// example:  $('#feeds').removeClass('naviElt').addClass('naviEltWebKit');
 	}
 
-if(navigator.platform === "Win32"){
-if ($.browser.webkit) {
-$(".moreButton").css("padding","0 0 1px 20px");
+	if(navigator.platform === "Win32"){
+		if ($.browser.webkit) {
+			$(".moreButton").css("padding","0 0 1px 20px");
+	           //alert("hello :"+moveWebKitUp);
+		}
+	}
 
-           //alert("hello :"+moveWebKitUp);
-}
-
-}
 
 	$("a .thumbnail").each(function(){
 		
@@ -116,6 +110,27 @@ $(".moreButton").css("padding","0 0 1px 20px");
      }
     }
 })
+  /* Config */
+    xOffset = 20;
+    yOffset = -14;
+
+
+$("#slideshow").hover(function(e){
+        $("body").append("<p id='imageTooltip'>roll out to continue</p>");
+        $("#imageTooltip")
+            .css("top", (e.pageY + yOffset) + "px")
+            .css("left",(e.pageX + xOffset) + "px")
+            .css("z-index", "99")
+            .fadeIn("fast");        
+    }, function(){
+    $("#imageTooltip").remove();
+    });
+    $("#slideshow").mousemove(function(e){
+        $("#imageTooltip")
+            .css("top",(e.pageY + yOffset) + "px")
+            .css("left",(e.pageX + xOffset) + "px");
+    });
+
 		$("#contactForm").submit(function(){
 	
 	// 'this' refers to the current submitted form
@@ -327,6 +342,10 @@ $(".moreButton").css("padding","0 0 1px 20px");
 	$('#imprint a').click(function(){	
 		contentInfoHandler("contact");
 	});
+	$('.contactTwoto').click(function(){	
+		contentInfoHandler("service");
+	});
+	
 	
 	var caseHandler ="close";
 	var selected="";;
@@ -693,7 +712,8 @@ $(".moreButton").css("padding","0 0 1px 20px");
     	if(navigator.platform === "Win32"){
     		var moveWebKitUp = parseInt($magicBox.css("margin-top"));
         }else{
-        	var moveWebKitUp = parseInt($magicBox.css("margin-top"));
+        	var moveWebKitUp = parseInt($magicBox.css("margin-top"))-1;
+
 		}   
 	 	$magicBox.css("margin-top",moveWebKitUp);   
     }
@@ -727,7 +747,13 @@ $(".moreButton").css("padding","0 0 1px 20px");
             
         });    
     });
-    		if(window.projectPage === "true" || window.newsPage === "true"){
+    
+    if(window.projectPage === "true" || window.newsPage === "true"){
 		introProject();
+	}
+	if ($.browser.msie) {
+  		//alert(parseInt(jQuery.browser.version));
+ 		$("#filtering").removeClass('filter').addClass('naviElt');
+		$("#filtering").html("<h5>IE only partially supported</h5>");
 	}
 });
