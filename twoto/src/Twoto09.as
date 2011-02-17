@@ -53,7 +53,7 @@ package {
 		}
 
 		private function getXML():void {
-			trace("test");
+
 			xmlLoader=new XMLLoader();
 			xmlLoader.loadXML("xml/content_new.xml", false);
 			xmlLoader.addEventListener(XMLLoader.XMLLOADED, xmlLoaded);
