@@ -3,7 +3,7 @@ package com.twoto.videoPlayer.elements
 {
     import caurina.transitions.Tweener;
     
-    import de.schweppes.utils.TimeUtils;
+    import com.twoto.utils.TimeUtils;
     import com.twoto.utils.videoPlayer.InfoTextMC;
     import com.twoto.utils.videoPlayer.ScrollerMC;
     

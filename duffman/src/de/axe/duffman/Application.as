@@ -1,9 +1,10 @@
 package de.axe.duffman
 {
 
+	import com.twoto.utils.Draw;
+	
 	import de.axe.duffman.dataModel.DataModel;
 	import de.axe.duffman.playerElement.VideoplayerWithStartScreen;
-	import de.axe.duffman.utils.Draw;
 	
 	import flash.display.Shape;
 	import flash.display.Sprite;

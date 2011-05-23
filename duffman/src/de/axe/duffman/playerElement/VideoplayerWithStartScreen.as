@@ -4,7 +4,6 @@ package de.axe.duffman.playerElement
 	import com.twoto.videoPlayer.VideoPlayerEvents;
 	
 	import de.axe.duffman.dataModel.DataModel;
-	import de.axe.duffman.utils.Draw;
 	
 	import flash.display.Shape;
 	import flash.display.Sprite;
