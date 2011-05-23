@@ -1,10 +1,10 @@
-package de.axe.duffman.utils.videoPlayer
+package de.axe.duffman.playerElement
 {
+	import com.twoto.videoPlayer.FLVPlayer;
+	import com.twoto.videoPlayer.VideoPlayerEvents;
+	
 	import de.axe.duffman.dataModel.DataModel;
 	import de.axe.duffman.utils.Draw;
-	import de.axe.duffman.utils.videoPlayer.FLVPlayer;
-	import de.axe.duffman.utils.videoPlayer.StartScreen;
-	import de.axe.duffman.utils.videoPlayer.VideoPlayerEvents;
 	
 	import flash.display.Shape;
 	import flash.display.Sprite;

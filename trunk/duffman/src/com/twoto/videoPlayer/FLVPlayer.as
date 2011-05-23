@@ -1,4 +1,5 @@
-package de.axe.duffman.utils.videoPlayer {
+package com.twoto.videoPlayer 
+{
 
 	import flash.display.Sprite;
 	import flash.display.StageAlign;

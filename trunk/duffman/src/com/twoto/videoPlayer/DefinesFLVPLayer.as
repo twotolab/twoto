@@ -1,4 +1,4 @@
-package de.axe.duffman.utils.videoPlayer
+package com.twoto.videoPlayer
 {
 	public class DefinesFLVPLayer
 	{

@@ -1,4 +1,5 @@
-package de.schweppes.utils.videoPlayer.elements {
+package com.twoto.videoPlayer.elements
+{
 
 	import com.twoto.utils.videoPlayer.FullScreenMC;
 	

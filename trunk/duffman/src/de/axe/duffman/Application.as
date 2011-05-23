@@ -2,8 +2,8 @@ package de.axe.duffman
 {
 
 	import de.axe.duffman.dataModel.DataModel;
+	import de.axe.duffman.playerElement.VideoplayerWithStartScreen;
 	import de.axe.duffman.utils.Draw;
-	import de.axe.duffman.utils.videoPlayer.VideoplayerWithStartScreen;
 	
 	import flash.display.Shape;
 	import flash.display.Sprite;

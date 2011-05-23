@@ -1,4 +1,6 @@
-package de.axe.duffman.utils.videoPlayer {
+package com.twoto.videoPlayer
+
+{
 
 	import caurina.transitions.Tweener;
 	import caurina.transitions.properties.SoundShortcuts;

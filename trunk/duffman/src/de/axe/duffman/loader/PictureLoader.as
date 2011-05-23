@@ -11,7 +11,6 @@ package de.axe.duffman.loader {
 	
 	import de.axe.duffman.dataModel.DefinesApplication;
 	import de.axe.duffman.events.UiEvent;
-	import de.axe.duffman.utils.videoPlayer.DefinesFLVPLayer;
 	
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;

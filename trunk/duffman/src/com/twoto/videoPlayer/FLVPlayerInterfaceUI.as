@@ -5,19 +5,19 @@
 //   All rights reserved. 
 //
 //------------------------------------------------------------------------------
-package de.axe.duffman.utils.videoPlayer
+package com.twoto.videoPlayer
 
 {
 	import caurina.transitions.Tweener;
 	
 	import com.twoto.utils.videoPlayer.InfoTextMC;
 	import com.twoto.utils.videoPlayer.VideoMask;
+	import com.twoto.videoPlayer.elements.PlayStopElement;
+	import com.twoto.videoPlayer.elements.SoundElement;
 	
 	import de.axe.duffman.dataModel.DefinesApplication;
 	import de.axe.duffman.loader.CircleSlicePreloader;
 	import de.axe.duffman.utils.Draw;
-	import de.axe.duffman.utils.videoPlayer.elements.PlayStopElement;
-	import de.axe.duffman.utils.videoPlayer.elements.SoundElement;
 	
 	import flash.display.DisplayObject;
 	import flash.display.Shape;
@@ -55,7 +55,7 @@ package de.axe.duffman.utils.videoPlayer
 		private var progressLoadedBackground:Shape;
 
 		private var showHideInterfaceHandler:ShowHideInterfaceHandler;
-		private var soundOnOffButton:SoundElement;
+		private var soundOnOffButton:com.twoto.videoPlayer.elements.SoundElement;
 
 		private var startStopButton:PlayStopElement;
 		private var timerInfo:Boolean;
