@@ -167,7 +167,7 @@ package com.twoto.videoPlayer
 
 				timerPosition=netStream.time;
 				//trace("netStream.time: " + netStream.time);
-				//dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.ENGINE_UPDATE_PROGRESS));
+				dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.ENGINE_UPDATE_PROGRESS));
 
 				if (videoTimer.repeatCount != client.meta.duration.toFixed(1) * 1000) {
 					videoTimer.repeatCount=client.meta.duration.toFixed(1) * 1000;
@@ -245,7 +245,14 @@ package com.twoto.videoPlayer
 			pause();
 			dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.ENGINE_STOP));
 		}
-
+		public function draggedTo(_percent:uint):void {
+			
+			//trace("draggedTo"+Number(client.meta.duration.toFixed(1)));
+			var targetSeek:uint =Math.round(_percent*Number(client.meta.duration.toFixed(1))*.01);
+			//trace("draggedTo"+_percent);
+			netStream.seek(targetSeek);
+			timerPosition =netStream.time;
+		}
 		public function soundHandler():void {
 
 			//trace("soundHandler SOUND_STATUS: "+SOUND_STATUS);

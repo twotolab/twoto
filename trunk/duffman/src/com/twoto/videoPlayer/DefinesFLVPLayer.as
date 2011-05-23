@@ -15,6 +15,7 @@ package com.twoto.videoPlayer
 	public static const NAVI_SOUND_X:uint = 15; // distance from right border
 	public static const NAVI_SOUND_Y:uint = 4;
 	
+	public static const NAVI_PROGRESS_ON:String = "yes";
 	public static const NAVI_PROGRESS_HEIGHT:uint = 5;
 	public static const NAVI_PROGRESS_BORDER:uint = 5;
 	public static const NAVI_PROGRESS_BACKGROUND_HEIGHT:uint = 15;

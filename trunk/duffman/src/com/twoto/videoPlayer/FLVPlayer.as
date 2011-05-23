@@ -41,10 +41,12 @@ package com.twoto.videoPlayer
 
 			trace("buildinterfaceUI");
 			interfaceUI=new FLVPlayerInterfaceUI();
+
 			// events  from the interfaceUI
 			interfaceUI.addEventListener(VideoPlayerEvents.INTERFACE_PAUSE, interfaceHandler);
 			interfaceUI.addEventListener(VideoPlayerEvents.INTERFACE_SOUND, interfaceHandler);
 			interfaceUI.addEventListener(VideoPlayerEvents.INTERFACE_READY, interfaceHandler);
+			interfaceUI.addEventListener(VideoPlayerEvents.INTERFACE_DRAGGED, interfaceHandler);
 
 			addChild(interfaceUI);
 
@@ -61,6 +63,8 @@ package com.twoto.videoPlayer
 			playerEngine.addEventListener(VideoPlayerEvents.ENGINE_START, engineHandler);
 			playerEngine.addEventListener(VideoPlayerEvents.ENGINE_STOP, engineHandler);
 			playerEngine.addEventListener(VideoPlayerEvents.ENGINE_READY, engineHandler);
+			playerEngine.addEventListener(VideoPlayerEvents.ENGINE_LOADING_PROGRESS, updateLoadingProgress);
+			
 			addChild(playerEngine);
 		}
 
@@ -100,12 +104,12 @@ package com.twoto.videoPlayer
 					break;
 				case VideoPlayerEvents.INTERFACE_PAUSE:
 					//trace("interfaceHandler!!!! :" + evt.type.toString());
-					//interfaceUI.showProgressBar(true);
+					interfaceUI.showProgressBar(true);
 					playerEngine.pause();
 					break;
 				case VideoPlayerEvents.INTERFACE_DRAGGED:
 					//trace("interfaceHandler!!!! :" + evt.type.toString());
-					//playerEngine.draggedTo(interfaceUI.draggerPercent);
+					playerEngine.draggedTo(interfaceUI.draggerPercent);
 					break;
 				default:
 					//trace("interfaceHandler empty!!!! :" + evt.type.toString());
@@ -123,8 +127,7 @@ package com.twoto.videoPlayer
 				case VideoPlayerEvents.ENGINE_METADATA_READY:
 					playerEngine.removeEventListener(VideoPlayerEvents.ENGINE_METADATA_READY, engineHandler);
 					//interfaceUI.initVideo(playerEngine);
-					
-					//playerEngine.addEventListener(VideoPlayerEvents.ENGINE_UPDATE_PROGRESS, updateProgress);
+					playerEngine.addEventListener(VideoPlayerEvents.ENGINE_UPDATE_PROGRESS, updateProgress);
 					break;
 				case VideoPlayerEvents.ENGINE_START:
 				interfaceUI.initVideo(playerEngine);
@@ -155,25 +158,20 @@ package com.twoto.videoPlayer
 			}
 		}
 
-		/*
-		   private function updateLoadingProgress(evt:VideoPlayerEvents):void
-		   {
-
-		   //trace("updateLoadingProgress :" +playerEngine.percentLoadingProgress);
-		   interfaceUI.updateLoadedProgress(playerEngine.percentLoadingProgress);
-		   if (playerEngine.percentLoadingProgress == 1)
-		   {
-		   playerEngine.removeEventListener(VideoPlayerEvents.ENGINE_LOADING_PROGRESS, updateLoadingProgress);
-		   //trace("updateLoadingProgress  end:");
-		   }
-		   }
-
-		   private function updateProgress(evt:VideoPlayerEvents):void
-		   {
-		   //trace("updateProgress :" +playerEngine.percentProgress);
-		   interfaceUI.updateProgressBar(playerEngine.percentProgress, playerEngine.timerPosition);
-		   }
-		 */
+		private function updateLoadingProgress(evt:VideoPlayerEvents):void {
+			
+			//trace("updateLoadingProgress :" +playerEngine.percentLoadingProgress);
+			interfaceUI.updateLoadedProgress(playerEngine.percentLoadingProgress);
+			if(playerEngine.percentLoadingProgress == 1) {
+				playerEngine.removeEventListener(VideoPlayerEvents.ENGINE_LOADING_PROGRESS, updateLoadingProgress);
+				//trace("updateLoadingProgress  end:");
+			}
+		}
+		
+		private function updateProgress(evt:VideoPlayerEvents):void {
+			trace("updateProgress :" +playerEngine.percentProgress);
+			interfaceUI.updateProgressBar(playerEngine.percentProgress, playerEngine.timerPosition);
+		}
 
 		public function show():void {
 			interfaceUI.visible=true;

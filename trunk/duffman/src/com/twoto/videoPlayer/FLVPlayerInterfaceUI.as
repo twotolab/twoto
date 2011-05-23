@@ -10,14 +10,15 @@ package com.twoto.videoPlayer
 {
 	import caurina.transitions.Tweener;
 	
+	import com.twoto.utils.Draw;
 	import com.twoto.utils.videoPlayer.InfoTextMC;
 	import com.twoto.utils.videoPlayer.VideoMask;
+	import com.twoto.videoPlayer.elements.Dragger;
 	import com.twoto.videoPlayer.elements.PlayStopElement;
 	import com.twoto.videoPlayer.elements.SoundElement;
 	
 	import de.axe.duffman.dataModel.DefinesApplication;
 	import de.axe.duffman.loader.CircleSlicePreloader;
-	import de.axe.duffman.utils.Draw;
 	
 	import flash.display.DisplayObject;
 	import flash.display.Shape;
@@ -50,9 +51,12 @@ package com.twoto.videoPlayer
 
 		private var playerHeight:uint;
 		private var playerWidth:uint;
+		
+		private var dragger:Dragger;
 		private var progressBar:Shape;
 		private var progressEltBackground:Shape;
 		private var progressLoadedBackground:Shape;
+		private var progressBackground:EmptyBackProgressMC;
 
 		private var showHideInterfaceHandler:ShowHideInterfaceHandler;
 		private var soundOnOffButton:com.twoto.videoPlayer.elements.SoundElement;
@@ -60,6 +64,8 @@ package com.twoto.videoPlayer
 		private var startStopButton:PlayStopElement;
 		private var timerInfo:Boolean;
 		private var video:DisplayObject;
+		
+
 
 		public function FLVPlayerInterfaceUI() {
 
@@ -77,7 +83,8 @@ package com.twoto.videoPlayer
 			originalFilmPosX=0;
 			originalFilmPosY=0;
 			originalFilmHeight=DefinesApplication.VIDEO_HEIGHT;
-			
+			playerHeight=DefinesApplication.VIDEO_HEIGHT - 1;
+			playerWidth=DefinesApplication.VIDEO_WIDTH;
 			draw();
 			
 			stage.addEventListener(Event.RESIZE, resizeHandler);
@@ -94,17 +101,14 @@ package com.twoto.videoPlayer
 			trace("initVideo -------------------------")
 			engine=_engine;
 			video=engine.video;
-			engine.addEventListener(VideoPlayerEvents.ENGINE_READY,maskTheVideo);
+			engine.addEventListener(VideoPlayerEvents.ENGINE_READY,finalyseInterface);
 
 			this.addChildAt(video, 0);
 
-			playerHeight=video.height - 1;
-			playerWidth=video.width;
-
-
 		}
-		private function maskTheVideo(evt:VideoPlayerEvents=null):void{
+		private function finalyseInterface(evt:VideoPlayerEvents=null):void{
 			addMask(video);
+			resizeHandler(null);
 		}
 
 		public function resetSoundButton():void {
@@ -139,7 +143,6 @@ package com.twoto.videoPlayer
 		private function addMask(video:DisplayObject):void {
 
 			maskVideo=Draw.drawSprite(DefinesApplication.VIDEO_WIDTH,DefinesApplication.VIDEO_HEIGHT);
-			//addChild(maskVideo);
 			video.mask=maskVideo;
 		}
 
@@ -168,9 +171,88 @@ package com.twoto.videoPlayer
 			bufferingMC=new CircleSlicePreloader(12, 7, 0xffdc00);
 			bufferingMC.filters=Draw.addShadow(Draw.smallShadow());
 
-			resize();
+
 			trace("///////////////draw it")
 			showBufferer();
+
+		}
+		private function redrawProgressBars():void {
+			
+			trace("---------redrawProgressBars");
+			if(progressBackground != null) {
+				if(this.contains(progressBackground)) {
+					removeChild(progressBackground);
+				}
+			}
+			if(progressLoadedBackground != null) {
+				if(this.contains(progressLoadedBackground)) {
+					removeChild(progressLoadedBackground);
+				}
+			}
+			if(progressBar != null) {
+				if(this.contains(progressBar)) {
+					removeChild(progressBar);
+				}
+			}
+			if(progressEltBackground != null) {
+				if(this.contains(progressEltBackground)) {
+					removeChild(progressEltBackground);
+					progressEltBackground=null;
+				}
+			}
+			if(dragger != null) {
+				if(this.contains(dragger)) {
+					dragger.removeEventListener(Event.CHANGE, draggerHandler);
+					dragger.destroy();
+					removeChild(dragger);
+					dragger=null;
+				}
+			}
+			progressEltBackground=Draw.drawShape(playerWidth - DefinesFLVPLayer.NAVI_PROGRESS_DISTANCE_LEFT - DefinesFLVPLayer.NAVI_PROGRESS_DISTANCE_RIGHT - DefinesFLVPLayer.NAVI_PROGRESS_BORDER * 2, DefinesFLVPLayer.NAVI_PROGRESS_HEIGHT + DefinesFLVPLayer.NAVI_PROGRESS_BORDER * 2, 1, DefinesFLVPLayer.NAVI_PROGRESS_BACKGROUND_ELT_COLOR);
+			addChild(progressEltBackground);
+			
+			progressBackground=new EmptyBackProgressMC();
+			progressBackground.width=playerWidth - DefinesFLVPLayer.NAVI_PROGRESS_DISTANCE_LEFT - DefinesFLVPLayer.NAVI_PROGRESS_DISTANCE_RIGHT - DefinesFLVPLayer.NAVI_PROGRESS_BORDER * 4;
+			progressBackground.height=DefinesFLVPLayer.NAVI_PROGRESS_HEIGHT;
+			addChild(progressBackground);
+			
+			progressLoadedBackground=Draw.drawShape(progressBackground.width, DefinesFLVPLayer.NAVI_PROGRESS_HEIGHT, 1, DefinesFLVPLayer.NAVI_PROGRESS_BACKGROUND_COLOR);
+			progressLoadedBackground.scaleX=0;
+			addChild(progressLoadedBackground);
+			
+			dragger=new Dragger(progressBackground.width);
+			dragger.addEventListener(Event.CHANGE, draggerHandler);
+			dragger.withTimerInfo(timerInfo);
+			
+			progressBar=Draw.drawShape(progressBackground.width - dragger.width, DefinesFLVPLayer.NAVI_PROGRESS_HEIGHT, 1, DefinesFLVPLayer.NAVI_PROGRESS_COLOR);
+			progressBar.scaleX=0;
+			addChild(progressBar);
+			addChild(dragger);
+			
+		}
+		public function showProgressBar(_value:Boolean):void {
+			if(progressBar != null) {
+				if(_value != true && progressBar.visible != true) {
+					progressBar.visible=_value;
+					
+					if(_value == true) {
+						progressBar.scaleX=0;
+						dragger.x=Math.round(progressBar.x);
+					}
+				} else if(_value == false) {
+					progressBar.scaleX=0;
+					dragger.x=Math.round(progressBar.x);
+				}
+			}
+		}
+
+		private function draggerHandler(evt:Event):void {
+			
+			trace("udpate dragger");
+			draggerPercent=dragger.percent;
+			progressBar.scaleX=draggerPercent * 0.01 * progressLoadedBackground.scaleX;
+			dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.INTERFACE_DRAGGED));
+			dragger.updateTimer(engine.timerPosition);
 		}
 
 		private function resize():void {
@@ -181,6 +263,22 @@ package com.twoto.videoPlayer
 			startStopButton.y=3 //playerHeight + DefinesFLVPLayer.NAVI_PLAYSTOP_Y;
 			infoTextMC.x=45;
 			infoTextMC.y=5;
+			
+			redrawProgressBars();
+			progressEltBackground.y=playerHeight + DefinesFLVPLayer.NAVI_PROGRESS_Y;
+			progressEltBackground.x=DefinesFLVPLayer.NAVI_PROGRESS_DISTANCE_LEFT;
+			
+			progressBackground.y=playerHeight + DefinesFLVPLayer.NAVI_PROGRESS_Y + DefinesFLVPLayer.NAVI_PROGRESS_BORDER;
+			progressBackground.x=DefinesFLVPLayer.NAVI_PROGRESS_DISTANCE_LEFT + DefinesFLVPLayer.NAVI_PROGRESS_BORDER;
+			
+			progressLoadedBackground.y=progressBackground.y;
+			progressLoadedBackground.x=progressBackground.x;
+			
+			progressBar.y=progressBackground.y;
+			progressBar.x=progressBackground.x;
+			
+			dragger.x=Math.round(progressBar.x);
+			dragger.y=Math.round(progressBar.y + 2);
 			/*
 			   fullScreenButton.x = playerWidth - DefinesFLVPLayer.NAVI_FULLSCREEN_X;
 			   fullScreenButton.y = playerHeight + DefinesFLVPLayer.NAVI_FULLSCREEN_Y;
@@ -228,9 +326,9 @@ package com.twoto.videoPlayer
 					this.x=0;
 				}
 			}
-			//destroy()
-			//draw();
 			resize();
+			updateProgressBar(engine.percentProgress, engine.timerPosition);
+			updateLoadedProgress(engine.percentLoadingProgress);
 
 		}
 
@@ -239,6 +337,24 @@ package com.twoto.videoPlayer
 			//target.visible= false;
 		}
 
+		public function updateProgressBar(_percent:Number, time:uint=0):void {
+			
+			//trace( "updateProgressBar: "+engine.timerPosition );
+			if(dragger.isDragging != true) {
+				//trace("update dragger"+percentLoaded)
+				dragger.placeByPercent(_percent, time);
+				
+				progressBar.scaleX=_percent * progressLoadedBackground.scaleX;
+			}
+		}
+		
+		public function updateLoadedProgress(_percent:Number):void {
+			
+			if(progressLoadedBackground != null && this.contains(progressLoadedBackground)) {
+				progressLoadedBackground.scaleX=_percent;
+				dragger.updateWidth(_percent);
+			}
+		}
 
 		private function showInterface(evt:VideoPlayerEvents=null):void {
 

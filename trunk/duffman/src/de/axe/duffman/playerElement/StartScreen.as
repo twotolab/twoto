@@ -12,6 +12,7 @@ package de.axe.duffman.playerElement
 	import caurina.transitions.Equations;
 	import caurina.transitions.Tweener;
 	
+	import com.twoto.utils.Draw;
 	import com.twoto.utils.videoPlayer.CallToACtion;
 	import com.twoto.utils.videoPlayer.Copytext;
 	import com.twoto.utils.videoPlayer.Headline;
@@ -21,7 +22,6 @@ package de.axe.duffman.playerElement
 	import de.axe.duffman.dataModel.DefinesApplication;
 	import de.axe.duffman.events.UiEvent;
 	import de.axe.duffman.loader.PictureLoader;
-	import de.axe.duffman.utils.Draw;
 	
 	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
