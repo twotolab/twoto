@@ -5,7 +5,9 @@
 //
 //------------------------------------------------------------------------------
 
-package de.axe.duffman.utils.videoPlayer {
+package de.axe.duffman.playerElement
+
+{
 	
 	import caurina.transitions.Equations;
 	import caurina.transitions.Tweener;
@@ -14,6 +16,7 @@ package de.axe.duffman.utils.videoPlayer {
 	import com.twoto.utils.videoPlayer.Copytext;
 	import com.twoto.utils.videoPlayer.Headline;
 	import com.twoto.utils.videoPlayer.SubHeadline;
+	import com.twoto.videoPlayer.VideoPlayerEvents;
 	
 	import de.axe.duffman.dataModel.DefinesApplication;
 	import de.axe.duffman.events.UiEvent;

@@ -1,4 +1,5 @@
-package de.schweppes.utils.videoPlayer.elements
+package com.twoto.videoPlayer.elements
+	
 {
     import caurina.transitions.Tweener;
     

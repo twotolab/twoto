@@ -1,4 +1,4 @@
-package de.axe.duffman.utils.videoPlayer.elements
+package com.twoto.videoPlayer.elements
 
 {
 
