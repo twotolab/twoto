@@ -169,7 +169,7 @@ package com.twoto.videoPlayer
 		}
 		
 		private function updateProgress(evt:VideoPlayerEvents):void {
-			trace("updateProgress :" +playerEngine.percentProgress);
+			//trace("updateProgress :" +playerEngine.percentProgress);
 			interfaceUI.updateProgressBar(playerEngine.percentProgress, playerEngine.timerPosition);
 		}
 

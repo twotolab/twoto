@@ -39,7 +39,6 @@ package de.axe.duffman.playerElement
 	public class StartScreen extends Sprite {
 		
 		private var background:Sprite;
-		private var maskPict:Sprite;
 		private var  picture:PictureLoader;
 		
 		private var  headline:MovieClip;
@@ -80,7 +79,7 @@ package de.axe.duffman.playerElement
 		private function draw():void {
 			
 			this.alpha=0;
-			background = Draw.drawSprite(DefinesApplication.VIDEO_HEIGHT, DefinesApplication.VIDEO_HEIGHT,1,0xffdc00);
+			background = Draw.drawSprite(DefinesApplication.VIDEO_HEIGHT, DefinesApplication.VIDEO_HEIGHT,1,0xffdc01);
 			addChild(background);
 			var url:String = pictureURLValueStr// ;
 			//trace("pictureURLValueStr "+pictureURLValueStr);
@@ -90,8 +89,8 @@ package de.axe.duffman.playerElement
 			//		
 			//
 			headline = new Headline();
-			headline.x=252;
-			headline.y=134;
+			headline.x=10;
+			headline.y=10;
 			var headlineTxt:TextField = headline.getChildByName("txt") as TextField;
 			var style:StyleSheet  = new StyleSheet();
 			style.parseCSS("p { leading: -15pt; }");
@@ -124,14 +123,8 @@ package de.axe.duffman.playerElement
 			callToAction.y=Math.round( copytext.y+copytextTxt.textHeight+20);
 			addChild(callToAction);
 			
-			
 		}
-		private function addMask(_picture:DisplayObject):void {
-			
-			maskPict= Draw.drawSprite(DefinesApplication.VIDEO_WIDTH,DefinesApplication.VIDEO_HEIGHT);
-			//addChild(maskPict);
-			_picture.mask=maskPict;
-		}
+
 		private function hide():void {
 			
 			trace("StartScreen hide");
@@ -146,8 +139,6 @@ package de.axe.duffman.playerElement
 		private function showFirstTime(evt:UiEvent):void {
 			picture.visible =true;
 			picture.alpha=1;
-			
-			//addMask(picture);
 
 			Tweener.addTween(this, {alpha:1, time:1, transition:"linear"});
 			callToAction.addEventListener(MouseEvent.CLICK, startVideo);
