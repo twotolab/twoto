@@ -18,6 +18,7 @@ package de.axe.duffman
 		private var dataModel:DataModel;
 		private var background:Shape;
 		private var playerOne:VideoplayerWithStartScreen;
+		private var playerTwo:VideoplayerWithStartScreen;
 
 		
 		//---------------------------------------------------------------------------
@@ -31,20 +32,16 @@ package de.axe.duffman
 			background = Draw.drawShape(972,520,1,0xffdc01);
 			addChild(background);
 
-			/*
-			var paramURL:String = root.loaderInfo.parameters.paramURL;
-			var paramHeadline:String  = root.loaderInfo.parameters.paramHeadline;
-			var paramSubHeadline:String = root.loaderInfo.parameters.paramSubHeadline;
-			var paramCopytext:String  = root.loaderInfo.parameters.paramCopytext;
-			var paramPictureURL:String = root.loaderInfo.parameters.paramPictureURL;
-			var paramFilmName:String  = root.loaderInfo.parameters.paramFilmName;
-			//*/
 			
 			playerOne = new VideoplayerWithStartScreen(dataModel,1);
 			playerOne.x=100;
 			playerOne.y=200;
 			addChild(playerOne);
 			
+			playerTwo = new VideoplayerWithStartScreen(dataModel,2);
+			playerTwo.x=100;
+			playerTwo.y=500;
+			addChild(playerTwo);
 		}
 		
 	}
