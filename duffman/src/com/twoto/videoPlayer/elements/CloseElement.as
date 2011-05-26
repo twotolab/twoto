@@ -24,7 +24,7 @@ package com.twoto.videoPlayer.elements
 			display.addEventListener(MouseEvent.ROLL_OUT, rollOutHandler);
 			display.addEventListener(MouseEvent.MOUSE_DOWN, downHandler);
 
-			//trace(">>>>>>>>>>>>>>>>redraw")
+		//	trace(">>>>>>>>>>>>>>>>CloseElement ready")
 			display.gotoAndStop("CLOSE_OUT");
 		}
 
@@ -41,7 +41,7 @@ package com.twoto.videoPlayer.elements
 		public function downHandler(evt:MouseEvent):void {
 
 			display.gotoAndStop("CLOSE_OVER")
-			dispatchEvent(new Event(Event.CHANGE));
+			dispatchEvent(new Event(Event.CLOSE));
 		}
 		
 		public function reset():void{

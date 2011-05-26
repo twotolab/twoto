@@ -103,7 +103,7 @@ package de.axe.duffman.playerElement
 			subheadlineTxt.text = String(subHeadlineValueStr).toLocaleUpperCase();
 			subHeadline.x=headline.x;
 			subHeadline.y= (headlineTxt.textHeight>80)? headline.y+headlineTxt.textHeight-15:headline.y+headlineTxt.textHeight+2;
-			trace("headline.textHeight: "+headlineTxt.textHeight);
+			//trace("headline.textHeight: "+headlineTxt.textHeight);
 			addChild(subHeadline);
 			//
 			copytext = new Copytext();
@@ -125,15 +125,15 @@ package de.axe.duffman.playerElement
 			
 		}
 
-		private function hide():void {
+		public function hide():void {
 			
-			trace("StartScreen hide");
+			//trace("StartScreen hide");
 			Tweener.addTween(this, {alpha:0, time:1, transition:"linear", onComplete:invisibility()});
 		}
 		
 		public function show():void {
 			
-			trace("StartScreen show");
+			//trace("StartScreen show");
 			Tweener.addTween(this, {alpha:1, time:1, onComplete:visibility()});
 		}
 		private function showFirstTime(evt:UiEvent):void {
@@ -157,7 +157,6 @@ package de.axe.duffman.playerElement
 			callToActionElt.gotoAndStop(1);
 		}
 		private function startVideo(evt:MouseEvent):void {
-			hide();
 			dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.START_PLAYER));
 		}
 		

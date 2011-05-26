@@ -61,7 +61,7 @@ package com.twoto.videoPlayer
 			}
 		}
 		private function hide(evt:TimerEvent = null):void{
-			trace("hide it");
+			//trace("hide it");
 			STATUS = HIDE;
 			dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.INTERFACE_HIDE));
 
@@ -69,7 +69,7 @@ package com.twoto.videoPlayer
 
 		private function show():void{
 			STATUS = SHOW;
-			trace("show it");
+			//trace("show it");
 			dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.INTERFACE_SHOW));
 
 		}

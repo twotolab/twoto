@@ -72,7 +72,7 @@ package com.twoto.videoPlayer
 
 			SoundShortcuts.init();
 			soundTrans=new SoundTransform();
-			trace("FLVPlayerEngine");
+			// trace("FLVPlayerEngine");
 			addEventListener(Event.ADDED_TO_STAGE, addedToStage, false, 0, true);
 		}
 
@@ -86,7 +86,7 @@ package com.twoto.videoPlayer
 
 		private function initPlayer():void {
 
-			trace("initPlayer");
+			// trace("initPlayer");
 			client=new CustomFLVPlayerClient();
 			// NetConnection class lets you play streaming FLV files from either an HTTP address or a local drive 
 			netConnection=new NetConnection();
@@ -138,7 +138,7 @@ package com.twoto.videoPlayer
 					loaderTimer.stop();
 					loaderTimer=null;
 				}
-				trace("ready");
+				// trace("ready");
 			}
 
 		}
@@ -191,14 +191,14 @@ package com.twoto.videoPlayer
 
 			switch (event.info.code) {
 				case "NetConnection.Connect.Success":
-					trace("NetConnection.Connect.Success");
+					//trace("NetConnection.Connect.Success");
 					connectStream();
 					break;
 				case "NetStream.Play.Complete":
-					trace("NetStream.Play.Complete");
+					//trace("NetStream.Play.Complete");
 					break;
 				case "NetStream.Play.Start":
-					trace("NetStream.Play.Start");
+					//trace("NetStream.Play.Start");
 					videoTimer.start();
 					STATUS=PLAY;
 					volumeOn();
@@ -206,21 +206,21 @@ package com.twoto.videoPlayer
 					dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.ENGINE_START));
 					break;
 				case "NetStream.Buffer.Empty":
-					trace("NetStream.Buffer.Empty");
+					//trace("NetStream.Buffer.Empty");
 					dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.BUFFERING_EMPTY));
 					break;
 				case "NetStream.Buffer.Full":
-					trace("NetStream.Buffer.Full");
+					//trace("NetStream.Buffer.Full");
 					dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.BUFFERING_FULL));
 					break;
 				case "NetStream.Play.Stop":
-					trace("NetStream.Play.Stop");
+					//trace("NetStream.Play.Stop");
 					reset();
 					break;
 
 				case "NetConnection.Connect.Success":
 					connectStream();
-					trace("NetConnection.Connect.Success");
+					//trace("NetConnection.Connect.Success");
 					break;
 				case "NetStream.Play.StreamNotFound":
 					trace("Stream not found: " + videoURL);
@@ -272,7 +272,7 @@ package com.twoto.videoPlayer
 		public function volumeOff():void {
 
 			SOUND_STATUS=OFF;
-			trace("volumeOff");
+			//trace("volumeOff");
 			var sTrans:SoundTransform=new SoundTransform();
 			sTrans.volume=netStream.soundTransform.volume;
 			Tweener.addTween(sTrans, {volume:0, time:0.5, transition:"linear", onUpdate:function():void {

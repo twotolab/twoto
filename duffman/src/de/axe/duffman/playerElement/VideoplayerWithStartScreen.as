@@ -7,6 +7,7 @@ package de.axe.duffman.playerElement
 	
 	import de.axe.duffman.dataModel.DataModel;
 	import de.axe.duffman.dataModel.DefinesApplication;
+	import de.axe.duffman.events.UiEvent;
 	
 	import flash.display.DisplayObject;
 	import flash.display.Shape;
@@ -41,11 +42,8 @@ package de.axe.duffman.playerElement
 			player = new FLVPlayer(DefinesApplication.VIDEO_WIDTH,DefinesApplication.VIDEO_HEIGHT);﻿
 			player.addEventListener(VideoPlayerEvents.PLAYER_READY,playerReady);
 			player.visible=false;
-			trace("......:adfsfdsd:"+dataModel.playerWidth);
 			addChild(player);
-			
-			
-			
+	
 		}
 		private function playerReady(evt:VideoPlayerEvents):void{
 			
@@ -54,24 +52,38 @@ package de.axe.duffman.playerElement
 			player.videoURL =paramURL//"twoto_Coffea_SG_Webversion_040609.flv"//"http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv"+"?test="+Math.random()*100;//"film.flv"//
 			//
 			startScreen = new StartScreen(paramHeadline,paramSubHeadline,paramCopytext,paramPictureURL);
-			startScreen.addEventListener(VideoPlayerEvents.START_PLAYER,startPlayer)
+			startScreen.addEventListener(VideoPlayerEvents.START_PLAYER,handlePlayer)
 			addChild(startScreen);
 			//
-			player.addEventListener(VideoPlayerEvents.ENGINE_END,showStartScreen);
-			
+			player.addEventListener(VideoPlayerEvents.ENGINE_STOP,showStartScreen);
+
 			
 			addMask(startScreen);
 		}
-		private function startPlayer(evt:VideoPlayerEvents = null):void{
+		private function handlePlayer(evt:VideoPlayerEvents = null):void{
+			trace("--------------handlePlayer");
+			dispatchEvent(new UiEvent(UiEvent.PLAYER_START));
+		}
+		public  function startPlayer():void{
+			trace("--------------startPlayer");
 			player.visible=true;
 			player.startPlayer();
+			startScreen.hide();
 			player.show();
 		}
+
+		public function closePlayer():void{
+
+			trace("--------------closePlayer");
+			player.closePlayer();
+		}
 		private function showStartScreen(evt:VideoPlayerEvents = null):void{
+			trace("--------------showStartScreen");
 			player.hide();
 			startScreen.show();
-
+			dispatchEvent(new UiEvent(UiEvent.PLAYER_STOPPED));
 		}
+
 		private function addMask(_object:DisplayObject):void {
 			
 			maskObject= Draw.drawSprite(DefinesApplication.VIDEO_ELEMENT_WIDTH,DefinesApplication.VIDEO_ELEMENT_HEIGHT);
