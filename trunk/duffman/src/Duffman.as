@@ -42,7 +42,7 @@ package {
 			
 			if (framesLoaded == totalFrames) {
 				removeEventListener(Event.ENTER_FRAME, onEnterFrame);
-				trace("loading ready...:");
+				//trace("loading ready...:");
 				getXML();
 			} else {
 				var upperText:String="loading XML..." + String(root.loaderInfo.bytesLoaded / root.loaderInfo.bytesTotal);

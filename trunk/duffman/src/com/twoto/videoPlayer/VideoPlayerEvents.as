@@ -22,6 +22,7 @@ package com.twoto.videoPlayer
 		public static const INTERFACE_PAUSE:String = "interfacePause";
 		public static const INTERFACE_SOUND:String = "interfaceSound";
 		public static const INTERFACE_DRAGGED:String = "interfaceDragged";
+		public static const INTERFACE_CLOSE:String = "interfaceClose";
 		
 		public static const INTERFACE_SHOW:String = "interfaceShow";
 		public static const INTERFACE_HIDE:String = "interfaceHide";

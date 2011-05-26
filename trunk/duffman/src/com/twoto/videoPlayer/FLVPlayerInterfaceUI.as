@@ -11,8 +11,10 @@ package com.twoto.videoPlayer
 	import caurina.transitions.Tweener;
 	
 	import com.twoto.utils.Draw;
+	import com.twoto.utils.videoPlayer.CloseButtonMC;
 	import com.twoto.utils.videoPlayer.InfoTextMC;
 	import com.twoto.utils.videoPlayer.VideoMask;
+	import com.twoto.videoPlayer.elements.CloseElement;
 	import com.twoto.videoPlayer.elements.Dragger;
 	import com.twoto.videoPlayer.elements.PlayStopElement;
 	import com.twoto.videoPlayer.elements.ProgressBar;
@@ -50,6 +52,7 @@ package com.twoto.videoPlayer
 		private var originalFilmPosY:uint;
 
 		private var originalFilmWidth:uint;
+		private var totalNaviWidth:uint;
 
 		private var playerHeight:uint;
 		private var playerWidth:uint;
@@ -61,6 +64,7 @@ package com.twoto.videoPlayer
 		private var soundOnOffButton:com.twoto.videoPlayer.elements.SoundElement;
 
 		private var startStopButton:PlayStopElement;
+		private var closeButton:CloseElement;
 		private var video:DisplayObject;
 		
 
@@ -74,7 +78,7 @@ package com.twoto.videoPlayer
 			originalFilmHeight=_playerHeight;
 			playerHeight=_playerHeight;
 			playerWidth=_playerWidth;
-			progressbarWidth=playerWidth- 100 - DefinesFLVPLayer.NAVI_PROGRESS_BORDER * 2;
+			progressbarWidth=playerWidth- 100;
 			addEventListener(Event.ADDED_TO_STAGE, addedToStage, false, 0, true);
 		}
 
@@ -99,7 +103,7 @@ package com.twoto.videoPlayer
 
 		public function initVideo(_engine:FLVPlayerEngine):void {
 
-			trace("initVideo -------------------------")
+			//trace("initVideo -------------------------")
 			engine=_engine;
 			video=engine.video;
 			engine.addEventListener(VideoPlayerEvents.ENGINE_READY,finalyseInterface);
@@ -122,9 +126,6 @@ package com.twoto.videoPlayer
 		public function set setFilmName(_name:String):void {
 			filmName=_name;
 			infoTxtField.text=filmName.toLocaleUpperCase();
-			navigationBack=Draw.drawRoundedShape(infoTxtField.textWidth + 60, 21, 20, 1, 0x000000);
-			navigationContainer.addChildAt(navigationBack, 0);
-			navigationBack.filters=Draw.addShadow(Draw.defaultShadow());
 			resize();
 		}
 
@@ -150,6 +151,11 @@ package com.twoto.videoPlayer
 
 
 		private function draw():void {
+			
+			closeButton = new CloseElement();
+			closeButton.addEventListener(Event.CLOSE,closePlayer)
+			addChild(closeButton);
+			
 			navigationContainer=new Sprite();
 			addChild(navigationContainer);
 
@@ -163,21 +169,21 @@ package com.twoto.videoPlayer
 
 			infoTextMC=new InfoTextMC();
 			infoTxtField=infoTextMC.getChildByName("textf") as TextField;
-
 			navigationContainer.addChild(infoTextMC);
-
-			navigationBack=Draw.drawRoundedShape(infoTxtField.textWidth + 60, 21, 20, 1, 0x000000);
-			navigationContainer.addChildAt(navigationBack, 0);
-			navigationBack.filters=Draw.addShadow(Draw.defaultShadow());
-
+			
 			bufferingMC=new CircleSlicePreloader(12, 7, 0xffdc00);
 			bufferingMC.filters=Draw.addShadow(Draw.smallShadow());
 
 			progressBarElement = new ProgressBar(progressbarWidth,playerHeight);
 			progressBarElement.addEventListener(VideoPlayerEvents.INTERFACE_DRAGGED, updatedDraggerPos);
-			progressBarElement.x= DefinesFLVPLayer.NAVI_FULLSCREEN_X
+			progressBarElement.x= DefinesFLVPLayer.NAVI_PLAYSTOP_X+startStopButton.width+DefinesFLVPLayer.NAVI_PROGRESS_DIST_X;
 			navigationContainer.addChild(progressBarElement);
-			trace("///////////////draw it")
+			
+			totalNaviWidth = DefinesFLVPLayer.NAVI_PLAYSTOP_X+startStopButton.width+DefinesFLVPLayer.NAVI_PROGRESS_DIST_X+progressbarWidth+DefinesFLVPLayer.NAVI_SOUND_DIST_X+soundOnOffButton.width+DefinesFLVPLayer.NAVI_PLAYSTOP_X;
+			navigationBack=Draw.drawRoundedShape( totalNaviWidth,DefinesFLVPLayer.NAVI_HEIGHT,15, 1, 0x000000);
+			navigationContainer.addChildAt(navigationBack, 0);
+			navigationBack.filters=Draw.addShadow(Draw.defaultShadow());
+
 			showBufferer();
 
 		}
@@ -199,20 +205,25 @@ package com.twoto.videoPlayer
 
 		private function resize():void {
 
-			soundOnOffButton.x=progressbarWidth+DefinesFLVPLayer.NAVI_SOUND_DIST_X;
+			closeButton.x=playerWidth-closeButton.width-DefinesFLVPLayer.NAVI_CLOSE_DIST_X;
+			closeButton.y=DefinesFLVPLayer.NAVI_CLOSE_DIST_Y;
+			
+			soundOnOffButton.x=progressBarElement.x+progressbarWidth+DefinesFLVPLayer.NAVI_SOUND_DIST_X;
 			soundOnOffButton.y=DefinesFLVPLayer.NAVI_SOUND_Y;
 			startStopButton.x=DefinesFLVPLayer.NAVI_PLAYSTOP_X;
 			startStopButton.y=DefinesFLVPLayer.NAVI_PLAYSTOP_Y;
-			infoTextMC.x=45;
-			infoTextMC.y=5;
+			
+			infoTextMC.x=DefinesFLVPLayer.NAVI_TEXT_X;
+			infoTextMC.y=DefinesFLVPLayer.NAVI_TEXT_Y;
+			
+			navigationContainer.x=Math.round((DefinesApplication.VIDEO_WIDTH - navigationBack.width) * .5) // DefinesFLVPLayer.VIDEO_X+Math.round((DefinesFLVPLayer.VIDEO_WIDTH-navigationContainer.width))*.5;
+			navigationContainer.y= DefinesApplication.VIDEO_HEIGHT -DefinesFLVPLayer.NAVI_HEIGHT- DefinesFLVPLayer.NAVI_DIST_Y;
 			
 			redrawProgressBars();
 			/*
 			   fullScreenButton.x = playerWidth - DefinesFLVPLayer.NAVI_FULLSCREEN_X;
 			   fullScreenButton.y = playerHeight + DefinesFLVPLayer.NAVI_FULLSCREEN_Y;
 			 */
-			navigationContainer.x=Math.round((DefinesApplication.VIDEO_WIDTH - navigationBack.width) * .5) // DefinesFLVPLayer.VIDEO_X+Math.round((DefinesFLVPLayer.VIDEO_WIDTH-navigationContainer.width))*.5;
-			navigationContainer.y=DefinesFLVPLayer.NAVI_Y + DefinesApplication.VIDEO_HEIGHT - 105;
 
 			bufferingMC.x=Math.round((DefinesApplication.VIDEO_WIDTH - bufferingMC.width) * .5) //
 			bufferingMC.y=Math.round((DefinesApplication.VIDEO_HEIGHT - bufferingMC.height) * .5)
@@ -221,7 +232,9 @@ package com.twoto.videoPlayer
 		private function redrawProgressBars():void{
 			progressBarElement.redrawProgressBars();
 		}
-
+		public function closePlayer(evt:Event):void {
+			dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.INTERFACE_CLOSE));
+		}
 		private function resizeHandler(evt:Event):void {
 
 			var factor:Number;
@@ -264,7 +277,7 @@ package com.twoto.videoPlayer
 		}
 
 		private function hideInterface(evt:VideoPlayerEvents=null):void {
-			Tweener.addTween(navigationContainer, {alpha:0, time:1, y:navigationContainer.y + 70});
+			Tweener.addTween(navigationContainer, {alpha:0, time:1});
 			//target.visible= false;
 		}
 
@@ -282,7 +295,7 @@ package com.twoto.videoPlayer
 		private function showInterface(evt:VideoPlayerEvents=null):void {
 
 			dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.INTERFACE_SHOW));
-			Tweener.addTween(navigationContainer, {alpha:1, time:1, y:navigationContainer.y - 70});
+			Tweener.addTween(navigationContainer, {alpha:1, time:1});
 		}
 
 		public function showBufferer():void {

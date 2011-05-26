@@ -36,7 +36,7 @@ package com.twoto.videoPlayer
 		}
 
 		public function onXMPData(_XMPData:Object):void {
-			trace("onXMPData: time=" + _XMPData.time + " name=" + _XMPData.name + " type=" + _XMPData.type);
+			// trace("onXMPData: time=" + _XMPData.time + " name=" + _XMPData.name + " type=" + _XMPData.type);
 		}
 
 

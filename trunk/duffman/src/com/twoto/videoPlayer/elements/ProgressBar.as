@@ -1,8 +1,8 @@
 package com.twoto.videoPlayer.elements
 {
 	import com.twoto.utils.Draw;
+	import com.twoto.utils.videoPlayer.EmptyBackProgressMC;
 	import com.twoto.videoPlayer.DefinesFLVPLayer;
-	import com.twoto.videoPlayer.EmptyBackProgressMC;
 	import com.twoto.videoPlayer.FLVPlayerEngine;
 	import com.twoto.videoPlayer.VideoPlayerEvents;
 	
@@ -20,7 +20,7 @@ package com.twoto.videoPlayer.elements
 		private var progressBar:Shape;
 		private var progressEltBackground:Shape;
 		private var progressLoadedBackground:Shape;
-		private var progressBackground:EmptyBackProgressMC;
+		private var progressBackground:com.twoto.utils.videoPlayer.EmptyBackProgressMC;
 		private var playerHeight:uint;
 		private var playerWidth:uint;
 		private var timerInfo:Boolean;
@@ -39,7 +39,7 @@ package com.twoto.videoPlayer.elements
 		}
 		public function redrawProgressBars():void {
 			
-			trace("---------redrawProgressBars");
+			//trace("---------redrawProgressBars");
 			if(progressBackground != null) {
 				if(this.contains(progressBackground)) {
 					removeChild(progressBackground);

@@ -45,7 +45,7 @@ package com.twoto.videoPlayer
 
 		private function buildInterfaceUI():void {
 
-			trace("buildinterfaceUI");
+			// trace("buildinterfaceUI");
 			interfaceUI=new FLVPlayerInterfaceUI(playerWidth,playerHeight)
 
 			// events  from the interfaceUI
@@ -53,6 +53,7 @@ package com.twoto.videoPlayer
 			interfaceUI.addEventListener(VideoPlayerEvents.INTERFACE_SOUND, interfaceHandler);
 			interfaceUI.addEventListener(VideoPlayerEvents.INTERFACE_READY, interfaceHandler);
 			interfaceUI.addEventListener(VideoPlayerEvents.INTERFACE_DRAGGED, interfaceHandler);
+			interfaceUI.addEventListener(VideoPlayerEvents.INTERFACE_CLOSE, interfaceHandler);
 
 			addChild(interfaceUI);
 
@@ -60,7 +61,7 @@ package com.twoto.videoPlayer
 
 		private function buildPlayerEngine():void {
 
-			trace("buildPlayerEngine");
+			// trace("buildPlayerEngine");
 			playerEngine=new FLVPlayerEngine();
 			// events  from the Engine
 			playerEngine.addEventListener(VideoPlayerEvents.ENGINE_METADATA_READY, engineHandler);
@@ -76,6 +77,10 @@ package com.twoto.videoPlayer
 
 		public function startPlayer():void {
 			playerEngine.startPlayer();
+		}
+		public function closePlayer():void {
+		   engineHandler(new VideoPlayerEvents(VideoPlayerEvents.ENGINE_STOP));
+			// playerEngine.reset();
 		}
 
 		public function set filmName(_name:String):void {
@@ -99,7 +104,7 @@ package com.twoto.videoPlayer
 
 		private function interfaceHandler(evt:VideoPlayerEvents):void {
 
-			trace("interfaceHandler :" + evt.type.toString());
+			//trace("interfaceHandler :" + evt.type.toString());
 
 			switch (evt.type.toString()) {
 				case VideoPlayerEvents.INTERFACE_READY:
@@ -117,6 +122,10 @@ package com.twoto.videoPlayer
 					//trace("interfaceHandler!!!! :" + evt.type.toString());
 					playerEngine.draggedTo(interfaceUI.draggerPercent);
 					break;
+				case VideoPlayerEvents.INTERFACE_CLOSE:
+					//trace("interfaceHandler!!!! :" + evt.type.toString());
+					closePlayer();
+					break;
 				default:
 					//trace("interfaceHandler empty!!!! :" + evt.type.toString());
 					break;
@@ -125,7 +134,7 @@ package com.twoto.videoPlayer
 
 		private function engineHandler(evt:VideoPlayerEvents):void {
 
-			trace("engineHandler" + evt.toString());
+			//trace("engineHandler" + evt.toString());
 			switch (evt.type.toString()) {
 				case VideoPlayerEvents.ENGINE_READY:
 					dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.PLAYER_READY));
@@ -141,22 +150,16 @@ package com.twoto.videoPlayer
 					interfaceUI.showBufferer();
 					break;
 				case VideoPlayerEvents.ENGINE_STOP:
-					/*
-					   interfaceUI.showProgressBar(false);
-					   interfaceUI.reset();
-
-					 */
-					trace("endFilm");
+					//trace("endFilm");
 					interfaceUI.resetSoundButton();
-					dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.ENGINE_END));
-
+					dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.ENGINE_STOP));
 					break;
 				case VideoPlayerEvents.BUFFERING_EMPTY:
 					trace("////////////////////////////////BUFFERING_EMPTY");
 					interfaceUI.showBufferer();
 					break;
 				case VideoPlayerEvents.BUFFERING_FULL:
-					trace("////////////////////////////////BUFFERING_FULL");
+					//trace("////////////////////////////////BUFFERING_FULL");
 					interfaceUI.hideBufferer();
 					break;
 				default:

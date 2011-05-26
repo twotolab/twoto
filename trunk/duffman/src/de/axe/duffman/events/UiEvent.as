@@ -15,7 +15,12 @@
 		public static const CONTENT_CLOSE:String = "contentClose";
 		
 		public static const PICTURE_READY:String = "pictureReady";
+		// players
+		public static const PLAYER_ACTIVE:String = "playerActive";
+		public static const PLAYER_INACTIVE:String = "playerInactive";
+		public static const PLAYER_STOPPED:String = "playerstopped";
 		
+		public static const PLAYER_START:String = "playerPlay";
 		
 		public function UiEvent(type:String) { 
 			
