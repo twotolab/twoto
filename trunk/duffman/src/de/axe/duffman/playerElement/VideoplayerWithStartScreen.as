@@ -1,6 +1,7 @@
 package de.axe.duffman.playerElement
 {
 	import com.twoto.utils.Draw;
+	import com.twoto.videoPlayer.DefinesFLVPLayer;
 	import com.twoto.videoPlayer.FLVPlayer;
 	import com.twoto.videoPlayer.VideoPlayerEvents;
 	
@@ -37,7 +38,7 @@ package de.axe.duffman.playerElement
 			paramPictureURL = "film_assets/testPic.jpg";// "http://twoto.googlecode.com/svn/trunk/schweppesFLVPlayer/assets/testPic.jpg";
 			paramFilmName = "geschäftsmann";
 			
-			player = new FLVPlayer();﻿
+			player = new FLVPlayer(DefinesApplication.VIDEO_WIDTH,DefinesApplication.VIDEO_HEIGHT);﻿
 			player.addEventListener(VideoPlayerEvents.PLAYER_READY,playerReady);
 			player.visible=false;
 			trace("......:adfsfdsd:"+dataModel.playerWidth);

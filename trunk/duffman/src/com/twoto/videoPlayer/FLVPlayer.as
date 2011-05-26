@@ -11,8 +11,14 @@ package com.twoto.videoPlayer
 		private var playerEngine:FLVPlayerEngine;
 		private var _videoURL:String;
 		private var interfaceUI:FLVPlayerInterfaceUI;
+		private var playerHeight:uint;
+		private var playerWidth:uint;
 
-		public function FLVPlayer() {
+		public function FLVPlayer(_playerWidth:uint,_playerHeight:uint)
+		
+		{
+			playerHeight=_playerHeight;
+			playerWidth=_playerWidth;
 
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, 0, true);
 		}
@@ -40,7 +46,7 @@ package com.twoto.videoPlayer
 		private function buildInterfaceUI():void {
 
 			trace("buildinterfaceUI");
-			interfaceUI=new FLVPlayerInterfaceUI();
+			interfaceUI=new FLVPlayerInterfaceUI(playerWidth,playerHeight)
 
 			// events  from the interfaceUI
 			interfaceUI.addEventListener(VideoPlayerEvents.INTERFACE_PAUSE, interfaceHandler);
