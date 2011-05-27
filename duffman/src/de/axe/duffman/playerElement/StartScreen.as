@@ -120,6 +120,7 @@ package de.axe.duffman.playerElement
 			*/
 			callToAction = new CallToACtion();
 			callToActionElt = callToAction.getChildByName("callToActionElt") as MovieClip;
+			callToActionElt.gotoAndStop(1);
 			callToAction.x=30// headline.x;
 			callToAction.y=30//Math.round( copytext.y+copytextTxt.textHeight+20);
 			addChild(callToAction);
