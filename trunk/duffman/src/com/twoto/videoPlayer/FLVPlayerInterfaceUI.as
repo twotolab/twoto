@@ -73,12 +73,12 @@ package com.twoto.videoPlayer
 		
 		{
 			originalFilmWidth=_playerWidth;
-			originalFilmPosX=0;
-			originalFilmPosY=0;
+			originalFilmPosX=DefinesFLVPLayer.POS_X;
+			originalFilmPosY=DefinesFLVPLayer.POS_X;
 			originalFilmHeight=_playerHeight;
 			playerHeight=_playerHeight;
 			playerWidth=_playerWidth;
-			progressbarWidth=playerWidth- 100;
+			progressbarWidth=playerWidth- DefinesFLVPLayer.NAVI_PROGRESS_WIDTH_DIFFERENCE;
 			addEventListener(Event.ADDED_TO_STAGE, addedToStage, false, 0, true);
 		}
 
@@ -91,8 +91,7 @@ package com.twoto.videoPlayer
 			
 
 			draw();
-			
-			stage.addEventListener(Event.RESIZE, resizeHandler);
+
 
 			showHideInterfaceHandler=new ShowHideInterfaceHandler(navigationContainer);
 			showHideInterfaceHandler.addEventListener(VideoPlayerEvents.INTERFACE_SHOW, showInterface);
@@ -103,18 +102,17 @@ package com.twoto.videoPlayer
 
 		public function initVideo(_engine:FLVPlayerEngine):void {
 
-			//trace("initVideo -------------------------")
+			trace("initVideo -------------------------")
 			engine=_engine;
 			video=engine.video;
-			engine.addEventListener(VideoPlayerEvents.ENGINE_READY,finalyseInterface);
-
 			progressBarElement.playerEngine =engine;
 			this.addChildAt(video, 0);
-
-		}
-		private function finalyseInterface(evt:VideoPlayerEvents=null):void{
-			addMask(video);
+			//	addMask(video);
 			resizeHandler(null);
+			stage.addEventListener(Event.RESIZE, resizeHandler);
+		}
+		private function finalyseInterface(evt:VideoPlayerEvents):void{
+
 		}
 
 		public function resetSoundButton():void {
@@ -126,7 +124,7 @@ package com.twoto.videoPlayer
 		public function set setFilmName(_name:String):void {
 			filmName=_name;
 			infoTxtField.text=filmName.toLocaleUpperCase();
-			resize();
+			replaceElts();
 		}
 
 		public function setPlayStopStatus():void {
@@ -203,7 +201,7 @@ package com.twoto.videoPlayer
 
 
 
-		private function resize():void {
+		private function replaceElts():void {
 
 			closeButton.x=playerWidth-closeButton.width-DefinesFLVPLayer.NAVI_CLOSE_DIST_X;
 			closeButton.y=DefinesFLVPLayer.NAVI_CLOSE_DIST_Y;
@@ -220,62 +218,48 @@ package com.twoto.videoPlayer
 			navigationContainer.y= DefinesApplication.VIDEO_HEIGHT -DefinesFLVPLayer.NAVI_HEIGHT- DefinesFLVPLayer.NAVI_DIST_Y;
 			
 			redrawProgressBars();
-			/*
-			   fullScreenButton.x = playerWidth - DefinesFLVPLayer.NAVI_FULLSCREEN_X;
-			   fullScreenButton.y = playerHeight + DefinesFLVPLayer.NAVI_FULLSCREEN_Y;
-			 */
 
 			bufferingMC.x=Math.round((DefinesApplication.VIDEO_WIDTH - bufferingMC.width) * .5) //
 			bufferingMC.y=Math.round((DefinesApplication.VIDEO_HEIGHT - bufferingMC.height) * .5)
 
 		}
+		private function resizeVideo():void {
+			var factor:Number;
+			
+			video.mask=null;
+			factor=(stage.stageHeight) / originalFilmHeight;
+			video.scaleY=video.scaleX=factor;
+			video.y=stage.stageHeight - video.height - DefinesFLVPLayer.NAVI_HEIGHT;
+			playerHeight=stage.stageHeight - DefinesFLVPLayer.NAVI_HEIGHT;
+			if (stage.stageWidth > video.width) {
+			playerWidth=video.width;
+			this.x=Math.round((stage.stageWidth - video.width) * .5);
+			} else if (stage.stageWidth < video.width) {
+			
+			playerWidth=stage.stageWidth;
+			video.x=-Math.round((video.width - stage.stageWidth) * .5);
+			} else {
+			playerWidth=stage.stageWidth;
+			this.x=0;
+			}
+			updateProgressBar(engine.percentProgress, engine.timerPosition);
+			updateLoadedProgress(engine.percentLoadingProgress);
+		}
+		
 		private function redrawProgressBars():void{
 			progressBarElement.redrawProgressBars();
 		}
+		
 		public function closePlayer(evt:Event):void {
 			dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.INTERFACE_CLOSE));
 		}
+		
 		private function resizeHandler(evt:Event):void {
-
-			var factor:Number;
-			if (this.stage.displayState == StageDisplayState.NORMAL) {
-
-				video.mask=maskVideo;
-				factor=1;
-				video.x=0;
-				maskVideo.x=originalFilmPosX;
-				maskVideo.y=originalFilmPosY;
-				video.scaleY=video.scaleX=factor;
-				playerHeight=video.height;
-				playerWidth=video.width;
-				video.x=originalFilmPosX;
-				video.y=originalFilmPosY;
-				this.x=0;
-
-			} else {
-				video.mask=null;
-				factor=(stage.stageHeight) / originalFilmHeight;
-				video.scaleY=video.scaleX=factor;
-				video.y=stage.stageHeight - video.height - DefinesFLVPLayer.NAVI_HEIGHT;
-				playerHeight=stage.stageHeight - DefinesFLVPLayer.NAVI_HEIGHT;
-				if (stage.stageWidth > video.width) {
-					playerWidth=video.width;
-					this.x=Math.round((stage.stageWidth - video.width) * .5);
-				} else if (stage.stageWidth < video.width) {
-
-					playerWidth=stage.stageWidth;
-					video.x=-Math.round((video.width - stage.stageWidth) * .5);
-				} else {
-					playerWidth=stage.stageWidth;
-					this.x=0;
-				}
-			}
-			resize();
-			updateProgressBar(engine.percentProgress, engine.timerPosition);
-			updateLoadedProgress(engine.percentLoadingProgress);
-
+			
+			resizeVideo();
+			replaceElts();
 		}
-
+		
 		private function hideInterface(evt:VideoPlayerEvents=null):void {
 			Tweener.addTween(navigationContainer, {alpha:0, time:1});
 			//target.visible= false;

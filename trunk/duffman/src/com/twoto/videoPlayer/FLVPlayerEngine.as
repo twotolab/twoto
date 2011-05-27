@@ -81,7 +81,6 @@ package com.twoto.videoPlayer
 			removeEventListener(Event.ADDED_TO_STAGE, addedToStage);
 			dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.ENGINE_READY));
 
-
 		}
 
 		private function initPlayer():void {
@@ -92,7 +91,6 @@ package com.twoto.videoPlayer
 			netConnection=new NetConnection();
 			netConnection.addEventListener(NetStatusEvent.NET_STATUS, netStatusHandler);
 			netConnection.connect(null);
-
 
 		}
 
