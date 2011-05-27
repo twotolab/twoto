@@ -24,6 +24,8 @@ package de.axe.duffman
 		private var lastActivePlayer:VideoplayerWithStartScreen;
 		private var awaitingPlayer:VideoplayerWithStartScreen;
 		
+		private var indexPlayer:uint;
+		
 		private var STATUS_PLAYER:String;
 		
 		public static const ONE_ACTIVE:String="oneactive";
@@ -77,7 +79,8 @@ package de.axe.duffman
 			} else {
 				STATUS_PLAYER = ONE_ACTIVE;
 				activePlayer=getChildByName(evt.target.name) as VideoplayerWithStartScreen;
-				//addChild(activePlayer);
+				indexPlayer = getChildIndex(activePlayer);
+ 				setChildIndex(activePlayer,this.numChildren-1);
 				activePlayer.startPlayer();
 			}
 		}
@@ -86,11 +89,12 @@ package de.axe.duffman
 				STATUS_PLAYER = ONE_ACTIVE;
 				activePlayer = awaitingPlayer;
 				activePlayer.startPlayer();
-				//addChild(activePlayer);
+				indexPlayer = getChildIndex(activePlayer);
+				setChildIndex(activePlayer,100);
 				awaitingPlayer = null;
 			} else{
 				STATUS_PLAYER = NOONE_ACTIVE;
-				activePlayer=awaitingPlayer = null;
+				setChildIndex(activePlayer,indexPlayer);
 			}
 		}
 	}
