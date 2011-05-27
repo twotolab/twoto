@@ -89,10 +89,7 @@ package com.twoto.videoPlayer
 		}
 		public function setup():void {
 			
-
 			draw();
-
-
 			showHideInterfaceHandler=new ShowHideInterfaceHandler(navigationContainer);
 			showHideInterfaceHandler.addEventListener(VideoPlayerEvents.INTERFACE_SHOW, showInterface);
 			showHideInterfaceHandler.addEventListener(VideoPlayerEvents.INTERFACE_HIDE, hideInterface);
@@ -124,7 +121,6 @@ package com.twoto.videoPlayer
 		public function set setFilmName(_name:String):void {
 			filmName=_name;
 			infoTxtField.text=filmName.toLocaleUpperCase();
-			replaceElts();
 		}
 
 		public function setPlayStopStatus():void {
@@ -199,8 +195,6 @@ package com.twoto.videoPlayer
 			progressBarElement.showProgressBar(_value);
 		}
 
-
-
 		private function replaceElts():void {
 
 			closeButton.x=playerWidth-closeButton.width-DefinesFLVPLayer.NAVI_CLOSE_DIST_X;
@@ -214,13 +208,17 @@ package com.twoto.videoPlayer
 			infoTextMC.x=DefinesFLVPLayer.NAVI_TEXT_X;
 			infoTextMC.y=DefinesFLVPLayer.NAVI_TEXT_Y;
 			
-			navigationContainer.x=Math.round((DefinesApplication.VIDEO_WIDTH - navigationBack.width) * .5) // DefinesFLVPLayer.VIDEO_X+Math.round((DefinesFLVPLayer.VIDEO_WIDTH-navigationContainer.width))*.5;
-			navigationContainer.y= DefinesApplication.VIDEO_HEIGHT -DefinesFLVPLayer.NAVI_HEIGHT- DefinesFLVPLayer.NAVI_DIST_Y;
+			if (stage.stageWidth > video.width) {
+				navigationContainer.x=Math.round((video.width - navigationContainer.width) * .5) // DefinesFLVPLayer.VIDEO_X+Math.round((DefinesFLVPLayer.VIDEO_WIDTH-navigationContainer.width))*.5;
+			} else{
+				navigationContainer.x=Math.round((stage.stageWidth - navigationContainer.width) * .5) // DefinesFLVPLayer.VIDEO_X+Math.round((DefinesFLVPLayer.VIDEO_WIDTH-navigationContainer.width))*.5;
+			}
+			navigationContainer.y= video.height -DefinesFLVPLayer.NAVI_HEIGHT- DefinesFLVPLayer.NAVI_DIST_Y;
 			
 			redrawProgressBars();
 
-			bufferingMC.x=Math.round((DefinesApplication.VIDEO_WIDTH - bufferingMC.width) * .5) //
-			bufferingMC.y=Math.round((DefinesApplication.VIDEO_HEIGHT - bufferingMC.height) * .5)
+			bufferingMC.x=Math.round((video.width - bufferingMC.width) * .5) //
+			bufferingMC.y=Math.round((video.height - bufferingMC.height) * .5)
 
 		}
 		private function resizeVideo():void {
@@ -242,8 +240,6 @@ package com.twoto.videoPlayer
 			playerWidth=stage.stageWidth;
 			this.x=0;
 			}
-			updateProgressBar(engine.percentProgress, engine.timerPosition);
-			updateLoadedProgress(engine.percentLoadingProgress);
 		}
 		
 		private function redrawProgressBars():void{
@@ -251,6 +247,7 @@ package com.twoto.videoPlayer
 		}
 		
 		public function closePlayer(evt:Event):void {
+			stage.removeEventListener(Event.RESIZE, resizeHandler);
 			dispatchEvent(new VideoPlayerEvents(VideoPlayerEvents.INTERFACE_CLOSE));
 		}
 		
@@ -258,6 +255,8 @@ package com.twoto.videoPlayer
 			
 			resizeVideo();
 			replaceElts();
+			updateProgressBar(engine.percentProgress, engine.timerPosition);
+			updateLoadedProgress(engine.percentLoadingProgress);
 		}
 		
 		private function hideInterface(evt:VideoPlayerEvents=null):void {
