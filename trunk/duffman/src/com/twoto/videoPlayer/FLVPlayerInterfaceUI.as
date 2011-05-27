@@ -28,6 +28,7 @@ package com.twoto.videoPlayer
 	import flash.display.Sprite;
 	import flash.display.StageDisplayState;
 	import flash.events.Event;
+	import flash.media.Video;
 	import flash.text.TextField;
 
 	public class FLVPlayerInterfaceUI extends Sprite {
@@ -195,9 +196,9 @@ package com.twoto.videoPlayer
 		}
 
 		private function replaceElts():void {
-
-			closeButton.x=playerWidth-closeButton.width-DefinesFLVPLayer.NAVI_CLOSE_DIST_X;
-			closeButton.y=DefinesFLVPLayer.NAVI_CLOSE_DIST_Y;
+			
+			closeButton.x=stage.stageWidth-closeButton.width-DefinesFLVPLayer.NAVI_CLOSE_DIST_X-this.x;
+			closeButton.y=DefinesFLVPLayer.NAVI_CLOSE_DIST_Y-this.y;
 			
 			soundOnOffButton.x=progressBarElement.x+progressbarWidth+DefinesFLVPLayer.NAVI_SOUND_DIST_X;
 			soundOnOffButton.y=DefinesFLVPLayer.NAVI_SOUND_Y;
@@ -207,12 +208,8 @@ package com.twoto.videoPlayer
 			infoTextMC.x=DefinesFLVPLayer.NAVI_TEXT_X;
 			infoTextMC.y=DefinesFLVPLayer.NAVI_TEXT_Y;
 			
-			if (stage.stageWidth > video.width) {
-				navigationContainer.x=Math.round((video.width - navigationContainer.width) * .5) // DefinesFLVPLayer.VIDEO_X+Math.round((DefinesFLVPLayer.VIDEO_WIDTH-navigationContainer.width))*.5;
-			} else{
-				navigationContainer.x=Math.round((stage.stageWidth - navigationContainer.width) * .5) // DefinesFLVPLayer.VIDEO_X+Math.round((DefinesFLVPLayer.VIDEO_WIDTH-navigationContainer.width))*.5;
-			}
-			navigationContainer.y= video.height -DefinesFLVPLayer.NAVI_HEIGHT- DefinesFLVPLayer.NAVI_DIST_Y;
+			navigationContainer.x=Math.round((stage.stageWidth - totalNaviWidth) * .5-this.x)
+			navigationContainer.y=Math.round( stage.stageHeight -DefinesFLVPLayer.NAVI_HEIGHT- DefinesFLVPLayer.NAVI_DIST_Y-this.y);
 			
 			redrawProgressBars();
 
@@ -224,18 +221,27 @@ package com.twoto.videoPlayer
 			var factor:Number;
 			
 			factor=(stage.stageHeight) / originalFilmHeight;
+			trace(" video factor"+factor)
 			video.scaleY=video.scaleX=factor;
-			video.y=stage.stageHeight - video.height;
-			//playerHeight=stage.stageHeight - DefinesFLVPLayer.NAVI_HEIGHT;
-			if (stage.stageWidth > video.width) {
-				playerWidth=video.width;
-				this.x=Math.round((stage.stageWidth - video.width) * .5);
-			} else if (stage.stageWidth < video.width) {
-				playerWidth=stage.stageWidth;
-				video.x=-Math.round((video.width - stage.stageWidth) * .5);
-			} else {
-				playerWidth=stage.stageWidth;
-			this.x=0;
+			if(video.width>stage.stageWidth){
+				//trace(" video width  larger then stage")
+				this.x= Math.round((stage.stageWidth-  video.width) * .5)
+			} else{
+				//trace(" video width  smaller then stage")
+				this.x=0;
+				video.width = stage.stageWidth;
+				factor=(stage.stageWidth) / originalFilmWidth;
+				video.scaleY=video.scaleX=factor;
+			}
+			if(video.height>stage.stageHeight){
+				//trace(" video height  larger then stage")
+				this.y= Math.round((stage.stageHeight-  video.height) * .5)
+			} else{
+				//trace(" video height  smaller then stage")
+				this.y=0;
+				video.height = stage.stageHeight;
+				factor=(stage.stageHeight) / originalFilmHeight;
+				video.scaleX=video.scaleY=factor;
 			}
 		}
 		
