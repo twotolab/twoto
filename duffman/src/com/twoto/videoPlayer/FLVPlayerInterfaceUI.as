@@ -104,7 +104,6 @@ package com.twoto.videoPlayer
 			video=engine.video;
 			progressBarElement.playerEngine =engine;
 			this.addChildAt(video, 0);
-			//	addMask(video);
 			resizeHandler(null);
 			stage.addEventListener(Event.RESIZE, resizeHandler);
 		}
@@ -224,20 +223,18 @@ package com.twoto.videoPlayer
 		private function resizeVideo():void {
 			var factor:Number;
 			
-			video.mask=null;
 			factor=(stage.stageHeight) / originalFilmHeight;
 			video.scaleY=video.scaleX=factor;
-			video.y=stage.stageHeight - video.height - DefinesFLVPLayer.NAVI_HEIGHT;
-			playerHeight=stage.stageHeight - DefinesFLVPLayer.NAVI_HEIGHT;
+			video.y=stage.stageHeight - video.height;
+			//playerHeight=stage.stageHeight - DefinesFLVPLayer.NAVI_HEIGHT;
 			if (stage.stageWidth > video.width) {
-			playerWidth=video.width;
-			this.x=Math.round((stage.stageWidth - video.width) * .5);
+				playerWidth=video.width;
+				this.x=Math.round((stage.stageWidth - video.width) * .5);
 			} else if (stage.stageWidth < video.width) {
-			
-			playerWidth=stage.stageWidth;
-			video.x=-Math.round((video.width - stage.stageWidth) * .5);
+				playerWidth=stage.stageWidth;
+				video.x=-Math.round((video.width - stage.stageWidth) * .5);
 			} else {
-			playerWidth=stage.stageWidth;
+				playerWidth=stage.stageWidth;
 			this.x=0;
 			}
 		}
