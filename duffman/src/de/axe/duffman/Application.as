@@ -22,11 +22,13 @@ package de.axe.duffman
 		private var playerTwo:VideoplayerWithStartScreen;
 		private var activePlayer:VideoplayerWithStartScreen;
 		private var lastActivePlayer:VideoplayerWithStartScreen;
+		private var awaitingPlayer:VideoplayerWithStartScreen;
 		
 		private var STATUS_PLAYER:String;
 		
-		public static const ACTIVE:String="active";
-		public static const INACTIVE:String="inactive";
+		public static const ONE_ACTIVE:String="oneactive";
+		public static const NOONE_ACTIVE:String="nooneactive";
+		public static const WAITING_ACTIVE:String="waitingactive";
 
 		
 		//---------------------------------------------------------------------------
@@ -40,12 +42,12 @@ package de.axe.duffman
 			background = Draw.drawShape(972,520,1,0xffdc01);
 			addChild(background);
 			
-			STATUS_PLAYER = INACTIVE;
+			STATUS_PLAYER = NOONE_ACTIVE;
 
 			
 			playerOne = new VideoplayerWithStartScreen(dataModel,1);
 			playerOne.name = "playerOne";
-			playerOne.addEventListener(UiEvent.PLAYER_START,playerStartHandler);
+			playerOne.addEventListener(UiEvent.PLAYER_START,startHandler);
 			playerOne.addEventListener(UiEvent.PLAYER_STOPPED,closeHandler);
 			playerOne.x=100;
 			playerOne.y=100;
@@ -53,72 +55,45 @@ package de.axe.duffman
 			
 			playerTwo = new VideoplayerWithStartScreen(dataModel,2);
 			playerTwo.name = "playerTwo";
-			playerTwo.addEventListener(UiEvent.PLAYER_START,playerStartHandler);
+			playerTwo.addEventListener(UiEvent.PLAYER_START,startHandler);
 			playerTwo.addEventListener(UiEvent.PLAYER_STOPPED,closeHandler);
 			playerTwo.x=100;
 			playerTwo.y=500;
 			addChild(playerTwo);
 		}
-		private function playerStartHandler(evt:UiEvent):void{
-			switch (STATUS_PLAYER) { 
-				case INACTIVE:
-					STATUS_PLAYER = ACTIVE;
-					activePlayer = getChildByName(evt.target.name) as VideoplayerWithStartScreen;
-					activePlayer.startPlayer();
-					lastActivePlayer = activePlayer;
-					break;
-				case ACTIVE:
-					lastActivePlayer.closePlayer();
-					STATUS_PLAYER = INACTIVE;
-				break;
-				default:
-				trace("NO STATUS_PLAYER");
-				break;
+		/*
+		status einer is aktiv
+		status keiner is aktiv
+		
+		startplayer evt -> check ist einer einer aktiv
+		wenn ja: activer player erstmal schliessen. info einer wartet auf start
+		wenn nicht: jetzt starten und einer aktiv setzten
+		
+		closeplayer evt 
+		wenn einer wartet: jetzt starten. und einer aktiv setzten
+		wenn nicht : keiner ist aktiv.
+*/
+		private function startHandler(evt:UiEvent):void{
+			if(STATUS_PLAYER == ONE_ACTIVE){
+				STATUS_PLAYER = WAITING_ACTIVE;
+				awaitingPlayer = getChildByName(evt.target.name) as VideoplayerWithStartScreen;
+				activePlayer.closePlayer();
+			} else {
+				STATUS_PLAYER = ONE_ACTIVE;
+				activePlayer=getChildByName(evt.target.name) as VideoplayerWithStartScreen;
+				activePlayer.startPlayer();
 			}
 		}
 		private function closeHandler(evt:UiEvent):void{
-			trace(" closeHandler");
-		}
-		/*
-		private function activePlayerHandler(evt:UiEvent):void{
-			
-			switch (STATUS_PLAYER) { 
-			case INACTIVE:
-				STATUS_PLAYER = ACTIVE;
-				activePlayer = getChildByName(evt.target.name) as VideoplayerWithStartScreen;
-				lastActivePlayer = activePlayer;
-				break;
-			case ACTIVE:
-				lastActivePlayer.closePlayer();
-				STATUS_PLAYER = INACTIVE;
-				break;
-			default:
-				trace("NO STATUS_PLAYER");
-				break;
+			if(STATUS_PLAYER == WAITING_ACTIVE){
+				STATUS_PLAYER = ONE_ACTIVE;
+				activePlayer = awaitingPlayer;
+				activePlayer.startPlayer();
+				awaitingPlayer = null;
+			} else{
+				STATUS_PLAYER = NOONE_ACTIVE;
+				activePlayer=awaitingPlayer = null;
 			}
 		}
-		
-		private function playerStartHandler(evt:UiEvent):void{
-			
-			trace("PLAYER_START   _-----------STATUS_PLAYER:"+evt);
-			trace("lastActivePlayer :"+lastActivePlayer);
-			trace("activePlayer :"+activePlayer);
-			switch (evt) { 
-				case UiEvent.PLAYER_START:
-				activePlayerHandler(evt);
-				break;
-				case UiEvent.PLAYER_STOPPED:
-				default:
-					if(lastActivePlayer==null){
-					activePlayer = getChildByName(evt.target.name) as VideoplayerWithStartScreen;
-					activePlayer.startPlayer();
-					lastActivePlayer = null;
-					}
-					else{
-
-					}
-				break;
-			}
-		}*/
 	}
 }

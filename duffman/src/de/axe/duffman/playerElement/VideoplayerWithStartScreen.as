@@ -52,16 +52,16 @@ package de.axe.duffman.playerElement
 			player.videoURL =paramURL//"twoto_Coffea_SG_Webversion_040609.flv"//"http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv"+"?test="+Math.random()*100;//"film.flv"//
 			//
 			startScreen = new StartScreen(paramHeadline,paramSubHeadline,paramCopytext,paramPictureURL);
-			startScreen.addEventListener(VideoPlayerEvents.START_PLAYER,handlePlayer)
+			startScreen.addEventListener(VideoPlayerEvents.START_PLAYER,startPlayerHandler)
 			addChild(startScreen);
 			//
-			player.addEventListener(VideoPlayerEvents.ENGINE_STOP,showStartScreen);
+			player.addEventListener(VideoPlayerEvents.ENGINE_STOP,stopPlayerHandler);
 
 			
 			addMask(startScreen);
 		}
-		private function handlePlayer(evt:VideoPlayerEvents = null):void{
-			trace("--------------handlePlayer");
+		private function startPlayerHandler(evt:VideoPlayerEvents = null):void{
+			trace("--------------startPlayerHandler");
 			dispatchEvent(new UiEvent(UiEvent.PLAYER_START));
 		}
 		public  function startPlayer():void{
@@ -71,18 +71,18 @@ package de.axe.duffman.playerElement
 			startScreen.hide();
 			player.show();
 		}
-
+		private function stopPlayerHandler(evt:VideoPlayerEvents = null):void{
+			trace("--------------stopPlayerHandler");
+			player.hide();
+			startScreen.show();
+			dispatchEvent(new UiEvent(UiEvent.PLAYER_STOPPED));
+		}
 		public function closePlayer():void{
 
 			trace("--------------closePlayer");
 			player.closePlayer();
 		}
-		private function showStartScreen(evt:VideoPlayerEvents = null):void{
-			trace("--------------showStartScreen");
-			player.hide();
-			startScreen.show();
-			dispatchEvent(new UiEvent(UiEvent.PLAYER_STOPPED));
-		}
+
 
 		private function addMask(_object:DisplayObject):void {
 			
