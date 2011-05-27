@@ -4,6 +4,9 @@ package com.twoto.videoPlayer
 	{
 	public static const BUFFER_TIME:uint = 3;
 	
+	public static const POS_X:uint = 0;
+	public static const POS_Y:uint = 0;
+	
 	public static const NAVI_DIST_Y:uint =10;
 	public static const NAVI_HEIGHT:uint = 21;
 	public static const NAVI_COLOR:uint = 0xe9e8dd;
@@ -18,7 +21,9 @@ package com.twoto.videoPlayer
 	public static const NAVI_SOUND_DIST_X:uint = 10; // distance from right border
 	public static const NAVI_SOUND_Y:uint = 3;
 	
+	
 	public static const NAVI_PROGRESS_ON:String = "yes";
+	public static const NAVI_PROGRESS_WIDTH_DIFFERENCE:uint = 100; // substracted value from player width
 	public static const NAVI_PROGRESS_HEIGHT:uint = 5;
 	public static const NAVI_PROGRESS_BORDER:uint = 5;
 	public static const NAVI_PROGRESS_BACKGROUND_HEIGHT:uint = 15;

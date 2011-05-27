@@ -88,6 +88,7 @@ package de.axe.duffman.playerElement
 			picture.addEventListener(UiEvent.PICTURE_READY,showFirstTime);
 			//		
 			//
+			/*
 			headline = new Headline();
 			headline.x=10;
 			headline.y=10;
@@ -116,25 +117,27 @@ package de.axe.duffman.playerElement
 			copytext.y= subHeadline.y+subheadlineTxt.textHeight+10;
 			addChild(copytext);
 			//
+			*/
 			callToAction = new CallToACtion();
 			callToActionElt = callToAction.getChildByName("callToActionElt") as MovieClip;
-			callToAction.x= headline.x;
-			callToAction.x= headline.x;
-			callToAction.y=Math.round( copytext.y+copytextTxt.textHeight+20);
+			callToAction.x=30// headline.x;
+			callToAction.y=30//Math.round( copytext.y+copytextTxt.textHeight+20);
 			addChild(callToAction);
 			
 		}
 
 		public function hide():void {
 			
-			//trace("StartScreen hide");
-			Tweener.addTween(this, {alpha:0, time:1, transition:"linear", onComplete:invisibility()});
+			// trace("StartScreen hide");
+			//Tweener.addTween(callToAction, {alpha:0, time:1, transition:"linear", onComplete:invisibility()});
+			this.visible = false;
 		}
 		
 		public function show():void {
 			
-			//trace("StartScreen show");
-			Tweener.addTween(this, {alpha:1, time:1, onComplete:visibility()});
+			this.visible = true;
+			// trace("StartScreen show");
+			//Tweener.addTween(callToAction, {alpha:1, time:1, onComplete:visibility()});
 		}
 		private function showFirstTime(evt:UiEvent):void {
 			picture.visible =true;

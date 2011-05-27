@@ -134,6 +134,7 @@ package com.twoto.videoPlayer
 
 		private function engineHandler(evt:VideoPlayerEvents):void {
 
+			//
 			//trace("engineHandler" + evt.toString());
 			switch (evt.type.toString()) {
 				case VideoPlayerEvents.ENGINE_READY:

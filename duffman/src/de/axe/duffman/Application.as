@@ -49,16 +49,12 @@ package de.axe.duffman
 			playerOne.name = "playerOne";
 			playerOne.addEventListener(UiEvent.PLAYER_START,startHandler);
 			playerOne.addEventListener(UiEvent.PLAYER_STOPPED,closeHandler);
-			playerOne.x=100;
-			playerOne.y=100;
 			addChild(playerOne);
 			
 			playerTwo = new VideoplayerWithStartScreen(dataModel,2);
 			playerTwo.name = "playerTwo";
 			playerTwo.addEventListener(UiEvent.PLAYER_START,startHandler);
 			playerTwo.addEventListener(UiEvent.PLAYER_STOPPED,closeHandler);
-			playerTwo.x=100;
-			playerTwo.y=500;
 			addChild(playerTwo);
 		}
 		/*
@@ -81,6 +77,7 @@ package de.axe.duffman
 			} else {
 				STATUS_PLAYER = ONE_ACTIVE;
 				activePlayer=getChildByName(evt.target.name) as VideoplayerWithStartScreen;
+				//addChild(activePlayer);
 				activePlayer.startPlayer();
 			}
 		}
@@ -89,6 +86,7 @@ package de.axe.duffman
 				STATUS_PLAYER = ONE_ACTIVE;
 				activePlayer = awaitingPlayer;
 				activePlayer.startPlayer();
+				//addChild(activePlayer);
 				awaitingPlayer = null;
 			} else{
 				STATUS_PLAYER = NOONE_ACTIVE;

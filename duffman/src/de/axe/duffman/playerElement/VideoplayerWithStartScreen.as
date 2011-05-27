@@ -6,6 +6,7 @@ package de.axe.duffman.playerElement
 	import com.twoto.videoPlayer.VideoPlayerEvents;
 	
 	import de.axe.duffman.dataModel.DataModel;
+	import de.axe.duffman.dataModel.DataVO;
 	import de.axe.duffman.dataModel.DefinesApplication;
 	import de.axe.duffman.events.UiEvent;
 	
@@ -20,7 +21,6 @@ package de.axe.duffman.playerElement
 		//---------------------------------------------------------------------------
 		private var player:FLVPlayer;
 		private var startScreen:StartScreen;
-		private var dataModel:DataModel;
 		private 	var paramURL:String;
 		private	var paramHeadline:String;
 		private	var paramSubHeadline:String;
@@ -29,10 +29,12 @@ package de.axe.duffman.playerElement
 		private	var paramFilmName:String;
 		private var maskObject:Sprite;
 		
-		public function VideoplayerWithStartScreen(dataModel:DataModel,id:uint)
+		private var videoVO:DataVO;
+		
+		public function VideoplayerWithStartScreen(_dataModel:DataModel,_id:uint)
 		{
-			
-			paramURL= "film_assets/geschaeftsmann.f4v"//+"?test="+Math.random()*100;// "http://twoto.googlecode.com/svn/trunk/schweppesFLVPlayer/assets/geschaeftsmann.f4v"+"?test="+Math.random()*100;//"film.flv"/;
+			videoVO= _dataModel.createVO(_id);
+			paramURL= "film_assets/axe.f4v"//+"?test="+Math.random()*100;// "http://twoto.googlecode.com/svn/trunk/schweppesFLVPlayer/assets/geschaeftsmann.f4v"+"?test="+Math.random()*100;//"film.flv"/;
 			paramHeadline = "tu, was dir schweppes";
 			paramSubHeadline ="erfrischende TV-highlights von Schweppes";
 			paramCopytext = "Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. ";
@@ -49,37 +51,40 @@ package de.axe.duffman.playerElement
 			
 			player.timeInfo = false;
 			player.filmName =paramFilmName;
-			player.videoURL =paramURL//"twoto_Coffea_SG_Webversion_040609.flv"//"http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv"+"?test="+Math.random()*100;//"film.flv"//
+			player.videoURL =paramURL//"http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv"+"?test="+Math.random()*100;//"film.flv"//
 			//
 			startScreen = new StartScreen(paramHeadline,paramSubHeadline,paramCopytext,paramPictureURL);
 			startScreen.addEventListener(VideoPlayerEvents.START_PLAYER,startPlayerHandler)
-			addChild(startScreen);
+			addChildAt(startScreen,0);
 			//
 			player.addEventListener(VideoPlayerEvents.ENGINE_STOP,stopPlayerHandler);
-
 			
-			addMask(startScreen);
+			startScreen.x= videoVO.posX;
+			startScreen.y= videoVO.posY;
+			
+			//addMask(startScreen);
 		}
+
 		private function startPlayerHandler(evt:VideoPlayerEvents = null):void{
-			trace("--------------startPlayerHandler");
+		//	trace("--------------startPlayerHandler");
 			dispatchEvent(new UiEvent(UiEvent.PLAYER_START));
 		}
 		public  function startPlayer():void{
-			trace("--------------startPlayer");
+		//	trace("--------------startPlayer");
 			player.visible=true;
 			player.startPlayer();
 			startScreen.hide();
 			player.show();
 		}
 		private function stopPlayerHandler(evt:VideoPlayerEvents = null):void{
-			trace("--------------stopPlayerHandler");
+		//	trace("--------------stopPlayerHandler");
 			player.hide();
 			startScreen.show();
 			dispatchEvent(new UiEvent(UiEvent.PLAYER_STOPPED));
 		}
 		public function closePlayer():void{
 
-			trace("--------------closePlayer");
+		//	trace("--------------closePlayer");
 			player.closePlayer();
 		}
 
