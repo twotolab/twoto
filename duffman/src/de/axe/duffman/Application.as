@@ -25,6 +25,7 @@ package de.axe.duffman
 		private var awaitingPlayer:VideoplayerWithStartScreen;
 		
 		private var indexPlayer:uint;
+		private var loadedPlayer:uint;
 		
 		private var STATUS_PLAYER:String;
 		
@@ -38,6 +39,7 @@ package de.axe.duffman
 		//---------------------------------------------------------------------------
 		public function Application(_dataXML:XML) {
 			
+			loadedPlayer = 0;
 			dataXML =_dataXML;
 			dataModel = new DataModel(dataXML);	
 			
@@ -45,32 +47,31 @@ package de.axe.duffman
 			addChild(background);
 			
 			STATUS_PLAYER = NOONE_ACTIVE;
-
+	
 			
 			playerOne = new VideoplayerWithStartScreen(dataModel,1);
 			playerOne.name = "playerOne";
+			playerOne.addEventListener(UiEvent.CONTENT_LOADED,loadedPlayerHandler);
 			playerOne.addEventListener(UiEvent.PLAYER_START,startHandler);
 			playerOne.addEventListener(UiEvent.PLAYER_STOPPED,closeHandler);
 			addChild(playerOne);
 			
 			playerTwo = new VideoplayerWithStartScreen(dataModel,2);
 			playerTwo.name = "playerTwo";
+			playerTwo.addEventListener(UiEvent.CONTENT_LOADED,loadedPlayerHandler);
 			playerTwo.addEventListener(UiEvent.PLAYER_START,startHandler);
 			playerTwo.addEventListener(UiEvent.PLAYER_STOPPED,closeHandler);
 			addChild(playerTwo);
 		}
-		/*
-		status einer is aktiv
-		status keiner is aktiv
-		
-		startplayer evt -> check ist einer einer aktiv
-		wenn ja: activer player erstmal schliessen. info einer wartet auf start
-		wenn nicht: jetzt starten und einer aktiv setzten
-		
-		closeplayer evt 
-		wenn einer wartet: jetzt starten. und einer aktiv setzten
-		wenn nicht : keiner ist aktiv.
-*/
+
+		private function loadedPlayerHandler(evt:UiEvent):void{
+			
+			loadedPlayer++;
+			if(loadedPlayer >= 3){
+				trace("players are Ready");
+				loadedPlayer =0;
+			}
+		}
 		private function startHandler(evt:UiEvent):void{
 			if(STATUS_PLAYER == ONE_ACTIVE){
 				STATUS_PLAYER = WAITING_ACTIVE;

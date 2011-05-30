@@ -85,7 +85,7 @@ package de.axe.duffman.playerElement
 			//trace("pictureURLValueStr "+pictureURLValueStr);
 			picture = new PictureLoader(url,background,true);
 			picture.visible =false;
-			picture.addEventListener(UiEvent.PICTURE_READY,showFirstTime);
+			picture.addEventListener(UiEvent.PICTURE_READY,pictureReady);
 			//		
 			//
 			/*
@@ -140,15 +140,16 @@ package de.axe.duffman.playerElement
 			// trace("StartScreen show");
 			//Tweener.addTween(callToAction, {alpha:1, time:1, onComplete:visibility()});
 		}
-		private function showFirstTime(evt:UiEvent):void {
+		private function pictureReady(evt:UiEvent):void {
 			picture.visible =true;
 			picture.alpha=1;
-
-			Tweener.addTween(this, {alpha:1, time:1, transition:"linear"});
+			this.alpha = 1;
 			callToAction.addEventListener(MouseEvent.CLICK, startVideo);
 			callToAction.addEventListener(MouseEvent.MOUSE_OVER, rollOver);
 			callToAction.addEventListener(MouseEvent.MOUSE_OUT, rollOut);
 			callToAction.buttonMode=true;
+			trace("pictureReady");
+			dispatchEvent(new UiEvent(UiEvent.CONTENT_LOADED));
 		}
 		private function invisibility():void {
 			this.visible = false;
