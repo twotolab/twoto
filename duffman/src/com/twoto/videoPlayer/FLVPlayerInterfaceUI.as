@@ -100,7 +100,7 @@ package com.twoto.videoPlayer
 
 		public function initVideo(_engine:FLVPlayerEngine):void {
 
-			trace("initVideo -------------------------")
+			//trace("initVideo -------------------------")
 			engine=_engine;
 			video=engine.video;
 			progressBarElement.playerEngine =engine;
@@ -221,7 +221,7 @@ package com.twoto.videoPlayer
 			var factor:Number;
 			
 			factor=(stage.stageHeight) / originalFilmHeight;
-			trace(" video factor"+factor)
+			//trace(" video factor"+factor)
 			video.scaleY=video.scaleX=factor;
 			if(video.width>stage.stageWidth){
 				//trace(" video width  larger then stage")

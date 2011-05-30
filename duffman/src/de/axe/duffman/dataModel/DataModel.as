@@ -9,11 +9,14 @@ package de.axe.duffman.dataModel
 	{
 		// variables -------------------------------------------------------------------------
 		private var dataXML:XML;
+		private var totalVideoNumber:uint;
 		
 		// constructor ----------------------------------------------------------------------
 		public function DataModel (_dataXML:XML) {
 			
+			totalVideoNumber =0;
 			dataXML= _dataXML;
+			getTotalNumberVideos();
 		}
 		public function get playerWidth():uint{
 			return uint(getSetup().@width);
@@ -48,6 +51,19 @@ package de.axe.duffman.dataModel
 			return uint(String(elt@posX));
 		}
 		*/
+		private function getTotalNumberVideos():void{
+			
+			var item:XML;
+			for each (item in dataXML.item){
+				if(String(item.@type)== "video"){
+					trace("hello video");
+					totalVideoNumber++;
+				}
+			}
+		}
+		public function get totalVideosNum():uint{
+			return  totalVideoNumber;
+		}
 		public function getContentByID(_ID:uint):XML{
 			
 			var item:XML;
