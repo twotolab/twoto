@@ -50,7 +50,6 @@ package de.axe.duffman.loader {
 			
 			this.addEventListener(Event.ADDED_TO_STAGE, addedToStage, false, 0, true);
 			target.addChild(this);
-		
 		}
 		
 		public function destroy():void {
@@ -109,7 +108,7 @@ package de.axe.duffman.loader {
 			
 			picture = evt.target.content as DisplayObject;
 			this.addChild(picture);
-			dispatchEvent(new UiEvent(UiEvent.PICTURE_READY));
+			dispatchEvent(new UiEvent(UiEvent.PICTURE_LOADED));
 		}
 	}
 }

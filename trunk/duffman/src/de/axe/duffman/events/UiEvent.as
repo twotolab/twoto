@@ -10,17 +10,21 @@
 		
 
 		// content
+		
 		public static const CONTENT_LOADED:String = "contentLoaded";
 		public static const CONTENT_LOADING:String = "contentLoading";
 		public static const CONTENT_CLOSE:String = "contentClose";
 		
 		public static const PICTURE_READY:String = "pictureReady";
+		public static const PICTURE_LOADED:String = "pictureLoaded";
 		// players
-		public static const PLAYER_ACTIVE:String = "playerActive";
-		public static const PLAYER_INACTIVE:String = "playerInactive";
 		public static const PLAYER_STOPPED:String = "playerstopped";
 		
-		public static const PLAYER_START:String = "playerPlay";
+		public static const PLAYER_START:String = "playerStart";
+		public static const PLAYER_WITH_STARTSCREEN_READY:String = "playerWithStartscreenReady";
+		
+		public static const PLAYERS_READY:String = "playersLoaded";		
+		
 		
 		public function UiEvent(type:String) { 
 			

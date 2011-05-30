@@ -85,7 +85,7 @@ package de.axe.duffman.playerElement
 			//trace("pictureURLValueStr "+pictureURLValueStr);
 			picture = new PictureLoader(url,background,true);
 			picture.visible =false;
-			picture.addEventListener(UiEvent.PICTURE_READY,pictureReady);
+			picture.addEventListener(UiEvent.PICTURE_LOADED,pictureReady);
 			//		
 			//
 			/*
@@ -141,6 +141,8 @@ package de.axe.duffman.playerElement
 			//Tweener.addTween(callToAction, {alpha:1, time:1, onComplete:visibility()});
 		}
 		private function pictureReady(evt:UiEvent):void {
+			
+			picture.removeEventListener(UiEvent.PICTURE_LOADED,pictureReady);
 			picture.visible =true;
 			picture.alpha=1;
 			this.alpha = 1;
@@ -148,8 +150,8 @@ package de.axe.duffman.playerElement
 			callToAction.addEventListener(MouseEvent.MOUSE_OVER, rollOver);
 			callToAction.addEventListener(MouseEvent.MOUSE_OUT, rollOut);
 			callToAction.buttonMode=true;
-			trace("pictureReady");
-			dispatchEvent(new UiEvent(UiEvent.CONTENT_LOADED));
+		//	trace("pictureReady");
+			dispatchEvent(new UiEvent(UiEvent.PICTURE_READY));
 		}
 		private function invisibility():void {
 			this.visible = false;

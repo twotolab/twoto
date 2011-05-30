@@ -34,12 +34,9 @@ package de.axe.duffman.playerElement
 		public function VideoplayerWithStartScreen(_dataModel:DataModel,_id:uint)
 		{
 			videoVO= _dataModel.createVO(_id);
-			paramURL= "film_assets/axe.f4v"//+"?test="+Math.random()*100;// "http://twoto.googlecode.com/svn/trunk/schweppesFLVPlayer/assets/geschaeftsmann.f4v"+"?test="+Math.random()*100;//"film.flv"/;
-			paramHeadline = "tu, was dir schweppes";
-			paramSubHeadline ="erfrischende TV-highlights von Schweppes";
-			paramCopytext = "Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. ";
-			paramPictureURL = "film_assets/testPic.jpg";// "http://twoto.googlecode.com/svn/trunk/schweppesFLVPlayer/assets/testPic.jpg";
-			paramFilmName = "geschäftsmann";
+			paramURL= videoVO.videoURL//+"?test="+Math.random()*100;// "http://twoto.googlecode.com/svn/trunk/schweppesFLVPlayer/assets/geschaeftsmann.f4v"+"?test="+Math.random()*100;//"film.flv"/;
+			paramPictureURL =videoVO.startpictURL;// "http://twoto.googlecode.com/svn/trunk/schweppesFLVPlayer/assets/testPic.jpg";
+			paramFilmName =videoVO.label;
 			
 			player = new FLVPlayer(DefinesApplication.VIDEO_WIDTH,DefinesApplication.VIDEO_HEIGHT);﻿
 			player.addEventListener(VideoPlayerEvents.PLAYER_READY,playerReady);
@@ -49,25 +46,26 @@ package de.axe.duffman.playerElement
 		}
 		private function playerReady(evt:VideoPlayerEvents):void{
 			
+			player.removeEventListener(VideoPlayerEvents.PLAYER_READY,playerReady);
 			player.timeInfo = false;
 			player.filmName =paramFilmName;
 			player.videoURL =paramURL//"http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv"+"?test="+Math.random()*100;//"film.flv"//
 			//
 			startScreen = new StartScreen(paramHeadline,paramSubHeadline,paramCopytext,paramPictureURL);
+			addChildAt(startScreen,0);
 			startScreen.addEventListener(VideoPlayerEvents.START_PLAYER,startPlayerHandler)
-			startScreen.addEventListener(UiEvent.CONTENT_LOADED,startScreenReady);
+			startScreen.addEventListener(UiEvent.PICTURE_READY,startScreenReady);
 
 
 		}
 		private function startScreenReady(evt:UiEvent):void{
 			
-			addChildAt(startScreen,0);
-			//
+			startScreen.removeEventListener(UiEvent.PICTURE_READY,startScreenReady);
 			player.addEventListener(VideoPlayerEvents.ENGINE_STOP,stopPlayerHandler);
 			
 			startScreen.x= videoVO.posX;
 			startScreen.y= videoVO.posY;
-			dispatchEvent(new UiEvent(UiEvent.CONTENT_LOADED));
+			dispatchEvent(new UiEvent(UiEvent.PLAYER_WITH_STARTSCREEN_READY));
 		}
 
 		private function startPlayerHandler(evt:VideoPlayerEvents = null):void{
