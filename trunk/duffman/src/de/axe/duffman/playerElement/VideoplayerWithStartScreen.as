@@ -55,14 +55,19 @@ package de.axe.duffman.playerElement
 			//
 			startScreen = new StartScreen(paramHeadline,paramSubHeadline,paramCopytext,paramPictureURL);
 			startScreen.addEventListener(VideoPlayerEvents.START_PLAYER,startPlayerHandler)
+			startScreen.addEventListener(UiEvent.CONTENT_LOADED,startScreenReady);
+
+
+		}
+		private function startScreenReady(evt:UiEvent):void{
+			
 			addChildAt(startScreen,0);
 			//
 			player.addEventListener(VideoPlayerEvents.ENGINE_STOP,stopPlayerHandler);
 			
 			startScreen.x= videoVO.posX;
 			startScreen.y= videoVO.posY;
-			
-			//addMask(startScreen);
+			dispatchEvent(new UiEvent(UiEvent.CONTENT_LOADED));
 		}
 
 		private function startPlayerHandler(evt:VideoPlayerEvents = null):void{
