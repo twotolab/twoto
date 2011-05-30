@@ -42,7 +42,7 @@ package de.axe.duffman
 			loadedPlayer = 0;
 			dataXML =_dataXML;
 			dataModel = new DataModel(dataXML);	
-			
+			trace("init");
 			background = Draw.drawShape(972,520,1,0xffdc01);
 			addChild(background);
 			
@@ -67,6 +67,7 @@ package de.axe.duffman
 		private function loadedPlayerHandler(evt:UiEvent):void{
 			
 			loadedPlayer++;
+			trace("loadedPlayerHandler --loadedPlayer: "+loadedPlayer);
 			if(loadedPlayer >= 3){
 				trace("players are Ready");
 				loadedPlayer =0;
