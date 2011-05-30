@@ -26,7 +26,6 @@ package {
 			stage.scaleMode=StageScaleMode.NO_SCALE;
 			stop();
 			
-			trace("salut");
 			/*
 			preloader=new PreloaderElement();
 			var upperText:String=" inizialise ";
@@ -36,7 +35,7 @@ package {
 			//
 			preloader.moveInside();
 			*/
-			//addEventListener(Event.ENTER_FRAME, onEnterFrame);
+			addEventListener(Event.ENTER_FRAME, onEnterFrame);
 		}
 		
 		private function onEnterFrame(event:Event):void {
