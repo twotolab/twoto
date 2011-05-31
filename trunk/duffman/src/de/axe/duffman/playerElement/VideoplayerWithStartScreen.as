@@ -37,6 +37,7 @@ package de.axe.duffman.playerElement
 			paramURL= videoVO.videoURL//+"?test="+Math.random()*100;// "http://twoto.googlecode.com/svn/trunk/schweppesFLVPlayer/assets/geschaeftsmann.f4v"+"?test="+Math.random()*100;//"film.flv"/;
 			paramPictureURL =videoVO.startpictURL;// "http://twoto.googlecode.com/svn/trunk/schweppesFLVPlayer/assets/testPic.jpg";
 			paramFilmName =videoVO.label;
+			this.name = videoVO.name;
 			
 			player = new FLVPlayer(DefinesApplication.VIDEO_WIDTH,DefinesApplication.VIDEO_HEIGHT);﻿
 			player.addEventListener(VideoPlayerEvents.PLAYER_READY,playerReady);
@@ -51,6 +52,7 @@ package de.axe.duffman.playerElement
 			player.filmName =paramFilmName;
 			player.videoURL =paramURL//"http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv"+"?test="+Math.random()*100;//"film.flv"//
 			//
+			
 			startScreen = new StartScreen(paramHeadline,paramSubHeadline,paramCopytext,paramPictureURL);
 			addChildAt(startScreen,0);
 			startScreen.addEventListener(VideoPlayerEvents.START_PLAYER,startPlayerHandler)

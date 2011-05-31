@@ -37,25 +37,22 @@ package de.axe.duffman
 		{
 			
 			loadedPlayerNum = 0;
-			totalPlayerNum = 2;
 			dataModel =_dataModel;
+			totalPlayerNum = dataModel.totalVideoPlayerNum;
 			
 			STATUS_PLAYER = NOONE_ACTIVE;
-			
-			trace("dataModel NUmber Video"+ dataModel.totalVideosNum);
-			playerOne = new VideoplayerWithStartScreen(dataModel,1);
-			playerOne.name = "playerOne";
-			playerOne.addEventListener(UiEvent.PLAYER_WITH_STARTSCREEN_READY,loadedPlayerHandler);
-			playerOne.addEventListener(UiEvent.PLAYER_START,startHandler);
-			playerOne.addEventListener(UiEvent.PLAYER_STOPPED,closeHandler);
-			addChild(playerOne);
-			
-			playerTwo = new VideoplayerWithStartScreen(dataModel,2);
-			playerTwo.name = "playerTwo";
-			playerTwo.addEventListener(UiEvent.PLAYER_WITH_STARTSCREEN_READY,loadedPlayerHandler);
-			playerTwo.addEventListener(UiEvent.PLAYER_START,startHandler);
-			playerTwo.addEventListener(UiEvent.PLAYER_STOPPED,closeHandler);
-			addChild(playerTwo);
+
+			createPlayers();
+		}
+		private function createPlayers():void{
+			var actualPlayer:VideoplayerWithStartScreen;
+			for (var i:uint=1; i< totalPlayerNum+1; i++){
+				actualPlayer = new VideoplayerWithStartScreen(dataModel,i);
+				actualPlayer.addEventListener(UiEvent.PLAYER_WITH_STARTSCREEN_READY,loadedPlayerHandler);
+				actualPlayer.addEventListener(UiEvent.PLAYER_START,startHandler);
+				actualPlayer.addEventListener(UiEvent.PLAYER_STOPPED,closeHandler);
+				addChild(actualPlayer);
+			}
 		}
 		private function loadedPlayerHandler(evt:UiEvent):void{
 			

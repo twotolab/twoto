@@ -29,4 +29,44 @@
 			<![CDATA[label for ID 2]]>
 		</label>
 	</item>
+		
+		<item ID="3"
+		 type="video"
+		 name="playerTHREE"
+		  posX="100"
+		  posY="400"
+		  videoURL ="film_assets/axe.f4v"
+		   startpictURL="film_assets/startscreenVideo1.jpg"
+		>
+		<label>
+			<![CDATA[label for ID3]]>
+		</label>
+	</item>
+	
+	<item ID="4"
+		 type="video"
+		 name="playerFour"
+		  posX="400"
+		  posY="120"
+		  videoURL ="film_assets/axe.f4v"
+		   startpictURL="film_assets/startscreenVideo1.jpg"
+		>
+		<label>
+			<![CDATA[label for ID4]]>
+		</label>
+	</item>
+	
+	<item ID="5"
+		 type="video"
+		 name="playerFive"
+		  posX="400"
+		  posY="420"
+		  videoURL ="film_assets/axe.f4v"
+		   startpictURL="film_assets/startscreenVideo1.jpg"
+		>
+		<label>
+			<![CDATA[label for ID5]]>
+		</label>
+	</item>
+	
 </content>
