@@ -56,12 +56,12 @@ package de.axe.duffman.dataModel
 			var item:XML;
 			for each (item in dataXML.item){
 				if(String(item.@type)== "video"){
-					trace("hello video");
+					//trace("hello video");
 					totalVideoNumber++;
 				}
 			}
 		}
-		public function get totalVideosNum():uint{
+		public function get totalVideoPlayerNum():uint{
 			return  totalVideoNumber;
 		}
 		public function getContentByID(_ID:uint):XML{

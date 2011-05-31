@@ -94,10 +94,12 @@ package de.axe.duffman.loader {
 			
 			loader = new ContentLoader(url);
 			loader.addEventListener(UiEvent.CONTENT_LOADED, showPicture);
+			
 			if (activPreloader) {
 				addChild(preloader);
 			}
 		}
+		
 		
 		private function showPicture(evt:UiEvent):void {
 			if (activPreloader) {
