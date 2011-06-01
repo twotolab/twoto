@@ -69,4 +69,44 @@
 		</label>
 	</item>
 	
+	<item ID="6"
+		 type="menu"
+		 name="contact"
+		  externalURL ="http://ffffound.com/"
+		>
+		<label>
+			<![CDATA[kontakt]]>
+		</label>
+	</item>
+	
+	<item ID="7"
+		 type="menu"
+		 name="impressum"
+		  externalURL ="http://ffffound.com/"
+		>
+		<label>
+			<![CDATA[impressum]]>
+		</label>
+	</item>
+	
+	<item ID="8"
+		 type="menu"
+		 name="datenschutz"
+		  externalURL ="http://ffffound.com/"
+		>
+		<label>
+			<![CDATA[datenschutz/recht]]>
+		</label>
+	</item>
+	
+	<item ID="9"
+		 type="menu"
+		 name="weitersagen"
+		  externalURL ="http://ffffound.com/"
+		>
+		<label>
+			<![CDATA[weitersagen]]>
+		</label>
+	</item>
+	
 </content>

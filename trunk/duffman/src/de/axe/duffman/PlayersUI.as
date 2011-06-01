@@ -6,7 +6,7 @@ package de.axe.duffman
 	
 	import flash.display.Sprite;
 	
-	public class Players extends Sprite
+	public class PlayersUI extends Sprite
 	{
 		//---------------------------------------------------------------------------
 		// 	private variables
@@ -33,7 +33,7 @@ package de.axe.duffman
 		//---------------------------------------------------------------------------
 		// 	constructor
 		//---------------------------------------------------------------------------
-		public function Players(_dataModel:DataModel)
+		public function PlayersUI(_dataModel:DataModel)
 		{
 			
 			loadedPlayerNum = 0;
@@ -44,10 +44,10 @@ package de.axe.duffman
 
 			createPlayers();
 		}
-		private function createPlayers():void{
+		private function createPlayers():void {
 			var actualPlayer:VideoplayerWithStartScreen;
-			for (var i:uint=1; i< totalPlayerNum+1; i++){
-				actualPlayer = new VideoplayerWithStartScreen(dataModel,i);
+			for (var i:uint=0; i< totalPlayerNum; i++){
+				actualPlayer = new VideoplayerWithStartScreen( dataModel.getVideoVO(i));
 				actualPlayer.addEventListener(UiEvent.PLAYER_WITH_STARTSCREEN_READY,loadedPlayerHandler);
 				actualPlayer.addEventListener(UiEvent.PLAYER_START,startHandler);
 				actualPlayer.addEventListener(UiEvent.PLAYER_STOPPED,closeHandler);

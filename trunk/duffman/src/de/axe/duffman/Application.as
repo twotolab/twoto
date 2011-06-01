@@ -19,7 +19,8 @@ package de.axe.duffman
 		private var dataModel:DataModel;
 		private var background:Shape;
 		
-		private var players:Players;
+		private var players:PlayersUI;
+		private var menu:MenuUI;
 		
 		//---------------------------------------------------------------------------
 		// 	constructor
@@ -33,9 +34,12 @@ package de.axe.duffman
 			background = Draw.drawShape(972,520,1,0xffdc01);
 			addChild(background);
 			
-			players = new Players(dataModel);
+			players = new PlayersUI(dataModel);
 			players.addEventListener(UiEvent.PLAYERS_READY, playersReady);
 			addChild(players);
+			
+			menu = new MenuUI(dataModel);
+			addChild(menu);
 			
 		}
 		private function playersReady(evt:UiEvent):void{

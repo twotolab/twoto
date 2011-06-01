@@ -6,8 +6,8 @@ package de.axe.duffman.playerElement
 	import com.twoto.videoPlayer.VideoPlayerEvents;
 	
 	import de.axe.duffman.dataModel.DataModel;
-	import de.axe.duffman.dataModel.DataVO;
 	import de.axe.duffman.dataModel.DefinesApplication;
+	import de.axe.duffman.dataModel.VideoVO;
 	import de.axe.duffman.events.UiEvent;
 	
 	import flash.display.DisplayObject;
@@ -29,13 +29,13 @@ package de.axe.duffman.playerElement
 		private	var paramFilmName:String;
 		private var maskObject:Sprite;
 		
-		private var videoVO:DataVO;
+		private var videoVO:VideoVO;
 		
-		public function VideoplayerWithStartScreen(_dataModel:DataModel,_id:uint)
+		public function VideoplayerWithStartScreen(_videoVO:VideoVO)
 		{
-			videoVO= _dataModel.createVO(_id);
-			paramURL= videoVO.videoURL//+"?test="+Math.random()*100;// "http://twoto.googlecode.com/svn/trunk/schweppesFLVPlayer/assets/geschaeftsmann.f4v"+"?test="+Math.random()*100;//"film.flv"/;
-			paramPictureURL =videoVO.startpictURL;// "http://twoto.googlecode.com/svn/trunk/schweppesFLVPlayer/assets/testPic.jpg";
+			videoVO= _videoVO;
+			paramURL= videoVO.videoURL;
+			paramPictureURL =videoVO.startpictURL;
 			paramFilmName =videoVO.label;
 			this.name = videoVO.name;
 			

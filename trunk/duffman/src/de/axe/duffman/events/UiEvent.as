@@ -24,6 +24,8 @@
 		public static const PLAYER_WITH_STARTSCREEN_READY:String = "playerWithStartscreenReady";
 		
 		public static const PLAYERS_READY:String = "playersLoaded";		
+		// menu
+		public static const MENU_CLICK:String = "menuClick";		
 		
 		
 		public function UiEvent(type:String) { 
