@@ -11,6 +11,8 @@ package de.axe.duffman.dataModel
 	
 	public static const VIDEO_ELEMENT_WIDTH:uint = 600//972;
 	public static const VIDEO_ELEMENT_HEIGHT:uint = 350//520;
+		
+	public static const MENU_SPACE_DIST:uint = 10;
 
 	}
 }

@@ -1,6 +1,6 @@
 package de.axe.duffman.dataModel
 {
-	public class DataVO
+	public class VideoVO
 	{
 		public var ID:uint;
 		public var label:String;
@@ -11,7 +11,7 @@ package de.axe.duffman.dataModel
 		public var posY:int;
 		
 	
-		public function DataVO(sourceXML:XML)
+		public function VideoVO(sourceXML:XML)
 		{	
 			ID = Number(sourceXML.@ID);
 			
