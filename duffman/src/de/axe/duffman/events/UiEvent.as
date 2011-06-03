@@ -26,6 +26,10 @@
 		public static const PLAYERS_READY:String = "playersLoaded";		
 		// menu
 		public static const MENU_CLICK:String = "menuClick";		
+		public static const MENU_SHOW_SUBMENU:String = "menuShowSubmenu";		
+		public static const MENU_HIDE_SUBMENU:String = "menuHideSubmenu";		
+
+		public static const TIME_OVER:String = "TimeOver";
 		
 		
 		public function UiEvent(type:String) { 

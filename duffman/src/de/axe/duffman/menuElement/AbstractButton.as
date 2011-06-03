@@ -83,13 +83,6 @@ package de.axe.duffman.menuElement
 		}
 
 		//---------------------------------------------------------------------------
-		// 	mouseOverHandler :overriden by subclasses !!!!!!!!!!
-		//---------------------------------------------------------------------------
-		public function mouseOverHandler(event:MouseEvent):void {
-			throw new IllegalOperationError("Abstract method: must be overriden in a subclass");
-		}
-
-		//---------------------------------------------------------------------------
 		// 	activ
 		//---------------------------------------------------------------------------
 		public function set activ(_value:Boolean):void {

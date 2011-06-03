@@ -1,8 +1,10 @@
 package de.axe.duffman.menuElement
 {
 	import com.twoto.utils.Draw;
+	import com.twoto.videoPlayer.ShowHideInterfaceHandler;
 	
 	import de.axe.duffman.MenuElement_MC;
+	import de.axe.duffman.dataModel.DefinesApplication;
 	import de.axe.duffman.dataModel.MenuVO;
 	import de.axe.duffman.events.UiEvent;
 	
@@ -20,14 +22,14 @@ package de.axe.duffman.menuElement
 	*
 	*/
 	
-	public class MenuElement extends AbstractButton implements IButtons
+	public class MenuParentElement extends AbstractButton implements IButtons
 	{
 		//---------------------------------------------------------------------------
 		// 	private variables
 		//---------------------------------------------------------------------------
 		private var text:TextField;
 		private var textMC:Sprite;
-		private var activeFullscreenOption:Boolean;
+
 		//---------------------------------------------------------------------------
 		// 	public variables
 		//---------------------------------------------------------------------------
@@ -36,19 +38,30 @@ package de.axe.duffman.menuElement
 		//---------------------------------------------------------------------------
 		// 	consctructor BottomMenuElement
 		//---------------------------------------------------------------------------
-		public function MenuElement(_label:String,_id:uint)
+		public function MenuParentElement(_label:String,_id:uint)
 		{
 			label= _label;
 			ID=_id;
+			
 			textMC = new MenuElement_MC();
 			text = textMC.getChildByName("txtElt") as TextField;
 			text.x=2;
 			updateText(label);
 			addChild(textMC);
-
+			
 			this.invisibleBackground(this.width,this.height);
 			//;
 			this.activ=true;
+
+		}
+		//--------------------------------------------------------------------------
+		// 	addedToStage: to use stage
+		//---------------------------------------------------------------------------
+		private function addedToStage(evt:Event):void{
+			
+			removeEventListener(Event.ADDED_TO_STAGE,addedToStage);
+			
+		
 		}
 		public function get textWidth():uint{
 			return text.textWidth;
@@ -56,24 +69,8 @@ package de.axe.duffman.menuElement
 		//---------------------------------------------------------------------------
 		// 	update Text content
 		//---------------------------------------------------------------------------
-		public function  updateText(_text:String):void{
+		private function  updateText(_text:String):void{
 			text.text = _text.toLocaleUpperCase();
-		}
-		//---------------------------------------------------------------------------
-		// 	activateFullscreenOption: if fullscreen button
-		//---------------------------------------------------------------------------
-		public function set activateFullscreenOption(_value:Boolean):void{
-			
-			//trace("activateFullscreenOption:");
-			activeFullscreenOption = true;
-			addEventListener(Event.ADDED_TO_STAGE,addedToStage,true,0,false);
-		}
-		//---------------------------------------------------------------------------
-		// 	addedToStage: to use stage
-		//---------------------------------------------------------------------------
-		private function addedToStage(evt:Event):void{
-			
-			removeEventListener(Event.ADDED_TO_STAGE,addedToStage);
 		}
 		//---------------------------------------------------------------------------
 		// override	functions for mouse over and Click handler
@@ -81,6 +78,7 @@ package de.axe.duffman.menuElement
 		override public function rollOverHandler(event:MouseEvent):void {
 			
 			text.alpha=0.5;
+			dispatchEvent(new UiEvent(UiEvent.MENU_SHOW_SUBMENU));
 		}
 		override public  function rollOutHandler(event:MouseEvent):void {
 
@@ -89,7 +87,7 @@ package de.axe.duffman.menuElement
 		override public  function clickHandler(event:MouseEvent):void {
      
         	// overriden by subclasses !!!!!!!!!!
-        	dispatchEvent(new UiEvent(UiEvent.MENU_CLICK));
+        	//dispatchEvent(new UiEvent(UiEvent.MENU_CLICK));
    		 }
 		//---------------------------------------------------------------------------
 		// 	destroy instance and clear cache

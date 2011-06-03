@@ -71,8 +71,10 @@
 	
 	<item ID="6"
 		 type="menu"
+		 subtype="externalLink"
 		 name="contact"
 		  externalURL ="http://ffffound.com/"
+		  window="_blank"
 		>
 		<label>
 			<![CDATA[kontakt]]>
@@ -81,8 +83,10 @@
 	
 	<item ID="7"
 		 type="menu"
+		 subtype="externalLink"
 		 name="impressum"
 		  externalURL ="http://ffffound.com/"
+		  window="_blank"
 		>
 		<label>
 			<![CDATA[impressum]]>
@@ -91,8 +95,10 @@
 	
 	<item ID="8"
 		 type="menu"
+		 subtype="externalLink"
 		 name="datenschutz"
 		  externalURL ="http://ffffound.com/"
+		  window="_blank"
 		>
 		<label>
 			<![CDATA[datenschutz/recht]]>
@@ -101,11 +107,35 @@
 	
 	<item ID="9"
 		 type="menu"
+		 subtype="parent"
 		 name="weitersagen"
-		  externalURL ="http://ffffound.com/"
 		>
 		<label>
 			<![CDATA[weitersagen]]>
+		</label>
+	</item>
+	
+	<item ID="10"
+		 type="submenu"
+		 subtype="externalLink"
+		 name="twitter"
+		  externalURL ="http://twitter.com/"
+		  window="_blank"
+		>
+		<label>
+			<![CDATA[auf twitter posten]]>
+		</label>
+	</item>
+	
+	<item ID="11"
+		 type="submenu"
+		 subtype="externalLink"
+		 name="facebook"
+		  externalURL ="http://facebook.com/"
+		  window="_blank"
+		>
+		<label>
+			<![CDATA[auf facebook posten]]>
 		</label>
 	</item>
 	
