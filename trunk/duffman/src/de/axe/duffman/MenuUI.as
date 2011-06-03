@@ -4,12 +4,16 @@ package de.axe.duffman
 	
 	import de.axe.duffman.dataModel.DataModel;
 	import de.axe.duffman.dataModel.DefinesApplication;
+	import de.axe.duffman.dataModel.MenuVO;
 	import de.axe.duffman.events.UiEvent;
 	import de.axe.duffman.menuElement.MenuElement;
+	import de.axe.duffman.menuElement.MenuParentElement;
+	import de.axe.duffman.menuElement.TimerHandler;
 	
 	import flash.display.Sprite;
 	import flash.display.StageDisplayState;
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
 	
@@ -27,7 +31,13 @@ package de.axe.duffman
 		// 	private variables
 		//---------------------------------------------------------------------------
 		private var spaceInMenu:uint;
-		private var menuHeight:uint = 17;
+		private var menuHeight:uint;
+		private var submenuContainer:Sprite;
+		private var timerSubmenuHandler:TimerHandler;
+		
+		public var SUBMENU_STATUS:String;
+		public var SUBMENU_SHOW:String = "submenuShow";
+		public var SUBMENU_HIDE:String = "submenuHide";
 		
 		private var dataModel:DataModel;
 		//---------------------------------------------------------------------------
@@ -37,7 +47,11 @@ package de.axe.duffman
 		{
 			dataModel =_dataModel;
 			spaceInMenu = DefinesApplication.MENU_SPACE_DIST;
+			menuHeight = DefinesApplication.MENU_SPACE_DIST;
 			addEventListener(Event.ADDED_TO_STAGE,init);
+			
+			timerSubmenuHandler = new TimerHandler(DefinesApplication.SUBMENU_TIMEOUT);
+			timerSubmenuHandler.addEventListener(UiEvent.TIME_OVER,hideSubmenu);
 		}
 		//---------------------------------------------------------------------------
 		// 	init
@@ -57,71 +71,122 @@ package de.axe.duffman
 			var lastWidth:uint =0;
 			var totalMenuNum:uint = dataModel.totalMenuEltNum;
 			var menuElt:MenuElement;
+			var menuParentElt:MenuParentElement;
 			
-			for (i = 0; i< totalMenuNum-1; i++){
-				 menuElt = new MenuElement(dataModel.getMenuVO(i).label);
-				 menuElt.x = lastWidth+spaceInMenu;
-				 lastWidth =menuElt.x+ menuElt.width;
-				 addChild(menuElt);
-			}
-			/*
-			for each (item in dataModel.getMenuVO()){
+			for (i = 0; i< totalMenuNum; i++){
+				var targetMenuVO:MenuVO =dataModel.getMenuVO(i) as MenuVO;
 				
-				var activ:Boolean=(item.url !="" || item.subType)?true:false;
-				var secondLabel:String=(item.secondLabel)?item.secondLabel:null;
-				var elt:RotatingTextMenuElement = new RotatingTextMenuElement(item.label,true,activ,secondLabel);
-				elt.posID = item.posID;
-				elt.x = lastWidth+spaceInMenu;
-				lastWidth =elt.x+ elt.width;
-				*/
-			/*
-			for each (item in dataModel.subMenuVOArray){
-				var activ:Boolean=(item.url !="" || item.subType)?true:false;
-				var secondLabel:String=(item.secondLabel)?item.secondLabel:null;
-				var elt:RotatingTextMenuElement = new RotatingTextMenuElement(item.label,true,activ,secondLabel);
-				elt.posID = item.posID;
-				elt.x = lastWidth+spaceInMenu;
-				lastWidth =elt.x+ elt.width;
-				/*
-				if(item.subType =="imprint"){
-					elt.addEventListener(UiEvent.SUBMENU_CLICK,imprintClick);
+				 if(targetMenuVO.subtype == DefinesApplication.SUBTYPE_EXTERNAL_LINK){
+					 
+					 menuElt = new MenuElement(targetMenuVO.label,targetMenuVO.ID);
+					 menuElt.x = lastWidth+spaceInMenu;
+					 menuElt.addEventListener(UiEvent.MENU_CLICK,menuHandler);
+					 addChild(menuElt);
+					 lastWidth =menuElt.x+menuElt.textWidth;	
+					 
+				} else if(targetMenuVO.subtype == DefinesApplication.SUBTYPE_PARENT){
+	
+					menuParentElt = new MenuParentElement(targetMenuVO.label,targetMenuVO.ID);
+					menuParentElt.x = lastWidth+spaceInMenu;
+					menuParentElt.addEventListener(UiEvent.MENU_SHOW_SUBMENU,showSubmenu);
+					addChild(menuParentElt);
+					lastWidth =menuParentElt.x+menuParentElt.textWidth;		
+					
+				} else {
+					
+					trace("error in subtyping");
 				}
-				else if(item.subType =="fullscreen"){
-					elt.addEventListener(UiEvent.SUBMENU_CLICK,fullscreenHandler);
-					elt.activateFullscreenOption = true;
-				}
-				else if(item.subType =="facebook"){
-					elt.addEventListener(UiEvent.SUBMENU_CLICK,facebookHandler);
-				}
-				else if(item.url)elt.addEventListener(UiEvent.SUBMENU_CLICK,submenuHandler);
-				addChild(elt);
+				
 			}
-		*/
+			//----------------------------------------------------------------------------------------------------------
+			
+			submenuContainer = new Sprite();
+		 	var submenuBackground:SubmenuBackground_MC = new SubmenuBackground_MC();
+			submenuContainer.addChild(submenuBackground);
+			submenuContainer.y= -submenuBackground.height+menuHeight;
+			submenuContainer.x = menuParentElt.x;
+			trace(" menuParentElt.y:"+ menuParentElt.x);
+			addChildAt(submenuContainer,0);
+			submenuContainer.visible =false;
+			SUBMENU_STATUS = SUBMENU_HIDE;
+			
+			
+	
+			
+			//----------------------------------------------------------------------------------------------------------
+			
 			onResize();
 		}
-		//---------------------------------------------------------------------------
-		// 	handler facebook
-		//---------------------------------------------------------------------------
-		private function facebookHandler(e:UiEvent):void{
-			var target:MenuElement = e.currentTarget as MenuElement;
+		private function hideShowSubmenu(evt:UiEvent):void{
 			
-			var request:URLRequest =  new URLRequest("http://www.facebook.com/share.php?u="+dataModel.getSubMenuVOByPosID(target.posID).url+dataModel.deeplink );
-			trace("facebookHandler :"+request.url);
-			var window:String = (dataModel.getSubMenuVOByPosID(target.posID).window)? dataModel.getSubMenuVOByPosID(target.posID).url:"_blank";
-			try {            
-                navigateToURL(request,window);
-            }
-            catch (e:Error) {
-                // handle error here
-            }
+			//trace("---------------------showHideSubmenuHandler.STATUS :"+showHideSubmenuHandler.STATUS);
+			
+			if(SUBMENU_STATUS == SUBMENU_SHOW){
+				trace("asking for  closing");
+		
+				submenuContainer.removeEventListener(MouseEvent.ROLL_OUT,turnSubmenuTimerOn);
+				Tweener.addTween(submenuContainer,{alpha:0,transition:"easeinoutcubic",time:1});
+				SUBMENU_STATUS = SUBMENU_HIDE;
+				//	dispatchEvent(new UiEvent(UiEvent.MENU_HIDE_SUBMENU));
+			
+			} else{
+				trace("asking for showing");
+	
+					submenuContainer.visible=true;
+					submenuContainer.alpha=0;
+					timerSubmenuHandler.stop();
+					Tweener.addTween(submenuContainer,{alpha:1,transition:"easeinoutcubic",time:1});
+					submenuContainer.addEventListener(MouseEvent.ROLL_OUT,turnSubmenuTimerOn);
+					SUBMENU_STATUS = SUBMENU_SHOW;
+			
+			}
+		}		
+		private function hideSubmenu(evt:UiEvent):void{
+			
+			//trace("---------------------showHideSubmenuHandler.STATUS :"+showHideSubmenuHandler.STATUS);
+			
+			if(SUBMENU_STATUS == SUBMENU_SHOW){
+				trace("asking for  closing");
+				
+				submenuContainer.removeEventListener(MouseEvent.ROLL_OUT,turnSubmenuTimerOn);
+				Tweener.addTween(submenuContainer,{alpha:0,transition:"easeinoutcubic",time:1});
+				SUBMENU_STATUS = SUBMENU_HIDE;
+				//	dispatchEvent(new UiEvent(UiEvent.MENU_HIDE_SUBMENU));
+			}
+		}
+		private function showSubmenu(evt:UiEvent):void{
+			
+			//trace("---------------------showHideSubmenuHandler.STATUS :"+showHideSubmenuHandler.STATUS);
+			timerSubmenuHandler.start();
+			if(SUBMENU_STATUS == SUBMENU_HIDE){
+				trace("asking for showing");
+				submenuContainer.visible=true;
+				submenuContainer.alpha=0;
+				timerSubmenuHandler.stop();
+				Tweener.addTween(submenuContainer,{alpha:1,transition:"easeinoutcubic",time:1});
+				submenuContainer.addEventListener(MouseEvent.ROLL_OUT,turnSubmenuTimerOn);
+				SUBMENU_STATUS = SUBMENU_SHOW;
+			}
+		}
+		private function turnSubmenuTimerOn(evt:MouseEvent):void{
+			timerSubmenuHandler.start();
+		}
+		//---------------------------------------------------------------------------
+		// 	submenuParenthandler rest of buttons
+		//---------------------------------------------------------------------------
+		private function submenuParentHandler(e:UiEvent):void{
+			trace("show submenu");
+			//showHideSubmenuHandler.start();
 		}
 		//---------------------------------------------------------------------------
 		// 	handler rest of buttons
 		//---------------------------------------------------------------------------
-		private function submenuHandler(e:UiEvent):void{
-			var target:MenuElement = e.currentTarget as MenuElement;
-			var request:URLRequest= new URLRequest(dataModel.getSubMenuVOByPosID(target.posID).url);
-			var window:String = (dataModel.getSubMenuVOByPosID(target.posID).window)? dataModel.getSubMenuVOByPosID(target.posID).url:"_blank";
+		private function menuHandler(e:UiEvent):void{
+			trace("menuHandler click");
+			var targetMenu:MenuElement  = e.currentTarget as MenuElement;
+			var targetMenuVO:MenuVO =dataModel.getMenuVOByID(targetMenu.ID as uint) as MenuVO;
+			var request:URLRequest= new URLRequest(targetMenuVO.externalURL);
+			var window:String = (targetMenuVO.window)? targetMenuVO.window:"_blank";
 			try {            
                 navigateToURL(request,window);
             }
@@ -136,8 +201,8 @@ package de.axe.duffman
 		private function onResize(e:Event = null):void{
 
 			this.x =Math.floor((this.stage.stageWidth-this.width)/2)+50;
-			this.y =Math.floor(this.stage.stageHeight);
-			Tweener.addTween(this,{y:Math.floor(this.stage.stageHeight-menuHeight),transition:"easeinoutcubic",time:1});
+			this.y =Math.floor(stage.stageHeight);
+			Tweener.addTween(this,{y:Math.floor(-menuHeight+stage.stageHeight),transition:"easeinoutcubic",time:1});
 		}
 	}
 }

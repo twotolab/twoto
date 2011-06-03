@@ -21,9 +21,23 @@ package de.axe.duffman.dataModel
 
 			createVideoVO();
 			createMenuVO();
+			//checkIDs();
 		}
 		public function get playerWidth():uint{
 			return uint(getSetup().@width);
+		}
+		public function  checkIDs():void{
+			var item:XML;
+			var lastID:uint=999999999999999;
+			var thisID:uint =999999999999999;
+			for each (item in dataXML.item){
+				thisID =item.@ID as uint;
+				if(thisID== lastID){
+					trace("alarm same IDs for :"+thisID);
+					break;
+				}
+				lastID = thisID;
+			}
 		}
 		private function getSetup():XML{
 			
@@ -47,7 +61,9 @@ package de.axe.duffman.dataModel
 					menuArray.push(menuVO);
 				}
 			}
-			trace("error createMenuVO");
+			if(menuArray.length == 0){
+				trace("error createMenuVO: no Menu Element found");
+			}
 		}
 
 		private function createVideoVO():void{
@@ -59,9 +75,22 @@ package de.axe.duffman.dataModel
 						videoArray.push(videoVO);
 				}
 			}
-			trace("error createVideoVO");
+			if(videoArray.length == 0){
+				trace("error createVideoVO: no Video Element found");
+			}
 		}
-		
+		public function getMenuVOByID(_ID:uint):MenuVO{
+			
+			var item:MenuVO;
+			for each (item in menuArray){
+				if(uint(item.ID) == _ID){
+					return item;
+					break;
+				}
+			}
+			
+			return null;	
+		}
 		public function  getMenuVO(_value:uint):MenuVO{
 			return menuArray[_value];
 		}
@@ -75,7 +104,7 @@ package de.axe.duffman.dataModel
 		}
 		
 		public function get totalMenuEltNum():uint{
-			return  videoArray.length;
+			return  menuArray.length;
 		}
 		
 		public function getContentByID(_ID:uint):XML{
