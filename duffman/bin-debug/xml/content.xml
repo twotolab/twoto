@@ -139,4 +139,16 @@
 		</label>
 	</item>
 	
+		<item ID="12"
+		 type="menu"
+		 subtype="externalSymbolLink"
+		 name="facebook"
+		  externalURL ="http://facebook.com/"
+		  window="_blank"
+		>
+		<label>
+			<![CDATA[auf facebook posten]]>
+		</label>
+	</item>
+	
 </content>
