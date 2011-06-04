@@ -13,6 +13,7 @@ package de.axe.duffman.dataModel
 	public static const VIDEO_ELEMENT_HEIGHT:uint = 350//520;
 		
 	public static const MENU_SPACE_DIST:uint = 30;
+	public static const MENU_SPACE_SYMBOL_DIST:uint = 30;
 	public static const MENU_HEIGHT:uint = 17;
 
 	public static const TYPE_SUBMENU:String = "submenu";
@@ -20,6 +21,7 @@ package de.axe.duffman.dataModel
 	
 	public static const SUBTYPE_PARENT:String = "parent";
 	public static const SUBTYPE_EXTERNAL_LINK:String = "externalLink";
+	public static const SUBTYPE_EXTERNAL_SYMBOL_LINK:String = "externalSymbolLink";
 	
 	public static const SUBMENU_TIMEOUT:uint =1000;
 
