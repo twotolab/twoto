@@ -44,6 +44,7 @@ package de.axe.duffman.menuElement
 			symbolMC = new MenuSymbolElement_MC();
 			try {
 				symbol = symbolMC.getChildByName(symbolName) as Sprite;
+				symbol.x=symbol.y =0;
 				addChild(symbol);
 			} catch (error:Error) {
 				trace("symbolname not found error: "+error)
@@ -61,6 +62,9 @@ package de.axe.duffman.menuElement
 		private function addedToStage(evt:Event):void{
 			
 			removeEventListener(Event.ADDED_TO_STAGE,addedToStage);
+		}
+		public function get symbolWidth():uint{
+			return symbol.width;
 		}
 		//---------------------------------------------------------------------------
 		// override	functions for mouse over and Click handler

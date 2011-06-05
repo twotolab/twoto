@@ -59,7 +59,7 @@ package de.axe.duffman.menuElement
 			updateText(label);
 			addChild(textMC);
 			
-			this.invisibleBackground(this.width,this.height);
+			this.invisibleBackground(text.textWidth,this.height);
 			//;
 			this.activ=true;
 			
@@ -71,7 +71,7 @@ package de.axe.duffman.menuElement
 			submenuContainer = new Sprite();
 			var submenuBackground:SubmenuBackground_MC = new SubmenuBackground_MC();
 			submenuContainer.addChild(submenuBackground);
-			submenuContainer.y= -submenuBackground.height+20;
+			submenuContainer.y= -submenuBackground.height-20;
 			submenuContainer.x = this.x;
 			addChildAt(submenuContainer,0);
 			submenuContainer.visible =false;
