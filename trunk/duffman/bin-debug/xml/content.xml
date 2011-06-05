@@ -139,7 +139,7 @@
 		</label>
 	</item>
 	
-		<item ID="12"
+	<item ID="12"
 		 type="menu"
 		 subtype="externalSymbolLink"
 		 name="facebook"
@@ -148,6 +148,18 @@
 		>
 		<label>
 			<![CDATA[auf facebook posten]]>
+		</label>
+	</item>
+	
+	<item ID="13"
+		 type="menu"
+		 subtype="externalSymbolLink"
+		 name="twitter"
+		  externalURL ="http://twitter.com/"
+		  window="_blank"
+		>
+		<label>
+			<![CDATA[auf twitter posten]]>
 		</label>
 	</item>
 	

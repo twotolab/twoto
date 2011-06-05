@@ -90,7 +90,7 @@ package de.axe.duffman
 						menuSymbolElt.x = lastWidth+spaceInSymbolMenu;
 						menuSymbolElt.addEventListener(UiEvent.MENU_CLICK,menuHandler);
 						addChild(menuSymbolElt);
-						lastWidth =menuSymbolElt.x+menuSymbolElt.width;	
+						lastWidth =menuSymbolElt.x+menuSymbolElt.symbolWidth;	
 						break;
 					default:
 					trace("error in subtyping----- targetMenuVO.subtype:"+targetMenuVO.subtype);
