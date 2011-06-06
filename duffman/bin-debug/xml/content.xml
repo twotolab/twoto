@@ -117,7 +117,7 @@
 	
 	<item ID="10"
 		 type="submenu"
-		 subtype="externalLink"
+		 subtype="externalTextSymbolLink"
 		 name="twitter"
 		  externalURL ="http://twitter.com/"
 		  window="_blank"
@@ -129,7 +129,7 @@
 	
 	<item ID="11"
 		 type="submenu"
-		 subtype="externalLink"
+		 subtype="externalTextSymbolLink"
 		 name="facebook"
 		  externalURL ="http://facebook.com/"
 		  window="_blank"
@@ -162,5 +162,6 @@
 			<![CDATA[auf twitter posten]]>
 		</label>
 	</item>
+
 	
 </content>
