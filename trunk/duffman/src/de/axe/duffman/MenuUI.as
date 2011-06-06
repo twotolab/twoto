@@ -6,7 +6,7 @@ package de.axe.duffman
 	import de.axe.duffman.dataModel.DefinesApplication;
 	import de.axe.duffman.dataModel.MenuVO;
 	import de.axe.duffman.events.UiEvent;
-	import de.axe.duffman.menuElement.MenuElement;
+	import de.axe.duffman.menuElement.MenuTextElement;
 	import de.axe.duffman.menuElement.MenuParentElement;
 	import de.axe.duffman.menuElement.MenuSymbolElement;
 	import de.axe.duffman.menuElement.TimerHandler;
@@ -34,6 +34,7 @@ package de.axe.duffman
 		private var spaceInMenu:uint;
 		private var spaceInSymbolMenu:uint;
 		private var menuHeight:uint;
+		private var submenu:SubMenuUI;
 		
 		private var dataModel:DataModel;
 		//---------------------------------------------------------------------------
@@ -65,7 +66,7 @@ package de.axe.duffman
 			var i:uint
 			var lastWidth:uint =0;
 			var totalMenuNum:uint = dataModel.totalMenuEltNum;
-			var menuElt:MenuElement;
+			var menuElt:MenuTextElement;
 			var menuSymbolElt:MenuSymbolElement;
 			var menuParentElt:MenuParentElement;
 			
@@ -73,7 +74,7 @@ package de.axe.duffman
 				var targetMenuVO:MenuVO =dataModel.getMenuVO(i) as MenuVO;
 				switch(targetMenuVO.subtype){
 					case DefinesApplication.SUBTYPE_EXTERNAL_LINK:
-						menuElt = new MenuElement(targetMenuVO.label,targetMenuVO.ID);
+						menuElt = new MenuTextElement(targetMenuVO.label,targetMenuVO.ID);
 						menuElt.x = lastWidth+spaceInMenu;
 						menuElt.addEventListener(UiEvent.MENU_CLICK,menuHandler);
 						addChild(menuElt);
@@ -99,6 +100,9 @@ package de.axe.duffman
 			}
 			
 			//----------------------------------------------------------------------------------------------------------
+			
+			submenu = new SubMenuUI(dataModel);
+			addChild(submenu);
 			
 			onResize();
 		}

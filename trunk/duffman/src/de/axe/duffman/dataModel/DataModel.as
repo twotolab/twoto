@@ -12,6 +12,7 @@ package de.axe.duffman.dataModel
 		private var totalVideoNumber:uint;
 		private var videoArray:Array;
 		private var menuArray:Array;
+		private var submenuArray:Array;
 		
 		// constructor ----------------------------------------------------------------------
 		public function DataModel (_dataXML:XML) {
@@ -21,6 +22,7 @@ package de.axe.duffman.dataModel
 
 			createVideoVO();
 			createMenuVO();
+			createSubmenuVO();
 			//checkIDs();
 		}
 		public function get playerWidth():uint{
@@ -56,12 +58,25 @@ package de.axe.duffman.dataModel
 			var item:XML;
 			menuArray =[];
 			for each (item in dataXML.item){
-				if(String(item.@type)== "menu" ){
+				if(String(item.@type)== DefinesApplication.TYPE_MENU ){
 					var menuVO:MenuVO = new MenuVO(item);
 					menuArray.push(menuVO);
 				}
 			}
 			if(menuArray.length == 0){
+				trace("error createMenuVO: no Menu Element found");
+			}
+		}
+		private function createSubmenuVO():void{
+			var item:XML;
+			submenuArray =[];
+			for each (item in dataXML.item){
+				if(String(item.@type)== DefinesApplication.TYPE_SUBMENU ){
+					var submenuVO:SubmenuVO = new SubmenuVO(item);
+					submenuArray.push(submenuVO);
+				}
+			}
+			if(submenuArray.length == 0){
 				trace("error createMenuVO: no Menu Element found");
 			}
 		}
@@ -79,6 +94,18 @@ package de.axe.duffman.dataModel
 				trace("error createVideoVO: no Video Element found");
 			}
 		}
+		public function getSubmenuVOByID(_ID:uint):SubmenuVO{
+			
+			var item:SubmenuVO;
+			for each (item in submenuArray){
+				if(uint(item.ID) == _ID){
+					return item;
+					break;
+				}
+			}
+			
+			return null;	
+		}
 		public function getMenuVOByID(_ID:uint):MenuVO{
 			
 			var item:MenuVO;
@@ -95,6 +122,10 @@ package de.axe.duffman.dataModel
 			return menuArray[_value];
 		}
 		
+		public function  getSubmenuVO(_value:uint):SubmenuVO{
+			return submenuArray[_value];
+		}
+		
 		public function  getVideoVO(_value:uint):VideoVO{
 			return videoArray[_value];
 		}
@@ -102,7 +133,10 @@ package de.axe.duffman.dataModel
 		public function get totalVideoPlayerNum():uint{
 			return  videoArray.length;
 		}
-		
+		public function get totalSubmenuEltNum():uint{
+			return  submenuArray.length;
+		}
+				
 		public function get totalMenuEltNum():uint{
 			return  menuArray.length;
 		}
