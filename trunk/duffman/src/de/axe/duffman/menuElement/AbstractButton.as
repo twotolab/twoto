@@ -113,7 +113,7 @@ package de.axe.duffman.menuElement
 		//---------------------------------------------------------------------------
 		public function invisibleBackground(_width:uint, _height:uint):void {
 
-			interactivSurface=Draw.drawSprite(_width, _height, 0)
+			interactivSurface=Draw.drawSprite(_width, _height,0)
 			// trace("invisibleBackground _width: "+_width+"_height: "+_height);
 			addChild(interactivSurface);
 		}

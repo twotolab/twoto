@@ -50,6 +50,8 @@ package de.axe.duffman.menuElement
 			
 			textMC = new MenuElement_MC();
 			text = textMC.getChildByName("txtElt") as TextField;
+			text.selectable=false;
+			text.autoSize="left";
 			text.x=2;
 			updateText(label);
 			addChild(textMC);

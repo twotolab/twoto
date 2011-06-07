@@ -44,6 +44,7 @@ package de.axe.duffman.menuElement
 			text = textMC.getChildByName("txtElt") as TextField;
 			text.x=2;
 			text.selectable= false;
+			text.autoSize="left";
 			updateText(label);
 			addChild(textMC);
 
