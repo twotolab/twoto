@@ -1,4 +1,4 @@
-package de.axe.duffman.menu.elements.basics
+package de.axe.duffman.menu.elements.core
 {
 
 	import com.twoto.utils.Draw;

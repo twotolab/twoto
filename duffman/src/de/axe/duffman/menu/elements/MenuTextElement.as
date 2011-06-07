@@ -11,8 +11,8 @@ package de.axe.duffman.menu.elements
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.text.TextField;
-	import de.axe.duffman.menu.elements.basics.AbstractButton;
-	import de.axe.duffman.menu.elements.basics.IButtons;
+	import de.axe.duffman.menu.elements.core.AbstractButton;
+	import de.axe.duffman.menu.elements.core.IButtons;
 	
 	/**
 	* 
