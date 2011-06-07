@@ -4,7 +4,7 @@ package de.axe.duffman.menu.elements
 	
 	import de.axe.duffman.MenuElement_MC;
 	import de.axe.duffman.MenuSymbolElement_MC;
-	import de.axe.duffman.dataModel.VO.MenuVO;
+	import de.axe.duffman.data.VO.MenuVO;
 	import de.axe.duffman.events.UiEvent;
 	
 	import flash.display.MovieClip;

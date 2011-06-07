@@ -4,9 +4,9 @@ package de.axe.duffman.data
 	
 	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;
-	import de.axe.duffman.dataModel.VO.MenuVO;
-	import de.axe.duffman.dataModel.VO.SubmenuVO;
-	import de.axe.duffman.dataModel.VO.VideoVO;
+	import de.axe.duffman.data.VO.MenuVO;
+	import de.axe.duffman.data.VO.SubmenuVO;
+	import de.axe.duffman.data.VO.VideoVO;
 	
 	public dynamic class DataModel extends EventDispatcher
 	{
