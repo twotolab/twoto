@@ -1,4 +1,4 @@
-package de.axe.duffman.dataModel
+package de.axe.duffman.data
 {
 	public class DefinesApplication
 	{
