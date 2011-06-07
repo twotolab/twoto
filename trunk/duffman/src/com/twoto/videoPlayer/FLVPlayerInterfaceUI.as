@@ -20,7 +20,7 @@ package com.twoto.videoPlayer
 	import com.twoto.videoPlayer.elements.ProgressBar;
 	import com.twoto.videoPlayer.elements.SoundElement;
 	
-	import de.axe.duffman.dataModel.DefinesApplication;
+	import de.axe.duffman.data.DefinesApplication;
 	import de.axe.duffman.loader.CircleSlicePreloader;
 	
 	import flash.display.DisplayObject;
