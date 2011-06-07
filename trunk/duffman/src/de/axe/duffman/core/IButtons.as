@@ -1,4 +1,4 @@
-package de.axe.duffman.menu.elements.core
+package de.axe.duffman.core
 {
 	import flash.events.MouseEvent;
 	

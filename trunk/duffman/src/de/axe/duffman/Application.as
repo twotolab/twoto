@@ -5,12 +5,12 @@ package de.axe.duffman
 	
 	import de.axe.duffman.data.DataModel;
 	import de.axe.duffman.events.UiEvent;
+	import de.axe.duffman.menu.MenuUI;
+	import de.axe.duffman.player.PlayersUI;
 	import de.axe.duffman.player.elements.VideoplayerWithStartScreen;
 	
 	import flash.display.Shape;
 	import flash.display.Sprite;
-	import de.axe.duffman.menu.MenuUI;
-	import de.axe.duffman.player.PlayersUI;
 	
 	public class Application extends Sprite
 	{
@@ -20,9 +20,9 @@ package de.axe.duffman
 		private var dataXML:XML;
 		private var dataModel:DataModel;
 		private var background:Shape;
-		
-		private var players:PlayersUI;
+		private var content:contentUI;
 		private var menu:MenuUI;
+		private var slogan:SloganUI;
 		
 		//---------------------------------------------------------------------------
 		// 	constructor
@@ -36,19 +36,15 @@ package de.axe.duffman
 			background = Draw.drawShape(1024,800,1,0x00);
 			addChild(background);
 			
-			players = new PlayersUI(dataModel);
-			players.addEventListener(UiEvent.PLAYERS_READY, playersReady);
-			addChild(players);
+			content = new contentUI(dataModel);
+			addChild(content);
+			
+			slogan = new SloganUI(dataModel);
+			addChild(slogan);
 			
 			menu = new MenuUI(dataModel);
 			addChild(menu);
 			
 		}
-		private function playersReady(evt:UiEvent):void{
-			players.addEventListener(UiEvent.PLAYERS_READY,playersReady);
-			trace("playersReady");
-		}
-
-		
 	}
 }
