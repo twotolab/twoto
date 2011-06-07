@@ -3,12 +3,14 @@ package de.axe.duffman
 
 	import com.twoto.utils.Draw;
 	
-	import de.axe.duffman.dataModel.DataModel;
+	import de.axe.duffman.data.DataModel;
 	import de.axe.duffman.events.UiEvent;
-	import de.axe.duffman.playerElement.VideoplayerWithStartScreen;
+	import de.axe.duffman.player.elements.VideoplayerWithStartScreen;
 	
 	import flash.display.Shape;
 	import flash.display.Sprite;
+	import de.axe.duffman.menu.MenuUI;
+	import de.axe.duffman.player.PlayersUI;
 	
 	public class Application extends Sprite
 	{

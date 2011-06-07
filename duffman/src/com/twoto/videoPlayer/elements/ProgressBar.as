@@ -6,7 +6,7 @@ package com.twoto.videoPlayer.elements
 	import com.twoto.videoPlayer.FLVPlayerEngine;
 	import com.twoto.videoPlayer.VideoPlayerEvents;
 	
-	import de.axe.duffman.dataModel.DefinesApplication;
+	import de.axe.duffman.data.DefinesApplication;
 	
 	import flash.display.Shape;
 	import flash.display.Sprite;

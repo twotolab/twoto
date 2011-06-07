@@ -5,7 +5,7 @@ package com.twoto.videoPlayer
 	import caurina.transitions.Tweener;
 	import caurina.transitions.properties.SoundShortcuts;
 	
-	import de.axe.duffman.dataModel.DefinesApplication;
+	import de.axe.duffman.data.DefinesApplication;
 	
 	import flash.display.Sprite;
 	import flash.events.AsyncErrorEvent;
