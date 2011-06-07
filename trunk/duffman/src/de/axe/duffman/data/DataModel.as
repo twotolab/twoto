@@ -1,12 +1,12 @@
 package de.axe.duffman.data
 {
+	import de.axe.duffman.data.VO.MenuVO;
+	import de.axe.duffman.data.VO.SubmenuVO;
+	import de.axe.duffman.data.VO.VideoVO;
 	import de.axe.duffman.events.UiEvent;
 	
 	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;
-	import de.axe.duffman.data.VO.MenuVO;
-	import de.axe.duffman.data.VO.SubmenuVO;
-	import de.axe.duffman.data.VO.VideoVO;
 	
 	public dynamic class DataModel extends EventDispatcher
 	{
@@ -26,20 +26,25 @@ package de.axe.duffman.data
 			createVideoVO();
 			createMenuVO();
 			createSubmenuVO();
-			//checkIDs();
+			checkIDs();
 		}
 		public function get playerWidth():uint{
 			return uint(getSetup().@width);
 		}
+		public function get sloganTxt():String{
+			return String(getSetup().@slogan);
+		}
+		public function get productNameTxt():String{
+			return String(getSetup().@productName);
+		}
 		public function  checkIDs():void{
 			var item:XML;
-			var lastID:uint=999999999999999;
-			var thisID:uint =999999999999999;
+			var lastID:uint=99999;
+			var thisID:uint =0;
 			for each (item in dataXML.item){
-				thisID =item.@ID as uint;
+				thisID =uint(item.@ID);
 				if(thisID== lastID){
 					trace("alarm same IDs for :"+thisID);
-					break;
 				}
 				lastID = thisID;
 			}

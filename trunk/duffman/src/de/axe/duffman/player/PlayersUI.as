@@ -75,6 +75,7 @@ package de.axe.duffman.player
 				indexPlayer = getChildIndex(activePlayer);
 				setChildIndex(activePlayer,this.numChildren-1);
 				activePlayer.startPlayer();
+				dispatchEvent(new UiEvent(UiEvent.PLAYER_START));
 			}
 		}
 		private function closeHandler(evt:UiEvent):void{
@@ -88,6 +89,7 @@ package de.axe.duffman.player
 			} else{
 				STATUS_PLAYER = NOONE_ACTIVE;
 				setChildIndex(activePlayer,indexPlayer);
+				dispatchEvent(new UiEvent(UiEvent.PLAYER_STOPPED));
 			}
 		}
 	}

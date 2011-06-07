@@ -142,8 +142,8 @@ package de.axe.duffman.menu
 		private function onResize(e:Event = null):void{
 
 			this.x =Math.floor((this.stage.stageWidth-this.width)/2);
-			this.y =0;
-			Tweener.addTween(this,{y:Math.floor(DefinesApplication.MENU_SPACE_TOP),transition:"easeinoutcubic",time:1});
+			this.y =Math.floor(DefinesApplication.MENU_SPACE_TOP);
+			//Tweener.addTween(this,{y:Math.floor(DefinesApplication.MENU_SPACE_TOP),transition:"easeinoutcubic",time:1});
 		}
 	}
 }
