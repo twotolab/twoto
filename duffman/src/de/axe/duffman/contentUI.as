@@ -2,6 +2,7 @@ package de.axe.duffman
 {
 	import de.axe.duffman.data.DataModel;
 	import de.axe.duffman.events.UiEvent;
+	import de.axe.duffman.player.PlayersUI;
 	
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -12,6 +13,7 @@ package de.axe.duffman
 		// 	private variables
 		//---------------------------------------------------------------------------
 		private var dataModel:DataModel;
+		private var players:PlayersUI;
 		//---------------------------------------------------------------------------
 		// 	constructor
 		//---------------------------------------------------------------------------
@@ -34,11 +36,21 @@ package de.axe.duffman
 		private function draw():void{
 			// create textintro
 			
+			// create players
+			players = new PlayersUI(dataModel);
+			players.addEventListener(UiEvent.PLAYERS_READY, playersReady);
+			addChild(players);
+			
 			// create Sound Button
 			
 			// create Replay Button
 			
 		}
+		private function playersReady(evt:UiEvent):void{
+			players.addEventListener(UiEvent.PLAYERS_READY,playersReady);
+			trace("playersReady");
+		}
+
 		private function soundHandler(evt:UiEvent):void{
 			// turn sound off of Intro
 			
