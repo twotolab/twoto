@@ -1,9 +1,12 @@
-package de.axe.duffman.dataModel
+package de.axe.duffman.data
 {
 	import de.axe.duffman.events.UiEvent;
 	
 	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;
+	import de.axe.duffman.dataModel.VO.MenuVO;
+	import de.axe.duffman.dataModel.VO.SubmenuVO;
+	import de.axe.duffman.dataModel.VO.VideoVO;
 	
 	public dynamic class DataModel extends EventDispatcher
 	{

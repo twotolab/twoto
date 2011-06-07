@@ -9,7 +9,7 @@
 package de.axe.duffman.loader {
 	import caurina.transitions.Tweener;
 	
-	import de.axe.duffman.dataModel.DefinesApplication;
+	import de.axe.duffman.data.DefinesApplication;
 	import de.axe.duffman.events.UiEvent;
 	
 	import flash.display.DisplayObject;
