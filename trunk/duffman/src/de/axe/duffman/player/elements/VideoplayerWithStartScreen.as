@@ -7,7 +7,7 @@ package de.axe.duffman.player.elements
 	
 	import de.axe.duffman.data.DataModel;
 	import de.axe.duffman.data.DefinesApplication;
-	import de.axe.duffman.dataModel.VO.VideoVO;
+	import de.axe.duffman.data.VO.VideoVO;
 	import de.axe.duffman.events.UiEvent;
 	
 	import flash.display.DisplayObject;

@@ -4,7 +4,7 @@ package de.axe.duffman.menu
 	
 	import de.axe.duffman.data.DataModel;
 	import de.axe.duffman.data.DefinesApplication;
-	import de.axe.duffman.dataModel.VO.MenuVO;
+	import de.axe.duffman.data.VO.MenuVO;
 	import de.axe.duffman.events.UiEvent;
 	
 	import flash.display.Sprite;
