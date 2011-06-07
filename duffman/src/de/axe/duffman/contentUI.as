@@ -61,26 +61,20 @@ package de.axe.duffman
 			switch(evt.type)
 			{
 				case UiEvent.PLAYERS_READY:
-				{
 					players.removeEventListener(UiEvent.PLAYERS_READY,playersHandler);
 					trace("playersReady");
 					resize();
 					break;
-				}
-					case UiEvent.PLAYER_START:
+				case UiEvent.PLAYER_START:
 						STATUS_PLAYERS=ACTIVE;
 						resize();
 						break;
 				case UiEvent.PLAYER_STOPPED:
-					trace("PLAYER_STOPPED");
 					STATUS_PLAYERS=INACTIVE;
 					resize();
-					break;
-				
+					break;				
 				default:
-				{
 					break;
-				}
 			}
 		}
 

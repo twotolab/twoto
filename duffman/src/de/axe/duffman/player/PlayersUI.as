@@ -11,8 +11,6 @@ package de.axe.duffman.player
 		//---------------------------------------------------------------------------
 		// 	private variables
 		//---------------------------------------------------------------------------
-		private var playerOne:VideoplayerWithStartScreen;
-		private var playerTwo:VideoplayerWithStartScreen;
 		private var activePlayer:VideoplayerWithStartScreen;
 		private var lastActivePlayer:VideoplayerWithStartScreen;
 		private var awaitingPlayer:VideoplayerWithStartScreen;
