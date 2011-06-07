@@ -27,8 +27,10 @@ package de.axe.duffman.menuElement
 		//---------------------------------------------------------------------------
 		// 	private variables
 		//---------------------------------------------------------------------------
+		private var menuVO:MenuVO;
 		private var symbolMC:MovieClip;
 		private var symbol:Sprite;
+		private var rollOver:Sprite;
 		//---------------------------------------------------------------------------
 		// 	public variables
 		//---------------------------------------------------------------------------
@@ -37,10 +39,11 @@ package de.axe.duffman.menuElement
 		//---------------------------------------------------------------------------
 		// 	consctructor BottomMenuElement
 		//---------------------------------------------------------------------------
-		public function MenuSymbolElement(_symbolName:String,_id:uint)
-		{
-			ID=_id;
-			symbolName =_symbolName;
+		public function MenuSymbolElement(_menuVO:MenuVO){
+			
+			menuVO=_menuVO;
+			ID=menuVO.ID;
+			symbolName =menuVO.name;
 			symbolMC = new MenuSymbolElement_MC();
 			try {
 				symbol = symbolMC.getChildByName(symbolName) as Sprite;
@@ -49,8 +52,12 @@ package de.axe.duffman.menuElement
 			} catch (error:Error) {
 				trace("symbolname not found error: "+error)
 			}
+			if(menuVO.rollOverLabel !=""){
+				trace("rollOver done")
+				rollOver = new RollOverSymbolWithTextElement(menuVO);
+				rollOver.y=symbol.height;
+			}
 			
-
 
 			this.invisibleBackground(this.width,this.height);
 			//;
@@ -72,10 +79,16 @@ package de.axe.duffman.menuElement
 		override public function rollOverHandler(event:MouseEvent):void {
 			
 			symbol.alpha=0.5;
+			if(rollOver){
+			addChildAt(rollOver,0);
+			}
 		}
 		override public  function rollOutHandler(event:MouseEvent):void {
 
 			symbol.alpha=1;
+			if(rollOver){
+			removeChild(rollOver);
+			}
 		}
 		override public  function clickHandler(event:MouseEvent):void {
      

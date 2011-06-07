@@ -142,6 +142,7 @@
 	<item ID="12"
 		 type="menu"
 		 subtype="externalSymbolLink"
+		  rollOverLabel="post on facebook"
 		 name="facebook"
 		  externalURL ="http://facebook.com/"
 		  window="_blank"

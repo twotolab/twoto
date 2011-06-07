@@ -6,9 +6,9 @@ package de.axe.duffman
 	import de.axe.duffman.dataModel.DefinesApplication;
 	import de.axe.duffman.dataModel.MenuVO;
 	import de.axe.duffman.events.UiEvent;
-	import de.axe.duffman.menuElement.MenuTextElement;
 	import de.axe.duffman.menuElement.MenuParentElement;
 	import de.axe.duffman.menuElement.MenuSymbolElement;
+	import de.axe.duffman.menuElement.MenuTextElement;
 	import de.axe.duffman.menuElement.TimerHandler;
 	
 	import flash.display.Sprite;
@@ -33,7 +33,6 @@ package de.axe.duffman
 		//---------------------------------------------------------------------------
 		private var spaceInMenu:uint;
 		private var spaceInSymbolMenu:uint;
-		private var menuHeight:uint;
 		private var submenu:SubMenuUI;
 		
 		private var dataModel:DataModel;
@@ -45,7 +44,6 @@ package de.axe.duffman
 			dataModel =_dataModel;
 			spaceInMenu = DefinesApplication.MENU_SPACE_DIST;
 			spaceInSymbolMenu = DefinesApplication.MENU_SPACE_SYMBOL_DIST;
-			menuHeight = DefinesApplication.MENU_SPACE_DIST;
 			addEventListener(Event.ADDED_TO_STAGE,init);
 			
 		}
@@ -82,12 +80,15 @@ package de.axe.duffman
 						break;
 					case DefinesApplication.SUBTYPE_PARENT:
 						menuParentElt = new MenuParentElement(targetMenuVO.label,targetMenuVO.ID);
+						menuParentElt.addEventListener(UiEvent.SUBMENU_SHOW,submenuHandler);
+						menuParentElt.addEventListener(UiEvent.SUBMENU_HIDE,submenuHandler);
 						menuParentElt.x = lastWidth+spaceInMenu;
 						addChild(menuParentElt);
 						lastWidth =menuParentElt.x+menuParentElt.textWidth;	
+						submenu = new SubMenuUI(dataModel,menuParentElt);
 					break;
 					case DefinesApplication.SUBTYPE_EXTERNAL_SYMBOL_LINK:
-						menuSymbolElt = new MenuSymbolElement(targetMenuVO.name,targetMenuVO.ID);
+						menuSymbolElt = new MenuSymbolElement(targetMenuVO);
 						menuSymbolElt.x = lastWidth+spaceInSymbolMenu;
 						menuSymbolElt.addEventListener(UiEvent.MENU_CLICK,menuHandler);
 						addChild(menuSymbolElt);
@@ -101,15 +102,27 @@ package de.axe.duffman
 			
 			//----------------------------------------------------------------------------------------------------------
 			
-			submenu = new SubMenuUI(dataModel);
-			addChild(submenu);
-			
+
 			onResize();
 		}
 
 		//---------------------------------------------------------------------------
 		// 	handler rest of buttons
 		//---------------------------------------------------------------------------
+		private function submenuHandler(e:UiEvent):void{
+			switch(e.type){
+				case UiEvent.SUBMENU_SHOW:
+					submenu.show();
+					trace("submenuHandler SUBMENU_SHOW");
+					break;
+				case UiEvent.SUBMENU_HIDE:
+					submenu.hide();
+					trace("submenuHandler SUBMENU_HIDE");
+					break;
+				default:
+					break;
+			}
+		}
 		private function menuHandler(e:UiEvent):void{
 			trace("menuHandler click");
 			var targetMenu:*  = e.currentTarget;
@@ -129,9 +142,9 @@ package de.axe.duffman
 		//---------------------------------------------------------------------------
 		private function onResize(e:Event = null):void{
 
-			this.x =Math.floor((this.stage.stageWidth-this.width)/2)+50;
-			this.y =Math.floor(stage.stageHeight);
-			Tweener.addTween(this,{y:Math.floor(-menuHeight+stage.stageHeight),transition:"easeinoutcubic",time:1});
+			this.x =Math.floor((this.stage.stageWidth-this.width)/2);
+			this.y =0;
+			Tweener.addTween(this,{y:Math.floor(DefinesApplication.MENU_SPACE_TOP),transition:"easeinoutcubic",time:1});
 		}
 	}
 }

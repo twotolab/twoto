@@ -13,10 +13,11 @@ package de.axe.duffman.dataModel
 	public static const VIDEO_ELEMENT_HEIGHT:uint = 350//520;
 		
 	public static const MENU_SPACE_DIST:uint = 30;
+	public static const MENU_SPACE_TOP:uint = 10;
 	public static const MENU_SPACE_SYMBOL_DIST:uint = 10;
 	public static const MENU_HEIGHT:uint = 17;
 	
-	public static const SUBMENU_SPACE_DIST:uint = 30;
+	public static const SUBMENU_SPACE_DIST:uint = 10;
 	public static const SUBMENU_SPACE_SYMBOL_DIST:uint = 10;
 
 	public static const TYPE_SUBMENU:String = "submenu";

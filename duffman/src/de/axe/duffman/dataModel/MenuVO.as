@@ -9,6 +9,8 @@ package de.axe.duffman.dataModel
 		public var subtype:String;
 		public var externalURL:String;
 		public var window:String;
+		public var rollOverLabel:String;
+		
 		
 	
 		public function MenuVO(sourceXML:XML)
@@ -20,6 +22,7 @@ package de.axe.duffman.dataModel
 			externalURL =String(sourceXML.@externalURL);
 			window =sourceXML.@window;
 			name = String(sourceXML.@name);
+			rollOverLabel = String(sourceXML.@rollOverLabel);
 		}
 	}
 }

@@ -36,19 +36,22 @@ package de.axe.duffman
 		private var spaceInSymbolMenu:uint;
 		private var menuHeight:uint;
 		
-		private var submenuContainer:Sprite;
 		private var timerSubmenuHandler:TimerHandler;
 		
 		public var SUBMENU_STATUS:String;
-		public var SUBMENU_SHOW:String = "submenuShow";
+		public var SUBMENU_ROLLOVER:String = "submenuShow";
 		public var SUBMENU_HIDE:String = "submenuHide";
 		
 		private var dataModel:DataModel;
+		private var parentInMenu:Sprite;
+		private var submenuBackground:Sprite;
+		//---------------------------------------------------------------------------
 		//---------------------------------------------------------------------------
 		// 	constructor
 		//---------------------------------------------------------------------------
-		public function SubMenuUI(_dataModel:DataModel)
+		public function SubMenuUI(_dataModel:DataModel,_parentObject:Sprite)
 		{
+			parentInMenu =_parentObject;
 			dataModel =_dataModel;
 			spaceInMenu = DefinesApplication.SUBMENU_SPACE_DIST;
 			spaceInSymbolMenu = DefinesApplication.SUBMENU_SPACE_SYMBOL_DIST;
@@ -62,11 +65,7 @@ package de.axe.duffman
 			
 			draw();
 			removeEventListener(Event.ADDED_TO_STAGE,init);
-			
-			timerSubmenuHandler = new TimerHandler(DefinesApplication.SUBMENU_TIMEOUT);
-			timerSubmenuHandler.addEventListener(UiEvent.TIME_OVER,hideSubmenu);
-			
-
+		
 		}
 		//---------------------------------------------------------------------------
 		// 	draw elements of menu
@@ -74,19 +73,15 @@ package de.axe.duffman
 		private function draw():void{
 		
 			//----------------------------------------------------------------------------------------------------------
-			/*
-			submenuContainer = new Sprite();
-			var submenuBackground:SubmenuBackground_MC = new SubmenuBackground_MC();
-			submenuContainer.addChild(submenuBackground);
-			submenuContainer.y= -submenuBackground.height-20;
-			submenuContainer.x = this.x;
-			addChildAt(submenuContainer,0);
-			submenuContainer.visible =false;
-			SUBMENU_STATUS = SUBMENU_HIDE;
-			*/
+			
+			submenuBackground = new SubmenuBackground_MC() as Sprite;
+			addChild(submenuBackground);
+			submenuBackground.y= 0;
+			submenuBackground.x = this.x;
+
 			var i:uint
-			var lastHeight:uint =0;
-			this.y = -200;
+			var lastHeight:uint =DefinesApplication.MENU_SPACE_TOP;
+			this.y = -2;
 			var totalSubmenuNum:uint = dataModel.totalSubmenuEltNum;
 			var submenuElt:MenuSymbolWithTextElement;
 			
@@ -127,37 +122,30 @@ package de.axe.duffman
             }
           //  if(stage.displayState ==StageDisplayState.FULL_SCREEN)this.stage.displayState = StageDisplayState.NORMAL;
 		}
-		private function hideSubmenu(evt:UiEvent):void{
+
+		public  function show():void{
 			
-			//trace("---------------------showHideSubmenuHandler.STATUS :"+showHideSubmenuHandler.STATUS);
+			this.alpha= 0;
+			this.visible=true;
+			parentInMenu.addChildAt(this,0);
+			Tweener.addTween(this,{alpha:1,transition:"easeoutcubic",time:0.5,onComplete:showSubmenuComplete});				
+		}
+		private function showSubmenuComplete():void{
 			
-			if(SUBMENU_STATUS == SUBMENU_SHOW){
-				trace("asking for  closing");
-				
-				submenuContainer.removeEventListener(MouseEvent.ROLL_OUT,turnSubmenuTimerOn);
-				Tweener.addTween(submenuContainer,{alpha:0,transition:"easeinoutcubic",time:1,onComplete:hideSubmenuComplete});
-				SUBMENU_STATUS = SUBMENU_HIDE;
-				//	dispatchEvent(new UiEvent(UiEvent.MENU_HIDE_SUBMENU));
-			}
+
 		}
 		private function hideSubmenuComplete():void{
-			submenuContainer.visible=false;
-		}
-		public  function showSubmenu():void{
 			
-			trace("---------------------.STATUS :"+SUBMENU_STATUS);
-			timerSubmenuHandler.start();
-			if(SUBMENU_STATUS == SUBMENU_HIDE){
-				trace("asking for showing");
-				submenuContainer.visible=true;
-				submenuContainer.alpha=0;
-				timerSubmenuHandler.stop();
-				Tweener.addTween(submenuContainer,{alpha:1,transition:"easeinoutcubic",time:1});
-				submenuContainer.addEventListener(MouseEvent.ROLL_OUT,turnSubmenuTimerOn);
-				SUBMENU_STATUS = SUBMENU_SHOW;
-			}
+			this.visible=false;
+			parentInMenu.removeChild(this);
 		}
+		public  function hide():void{
+			
+			Tweener.addTween(this,{alpha:0,transition:"easeoutcubic",time:1,onComplete:hideSubmenuComplete});
+		}
+
 		private function turnSubmenuTimerOn(evt:MouseEvent):void{
+			
 			timerSubmenuHandler.start();
 		}
 	}

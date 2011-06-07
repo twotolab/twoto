@@ -31,7 +31,7 @@ package de.axe.duffman
 			dataXML =_dataXML;
 			dataModel = new DataModel(dataXML);	
 
-			background = Draw.drawShape(972,520,1,0xffdc01);
+			background = Draw.drawShape(1024,800,1,0x00);
 			addChild(background);
 			
 			players = new PlayersUI(dataModel);
