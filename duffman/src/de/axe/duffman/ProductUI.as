@@ -12,19 +12,19 @@ package de.axe.duffman
 	import flash.events.Event;
 	import flash.text.TextField;
 
-	public class SloganUI extends AbstractUI implements IbasicUI
+	public class ProductUI extends AbstractUI implements IbasicUI
 	{
 		//---------------------------------------------------------------------------
 		// 	private variables
 		//---------------------------------------------------------------------------
 		private var sloganMC:Slogan_MC;
-		private var background:Shape;
+		private var product:Shape;
 		private var label:TextField;
 		private var dataModel:DataModel;
 		//---------------------------------------------------------------------------
 		// 	constructor
 		//---------------------------------------------------------------------------
-		public function SloganUI(_dataModel:DataModel)
+		public function ProductUI(_dataModel:DataModel)
 		{
 			dataModel=_dataModel;
 		}
@@ -33,14 +33,14 @@ package de.axe.duffman
 		//---------------------------------------------------------------------------
 		override public function draw():void{
 			
-			background = Draw.drawRoundedShape(200,20);
-			addChild(background);
+			product = Draw.drawRoundedShape(100,300);
+			addChild(product);
 			//
 			sloganMC = new Slogan_MC();
 			label = sloganMC.getChildByName("txtElt") as TextField;
 			label.autoSize="left";
 			addChild(label);
-			updateText(dataModel.sloganTxt);
+			updateText(dataModel.productNameTxt);
 			//label.autoSize="left";
 			
 
@@ -55,15 +55,15 @@ package de.axe.duffman
 		//---------------------------------------------------------------------------
 		private function  updateText(_text:String):void{
 			label.text = _text.toLocaleUpperCase();
-			label.x= Math.floor((background.width-label.textWidth)*.5);
-			label.y= Math.floor((background.height-label.textHeight)*.5);
+			label.x= Math.floor((product.width-label.textWidth)*.5);
+			label.y= Math.floor(product.height+30);
 		}
 		//---------------------------------------------------------------------------
 		// 	rescale
 		//---------------------------------------------------------------------------
 		private function resize(e:Event = null):void{
 			trace("resize");
-			this.x =Math.floor((this.stage.stageWidth-this.width)/2);
+			this.x =Math.floor((this.stage.stageWidth-this.width));
 			this.y =Math.floor((this.stage.stageHeight-this.height-DefinesApplication.MENU_SPACE_TOP));
 			//Tweener.addTween(this,{y:Math.floor(this.stage.stageHeight-this.height-DefinesApplication.MENU_SPACE_TOP),transition:"easeinoutcubic",time:1});
 		}

@@ -23,6 +23,7 @@ package de.axe.duffman
 		private var content:contentUI;
 		private var menu:MenuUI;
 		private var slogan:SloganUI;
+		private var product:ProductUI;
 		
 		//---------------------------------------------------------------------------
 		// 	constructor
@@ -41,6 +42,9 @@ package de.axe.duffman
 			
 			slogan = new SloganUI(dataModel);
 			addChild(slogan);
+			
+			product = new ProductUI(dataModel);
+			addChild(product);
 			
 			menu = new MenuUI(dataModel);
 			addChild(menu);
