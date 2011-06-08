@@ -15,6 +15,10 @@ package de.axe.duffman
 		//---------------------------------------------------------------------------
 		private var dataModel:DataModel;
 		private var players:PlayersUI;
+		private var appContainer:Sprite;
+		
+		private var contentWidth:uint;
+		private var contentHeight:uint;
 		
 		private var STATUS_PLAYERS:String;
 		
@@ -25,9 +29,10 @@ package de.axe.duffman
 		// 	constructor
 		//---------------------------------------------------------------------------
 		
-		public function contentUI(_dataModel:DataModel) {
+		public function contentUI(_dataModel:DataModel,_appContainer:Sprite) {
 			
 			dataModel =_dataModel;
+			appContainer =_appContainer;
 			STATUS_PLAYERS=INACTIVE;
 			addEventListener(Event.ADDED_TO_STAGE,init);
 			
@@ -48,8 +53,8 @@ package de.axe.duffman
 			// create players
 			players = new PlayersUI(dataModel);
 			players.addEventListener(UiEvent.PLAYERS_READY, playersHandler);
-			players.addEventListener(UiEvent.PLAYER_START, playersHandler);
-			players.addEventListener(UiEvent.PLAYER_STOPPED, playersHandler);
+			players.addEventListener(UiEvent.PLAYER_START, playersHandler,true);
+			players.addEventListener(UiEvent.PLAYER_STOPPED, playersHandler,true);
 			addChild(players);
 			
 			// create Sound Button
@@ -58,20 +63,24 @@ package de.axe.duffman
 			
 		}
 		private function playersHandler(evt:UiEvent):void{
+			//trace("evt.type"+evt.type);
 			switch(evt.type)
 			{
 				case UiEvent.PLAYERS_READY:
 					players.removeEventListener(UiEvent.PLAYERS_READY,playersHandler);
-					trace("playersReady");
+					contentHeight =this.height;
+					contentWidth =this.width;
 					resize();
 					break;
 				case UiEvent.PLAYER_START:
 						STATUS_PLAYERS=ACTIVE;
+						appContainer.addChild(players);
 						resize();
 						break;
 				case UiEvent.PLAYER_STOPPED:
 					STATUS_PLAYERS=INACTIVE;
-					resize();
+					players.addEventListener(Event.ADDED_TO_STAGE,resizePlayer);
+					addChild(players);
 					break;				
 				default:
 					break;
@@ -97,15 +106,22 @@ package de.axe.duffman
 		//---------------------------------------------------------------------------
 		// 	rescale
 		//---------------------------------------------------------------------------
+		private function resizePlayer(e:Event = null):void{
+			
+			
+			players.removeEventListener(Event.ADDED_TO_STAGE,resizePlayer);
+			resize();
+		}
 		private function resize(e:Event = null):void{
-			if(	STATUS_PLAYERS==ACTIVE){
-				this.x=this.y=0;
+			
+			if(STATUS_PLAYERS == INACTIVE){
+				trace("resize in INACTIVE");
+				this.x =Math.floor((this.stage.stageWidth-this.contentWidth)*.5);
+				this.y =Math.floor((this.stage.stageHeight-this.contentHeight)*.5);
 			} else{
-				trace("back to root pos");
-				this.x =Math.floor((this.stage.stageWidth-this.width)*.5);
-				this.y =Math.floor((this.stage.stageHeight-this.height)*.5);
+				trace("resize in ACTIVE");
+				this.x= this.y=0;
 			}
-
 			//Tweener.addTween(this,{y:Math.floor(this.stage.stageHeight-this.height-DefinesApplication.MENU_SPACE_TOP),transition:"easeinoutcubic",time:1});
 		}
 			

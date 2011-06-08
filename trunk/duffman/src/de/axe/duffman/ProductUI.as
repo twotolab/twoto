@@ -62,7 +62,7 @@ package de.axe.duffman
 		// 	rescale
 		//---------------------------------------------------------------------------
 		private function resize(e:Event = null):void{
-			trace("resize");
+			//trace("resize");
 			this.x =Math.floor((this.stage.stageWidth-this.width));
 			this.y =Math.floor((this.stage.stageHeight-this.height-DefinesApplication.MENU_SPACE_TOP));
 			//Tweener.addTween(this,{y:Math.floor(this.stage.stageHeight-this.height-DefinesApplication.MENU_SPACE_TOP),transition:"easeinoutcubic",time:1});

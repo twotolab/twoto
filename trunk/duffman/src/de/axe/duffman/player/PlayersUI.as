@@ -2,9 +2,9 @@ package de.axe.duffman.player
 {
 	import de.axe.duffman.data.DataModel;
 	import de.axe.duffman.events.UiEvent;
+	import de.axe.duffman.player.elements.VideoplayerWithStartScreen;
 	
 	import flash.display.Sprite;
-	import de.axe.duffman.player.elements.VideoplayerWithStartScreen;
 	
 	public class PlayersUI extends Sprite
 	{
@@ -33,7 +33,6 @@ package de.axe.duffman.player
 		//---------------------------------------------------------------------------
 		public function PlayersUI(_dataModel:DataModel)
 		{
-			
 			loadedPlayerNum = 0;
 			dataModel =_dataModel;
 			totalPlayerNum = dataModel.totalVideoPlayerNum;

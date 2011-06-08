@@ -30,14 +30,13 @@ package de.axe.duffman
 		//---------------------------------------------------------------------------
 		public function Application(_dataXML:XML) {
 			
-
 			dataXML =_dataXML;
 			dataModel = new DataModel(dataXML);	
 
 			background = Draw.drawShape(1024,800,1,0x00);
 			addChild(background);
 			
-			content = new contentUI(dataModel);
+			content = new contentUI(dataModel,this);
 			addChild(content);
 			
 			slogan = new SloganUI(dataModel);
