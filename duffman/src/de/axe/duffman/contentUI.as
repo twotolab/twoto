@@ -115,9 +115,13 @@ package de.axe.duffman
 		private function resize(e:Event = null):void{
 			
 			if(STATUS_PLAYERS == INACTIVE){
-				trace("resize in INACTIVE");
+				trace("resize in INACTIVE contentHeight:"+contentHeight+"this.stage.stageHeight :"+this.stage.stageHeight);
+				if(this.stage.stageHeight<this.contentHeight){
+					this.y =0;		
+				} else{
+					this.y =Math.floor((this.stage.stageHeight-this.contentHeight)*.5);					
+				}
 				this.x =Math.floor((this.stage.stageWidth-this.contentWidth)*.5);
-				this.y =Math.floor((this.stage.stageHeight-this.contentHeight)*.5);
 			} else{
 				trace("resize in ACTIVE");
 				this.x= this.y=0;
