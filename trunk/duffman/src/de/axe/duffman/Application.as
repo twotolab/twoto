@@ -19,7 +19,7 @@ package de.axe.duffman
 		//---------------------------------------------------------------------------
 		private var dataXML:XML;
 		private var dataModel:DataModel;
-		private var background:Shape;
+		private var background:BackgroundUI;
 		private var content:contentUI;
 		private var menu:MenuUI;
 		private var slogan:SloganUI;
@@ -33,7 +33,7 @@ package de.axe.duffman
 			dataXML =_dataXML;
 			dataModel = new DataModel(dataXML);	
 
-			background = Draw.drawShape(1024,800,1,0x00);
+			background = new BackgroundUI();
 			addChild(background);
 			
 			content = new contentUI(dataModel,this);
