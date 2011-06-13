@@ -7,6 +7,7 @@ package de.axe.duffman.player.elements
 	
 	import de.axe.duffman.data.DataModel;
 	import de.axe.duffman.data.DefinesApplication;
+	import de.axe.duffman.data.FilmLibrary;
 	import de.axe.duffman.data.VO.VideoVO;
 	import de.axe.duffman.events.UiEvent;
 	
@@ -30,14 +31,16 @@ package de.axe.duffman.player.elements
 		private var maskObject:Sprite;
 		
 		private var videoVO:VideoVO;
+		private var filmLibrary:FilmLibrary;
 		
-		public function VideoplayerWithStartScreen(_videoVO:VideoVO)
+		public function VideoplayerWithStartScreen(_videoVO:VideoVO,_filmLibrary:FilmLibrary)
 		{
 			videoVO= _videoVO;
 			paramURL= videoVO.videoURL;
 			paramPictureURL =videoVO.startpictURL;
 			paramFilmName =videoVO.label;
 			this.name = videoVO.name;
+			filmLibrary =_filmLibrary;
 			
 			player = new FLVPlayer(DefinesApplication.VIDEO_WIDTH,DefinesApplication.VIDEO_HEIGHT);﻿
 			player.addEventListener(VideoPlayerEvents.PLAYER_READY,playerReady);
@@ -57,6 +60,13 @@ package de.axe.duffman.player.elements
 			addChildAt(startScreen,0);
 			startScreen.addEventListener(VideoPlayerEvents.START_PLAYER,startPlayerHandler)
 			startScreen.addEventListener(UiEvent.PICTURE_READY,startScreenReady);
+			
+/*
+			var but:ButtonUI = new ButtonUI(videoVO,filmLibrary);
+			but.x=-100;
+			addChild(but);
+			trace("videoVO: "+videoVO.name);
+			*/
 
 
 		}

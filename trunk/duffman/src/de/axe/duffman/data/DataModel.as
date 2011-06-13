@@ -27,6 +27,7 @@ package de.axe.duffman.data
 			createMenuVO();
 			createSubmenuVO();
 			checkIDs();
+			
 		}
 		public function get playerWidth():uint{
 			return uint(getSetup().@width);

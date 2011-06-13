@@ -2,10 +2,13 @@ package de.axe.duffman.player.elements
 {	
 	import com.twoto.utils.Draw;
 	
+	import de.axe.duffman.SmallAni_MC_MOTHER;
 	import de.axe.duffman.core.AbstractUI;
 	import de.axe.duffman.core.IbasicUI;
 	import de.axe.duffman.data.DataModel;
 	import de.axe.duffman.data.DefinesApplication;
+	import de.axe.duffman.data.FilmLibrary;
+	import de.axe.duffman.data.VO.VideoVO;
 	
 	import flash.display.MovieClip;
 	import flash.display.Shape;
@@ -14,35 +17,39 @@ package de.axe.duffman.player.elements
 	import flash.text.TextField;
 	import flash.utils.getDefinitionByName;
 	
-	import de.axe.duffman.SmallAni_MC_MOTHER;
-	
 
 	public class ButtonUI extends AbstractUI implements IbasicUI
 	{
 		//---------------------------------------------------------------------------
 		// 	private variables
 		//---------------------------------------------------------------------------
-		private var smallAni:*;
+		private var smallAni:MovieClip;
 		private var label:TextField;
-		private var dataModel:DataModel;
+		private var videoVO:VideoVO;
+		private var filmLibrary:FilmLibrary;
 		//---------------------------------------------------------------------------
 		// 	constructor
 		//---------------------------------------------------------------------------
-		public function ButtonUI(_dataModel:DataModel)
+		public function ButtonUI(_videoVO:VideoVO,_filmLibrary:FilmLibrary)
 		{
-			dataModel=_dataModel;
+			videoVO=_videoVO;
+			filmLibrary=_filmLibrary;
 		}
 		//---------------------------------------------------------------------------
 		// 	draw elements of menu
 		//---------------------------------------------------------------------------
 		override public function draw():void{
 			
-			smallAni =Class(getDefinitionByName("de.axe.duffman.SmallAni_MC_MOTHER"));
-			addChild(smallAni);
-			//
-			//label.autoSize="left";
-			
-			this.stage.addEventListener(Event.RESIZE,resize);
+
+			try{
+				smallAni = filmLibrary.getSmallAnimation(videoVO.name);
+				addChild(smallAni);
+				smallAni.x=smallAni.y=0;
+				trace("videoVO.name:" +videoVO.name);
+			} catch(e:Error){
+				trace("this video doesn´t exist!!!!")
+			}
+
 			resize();
 		}
 		public function destroy():void{
@@ -52,7 +59,7 @@ package de.axe.duffman.player.elements
 		// 	rescale
 		//---------------------------------------------------------------------------
 		private function resize(e:Event = null):void{
-			trace("resize product");
+			//trace("resize product");
 			/*
 			if(this.stage.stageWidth<DefinesApplication.MAX_STAGE_WIDTH){
 			//	trace("stage.stageWidth<DefinesApplication.MAX_STAGE_WIDTH");
