@@ -17,30 +17,21 @@ package de.axe.duffman
 		//---------------------------------------------------------------------------
 		// 	private variables
 		//---------------------------------------------------------------------------
-		private var sloganMC:Slogan_MC;
-		private var product:Shape;
-		private var label:TextField;
-		private var dataModel:DataModel;
+		private var product:Product_MC;
 		//---------------------------------------------------------------------------
 		// 	constructor
 		//---------------------------------------------------------------------------
-		public function ProductUI(_dataModel:DataModel)
+		public function ProductUI()
 		{
-			dataModel=_dataModel;
 		}
 		//---------------------------------------------------------------------------
 		// 	draw elements of menu
 		//---------------------------------------------------------------------------
 		override public function draw():void{
 			
-			product = Draw.drawRoundedShape(100,300);
+			product = new Product_MC();
 			addChild(product);
 			//
-			sloganMC = new Slogan_MC();
-			label = sloganMC.getChildByName("txtElt") as TextField;
-			label.autoSize="left";
-			addChild(label);
-			updateText(dataModel.productNameTxt);
 			//label.autoSize="left";
 			
 
@@ -51,20 +42,24 @@ package de.axe.duffman
 			
 		}
 		//---------------------------------------------------------------------------
-		// 	update Text content
-		//---------------------------------------------------------------------------
-		private function  updateText(_text:String):void{
-			label.text = _text.toLocaleUpperCase();
-			label.x= Math.floor((product.width-label.textWidth)*.5);
-			label.y= Math.floor(product.height+30);
-		}
-		//---------------------------------------------------------------------------
 		// 	rescale
 		//---------------------------------------------------------------------------
 		private function resize(e:Event = null):void{
-			//trace("resize");
-			this.x =Math.floor((this.stage.stageWidth-this.width));
-			this.y =Math.floor((this.stage.stageHeight-this.height-DefinesApplication.MENU_SPACE_TOP));
+			trace("resize product");
+			
+			if(this.stage.stageWidth<DefinesApplication.MAX_STAGE_WIDTH){
+			//	trace("stage.stageWidth<DefinesApplication.MAX_STAGE_WIDTH");
+				this.x =Math.floor(this.stage.stageWidth-this.width-DefinesApplication.PRODUCT_SPACE_BORDER);
+			} else {
+				this.x =Math.floor((this.stage.stageWidth+DefinesApplication.MAX_STAGE_WIDTH)*.5-this.width-DefinesApplication.PRODUCT_SPACE_BORDER)
+			}
+			if(this.stage.stageHeight<DefinesApplication.MAX_STAGE_HEIGHT){
+			//	trace("this.stage.stageWidth<DefinesApplication.MAX_STAGE_HEIGHT : "+this.stage.stageHeight);
+				this.y =Math.floor(this.stage.stageHeight-this.height-DefinesApplication.PRODUCT_SPACE_BORDER);	
+			} else{
+				this.y =Math.floor(DefinesApplication.MAX_STAGE_HEIGHT-this.height-DefinesApplication.PRODUCT_SPACE_BORDER);	
+			}
+			//*/
 			//Tweener.addTween(this,{y:Math.floor(this.stage.stageHeight-this.height-DefinesApplication.MENU_SPACE_TOP),transition:"easeinoutcubic",time:1});
 		}
 	}

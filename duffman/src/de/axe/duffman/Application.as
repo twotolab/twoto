@@ -42,7 +42,7 @@ package de.axe.duffman
 			slogan = new SloganUI(dataModel);
 			addChild(slogan);
 			
-			product = new ProductUI(dataModel);
+			product = new ProductUI();
 			addChild(product);
 			
 			menu = new MenuUI(dataModel);

@@ -17,9 +17,14 @@
 		
 		public static const PICTURE_READY:String = "pictureReady";
 		public static const PICTURE_LOADED:String = "pictureLoaded";
+		// text Intro
+		public static const TEXT_INTRO_START:String = "textIntroStart";
+		public static const TEXT_INTRO_END:String = "textIntroEnd";
+		public static const TEXT_INTRO_SHOW_PRODUCT:String = "textIntroShowProduct";
+		public static const TEXT_INTRO_SHOW_SLOGAN:String = "textIntroShowSlogan";
+		
 		// players
 		public static const PLAYER_STOPPED:String = "playerstopped";
-		
 		public static const PLAYER_START:String = "playerStart";
 		public static const PLAYER_WITH_STARTSCREEN_READY:String = "playerWithStartscreenReady";
 		

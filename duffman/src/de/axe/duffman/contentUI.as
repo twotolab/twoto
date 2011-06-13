@@ -1,9 +1,12 @@
 package de.axe.duffman
 {
+	import com.twoto.utils.Draw;
+	
 	import de.axe.duffman.data.DataModel;
 	import de.axe.duffman.data.DefinesApplication;
 	import de.axe.duffman.events.UiEvent;
 	import de.axe.duffman.player.PlayersUI;
+	import de.axe.duffman.player.elements.ButtonUI;
 	
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -16,6 +19,7 @@ package de.axe.duffman
 		private var dataModel:DataModel;
 		private var players:PlayersUI;
 		private var appContainer:Sprite;
+		private var textIntro:TextAnimation_MC;
 		
 		private var contentWidth:uint;
 		private var contentHeight:uint;
@@ -49,6 +53,12 @@ package de.axe.duffman
 		}
 		private function draw():void{
 			// create textintro
+			textIntro = new TextAnimation_MC();
+			textIntro.addEventListener(UiEvent.TEXT_INTRO_START,textIntroHandler);
+			textIntro.addEventListener(UiEvent.TEXT_INTRO_SHOW_SLOGAN,textIntroHandler);
+			textIntro.addEventListener(UiEvent.TEXT_INTRO_SHOW_PRODUCT,textIntroHandler);
+			textIntro.addEventListener(UiEvent.TEXT_INTRO_END,textIntroHandler);
+			addChild(textIntro);
 			
 			// create players
 			players = new PlayersUI(dataModel);
@@ -60,16 +70,23 @@ package de.axe.duffman
 			// create Sound Button
 			
 			// create Replay Button
+			textIntro.y= DefinesApplication.TEXT_INTRO_SPACE_TOP_BORDER;
+			
+			var but:ButtonUI = new ButtonUI(dataModel);
+			addChild(but);
 			
 		}
 		private function playersHandler(evt:UiEvent):void{
 			//trace("evt.type"+evt.type);
+			
 			switch(evt.type)
 			{
 				case UiEvent.PLAYERS_READY:
 					players.removeEventListener(UiEvent.PLAYERS_READY,playersHandler);
 					contentHeight =this.height;
 					contentWidth =this.width;
+					textIntro.play();
+					players.visible=false;
 					resize();
 					break;
 				case UiEvent.PLAYER_START:
@@ -93,14 +110,25 @@ package de.axe.duffman
 			//turn sound on of Intro
 		}
 		private function textIntroHandler(evt:UiEvent):void{
-			// start intro
-			
-			// event : show slogan
-			
-			// event : show product
-			
-			// event : end complete intro
-			
+
+			trace("textIntroHandler ----------evt.type"+evt.type);
+			switch(evt.type)
+			{
+				// start intro
+				case UiEvent.TEXT_INTRO_START:
+					break;
+				// event : end complete intro
+				case UiEvent.TEXT_INTRO_END:
+					break;		
+				// event : show slogan
+				case UiEvent.TEXT_INTRO_SHOW_SLOGAN:
+					break;	
+				// event : show product
+				case UiEvent.TEXT_INTRO_SHOW_PRODUCT:
+					break;	
+				default:
+					break;
+			}
 			// event : replay ( hide slogan and product )
 		}
 		//---------------------------------------------------------------------------
@@ -115,17 +143,12 @@ package de.axe.duffman
 		private function resize(e:Event = null):void{
 			
 			if(STATUS_PLAYERS == INACTIVE){
-				trace("resize in INACTIVE contentHeight:"+contentHeight+"this.stage.stageHeight :"+this.stage.stageHeight);
-				if(this.stage.stageHeight<this.contentHeight){
-					this.y =0;		
-				} else{
-					this.y =Math.floor((this.stage.stageHeight-this.contentHeight)*.5);					
-				}
-				this.x =Math.floor((this.stage.stageWidth-this.contentWidth)*.5);
+				this.x =Math.floor((this.stage.stageWidth)*.5);
 			} else{
-				trace("resize in ACTIVE");
-				this.x= this.y=0;
+				this.x= 0;
 			}
+			this.y=0;
+			
 			//Tweener.addTween(this,{y:Math.floor(this.stage.stageHeight-this.height-DefinesApplication.MENU_SPACE_TOP),transition:"easeinoutcubic",time:1});
 		}
 			
