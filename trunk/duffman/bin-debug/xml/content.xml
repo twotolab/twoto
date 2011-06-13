@@ -2,8 +2,6 @@
 <content>
 	<item ID="0"
 		  type="setup"
-		  slogan="this is the slogan"
-		  productName="this is the productname"
 		  width="500"
 		  height="200">
 	</item>

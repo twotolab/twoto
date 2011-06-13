@@ -1,4 +1,4 @@
-package de.axe.duffman
+package de.axe.duffman.player.elements
 {	
 	import com.twoto.utils.Draw;
 	
@@ -7,24 +7,28 @@ package de.axe.duffman
 	import de.axe.duffman.data.DataModel;
 	import de.axe.duffman.data.DefinesApplication;
 	
+	import flash.display.MovieClip;
 	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.text.TextField;
+	import flash.utils.getDefinitionByName;
+	
+	import de.axe.duffman.SmallAni_MC_MOTHER;
+	
 
-	public class SloganUI extends AbstractUI implements IbasicUI
+	public class ButtonUI extends AbstractUI implements IbasicUI
 	{
 		//---------------------------------------------------------------------------
 		// 	private variables
 		//---------------------------------------------------------------------------
-		private var sloganMC:Slogan_MC;
-		private var background:Shape;
+		private var smallAni:*;
 		private var label:TextField;
 		private var dataModel:DataModel;
 		//---------------------------------------------------------------------------
 		// 	constructor
 		//---------------------------------------------------------------------------
-		public function SloganUI(_dataModel:DataModel)
+		public function ButtonUI(_dataModel:DataModel)
 		{
 			dataModel=_dataModel;
 		}
@@ -33,17 +37,11 @@ package de.axe.duffman
 		//---------------------------------------------------------------------------
 		override public function draw():void{
 			
+			smallAni =Class(getDefinitionByName("de.axe.duffman.SmallAni_MC_MOTHER"));
+			addChild(smallAni);
 			//
-			sloganMC = new Slogan_MC();
-			addChild(sloganMC);
-			/*
-			label = sloganMC.getChildByName("txtElt") as TextField;
-			label.autoSize="left";
-			addChild(label);
-			updateText(dataModel.sloganTxt);
 			//label.autoSize="left";
-			*/
-
+			
 			this.stage.addEventListener(Event.RESIZE,resize);
 			resize();
 		}
@@ -51,24 +49,25 @@ package de.axe.duffman
 			
 		}
 		//---------------------------------------------------------------------------
-		// 	update Text content
-		//---------------------------------------------------------------------------
-		private function  updateText(_text:String):void{
-			label.text = _text.toLocaleUpperCase();
-			label.x= Math.floor((background.width-label.textWidth)*.5);
-			label.y= Math.floor((background.height-label.textHeight)*.5);
-		}
-		//---------------------------------------------------------------------------
 		// 	rescale
 		//---------------------------------------------------------------------------
 		private function resize(e:Event = null):void{
-			this.x = Math.floor(this.stage.stageWidth*.5);
-			if(this.stage.stageHeight<DefinesApplication.MAX_STAGE_HEIGHT){
-				//trace("this.stage.stageWidth<DefinesApplication.MAX_STAGE_HEIGHT : "+this.stage.stageHeight);
-				this.y =Math.floor(this.stage.stageHeight-this.height-DefinesApplication.SLOGAN_SPACE_BORDER);	
-			} else{
-				this.y =Math.floor(DefinesApplication.MAX_STAGE_HEIGHT-this.height-DefinesApplication.SLOGAN_SPACE_BORDER);	
+			trace("resize product");
+			/*
+			if(this.stage.stageWidth<DefinesApplication.MAX_STAGE_WIDTH){
+			//	trace("stage.stageWidth<DefinesApplication.MAX_STAGE_WIDTH");
+				this.x =Math.floor(this.stage.stageWidth-this.width-DefinesApplication.PRODUCT_SPACE_BORDER);
+			} else {
+				this.x =Math.floor((this.stage.stageWidth+DefinesApplication.MAX_STAGE_WIDTH)*.5-this.width-DefinesApplication.PRODUCT_SPACE_BORDER)
 			}
+			if(this.stage.stageHeight<DefinesApplication.MAX_STAGE_HEIGHT){
+			//	trace("this.stage.stageWidth<DefinesApplication.MAX_STAGE_HEIGHT : "+this.stage.stageHeight);
+				this.y =Math.floor(this.stage.stageHeight-this.height-DefinesApplication.PRODUCT_SPACE_BORDER);	
+			} else{
+				this.y =Math.floor(DefinesApplication.MAX_STAGE_HEIGHT-this.height-DefinesApplication.PRODUCT_SPACE_BORDER);	
+			}
+			//*/
+			//Tweener.addTween(this,{y:Math.floor(this.stage.stageHeight-this.height-DefinesApplication.MENU_SPACE_TOP),transition:"easeinoutcubic",time:1});
 		}
 	}
 }

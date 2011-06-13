@@ -34,9 +34,6 @@ package de.axe.duffman.data
 		public function get sloganTxt():String{
 			return String(getSetup().@slogan);
 		}
-		public function get productNameTxt():String{
-			return String(getSetup().@productName);
-		}
 		public function  checkIDs():void{
 			var item:XML;
 			var lastID:uint=99999;

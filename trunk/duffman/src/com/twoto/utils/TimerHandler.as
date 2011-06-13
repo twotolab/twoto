@@ -1,7 +1,7 @@
 package com.twoto.utils
 {
 	import flash.display.Sprite;
-	import de.axe.duffman.events.UiEvent;
+	import de.axe.duffman.event.UiEvent;
 	
 	import flash.display.Stage;
 	import flash.events.EventDispatcher;

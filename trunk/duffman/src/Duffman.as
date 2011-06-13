@@ -9,7 +9,7 @@ package {
 	import flash.events.Event;
 	import flash.utils.getDefinitionByName;
 	
-	[SWF(backgroundColor='0x00', width='1024', height='568', frameRate="30")]
+	[SWF(backgroundColor='0x00', width='1280', height='800', frameRate="30")]
 	
 	// compiler argument:  -frame two com.twoto.Application
 	
