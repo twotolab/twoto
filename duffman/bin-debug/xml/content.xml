@@ -7,9 +7,9 @@
 	</item>
 	<item ID="1"
 		 type="video"
-		 name="playerOne"
-		  posX="20"
-		  posY="100"
+		 name="mother"
+		  posX="0"
+		  posY="0"
 		  videoURL ="film_assets/axe.f4v"
 		 startpictURL="film_assets/startscreenVideo1.jpg"
 		>
@@ -19,9 +19,9 @@
 	</item>
 		<item ID="2"
 		 type="video"
-		 name="playerTwo"
-		  posX="120"
-		  posY="200"
+		 name="bowling"
+		  posX="0"
+		  posY="500"
 		  videoURL ="film_assets/axe.f4v"
 		   startpictURL="film_assets/startscreenVideo1.jpg"
 		>
@@ -29,45 +29,8 @@
 			<![CDATA[label for ID 2]]>
 		</label>
 	</item>
-		
-		<item ID="3"
-		 type="video"
-		 name="playerTHREE"
-		  posX="100"
-		  posY="400"
-		  videoURL ="film_assets/axe.f4v"
-		   startpictURL="film_assets/startscreenVideo1.jpg"
-		>
-		<label>
-			<![CDATA[label for ID3]]>
-		</label>
-	</item>
 	
-	<item ID="4"
-		 type="video"
-		 name="playerFour"
-		  posX="400"
-		  posY="120"
-		  videoURL ="film_assets/axe.f4v"
-		   startpictURL="film_assets/startscreenVideo1.jpg"
-		>
-		<label>
-			<![CDATA[label for ID4]]>
-		</label>
-	</item>
 	
-	<item ID="5"
-		 type="video"
-		 name="playerFive"
-		  posX="400"
-		  posY="420"
-		  videoURL ="film_assets/axe.f4v"
-		   startpictURL="film_assets/startscreenVideo1.jpg"
-		>
-		<label>
-			<![CDATA[label for ID5]]>
-		</label>
-	</item>
 	
 	<item ID="6"
 		 type="menu"

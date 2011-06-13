@@ -8,8 +8,11 @@ package de.axe.duffman
 	import de.axe.duffman.player.PlayersUI;
 	import de.axe.duffman.player.elements.ButtonUI;
 	
+	import flash.display.DisplayObject;
+	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.utils.getDefinitionByName;
 	
 	public class contentUI extends Sprite
 	{
@@ -72,9 +75,6 @@ package de.axe.duffman
 			// create Replay Button
 			textIntro.y= DefinesApplication.TEXT_INTRO_SPACE_TOP_BORDER;
 			
-			var but:ButtonUI = new ButtonUI(dataModel);
-			addChild(but);
-			
 		}
 		private function playersHandler(evt:UiEvent):void{
 			//trace("evt.type"+evt.type);
@@ -86,7 +86,6 @@ package de.axe.duffman
 					contentHeight =this.height;
 					contentWidth =this.width;
 					textIntro.play();
-					players.visible=false;
 					resize();
 					break;
 				case UiEvent.PLAYER_START:
