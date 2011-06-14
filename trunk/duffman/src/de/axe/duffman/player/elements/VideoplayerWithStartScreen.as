@@ -31,16 +31,14 @@ package de.axe.duffman.player.elements
 		private var maskObject:Sprite;
 		
 		private var videoVO:VideoVO;
-		private var filmLibrary:FilmLibrary;
 		
-		public function VideoplayerWithStartScreen(_videoVO:VideoVO,_filmLibrary:FilmLibrary)
+		public function VideoplayerWithStartScreen(_videoVO:VideoVO)
 		{
 			videoVO= _videoVO;
 			paramURL= videoVO.videoURL;
 			paramPictureURL =videoVO.startpictURL;
 			paramFilmName =videoVO.label;
 			this.name = videoVO.name;
-			filmLibrary =_filmLibrary;
 			
 			player = new FLVPlayer(DefinesApplication.VIDEO_WIDTH,DefinesApplication.VIDEO_HEIGHT);﻿
 			player.addEventListener(VideoPlayerEvents.PLAYER_READY,playerReady);
@@ -61,14 +59,6 @@ package de.axe.duffman.player.elements
 			startScreen.addEventListener(VideoPlayerEvents.START_PLAYER,startPlayerHandler)
 			startScreen.addEventListener(UiEvent.PICTURE_READY,startScreenReady);
 			
-/*
-			var but:ButtonUI = new ButtonUI(videoVO,filmLibrary);
-			but.x=-100;
-			addChild(but);
-			trace("videoVO: "+videoVO.name);
-			*/
-
-
 		}
 		private function startScreenReady(evt:UiEvent):void{
 			

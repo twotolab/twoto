@@ -29,7 +29,6 @@ package de.axe.duffman.player
 		public static const WAITING_ACTIVE:String="waitingactive";
 		
 		private var dataModel:DataModel;
-		private var filmLibrary:FilmLibrary;
 		
 		//---------------------------------------------------------------------------
 		// 	constructor
@@ -39,21 +38,21 @@ package de.axe.duffman.player
 			loadedPlayerNum = 0;
 			dataModel =_dataModel;
 			totalPlayerNum = dataModel.totalVideoPlayerNum;
-			filmLibrary=  new FilmLibrary();
-			addChild(filmLibrary);
+
 			STATUS_PLAYER = NOONE_ACTIVE;
 
-//			createPlayers();		
+		createPlayers();		
 		}
 		
 		private function createPlayers():void {
 			var actualPlayer:VideoplayerWithStartScreen;
 			for (var i:uint=0; i< totalPlayerNum; i++){
-				actualPlayer = new VideoplayerWithStartScreen( dataModel.getVideoVO(i),filmLibrary);
+				actualPlayer = new VideoplayerWithStartScreen( dataModel.getVideoVO(i));
 				actualPlayer.addEventListener(UiEvent.PLAYER_WITH_STARTSCREEN_READY,loadedPlayerHandler);
 				actualPlayer.addEventListener(UiEvent.PLAYER_START,startHandler);
 				actualPlayer.addEventListener(UiEvent.PLAYER_STOPPED,closeHandler);
 				addChild(actualPlayer);
+				
 			}
 		}
 		private function loadedPlayerHandler(evt:UiEvent):void{

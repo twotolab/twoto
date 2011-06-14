@@ -36,6 +36,7 @@ package de.axe.duffman.core
 		public function AbstractButton() {
 
 			//trace("Button ready");
+			activ = true;
 		}
 
 		//---------------------------------------------------------------------------
@@ -72,6 +73,7 @@ package de.axe.duffman.core
 		// 	mouseOverHandler :overriden by subclasses !!!!!!!!!!
 		//---------------------------------------------------------------------------
 		public function rollOverHandler(event:MouseEvent):void {
+			trace("rollOverHandler:");
 			throw new IllegalOperationError("Abstract method: must be overriden in a subclass");
 		}
 

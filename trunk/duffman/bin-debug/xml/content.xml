@@ -2,14 +2,15 @@
 <content>
 	<item ID="0"
 		  type="setup"
+		  labelCallToAction="jetzt mehr endecken"
 		  width="500"
 		  height="200">
 	</item>
 	<item ID="1"
 		 type="video"
 		 name="mother"
-		  posX="0"
-		  posY="0"
+		  posX="-109"
+		  posY="320"
 		  videoURL ="film_assets/axe.f4v"
 		 startpictURL="film_assets/startscreenVideo1.jpg"
 		>

@@ -89,6 +89,15 @@ package com.twoto.utils
 			square.graphics.endFill();
 			return square;
 		}
+		//--createLineSprite-------------------------------------------------------------------------------------------------
+		public static function drawLineSprite(_thickness:uint=1,_width:int=100, _height:int=100, _alpha:Number=1, _color:Number=0xff0000, _x:int=0, _y:int=0):Sprite {
+			var square:Sprite=new Sprite();
+			square.graphics.beginFill(0x00, 0);
+			square.graphics.lineStyle(_thickness, _color, _alpha);
+			square.graphics.drawRect(_x, _y, _width, _height);
+			square.graphics.endFill();
+			return square;
+		}
 
 		//--createSprite-------------------------------------------------------------------------------------------------
 		public static function drawGradientLinearShape(_width:int=100, _height:int=100, _direction:String=VERTICAL, _colorTop:uint=0xffffff, _colorBottom:uint=0x000000, _alphaTop:Number=1, _alphaBottom:Number=1):Shape {
