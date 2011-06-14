@@ -3,6 +3,7 @@ package de.axe.duffman
 	import caurina.transitions.Tweener;
 	
 	import com.twoto.utils.Draw;
+	import com.twoto.videoPlayer.DefinesFLVPLayer;
 	
 	import de.axe.duffman.data.DataModel;
 	import de.axe.duffman.data.DefinesApplication;
@@ -110,11 +111,14 @@ package de.axe.duffman
 				case UiEvent.BUTTONS_ONE_ROLLOVER:
 					break;
 				case UiEvent.BUTTONS_ONE_CLICK:
-					Tweener.addTween(this,{scaleX:10,scaleY:10,y:-2800,x:1800,transition:"easeinoutcubic",time:1});
+					Tweener.addTween(this,{scaleX:9,scaleY:9,y:-3000,x:1620,transition:"easeinoutcubic",time:1,onComplete:zoomUpFinished});
 					break;
 				default:
 					break;
 			}
+		}
+		private function zoomUpFinished():void{
+			addChild(Draw.drawLineSprite(1,DefinesApplication.VIDEO_WIDTH,DefinesApplication.VIDEO_HEIGHT));
 		}
 		private function start():void{
 			trace("start");

@@ -6,8 +6,8 @@ package de.axe.duffman.data
 	public static const MAX_STAGE_WIDTH:uint =1380;
 	public static const MAX_STAGE_HEIGHT:uint =700;
 	
-	public static const VIDEO_WIDTH:uint = 600//972;
-	public static const VIDEO_HEIGHT:uint = 300//520;
+	public static const VIDEO_WIDTH:uint = 904//972;
+	public static const VIDEO_HEIGHT:uint = 452//520;
 	
 	public static const VIDEO_ELEMENT_WIDTH:uint = 600//972;
 	public static const VIDEO_ELEMENT_HEIGHT:uint = 350//520;
@@ -20,6 +20,7 @@ package de.axe.duffman.data
 	public static const BUTTON_MOTHER_START_HEIGHT:uint = 52;
 	public static const BUTTON_MOTHER_END_WIDTH:uint =360;
 	public static const BUTTON_MOTHER_END_HEIGHT:uint =180;
+
 		
 	public static const MENU_SPACE_DIST:uint = 30;
 	public static const MENU_SPACE_TOP:uint = 10;

@@ -44,7 +44,7 @@ package de.axe.duffman.player.elements
 		private var textMC:Sprite;
 		private var text:TextField;
 		private var textArrow:MovieClip;
-		
+		private var scaleFactor:uint;
 		private var dataModel:DataModel;
 		//---------------------------------------------------------------------------
 		// 	public variables
@@ -58,7 +58,7 @@ package de.axe.duffman.player.elements
 			videoVO=_videoVO;
 			filmLibrary=_filmLibrary;
 			dataModel=_dataModel;
-			
+			scaleFactor = DefinesApplication.VIDEO_WIDTH/DefinesApplication.VIDEO_HEIGHT;
 			addEventListener(Event.ADDED_TO_STAGE,addedToStage);
 		}
 		//---------------------------------------------------------------------------
@@ -180,9 +180,11 @@ package de.axe.duffman.player.elements
 
 		override public  function clickHandler(event:MouseEvent):void {
 			
+			Tweener.addTween(this.buttonBigMask,{width:DefinesApplication.BUTTON_MOTHER_START_WIDTH*scaleFactor,height:DefinesApplication.BUTTON_MOTHER_START_HEIGHT,transition:"easeoutcubic",time:0.3});
 			// overriden by subclasses !!!!!!!!!!
 			dispatchEvent(new UiEvent(UiEvent.BUTTONS_ONE_CLICK));
 			rollOutHandler(null);
+			
 			this.activ=false;
 		}
 		public function destroy():void{
