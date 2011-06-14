@@ -11,11 +11,15 @@ package de.axe.duffman.data
 	
 	public static const VIDEO_ELEMENT_WIDTH:uint = 600//972;
 	public static const VIDEO_ELEMENT_HEIGHT:uint = 350//520;
-		
+	
+		/*
+	public static const BUTTON_MOTHER_POS_X:int = -107;
+	public static const BUTTON_MOTHER_POS_Y:int = 320;
+		*/
 	public static const BUTTON_MOTHER_START_WIDTH:uint = 122;
 	public static const BUTTON_MOTHER_START_HEIGHT:uint = 52;
-	public static const BUTTON_MOTHER_END_WIDTH:uint = 360//972;
-	public static const BUTTON_MOTHER_END_HEIGHT:uint = 180//520;
+	public static const BUTTON_MOTHER_END_WIDTH:uint =360;
+	public static const BUTTON_MOTHER_END_HEIGHT:uint =180;
 		
 	public static const MENU_SPACE_DIST:uint = 30;
 	public static const MENU_SPACE_TOP:uint = 10;

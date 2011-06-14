@@ -1,9 +1,12 @@
 package de.axe.duffman
 {
+	import caurina.transitions.Tweener;
+	
 	import com.twoto.utils.Draw;
 	
 	import de.axe.duffman.data.DataModel;
 	import de.axe.duffman.data.DefinesApplication;
+	import de.axe.duffman.data.FilmLibrary;
 	import de.axe.duffman.events.UiEvent;
 	import de.axe.duffman.player.PlayersUI;
 	import de.axe.duffman.player.elements.ButtonUI;
@@ -22,10 +25,15 @@ package de.axe.duffman
 		private var dataModel:DataModel;
 		private var players:PlayersUI;
 		private var appContainer:Sprite;
+		private var buttonsContainer:Sprite;
 		private var textIntro:TextAnimation_MC;
 		
 		private var contentWidth:uint;
 		private var contentHeight:uint;
+		
+		private var totalPlayerNum:uint;
+		
+		private var filmLibrary:FilmLibrary;
 		
 		private var STATUS_PLAYERS:String;
 		
@@ -40,7 +48,11 @@ package de.axe.duffman
 			
 			dataModel =_dataModel;
 			appContainer =_appContainer;
+			totalPlayerNum = dataModel.totalVideoPlayerNum;
+			filmLibrary=  new FilmLibrary();
+			
 			STATUS_PLAYERS=INACTIVE;
+			
 			addEventListener(Event.ADDED_TO_STAGE,init);
 			
 		}
@@ -57,10 +69,12 @@ package de.axe.duffman
 		private function draw():void{
 			// create textintro
 			textIntro = new TextAnimation_MC();
+			buttonsContainer= textIntro.getChildByName("buttonsContainer") as Sprite;
 			textIntro.addEventListener(UiEvent.TEXT_INTRO_START,textIntroHandler);
 			textIntro.addEventListener(UiEvent.TEXT_INTRO_SHOW_SLOGAN,textIntroHandler);
 			textIntro.addEventListener(UiEvent.TEXT_INTRO_SHOW_PRODUCT,textIntroHandler);
 			textIntro.addEventListener(UiEvent.TEXT_INTRO_END,textIntroHandler);
+			textIntro.y= DefinesApplication.TEXT_INTRO_SPACE_TOP_BORDER;
 			addChild(textIntro);
 			
 			// create players
@@ -69,24 +83,55 @@ package de.axe.duffman
 			players.addEventListener(UiEvent.PLAYER_START, playersHandler,true);
 			players.addEventListener(UiEvent.PLAYER_STOPPED, playersHandler,true);
 			addChild(players);
-			
+			players.visible=false;
+
 			// create Sound Button
 			
 			// create Replay Button
-			textIntro.y= DefinesApplication.TEXT_INTRO_SPACE_TOP_BORDER;
+			
+			// create Buttons for film
+			createButtons();
 			
 		}
+		private function createButtons():void{
+			var but:ButtonUI;
+			for (var i:uint=0; i< totalPlayerNum; i++){
+			but = new ButtonUI( dataModel.getVideoVO(0),filmLibrary,dataModel);
+			but.addEventListener(UiEvent.BUTTONS_ONE_ROLLOVER,buttonsHandler);
+			but.addEventListener(UiEvent.BUTTONS_ONE_CLICK,buttonsHandler);
+			but.x=dataModel.getVideoVO(0).posX;
+			but.y=dataModel.getVideoVO(0).posY;
+			buttonsContainer.addChild(but);
+			}
+		}
+		private function buttonsHandler(evt:UiEvent):void{
+			trace("buttonsHandler evt"+evt.type)
+			switch(evt.type){
+				case UiEvent.BUTTONS_ONE_ROLLOVER:
+					break;
+				case UiEvent.BUTTONS_ONE_CLICK:
+					Tweener.addTween(this,{scaleX:10,scaleY:10,y:-2800,x:1800,transition:"easeinoutcubic",time:1});
+					break;
+				default:
+					break;
+			}
+		}
+		private function start():void{
+			trace("start");
+			contentHeight =this.height;
+			contentWidth =this.width;
+			textIntro.play();
+			resize();
+		}
+		
 		private function playersHandler(evt:UiEvent):void{
-			//trace("evt.type"+evt.type);
+			trace("evt.type"+evt.type);
 			
 			switch(evt.type)
 			{
 				case UiEvent.PLAYERS_READY:
 					players.removeEventListener(UiEvent.PLAYERS_READY,playersHandler);
-					contentHeight =this.height;
-					contentWidth =this.width;
-					textIntro.play();
-					resize();
+					start();
 					break;
 				case UiEvent.PLAYER_START:
 						STATUS_PLAYERS=ACTIVE;

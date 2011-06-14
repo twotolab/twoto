@@ -29,6 +29,9 @@ package de.axe.duffman.data
 			checkIDs();
 			
 		}
+		public function get labelCallToAction():String{
+			return String(getSetup().@labelCallToAction);
+		}
 		public function get playerWidth():uint{
 			return uint(getSetup().@width);
 		}

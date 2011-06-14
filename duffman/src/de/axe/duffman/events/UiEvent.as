@@ -23,6 +23,9 @@
 		public static const TEXT_INTRO_SHOW_PRODUCT:String = "textIntroShowProduct";
 		public static const TEXT_INTRO_SHOW_SLOGAN:String = "textIntroShowSlogan";
 		
+		// buttons
+		public static const BUTTONS_ONE_ROLLOVER:String = "buttonsOneRollOver";
+		public static const BUTTONS_ONE_CLICK:String = "buttonsOneClick";
 		// players
 		public static const PLAYER_STOPPED:String = "playerstopped";
 		public static const PLAYER_START:String = "playerStart";
